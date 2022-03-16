@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    style="@style/activity_page">
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        style="@style/match_match"
+        android:id="@id/srlBaseHttpRecycler"
+        app:srlEnableLoadMore="true"
+        app:srlEnablePreviewInEditMode="true">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            style="@style/match_wrap" />
+        <ScrollView
+            style="@style/ll_vertical_match_match"
+            android:layout_weight="1" >
+            <LinearLayout
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12sp"
+                style="@style/ll_vertical_match_match" >
+                <!--banner-->
+                <zuo.biao.library.ui.RatioRelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    app:relativeRatio="2.089"
+                    android:layout_height="wrap_content">
+
+                    <com.zhouwei.mzbanner.MZBannerView
+                        android:id="@+id/first_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:canLoop="true"
+                        app:indicatorAlign="center"
+                        app:indicatorPaddingLeft="10dp"
+                        app:open_mz_mode="false" />
+                </zuo.biao.library.ui.RatioRelativeLayout>
+             <LinearLayout
+                 android:id="@+id/first_categoty_content"
+                 android:orientation="vertical"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </ScrollView>
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            style="@style/match_wrap" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

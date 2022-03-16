@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activity_page">
+
+    <RelativeLayout style="@style/topbar_bg" >
+
+        <ImageView style="@style/topbar_return_img" />
+
+        <HorizontalScrollView
+            android:layout_marginLeft="50dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="50dp"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            >
+            <LinearLayout
+                android:id="@+id/loot_details_top"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginRight="12dp"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/loot_details_banner_top"
+                        android:layout_width="wrap_content"
+                        android:text="@string/loot_details_top"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@color/loot_des_top_tab_selector"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:id="@+id/loot_details_banner_top_"
+                        android:layout_width="32dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/loot_des_top_tab_shap"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginRight="12dp"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/loot_details_banner_bqcy"
+                        android:layout_width="wrap_content"
+                        android:text="@string/loot_details_bqcy"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@color/loot_des_top_tab_selector"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:id="@+id/loot_details_banner_bqcy_"
+                        android:layout_width="64dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/loot_des_top_tab_shap"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginRight="12dp"
+                    android:layout_width="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/loot_details_banner_wqjx"
+                        android:layout_width="wrap_content"
+                        android:text="@string/plan_win_title"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@color/loot_des_top_tab_selector"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:id="@+id/loot_details_banner_wqjx_"
+                        android:layout_width="64dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/loot_des_top_tab_shap"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginRight="12dp"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/loot_details_banner_spxq"
+                        android:layout_width="wrap_content"
+                        android:text="@string/product_details_title"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@color/loot_des_top_tab_selector"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:id="@+id/loot_details_banner_spxq_"
+                        android:layout_width="64dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/loot_des_top_tab_shap"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <ImageView
+            android:id="@+id/kefu"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="14dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/mine_kefu"
+            />
+    </RelativeLayout>
+
+    <zuo.biao.library.ui.MyScrollView
+        android:id="@+id/loot_details_sv"
+        style="@style/match_match"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="@dimen/topbar_height"
+        >
+        <LinearLayout style="@style/ll_vertical_match_match"
+            >
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/radius_8_bottom_shap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--banner-->
+                <zuo.biao.library.ui.RatioRelativeLayout
+                    android:layout_width="match_parent"
+                    app:relativeRatio="1"
+                    android:layout_height="wrap_content">
+
+                    <com.zhouwei.mzbanner.MZBannerView
+                        android:id="@+id/product_details_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:canLoop="true"
+                        app:indicatorAlign="center"
+                        app:indicatorPaddingLeft="10dp"
+                        app:open_mz_mode="false" />
+                </zuo.biao.library.ui.RatioRelativeLayout>
+                <!--商品名称-->
+                <FrameLayout
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/product_details_name"
+                        android:textSize="14dp"
+                        android:textColor="#000000"
+                        tools:text="iphone 13/白色/黑色/银色/512GB/原装正品/国行 手机/双卡双待-限时特惠"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/product_details_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textSize="14dp"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
+                        android:paddingRight="5dp"
+                        android:background="@drawable/radius_4_red_shap"
+                        />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#E4393C"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="12dp"
+                    tools:text="$10.00" />
+
+                <TextView
+                    android:id="@+id/tv_loot_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="20dp"
+                    tools:text="80%" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/radius_8_shap"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="20dp"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    android:text="Specifications:"
+                    />
+                <TextView
+                    android:id="@+id/tv_good_spe"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:textSize="14dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_real_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="18dp"
+                    tools:text="$17.999.00" />
+            </LinearLayout>
+
+            <!--我得参与-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/radius_8_shap"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:paddingRight="12dp"
+                android:paddingLeft="12dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/loot_details_canyu_text"
+                    android:textColor="#333333"
+                    android:textSize="14dp"
+                    android:text="@string/loot_details_no_canyu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tv_loot_look"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/loot_details_look"
+                    android:background="@drawable/radius_20_line_shap"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/ll_loot_yijiexiao"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/radius_8_shap"
+                android:paddingLeft="12dp"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_loot_yjx_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/loot_details_yijiexiao_num"
+                    android:textColor="#333333"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_loot_yjx_iv"
+                    android:layout_below="@id/tv_loot_yjx_num"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    />
+                <LinearLayout
+                    android:id="@+id/ll_loot_yjx_user"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/tv_loot_yjx_num"
+                    android:layout_marginTop="11dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loot_details_yijiexiao_user"
+                        android:textColor="#333333"
+                        android:textSize="12dp" />
+
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:id="@+id/tv_loot_yjx_user"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#333333"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_loot_yjx_lucknum"
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/ll_loot_yjx_user"
+                    android:layout_marginTop="3dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loot_details_yijiexiao_luckno"
+                        android:textColor="#333333"
+                        android:textSize="12dp" />
+
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:id="@+id/tv_loot_yjx_lucknum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#333333"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@id/ll_loot_yjx_lucknum"
+                    android:layout_marginTop="3dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loot_details_yijiexiao_time"
+                        android:textColor="#333333"
+                        android:textSize="12dp" />
+
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:id="@+id/tv_loot_yjx_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#333333"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="62dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/win_icon"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
+
+            <!--本期参与-->
+            <RelativeLayout
+                android:id="@+id/rl_loot_details_bqcy"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:background="@drawable/radius_8_shap"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_loot_details_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loot_details_now_canyu"
+                    android:textColor="#333333"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_loot_details_now_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="40dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/radius_20_line_shap"
+                    android:text="@string/loot_details_all"
+                    android:textColor="#666666"
+                    android:textSize="14dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="240dp"
+                    android:layout_below="@id/tv_loot_details_num"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="100dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_loot_details_canyu_1"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_canyu_2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/iv_loot_details_canyu_2"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_canyu_3"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_canyu_1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+                    <ImageView
+                        android:id="@+id/iv_loot_details_canyu_3"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_canyu_4"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_canyu_2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+                    <ImageView
+                        android:id="@+id/iv_loot_details_canyu_4"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_canyu_5"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_canyu_3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+                    <ImageView
+                        android:id="@+id/iv_loot_details_canyu_5"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_canyu_4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+            <!--往期揭晓-->
+            <RelativeLayout
+                android:id="@+id/rl_loot_details_wqjx"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:background="@drawable/radius_8_shap"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_loot_details_last_all_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loot_details_last_canyu"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="14dp"/>
+
+                <TextView
+                    android:id="@+id/tv_loot_details_last_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="40dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/radius_20_line_shap"
+                    android:text="@string/loot_details_all"
+                    android:textColor="#666666"
+                    android:textSize="14dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="240dp"
+                    android:layout_below="@id/tv_loot_details_last_all_title"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="100dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/iv_loot_details_last_canyu_1"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_last_canyu_2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/iv_loot_details_last_canyu_2"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_last_canyu_3"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_last_canyu_1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+                    <ImageView
+                        android:id="@+id/iv_loot_details_last_canyu_3"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_last_canyu_4"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_last_canyu_2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+                    <ImageView
+                        android:id="@+id/iv_loot_details_last_canyu_4"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_last_canyu_5"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_last_canyu_3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+                    <ImageView
+                        android:id="@+id/iv_loot_details_last_canyu_5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_last_canyu_4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/defult_head"
+                        tools:ignore="MissingConstraints" />
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:id="@+id/iv_loot_details_last_canyu_bot_1"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_last_canyu_bot_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="37dp"
+                        android:layout_height="16dp"
+                        android:gravity="center_vertical"
+                        android:visibility="invisible"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:background="@drawable/radius_8_red_shap"
+                        tools:ignore="MissingConstraints" >
+                        <ImageView
+                            android:layout_width="9dp"
+                            android:layout_height="9dp"
+                            android:src="@mipmap/detail_win_bot"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:text="lucky"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/iv_loot_details_last_canyu_bot_2"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_last_canyu_bot_3"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_last_canyu_bot_1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="37dp"
+                        android:layout_height="16dp"
+                        android:gravity="center_vertical"
+                        android:visibility="invisible"
+                        android:background="@drawable/radius_8_red_shap"
+                        tools:ignore="MissingConstraints" >
+                        <ImageView
+                            android:layout_width="9dp"
+                            android:layout_height="9dp"
+                            android:src="@mipmap/detail_win_bot"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:text="lucky"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/iv_loot_details_last_canyu_bot_3"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_last_canyu_bot_4"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_last_canyu_bot_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="37dp"
+                        android:layout_height="16dp"
+                        android:gravity="center_vertical"
+                        android:visibility="invisible"
+                        android:background="@drawable/radius_8_red_shap"
+                        tools:ignore="MissingConstraints" >
+                        <ImageView
+                            android:layout_width="9dp"
+                            android:layout_height="9dp"
+                            android:src="@mipmap/detail_win_bot"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:text="lucky"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/iv_loot_details_last_canyu_bot_4"
+                        app:layout_constraintEnd_toStartOf="@id/iv_loot_details_last_canyu_bot_5"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_last_canyu_bot_3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="37dp"
+                        android:layout_height="16dp"
+                        android:gravity="center_vertical"
+                        android:visibility="invisible"
+                        android:background="@drawable/radius_8_red_shap"
+                        tools:ignore="MissingConstraints" >
+                        <ImageView
+                            android:layout_width="9dp"
+                            android:layout_height="9dp"
+                            android:src="@mipmap/detail_win_bot"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:text="lucky"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/iv_loot_details_last_canyu_bot_5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_loot_details_last_canyu_bot_4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="37dp"
+                        android:layout_height="16dp"
+                        android:gravity="center_vertical"
+                        android:visibility="invisible"
+                        android:background="@drawable/radius_8_red_shap"
+                        tools:ignore="MissingConstraints" >
+                        <ImageView
+                            android:layout_width="9dp"
+                            android:layout_height="9dp"
+                            android:src="@mipmap/detail_win_bot"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="10dp"
+                            android:layout_marginLeft="2dp"
+                            android:text="lucky"
+                            />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+            <!--商品详情-->
+            <LinearLayout
+                android:id="@+id/loot_details_spxq_ll"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/radius_8_shap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Commodity details"
+                    android:layout_width="wrap_content"
+                    android:textColor="#333333"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:background="@drawable/border_b_shap"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"/>
+
+                <WebView
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:textSize="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="#999999"
+                    tools:text="1.参数配置 2.性能分析 屏幕方面,四款新机的屏幕尺寸相比iPhone 12系列没有什么变动,分别是5.4英 寸(2340×1080分辨率)、6.1英寸(2532×1170分辨率)、6.1英寸(2560×1170分辨率)以及6... 3.小编点评 小编为大家推荐的是iPhone13Pro,这款手机可以为用户提供很好的手机性价比, 同时为用户提供很好的电池容量,带来很好的手机120Hz的屏幕刷新,带来很好的..."
+                    android:id="@+id/product_details_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="WebViewLayout" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </zuo.biao.library.ui.MyScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="4dp"
+        android:paddingTop="5dp"
+        android:background="@color/white"
+        android:layout_height="49dp">
+        <LinearLayout
+            android:id="@+id/product_details_buy"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_20_yellow_shap"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:text="@string/product_details_gm"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/product_details_duobao"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/radius_20_red_shap"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:text="Raffle"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

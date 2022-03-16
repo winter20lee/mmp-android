@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":ZBLibrary" external.linked.project.path="$MODULE_DIR$/../../../ZBLibrary" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="Ysxm" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android-gradle" name="Android-Gradle">
+      <configuration>
+        <option name="GRADLE_PROJECT_PATH" value=":ZBLibrary" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="4.0.0" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="4.0.0" />
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../ZBLibrary/src/main/res;file://$MODULE_DIR$/../../../ZBLibrary/src/debug/res;file://$MODULE_DIR$/../../../ZBLibrary/build/generated/res/rs/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../ZBLibrary/src/androidTest/res;file://$MODULE_DIR$/../../../ZBLibrary/src/androidTestDebug/res;file://$MODULE_DIR$/../../../ZBLibrary/build/generated/res/rs/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../ZBLibrary/build/intermediates/javac/debug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../ZBLibrary/build/intermediates/javac/debugUnitTest/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../ZBLibrary">
+      <sourceFolder url="file://$MODULE_DIR$/../../../ZBLibrary/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../ZBLibrary/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../ZBLibrary/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../ZBLibrary/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../ZBLibrary/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../ZBLibrary/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../ZBLibrary/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../ZBLibrary/src/main/res" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../ZBLibrary/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../ZBLibrary/build" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.apache.http.legacy" level="project" />
+    <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.12.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
+    <orderEntry type="library" name="Gradle: org.greenrobot:eventbus:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.4.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:27.1-android" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
+    <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.15.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.9.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:annotations:4.9.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout-solver:2.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: io.reactivex:rxjava:1.2.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.material:material:1.4.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:2.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.darsh.multipleimageselect:multipleimageselect:1.0.5@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.4.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.aliyun.dpa:oss-android-sdk:2.9.5@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:glide:4.9.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.scwang.smartrefresh:SmartRefreshLayout:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.sunfusheng:MarqueeView:1.4.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.yanzhenjie.permission:support:2.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.gyf.immersionbar:immersionbar:3.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:v8.1.9-release-jitpack@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer-exo2:v8.1.9-release-jitpack@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-arm64:v8.1.9-release-jitpack@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-armv7a:v8.1.9-release-jitpack@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-armv5:v8.1.9-release-jitpack@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-x86:v8.1.9-release-jitpack@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-x64:v8.1.9-release-jitpack@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.multidex:multidex:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.liulishuo.filedownloader:library:1.7.7@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.viewpager2:viewpager2:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.soundcloud.android.crop:lib_crop:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: me.shaohui.advancedluban:library:1.3.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-v4:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.3.6@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.activity:activity:1.2.4@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat-resources:1.4.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-core-ui:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.drawerlayout:drawerlayout:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.coordinatorlayout:coordinatorlayout:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.dynamicanimation:dynamicanimation:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.recyclerview:recyclerview:1.2.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.andkulikov:transitionseverywhere:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.transition:transition:1.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable-animated:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-core-utils:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.slidingpanelayout:slidingpanelayout:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.customview:customview:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-ui:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.media:media:1.4.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.asynclayoutinflater:asynclayoutinflater:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core:1.7.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:gifdecoder:4.9.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.cardview:cardview:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.4.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.3.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.3.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.documentfile:documentfile:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.print:print:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-core:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-common:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: io.reactivex:rxandroid:1.2.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-base:v8.1.9-release-jitpack@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo:GSYIjkJava:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer-androidvideocache:v8.1.9-release-jitpack@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-database:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-datasource:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-decoder:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-extractor:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-dash:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-hls:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-rtsp:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-smoothstreaming:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-transformer:2.16.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.exoplayer:extension-rtmp:2.16.1@aar" level="project" />
+    <orderEntry type="module" module-name="Ysxm.TakePhotoLibrary" />
+  </component>
+</module>

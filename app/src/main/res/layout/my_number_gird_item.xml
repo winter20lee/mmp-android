@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="30dp"
+    android:layout_width="match_parent">
+    <TextView
+        android:id="@+id/ivLootBottomGridItem"
+        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/radius_4_line_shap"
+        android:textColor="#666666"
+        android:textSize="12dp"
+        android:gravity="center"
+        />
+</LinearLayout>
+

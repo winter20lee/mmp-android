@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+        debug {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+    useLibrary 'org.apache.http.legacy'
+    productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'androidx.appcompat:appcompat:1.2.0'
+    api 'com.squareup.okhttp3:okhttp:3.12.3'
+    api 'com.google.code.gson:gson:2.8.5'
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    api 'com.google.android.material:material:1.4.0'  //版本随意（必须）
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0' //版本随意（非必须，引用可以解决无法预览问题）
+    api 'com.sunfusheng:MarqueeView:1.4.1'//跑马灯
+    api project(':TakePhotoLibrary')
+    api 'com.yanzhenjie.permission:support:2.0.1'// 权限
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'//状态栏
+    api 'com.aliyun.dpa:oss-android-sdk:2.9.5'//阿里云oss
+    api 'org.greenrobot:eventbus:3.1.1'//eventbus
+
+    //完整版引入
+    api 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-java:v8.1.9-release-jitpack'
+    //是否需要ExoPlayer模式
+    api 'com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer-exo2:v8.1.9-release-jitpack'
+    //根据你的需求ijk模式的so
+    api 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-arm64:v8.1.9-release-jitpack'
+    api 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-armv7a:v8.1.9-release-jitpack'
+    api 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-armv5:v8.1.9-release-jitpack'
+    api 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-x86:v8.1.9-release-jitpack'
+    api 'com.github.CarGuo.GSYVideoPlayer:gsyVideoPlayer-x64:v8.1.9-release-jitpack'
+
+    api 'com.android.support:multidex:1.0.3'
+
+    api 'com.liulishuo.filedownloader:library:1.7.7'//文件下载
+}

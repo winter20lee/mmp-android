@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.aliyun.dpa:oss-android-sdk:2.9.5@aar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/e5deb7fea1dd3edc256a19a3ff3d450d/jetified-oss-android-sdk-2.9.5/res" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/e5deb7fea1dd3edc256a19a3ff3d450d/jetified-oss-android-sdk-2.9.5/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/e5deb7fea1dd3edc256a19a3ff3d450d/jetified-oss-android-sdk-2.9.5/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.aliyun.dpa/oss-android-sdk/2.9.5/93c1efd936a2716c004614da29205c736dcf0b2c/oss-android-sdk-2.9.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.aliyun.dpa/oss-android-sdk/2.9.5/5eb01c2630a6212f5dff3968527eb27884905f46/oss-android-sdk-2.9.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

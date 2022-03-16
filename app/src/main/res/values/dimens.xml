@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="qrcode_size">200dp</dimen>
+    <dimen name="dim_2">2dp</dimen>
+    <dimen name="dim_4">4dp</dimen>
+    <dimen name="dim_10">10dp</dimen>
+</resources>

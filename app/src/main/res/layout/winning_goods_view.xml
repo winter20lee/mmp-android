@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/radius_8_shap"
+    android:layout_marginTop="10dp"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="12dp"
+    android:paddingLeft="12dp"
+    style="@style/match_wrap">
+
+    <TextView
+        android:id="@+id/myorder_numcode"
+        android:textColor="#333333"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:lines="1"
+        tools:text="Period No.: 0068977"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/myorder_time"
+        android:textColor="#999999"
+        android:textSize="12dp"
+        android:layout_below="@id/myorder_numcode"
+        android:layout_marginTop="20dp"
+        android:maxLines="1"
+        android:lines="1"
+        tools:text="Creation time: 2020-11-11 11:11:00"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/myorder_code"
+        android:textColor="#999999"
+        android:textSize="12dp"
+        tools:text="Order No. : 2212421244"
+        android:layout_below="@id/myorder_time"
+        android:maxLines="1"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/myorder_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/myorder_code"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/allorder_price_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myorder_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="Value"
+        android:textColor="#666666"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/allorder_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myorder_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/allorder_price_title"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:textColor="#333333"
+        android:textSize="14dp"
+        tools:text="$ 16,999.00" />
+
+    <TextView
+        android:id="@+id/allorder_untprice_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/allorder_price"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="Price"
+        android:textColor="#666666"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/allorder_untprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/allorder_price"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/allorder_untprice_title"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:textColor="#333333"
+        android:textSize="14dp"
+        tools:text="$ 10.00" />
+
+    <TextView
+        android:id="@+id/allorder_untprice_start"
+        android:layout_toRightOf="@id/allorder_untprice"
+        android:textColor="#333333"
+        android:textSize="14dp"
+        android:text=" * "
+        android:layout_below="@id/allorder_price"
+        android:layout_marginTop="10dp"
+        android:maxLines="1"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/allorder_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/allorder_price"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/allorder_untprice_start"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="10 "
+        android:textColor="#333333"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/myorder_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myorder_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="38dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:textColor="#E4393C"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        tools:text="$30,000,00" />
+
+    <TextView
+        android:id="@+id/myorder_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/myorder_price"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:textColor="#333333"
+        android:textSize="14dp"
+        tools:text="To Ship" />
+
+    <TextView
+        android:textColor="#E2291F"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentRight="true"
+        android:maxLines="1"
+        android:lines="1"
+        android:text="Award-winning"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:gravity="right"
+        android:layout_below="@id/myorder_state"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/myorder_wuliu"
+            android:textColor="#333333"
+            android:textSize="12dp"
+            android:background="@drawable/radius_17_gray_line_shap"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:maxLines="1"
+            android:visibility="visible"
+            android:lines="1"
+            android:ellipsize="end"
+            android:layout_width="wrap_content"
+            android:text="@string/myorder_ckwl"
+            android:layout_height="30dp"/>
+
+        <TextView
+            android:id="@+id/myorder_des"
+            android:textColor="#333333"
+            android:textSize="12dp"
+            android:background="@drawable/radius_17_gray_line_shap"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:visibility="visible"
+            android:lines="1"
+            android:ellipsize="end"
+            android:layout_width="wrap_content"
+            android:text="@string/allorder_ckjl"
+            android:layout_height="30dp"/>
+
+        <TextView
+            android:id="@+id/myorder_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="9dp"
+            android:background="@drawable/radius_17_red_line_shap"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:maxLines="1"
+            android:text="New treasure"
+            android:textColor="#E4393C"
+            android:textSize="12dp" />
+
+
+    </LinearLayout>
+</RelativeLayout>

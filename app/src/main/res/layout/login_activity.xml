@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activity_page"
+    android:background="@color/white"
+    >
+
+    <ImageView style="@style/topbar_return_img" />
+
+<!--    <ScrollView style="@style/match_wrap">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="91dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile login"
+                android:textColor="#3E3E3E"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:layout_marginLeft="36dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello,welcome to 12Shop"
+                android:textColor="#999999"
+                android:textSize="12dp"
+                android:layout_marginLeft="36dp"
+                />
+
+            <RelativeLayout
+                android:layout_marginTop="55dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/explore_search_close"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="14dp"
+                    />
+
+                <EditText
+                    android:id="@+id/login_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/radius_46_gray_f6f6f6_shap"
+                    android:gravity="center_vertical"
+                    android:hint="@string/login_hint_phone"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:paddingLeft="13dp"
+                    android:textColor="#3D3535"
+                    android:textColorHint="#C2C2C2"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/login_password"
+                    />
+
+                <EditText
+                    android:id="@+id/login_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/radius_46_gray_f6f6f6_shap"
+                    android:hint="@string/login_hint_password"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:maxLines="1"
+                    android:paddingLeft="13dp"
+                    android:textColor="#3D3535"
+                    android:textColorHint="#C2C2C2"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/login_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/radius_right_25_red_shap"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="@string/login_code"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/login_login"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:src="@mipmap/login"
+                android:adjustViewBounds="true"
+                />
+        </LinearLayout>
+<!--    </ScrollView>-->
+
+</LinearLayout>

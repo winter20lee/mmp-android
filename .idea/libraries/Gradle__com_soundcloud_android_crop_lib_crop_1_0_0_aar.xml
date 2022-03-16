@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.soundcloud.android.crop:lib_crop:1.0.0@aar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/3ba2207a7328311fc1b26fb1f96d640b/jetified-lib_crop-1.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/3ba2207a7328311fc1b26fb1f96d640b/jetified-lib_crop-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/3ba2207a7328311fc1b26fb1f96d640b/jetified-lib_crop-1.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/a6a24e31a5464a49d1513d32704c64ec/jetified-lib_crop-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/a6a24e31a5464a49d1513d32704c64ec/jetified-lib_crop-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/a6a24e31a5464a49d1513d32704c64ec/jetified-lib_crop-1.0.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.soundcloud.android.crop/lib_crop/1.0.0/6ca6214e189fed255a63e2f1192f8b6703f22b0d/lib_crop-1.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.soundcloud.android.crop/lib_crop/1.0.0/4be961d0684a5d3ddba6361138264e8b00afab8c/lib_crop-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

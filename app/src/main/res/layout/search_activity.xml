@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/activity_page">
+
+    <zblibrary.zgl.view.SearchLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/msearchlayout"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        app:search_hint=""
+        />
+    <FrameLayout
+        android:id="@+id/search_result_fg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

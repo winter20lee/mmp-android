@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activity_page"
+    android:fitsSystemWindows="false"
+    >
+
+    <FrameLayout
+        android:id="@+id/flMainTabFragmentContainer"
+        style="@style/match_match"
+        android:layout_weight="1" >
+    </FrameLayout>
+
+    <LinearLayout
+        style="@style/ll_horizontal_match_wrap"
+        android:layout_height="@dimen/dim_50"
+        android:background="@color/white" >
+
+        <LinearLayout
+            android:id="@+id/llBottomTabTab0"
+            style="@style/bottom_tab_ll"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/ivBottomTabTab0"
+                style="@style/bottom_tab_iv"
+                android:src="@drawable/tab_first_selector" />
+
+            <TextView
+                android:id="@+id/tvBottomTabTab0"
+                style="@style/bottom_tab_tv"
+                android:text="首页" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llBottomTabTab1"
+            style="@style/bottom_tab_ll"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/ivBottomTabTab1"
+                style="@style/bottom_tab_iv"
+                android:src="@drawable/tab_classsearch_selector" />
+
+            <TextView
+                android:id="@+id/tvBottomTabTab1"
+                style="@style/bottom_tab_tv"
+                android:text="会员" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llBottomTabTab2"
+            style="@style/bottom_tab_ll"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/ivBottomTabTab2"
+                style="@style/bottom_tab_iv"
+                android:src="@drawable/tab_mine_selector" />
+
+            <TextView
+                android:id="@+id/tvBottomTabTab2"
+                style="@style/bottom_tab_tv"
+                android:text="我的" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

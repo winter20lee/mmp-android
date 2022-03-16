@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--宽高比relativeLayout-->
+    <declare-styleable name="RatioRelativeLayout">
+        <attr name="relativeRatio" format="float" />
+    </declare-styleable>
+</resources>

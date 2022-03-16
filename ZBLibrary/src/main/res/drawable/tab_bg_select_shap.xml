@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 边框颜色值 -->
+    <item android:left="20dp" android:right="20dp" android:height="3dp" android:gravity="bottom">
+        <shape>
+            <solid android:color="#E2291F" />
+            <corners android:radius="1.5dp"  />
+        </shape>
+    </item>
+
+    <item android:bottom="3dp"> <!--设置除了顶部都有边框-->
+        <shape>
+            <solid android:color="#ffffff" />
+        </shape>
+    </item>
+
+</layer-list>

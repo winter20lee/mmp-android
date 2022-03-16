@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_wrap"
+     >
+
+    <ImageView
+        android:id="@+id/myorder_item_pic"
+        style="@style/img_fitXY"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/rect_alpha" />
+
+    <TextView
+        android:id="@+id/myorder_item_title"
+        android:textColor="#333333"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/myorder_item_pic"
+        android:layout_marginLeft="10dp"
+        android:maxLines="2"
+        android:lines="2"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/myorder_item_peizhi"
+        android:textColor="#999999"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/myorder_item_pic"
+        android:layout_below="@id/myorder_item_title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:maxLines="1"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/myorder_item_num"
+        android:textColor="#999999"
+        android:textSize="10sp"
+        android:layout_toRightOf="@id/myorder_item_pic"
+        android:layout_below="@id/myorder_item_peizhi"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:maxLines="1"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/myorder_item_price"
+        android:textColor="#333333"
+        android:textSize="12sp"
+        android:layout_below="@id/myorder_item_peizhi"
+        android:layout_alignParentRight="true"
+        android:maxLines="1"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <View
+        android:id="@+id/myorder_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="10dp"
+        android:background="#E9E9E9"
+        android:layout_below="@id/myorder_item_pic"
+        />
+
+</RelativeLayout>

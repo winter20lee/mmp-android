@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer-androidvideocache:v8.1.9-release-jitpack@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/74fd5aaf942a2d873565e7d5d063e61c/jetified-gsyvideoplayer-androidvideocache-v8.1.9-release-jitpack/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/74fd5aaf942a2d873565e7d5d063e61c/jetified-gsyvideoplayer-androidvideocache-v8.1.9-release-jitpack/res" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/74fd5aaf942a2d873565e7d5d063e61c/jetified-gsyvideoplayer-androidvideocache-v8.1.9-release-jitpack/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

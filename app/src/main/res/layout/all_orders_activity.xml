@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/activity_page"
+    tools:ignore="MissingDefaultResource">
+
+    <RelativeLayout style="@style/topbar_bg" >
+
+        <ImageView style="@style/topbar_return_img" />
+
+        <TextView
+            style="@style/topbar_title"
+            android:text="Treasure Order" />
+
+        <ImageView
+            android:id="@+id/kefu"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="14dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/mine_kefu"
+            />
+
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/allorder_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        app:tabBackground="@color/white"
+        app:tabIndicatorColor="#E2291F"
+        app:tabIndicatorHeight="3dp"
+        app:tabMode="scrollable"
+        app:tabMinWidth="62dip"
+        app:tabPaddingStart="5dip"
+        app:tabPaddingEnd="5dip"
+        app:tabSelectedTextColor="#E2291F"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="#666666" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/allorder_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+</LinearLayout>

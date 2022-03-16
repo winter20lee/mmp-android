@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.pinguo-zhouwei:MZBannerView:v2.0.2@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/fdb14622eb6159d4c9a5f55a164494dd/jetified-MZBannerView-v2.0.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/fdb14622eb6159d4c9a5f55a164494dd/jetified-MZBannerView-v2.0.2/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/fdb14622eb6159d4c9a5f55a164494dd/jetified-MZBannerView-v2.0.2/res" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/587ebbb3430eeec85c01ab3110343a04/jetified-MZBannerView-v2.0.2/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/587ebbb3430eeec85c01ab3110343a04/jetified-MZBannerView-v2.0.2/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/587ebbb3430eeec85c01ab3110343a04/jetified-MZBannerView-v2.0.2/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.github.pinguo-zhouwei/MZBannerView/v2.0.2/11b074139420453ae93d4f61b6d54d0a92cdfd81/MZBannerView-v2.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

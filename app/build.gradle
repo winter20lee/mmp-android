@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId "zblibrary.zgl"
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 5
+        versionName "16.0.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true // Zipalign优化
+            shrinkResources true  // 移除无用的resource文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false // Zipalign优化
+            shrinkResources false  // 移除无用的resource文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        disable 'MissingTranslation'
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    api project(':ZBLibrary')
+    implementation 'com.github.pinguo-zhouwei:MZBannerView:v2.0.2'//banner
+}
+

@@ -1,0 +1,86 @@
+/*Copyright ©2015 TommyLemon(https://github.com/TommyLemon)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.*/
+
+package zblibrary.zgl.manager;
+
+import zblibrary.zgl.activity.UpdateNickNameActivity;
+import zblibrary.zgl.interfaces.OnHttpResponseListener;
+import zuo.biao.library.util.GsonUtil;
+import zuo.biao.library.util.Log;
+
+/**Http请求结果解析类
+ * *适合类似以下固定的json格式
+ * <br>   {
+   <br>     "code": 100,
+   <br>     "data": {//可以为任何实体类json，通过Json.parseObject(json, Class<T>)解析；
+                      或者是其它类型的JSONObject，解析方式如 {@link #onHttpResponse} 内所示
+   <br>         ...
+   <br>      }
+   <br>   }
+ * @see UpdateNickNameActivity#initData()
+ * @use 把请求中的listener替换成new OnHttpResponseListenerImpl(listener)
+ */
+public class OnHttpResponseListenerImpl implements OnHttpResponseListener
+, zuo.biao.library.interfaces.OnHttpResponseListener {
+	private static final String TAG = "OnHttpResponseListenerImpl";
+
+	OnHttpResponseListener listener;
+	public OnHttpResponseListenerImpl(OnHttpResponseListener listener) {
+		this.listener = listener;
+	}
+
+
+
+	/**zuo.biao.library.manager.HttpManager.OnHttpResponseListener的回调方法，这里转用listener处理
+	 */
+	@Override
+	public void onHttpResponse(int requestCode, String resultJson, Exception e) {
+		Log.i(TAG, "onHttpResponse  requestCode = " + requestCode + "; resultJson = " + resultJson
+				+ "; \n\ne = " + (e == null ? null : e.getMessage()));
+
+		int resultCode = 0;
+		String resultData =null;
+		String resultMessage = null;
+		Exception exception = null;
+		try {
+			resultCode = GsonUtil.GsonCode(resultJson);
+			resultData = GsonUtil.GsonData(resultJson);;
+			resultMessage = GsonUtil.GsonMessage(resultJson);
+		} catch (Exception e1) {
+			Log.e(TAG, "onHttpResponse  try { sonObject = new JSONObject(resultJson);... >>" +
+					" } catch (JSONException e1) {\n" + e1.getMessage());
+			exception = e1;
+		}
+
+		if (listener == null) {
+			listener = this;
+		}
+		if ((e == null && exception == null) && resultCode ==1000) {
+			listener.onHttpSuccess(requestCode, resultCode, resultData,resultMessage);
+		} else {
+			listener.onHttpError(requestCode, new Exception(TAG + ": e = " + e + "; \n exception = " + exception),resultMessage);
+		}
+	}
+
+	@Override
+	public void onHttpSuccess(int requestCode, int resultCode, String resultData,String message) {
+		Log.i(TAG, "onHttpSuccess  requestCode = " + requestCode + "; resultCode = " + resultCode
+				+ "; resultData = \n" + resultData);
+	}
+	@Override
+	public void onHttpError(int requestCode, Exception e,String message) {
+		Log.i(TAG, "onHttpSuccess  requestCode = " + requestCode + "; e = " + e);
+	}
+
+}

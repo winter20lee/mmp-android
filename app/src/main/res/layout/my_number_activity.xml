@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/activity_page"
+    tools:ignore="MissingDefaultResource">
+
+    <RelativeLayout style="@style/topbar_bg" >
+
+        <ImageView style="@style/topbar_return_img" />
+
+        <TextView
+            style="@style/topbar_title"
+            android:layout_centerHorizontal="true"
+            android:text="@string/allorder_wdhm" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:background="@drawable/radius_8_shap"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/issue_number"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                />
+
+            <TextView
+                android:id="@+id/my_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:textStyle="bold"
+                android:layout_marginTop="6dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purchasing"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                />
+
+            <TextView
+                android:id="@+id/my_number_purchasing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:textStyle="bold"
+                android:layout_marginTop="6dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/my_number_gridview"
+        android:background="@drawable/radius_8_shap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:padding="20dp"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="16dp"
+        android:layout_marginTop="10dp"
+        android:divider="@color/white"
+        android:listSelector="@drawable/bottom_grid_selector" >
+    </GridView>
+
+</LinearLayout>

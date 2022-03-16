@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/activity_page"
+    android:clickable="true"
+    android:focusable="true">
+    <include layout="@layout/statebar_view"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="18dp"
+            android:textColor="#333333"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/main_gwc"
+            />
+
+        <TextView
+            android:id="@+id/shop_cart_more_actions"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingRight="12dp"
+            android:textSize="14dp"
+            android:layout_gravity="right"
+            android:textColor="#333333"
+            android:gravity="center"
+            android:text="More actions"
+            />
+    </FrameLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        style="@style/match_wrap"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="14dp"
+        android:id="@id/srlBaseHttpRecycler"
+        app:srlEnableLoadMore="true"
+        app:srlEnablePreviewInEditMode="true"
+        >
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            style="@style/match_wrap"
+            />
+        <FrameLayout
+            android:background="@drawable/radius_8_shap"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/shop_cart_sel_all_ll"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_shop_cart_sel_all_1"
+                    android:layout_width="14dp"
+                    android:src="@mipmap/shopping_car_unselect"
+                    android:layout_height="14dp"/>
+
+                <TextView
+                    android:id="@+id/shop_cart_sel_all_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text="Select All"
+                    android:textColor="#333333"
+                    android:textSize="12dp" />
+            </LinearLayout>
+            <zuo.biao.library.ui.EmptyView
+                android:id="@+id/empty_view"
+                style="@style/match_wrap"/>
+            <zuo.biao.library.ui.SlideRecyclerView
+                android:id="@id/rvBaseRecycler"
+                style="@style/lv_no_divider"
+                android:layout_marginTop="40dp"
+                />
+        </FrameLayout>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            style="@style/match_wrap"
+            />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="44dp">
+
+        <ImageView
+            android:id="@+id/iv_shop_cart_sel_all"
+            android:layout_width="14dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@mipmap/shopping_car_unselect"
+            android:layout_height="14dp"/>
+
+        <TextView
+            android:id="@+id/shop_cart_sel_all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_shop_cart_sel_all"
+            android:gravity="center"
+            android:text="Select All"
+            android:textColor="#333333"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/shopping_cart_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="12dp"
+            android:gravity="bottom"
+            android:text="$0"
+            android:textColor="#E4393C"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/shopping_cart_total_num"
+            android:layout_width="wrap_content"
+            android:gravity="bottom"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/shopping_cart_total_price"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="12dp"
+            android:text="@string/shopcart_selenum"
+            android:textColor="#666666"
+            android:textSize="10dp" />
+
+
+        <TextView
+            android:id="@+id/shopping_cart_more_del"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="30dp"
+            android:background="@drawable/radius_15_line_shap"
+            android:paddingLeft="6dp"
+            android:layout_marginRight="12dp"
+            android:paddingRight="6dp"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="Delete"
+            android:textColor="#333333"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/shopping_cart_more_empty"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="30dp"
+            android:background="@drawable/radius_15_line_shap"
+            android:layout_toLeftOf="@id/shopping_cart_more_del"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="Empty out"
+            android:textColor="#333333"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/shopping_cart_more_del_ex"
+            android:layout_toLeftOf="@id/shopping_cart_more_empty"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="30dp"
+            android:background="@drawable/radius_15_line_shap"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_centerVertical="true"
+            android:text="Delete expired"
+            android:textColor="#333333"
+            android:textSize="12dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/shopping_cart_pay"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/radius_20_red_shap"
+            android:text="@string/shopcart_ljjs"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

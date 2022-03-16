@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="zblibrary.zgl">
+    <!-- 需要的权限和功能 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- ZBLibrary <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- CommonUtil等类的部分功能需要，不需要的功能对应的权限可不复制粘贴 <<<<<< -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- ZBLibrary >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+    <!-- QRCodeLibrary <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:name="zblibrary.zgl.application.MApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:resizeableActivity="true"
+        android:maxAspectRatio="2.4"
+        android:screenOrientation="portrait"
+        android:requestLegacyExternalStorage="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/AppTheme">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="zblibrary.zgl.fileProvider"
+            android:exported="false"
+            tools:replace="android:authorities"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                tools:replace="android:resource"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!--适配华为（huawei）刘海屏-->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true"/>
+        <!--适配小米（xiaomi）刘海屏-->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+
+        <activity
+            android:name="zblibrary.zgl.activity.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="zblibrary.zgl.activity.MainTabActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="zblibrary.zgl.activity.UpdateNickNameActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.MyOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.SearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.AllOrdersActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.PlayVideoDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.OrderDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.WinningGoodsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.WinningGoodsDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.ReceivingAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.AddAndEditAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.UserInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.SystemHeadActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.MessageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.MessageDesActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.ProductDesSelectWindow"
+            android:screenOrientation="portrait"
+            android:theme="@style/Window"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.LootDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.PlanWinActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.PlanPartActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.MyNumberActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.UpdateNickNameActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name="zblibrary.zgl.activity.HelpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.SubmitOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.LootSubmitOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.PayActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.HelpDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.FirstDuobaoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.PointDestailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.RewardinKindActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.RepurchaseActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zblibrary.zgl.activity.BottomPayWindow"
+            android:screenOrientation="portrait"
+            android:theme="@style/Window"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name="zblibrary.zgl.activity.MyDownFilesActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <!-- ZBLibrary <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+        <activity
+            android:name="zuo.biao.library.ui.WebViewActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustUnspecified" />
+        <activity
+            android:name="zuo.biao.library.ui.EditTextInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustPan|adjustUnspecified" />
+        <activity
+            android:name="zuo.biao.library.ui.ServerSettingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="zuo.biao.library.ui.TopMenuWindow"
+            android:screenOrientation="portrait"
+            android:theme="@style/Window"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zuo.biao.library.ui.BottomMenuWindow"
+            android:screenOrientation="portrait"
+            android:theme="@style/Window"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zuo.biao.library.ui.EditTextInfoWindow"
+            android:screenOrientation="portrait"
+            android:theme="@style/Window"
+            android:windowSoftInputMode="stateVisible|adjustResize|adjustUnspecified" />
+        <activity
+            android:name="zuo.biao.library.ui.PlacePickerWindow"
+            android:screenOrientation="portrait"
+            android:theme="@style/Window"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zuo.biao.library.ui.DatePickerWindow"
+            android:screenOrientation="portrait"
+            android:theme="@style/Window"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="zuo.biao.library.ui.TimePickerWindow"
+            android:screenOrientation="portrait"
+            android:theme="@style/Window"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+    </application>
+
+</manifest>

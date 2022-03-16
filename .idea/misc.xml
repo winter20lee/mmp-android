@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Ysxm/ZBLibrary/src/main/res/drawable/sousuo_bg_gray_1.xml" value="0.1725" />
+        <entry key="..\:/Ysxm/ZBLibrary/src/main/res/drawable/tab_bg_select_shap.xml" value="0.1805" />
+        <entry key="..\:/Ysxm/ZBLibrary/src/main/res/drawable/tab_bg_selector.xml" value="0.1805" />
+        <entry key="..\:/Ysxm/ZBLibrary/src/main/res/layout/base_http_list_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/ZBLibrary/src/main/res/layout/base_recycler_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/ZBLibrary/src/main/res/layout/base_tab_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/ZBLibrary/src/main/res/layout/suosou_item.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/ZBLibrary/src/main/res/layout/top_tab_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/drawable-hdpi/bg_item_task_manager.xml" value="0.1805" />
+        <entry key="..\:/Ysxm/app/src/main/res/drawable/classification_search_tab_item_selector.xml" value="0.258" />
+        <entry key="..\:/Ysxm/app/src/main/res/drawable/radius_17_red_shap.xml" value="0.258" />
+        <entry key="..\:/Ysxm/app/src/main/res/drawable/radius_8_shap.xml" value="0.1805" />
+        <entry key="..\:/Ysxm/app/src/main/res/drawable/search_baground_shap.xml" value="0.1805" />
+        <entry key="..\:/Ysxm/app/src/main/res/drawable/tab_classsearch_selector.xml" value="0.1805" />
+        <entry key="..\:/Ysxm/app/src/main/res/drawable/tab_first_selector.xml" value="0.1805" />
+        <entry key="..\:/Ysxm/app/src/main/res/drawable/tab_lastest_non.xml" value="0.1" />
+        <entry key="..\:/Ysxm/app/src/main/res/drawable/tab_mine_selector.xml" value="0.1805" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/calssifica_search_loot_item_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/classification_search_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/classification_search_loot_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/classification_search_tab_item_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/first_category_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/first_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/first_hot_product_item_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/first_recomm_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/help_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/item_tasks_manager.xml" value="0.25" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/main_tab_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/msearch_top.xml" value="0.264" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/msearchlayout.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/mydown_file_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/product_details_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/qrcode_activity.xml" value="0.23802083333333332" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/scan_activity.xml" value="0.23802083333333332" />
+        <entry key="..\:/Ysxm/app/src/main/res/layout/search_activity.xml" value="0.1" />
+        <entry key="..\:/Yygsc/QRCodeLibrary/src/main/res/layout/main.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/drawable/login_login_selector.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/drawable/shopcard_button_add_cart_shap.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/drawable/shopcard_button_buy_shap.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/drawable/sousuo_bg_gray_1.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/drawable/tab_bg_select_shap.xml" value="0.2375" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/drawable/tab_bg_selector.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/layout/base_http_recycler_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/layout/base_recycler_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/layout/bottom_pay_window.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/layout/empty_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/layout/product_des_select_window.xml" value="0.1" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/layout/top_tab_view.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/ZBLibrary/src/main/res/layout/web_view_activity.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/loot_des_top_tab_shap.xml" value="0.2375" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/radius_17_gray_line_shap.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/radius_20_orange_shap.xml" value="0.1" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/radius_20_red_shap.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/radius_left_8_red_shap.xml" value="0.131" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/radius_right_25_red_shap.xml" value="0.1935" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/radius_right_4_red_shap.xml" value="0.131" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/search_baground_shap.xml" value="0.131" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/search_white_baground_shap.xml" value="0.131" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/sousuo_back_or_search_button_shap.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/submit_order_button_shap.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/tab_classsearch_selector.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/tab_first_selector.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/tab_lastest_non.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/tab_mine_selector.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/app/src/main/res/drawable/tab_shoppingcart_selector.xml" value="0.1635" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/add_receiving_address_activity.xml" value="0.17760416666666667" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/all_orders_activity.xml" value="0.2361111111111111" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/allorder_view.xml" value="0.264" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/calssico_search_second_item_view.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/calssifica_search_loot_item_fragment.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/classification_search_fragment.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/classification_search_loot_fragment.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/first_banner_item.xml" value="0.264" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/first_fragment.xml" value="0.2" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/first_hot_product_item_view.xml" value="0.2" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/help_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/help_view.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/login_activity.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/loot_details_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/loot_submit_order_activity.xml" value="0.176" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/main_tab_activity.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/message_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/message_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/mine_fragment.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/msearch_top.xml" value="0.4" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/msearchlayout.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/my_order_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/myorder_fragment.xml" value="0.13796296296296295" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/myorder_view.xml" value="0.13796296296296295" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/order_details_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/order_details_order_info_item_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/pay_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/pay_ment_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/points_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/product_details_activity.xml" value="0.13796296296296295" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/receiving_address_activity.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/receiving_address_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/receiving_address_view_no_top.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/repurchase_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/search_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/shopping_cart_fragment.xml" value="0.2" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/shopping_cart_item_view.xml" value="0.2" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/sort_view.xml" value="0.536" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/submit_order_activity.xml" value="0.2361111111111111" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/system_head_activity.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/update_nickname_activity.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/update_phone_num_activity.xml" value="0.25364583333333335" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/user_info_activity.xml" value="0.24974358974358973" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/winning_goods_activity.xml" value="0.2361111111111111" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/winning_goods_details_activity.xml" value="0.2361111111111111" />
+        <entry key="..\:/Yygsc/app/src/main/res/layout/winning_goods_view.xml" value="0.25364583333333335" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
