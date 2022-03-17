@@ -22,8 +22,14 @@ public class FirstCategoryView extends BaseView<FirstCategory> {
 
 	private List<FirstCategory.ResultModel> firstHotProductList = new ArrayList<>();
 	private FirstCategoryAdapter firstCategoryAdapter;
+	private boolean isShowChangeButton;
 	public FirstCategoryView(Activity context, ViewGroup parent) {
 		super(context, R.layout.first_category_view, parent);
+	}
+
+	public FirstCategoryView(Activity context, ViewGroup parent,boolean isShowChangeButton) {
+		super(context, R.layout.first_category_view, parent);
+		this.isShowChangeButton = isShowChangeButton;
 	}
 
 	public TextView first_category_title;
@@ -40,6 +46,9 @@ public class FirstCategoryView extends BaseView<FirstCategory> {
 		firstCategoryAdapter.setOnItemClickListener((parent, view, position, id) -> {
 			toActivity(PlayVideoDetailsActivity.createIntent(context, id));
 		});
+		if(isShowChangeButton){
+			findView(R.id.first_change).setVisibility(View.VISIBLE);
+		}
 		return super.createView();
 	}
 
@@ -48,6 +57,9 @@ public class FirstCategoryView extends BaseView<FirstCategory> {
 		super.bindView(data_ != null ? data_ : new FirstCategory());
 		firstHotProductList.addAll(data.result);
 		firstCategoryAdapter.refresh(firstHotProductList);
+	}
 
+	public void setTitle(String title){
+		first_category_title.setText(title);
 	}
 }

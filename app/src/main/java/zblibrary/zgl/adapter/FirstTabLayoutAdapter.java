@@ -33,10 +33,6 @@ public class FirstTabLayoutAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        ArrayList<GoodsCategory.SublevelsModel> sublevelsModels = null;
-        if(goodsCategoryList.get(position).sublevels!=null && goodsCategoryList.get(position).sublevels.size()>0){
-            sublevelsModels = goodsCategoryList.get(position).sublevels;
-        }
         if(position==0){
                 return FirstRecommendFragment.createInstance();
         }else{

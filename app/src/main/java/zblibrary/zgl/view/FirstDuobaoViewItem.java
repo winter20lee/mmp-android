@@ -24,14 +24,12 @@ public class FirstDuobaoViewItem extends BaseView<FirstDuobao> {
 	public ImageView hot_product_pic;
 	public TextView hot_product_title;
 	public TextView hot_product_price;
-	public TextView hot_product_sold;
 	@SuppressLint("InflateParams")
 	@Override
 	public View createView() {
 		hot_product_pic = findView(R.id.hot_product_pic);
 		hot_product_title = findView(R.id.hot_product_title);
 		hot_product_price = findView(R.id.hot_product_price);
-		hot_product_sold = findView(R.id.hot_product_sold);
 		return super.createView();
 	}
 
@@ -45,6 +43,5 @@ public class FirstDuobaoViewItem extends BaseView<FirstDuobao> {
 
 		hot_product_title.setText(data.goodsName);
 		hot_product_price.setText(StringUtil.changeF2Y(data.unitPrice));
-		hot_product_sold.setText("Raffle Process " +data.lootScheduleShow);
 	}
 }

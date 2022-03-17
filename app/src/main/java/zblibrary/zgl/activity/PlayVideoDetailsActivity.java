@@ -4,8 +4,10 @@ import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.FirstBanner;
+import zblibrary.zgl.model.FirstCategory;
 import zblibrary.zgl.model.ProductDes;
 import zblibrary.zgl.util.HttpRequest;
+import zblibrary.zgl.view.FirstCategoryView;
 import zuo.biao.library.base.BaseActivity;
 
 import android.content.Context;
@@ -17,7 +19,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
@@ -37,15 +42,16 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
         , OnHttpResponseListener {
     public static final String TAG = "ProductDetailsActivity";
     public static final int REQUEST_CODE_DES = 10001;
+    private static final int REQUEST_MALL_REFRESH = 10002;
+    private static final int REQUEST_MALL_LIKE = 10003;
     private StandardGSYVideoPlayer videoPlayer;
     private long goodsId = 0;
     private TextView product_details_name,product_details_price,product_details_jianjie;
-    private WebView product_details_content;
     private ProductDes productDes;
     private List<FirstBanner> firstBannerList = new ArrayList<>();
-    private TextView product_details_duobao,product_details_buy,product_details_gouwuche;
     private OrientationUtils orientationUtils;
     private FlowLayout msearch_history;
+    private LinearLayout play_video_tflx,play_video_cnxh;
     public static Intent createIntent(Context context, long productId) {
         return new Intent(context, PlayVideoDetailsActivity.class).putExtra(INTENT_ID, productId);
     }
@@ -65,6 +71,10 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
         initData();
         initEvent();
         HttpRequest.getProductDes(goodsId,REQUEST_CODE_DES, new OnHttpResponseListenerImpl(this));
+        //同分类下
+        HttpRequest.getFirstMall(1,REQUEST_MALL_REFRESH, new OnHttpResponseListenerImpl(this));
+        //猜你喜欢
+        HttpRequest.getFirstMall(1,REQUEST_MALL_LIKE, new OnHttpResponseListenerImpl(this));
     }
 
     @Override
@@ -72,13 +82,10 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
         videoPlayer = findView(R.id.video_player);
         product_details_name = findView(R.id.product_details_name);
         product_details_price = findView(R.id.product_details_price);
-        product_details_content = findView(R.id.product_details_content);
-        product_details_duobao = findView(R.id.product_details_duobao);
-        product_details_buy = findView(R.id.product_details_buy);
-        product_details_gouwuche = findView(R.id.product_details_gouwuche);
         product_details_jianjie = findView(R.id.product_details_jianjie);
         msearch_history =  findView(R.id.msearch_history);
-        WebViewSettingsUtils.setWebView(product_details_content);
+        play_video_tflx = findView(R.id.play_video_tflx);
+        play_video_cnxh = findView(R.id.play_video_cnxh);
     }
 
     @Override
@@ -88,22 +95,7 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
         initPlayer();
         product_details_name.setText(productDes.name);
         product_details_jianjie.setText(productDes.desc);
-        String good_spe = "";
-        if(StringUtil.isNotEmpty(productDes.goodsSpec,true)){
-            productDes.goodsSpec1 = GsonUtil.jsonToList(productDes.goodsSpec,ProductDes.GoodsSpecModel.class);
-        }
-        if(productDes.goodsSpec1!=null && productDes.goodsSpec1.size()>0){
-            for (ProductDes.GoodsSpecModel goodsSpecListModel:productDes.goodsSpec1) {
-                good_spe += goodsSpecListModel.attributionValName+" ";
-            }
-        }
         product_details_price.setText(StringUtil.changeF2Y(productDes.price));
-        product_details_content.loadDataWithBaseURL(null, productDes.detail, "text/html", "utf-8", null);
-        if(productDes.toLoot==1){
-            product_details_duobao.setTextColor(Color.WHITE);
-            product_details_duobao.setBackgroundResource(R.drawable.radius_20_red_shap);
-            product_details_duobao.setOnClickListener(this);
-        }
 
         for (int i = 0; i < 5; i++)
         {
@@ -116,9 +108,10 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
 
     @Override
     public void initEvent() {//必须调用
-        findView(R.id.product_details_sele).setOnClickListener(this);
-        product_details_buy.setOnClickListener(this);
-        product_details_gouwuche.setOnClickListener(this);
+        findView(R.id.play_video_back,this);
+        findView(R.id.play_video_share,this);
+        findView(R.id.play_video_down,this);
+        findView(R.id.play_video_like,this);
     }
 
     @Override
@@ -132,25 +125,15 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.product_details_sele:
-                toActivity(ProductDesSelectWindow.createIntent(this,ProductDesSelectWindow.INTENT_FROM_TYPE_SPE, productDes.id,productDes.transData()));
+            case R.id.play_video_back:
+                finish();
                 break;
-            case R.id.product_details_buy:
-                if(!MApplication.getInstance().isLoggedIn()){
-                    toActivity(LoginActivity.createIntent(this));
-                }else{
-                    toActivity(ProductDesSelectWindow.createIntent(this,ProductDesSelectWindow.INTENT_FROM_TYPE_BUY, productDes.id,productDes.transData()));
-                }
+            case R.id.play_video_share:
                 break;
-            case R.id.product_details_gouwuche:
-                if(!MApplication.getInstance().isLoggedIn()){
-                    toActivity(LoginActivity.createIntent(this));
-                }else{
-                    toActivity(ProductDesSelectWindow.createIntent(this,ProductDesSelectWindow.INTENT_FROM_TYPE_CAR, productDes.id));
-                }
+            case R.id.play_video_down:
                 break;
-            case R.id.product_details_duobao:
-                toActivity(FirstDuobaoActivity.createIntent(context,productDes.id));
+            case R.id.play_video_like:
+                break;
             default:
                 break;
         }
@@ -199,6 +182,20 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
             case REQUEST_CODE_DES:
                 productDes =GsonUtil.GsonToBean(resultData,ProductDes.class);
                 initData();
+                break;
+            case REQUEST_MALL_REFRESH:
+                FirstCategory firstCategory = GsonUtil.GsonToBean(resultData, FirstCategory.class);
+                FirstCategoryView receivingAddressView = new FirstCategoryView(context,play_video_tflx);
+                play_video_tflx.addView(receivingAddressView.createView());
+                receivingAddressView.setTitle("同分类下");
+                receivingAddressView.bindView(firstCategory);
+                break;
+            case REQUEST_MALL_LIKE:
+                FirstCategory firstCategory1 = GsonUtil.GsonToBean(resultData, FirstCategory.class);
+                FirstCategoryView receivingAddressView1 = new FirstCategoryView(context,play_video_cnxh);
+                play_video_cnxh.addView(receivingAddressView1.createView());
+                receivingAddressView1.setTitle("猜你喜欢");
+                receivingAddressView1.bindView(firstCategory1);
                 break;
         }
     }

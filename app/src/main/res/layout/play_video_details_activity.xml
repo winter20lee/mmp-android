@@ -95,6 +95,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
+                android:paddingLeft="15dp"
                 android:background="@drawable/radius_8_shap"
                 android:layout_height="wrap_content" >
 
@@ -102,7 +103,6 @@
                     android:id="@+id/product_details_peizhi_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
                     android:layout_marginTop="20dp"
                     android:text="本片演员资料"
                     android:textColor="#323038"
@@ -178,93 +178,72 @@
                     tools:text="三维：胸92cm / 腰59cm / 臀88c"
                     />
 
-
-            </RelativeLayout>
-            <!--商品详情-->
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/radius_8_shap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:text="Commodity details"
-                    android:layout_width="wrap_content"
-                    android:textColor="#333333"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:background="@drawable/border_b_shap"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_height="wrap_content"/>
-
-                <WebView
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:textSize="10sp"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="#999999"
-                    tools:text="1.参数配置 2.性能分析 屏幕方面,四款新机的屏幕尺寸相比iPhone 12系列没有什么变动,分别是5.4英 寸(2340×1080分辨率)、6.1英寸(2532×1170分辨率)、6.1英寸(2560×1170分辨率)以及6... 3.小编点评 小编为大家推荐的是iPhone13Pro,这款手机可以为用户提供很好的手机性价比, 同时为用户提供很好的电池容量,带来很好的手机120Hz的屏幕刷新,带来很好的..."
-                    android:id="@+id/product_details_content"
+                <fragment
+                    android:id="@+id/play_video_recomm"
+                    android:name="zblibrary.zgl.fragment.ActorRecommendFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:ignore="WebViewLayout" />
+                    android:layout_below="@id/play_video_head"
+                    android:layout_marginTop="30dp" />
 
-            </LinearLayout>
+            </RelativeLayout>
+            <!--同分类下-->
+            <LinearLayout
+                android:id="@+id/play_video_tflx"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/radius_8_shap"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!--猜你喜欢-->
+            <LinearLayout
+                android:id="@+id/play_video_cnxh"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/radius_8_shap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
         </LinearLayout>
     </ScrollView>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/white"
-        android:paddingLeft="11dp"
-        android:paddingRight="11dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:layout_height="50dp">
-        <TextView
-            android:id="@+id/product_details_gouwuche"
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="@string/product_details_gwc"
-            android:background="@drawable/radius_20_orange_shap"
-            android:layout_height="match_parent">
-        </TextView>
 
-        <TextView
-            android:id="@+id/product_details_buy"
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:layout_weight="1"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="@string/product_details_gm"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:background="@drawable/radius_20_yellow_shap"
-            android:layout_height="match_parent">
-        </TextView>
+        <ImageView
+            android:id="@+id/play_video_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="18.5dp"
+            />
 
-        <TextView
-            android:id="@+id/product_details_duobao"
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:textColor="#5F5F5F"
-            android:layout_weight="1"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="Raffle"
-            android:background="@drawable/radius_20_gray_shap"
-            android:layout_height="match_parent">
-        </TextView>
+        <ImageView
+            android:id="@+id/play_video_share"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="18.5dp"
+            android:layout_toLeftOf="@id/play_video_down"
+            />
 
+        <ImageView
+            android:id="@+id/play_video_down"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="18.5dp"
+            android:layout_toLeftOf="@id/play_video_like"
+            />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/play_video_like"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="18.5dp"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
 </LinearLayout>

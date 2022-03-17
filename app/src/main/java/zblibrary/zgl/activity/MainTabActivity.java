@@ -15,8 +15,6 @@ import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.fragment.ClassificationSearchFragment;
 import zblibrary.zgl.fragment.FirstFragment;
 import zblibrary.zgl.fragment.MineFragment;
-import zblibrary.zgl.fragment.ShoppingCartFragment;
-import zblibrary.zgl.fragment.LatestAnnouncementFragment;
 import zuo.biao.library.base.BaseBottomTabActivity;
 import zuo.biao.library.base.BaseEvent;
 import zuo.biao.library.manager.SystemBarTintManager;

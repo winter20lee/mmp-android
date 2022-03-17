@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="130dp"
+    android:layout_height="wrap_content"
+    >
+    <FrameLayout
+        android:layout_width="124dp"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/latest_anno_iv"
+            style="@style/img_fitXY"
+            android:layout_width="124dp"
+            android:layout_height="80dp"
+            android:foreground="@drawable/video_gradient_shap"
+             />
+
+        <TextView
+            android:layout_gravity="bottom|right"
+            android:id="@+id/latest_anno_qihao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_margin="5dp"
+            android:maxLength="5"
+            android:ellipsize="end"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            tools:text="01:34:20"
+            android:text="" />
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/latest_anno_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:lines="1"
+        android:maxLength="5"
+        android:ellipsize="end"
+        android:textColor="#323038"
+        android:layout_marginTop="5dp"
+        android:textSize="13sp"
+        tools:text="醉玲珑"
+        android:text="" />
+
+</LinearLayout>

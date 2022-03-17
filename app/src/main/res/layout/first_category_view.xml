@@ -37,19 +37,31 @@
                 />
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:src="@mipmap/first_more" />
         </LinearLayout>
     </RelativeLayout>
     <zuo.biao.library.ui.ExpandableGridView
         android:id="@+id/first_gridview"
         android:numColumns="2"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="20dp"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
+        android:layout_marginTop="10dp"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/first_change"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:text="换一换"
+        android:textSize="12sp"
+        android:textColor="#87869E"
+        android:gravity="center"
+        android:background="@drawable/radius_4_gray_shap"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

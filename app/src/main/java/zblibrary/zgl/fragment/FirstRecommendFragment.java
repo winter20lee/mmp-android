@@ -94,7 +94,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 				break;
 			case REQUEST_MALL_REFRESH:
 				FirstCategory firstCategory = GsonUtil.GsonToBean(resultData, FirstCategory.class);
-				FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content);
+				FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content,true);
 				first_categoty_content.addView(receivingAddressView.createView());
 				receivingAddressView.bindView(firstCategory);
 				onStopRefresh();
