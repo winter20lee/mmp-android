@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.adapter.HelpAdapter;
+import zblibrary.zgl.adapter.WatchHistoryAdapter;
 import zblibrary.zgl.model.Customize;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseHttpListActivity;
@@ -22,19 +22,19 @@ import zuo.biao.library.util.GsonUtil;
 
 
 /**
- * 帮助
+ * 观看历史
  */
-public class HelpActivity extends BaseHttpListActivity<Customize, ListView, HelpAdapter> implements OnBottomDragListener {
+public class WatchHistoryActivity extends BaseHttpListActivity<Customize, ListView, WatchHistoryAdapter> implements OnBottomDragListener {
 
 	private List<Customize> messageDataList;
 	public static Intent createIntent(Context context) {
-		return new Intent(context, HelpActivity.class);
+		return new Intent(context, WatchHistoryActivity.class);
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.help_activity, this);
+		setContentView(R.layout.watch_history_activity, this);
 
 		initView();
 		initData();
@@ -50,11 +50,11 @@ public class HelpActivity extends BaseHttpListActivity<Customize, ListView, Help
 
 	@Override
 	public void setList(final List<Customize> list) {
-		setList(new AdapterCallBack<HelpAdapter>() {
+		setList(new AdapterCallBack<WatchHistoryAdapter>() {
 
 			@Override
-			public HelpAdapter createAdapter() {
-				return new HelpAdapter(context);
+			public WatchHistoryAdapter createAdapter() {
+				return new WatchHistoryAdapter(context);
 			}
 
 			@Override

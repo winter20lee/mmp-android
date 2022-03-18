@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.activity.HelpActivity;
+import zblibrary.zgl.activity.WatchHistoryActivity;
 import zblibrary.zgl.activity.LoginActivity;
 import zblibrary.zgl.activity.MainTabActivity;
 import zblibrary.zgl.activity.MessageActivity;
@@ -183,7 +183,7 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 				}
 				break;
 			case R.id.mine_bzzn:
-				toActivity(HelpActivity.createIntent(context));
+				toActivity(WatchHistoryActivity.createIntent(context));
 				break;
 			case R.id.mine_points_des:
 				toActivity(PointDestailActivity.createIntent(context));

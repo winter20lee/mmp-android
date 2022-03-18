@@ -13,6 +13,7 @@ import zblibrary.zgl.R;
 import zblibrary.zgl.activity.LoginActivity;
 import zblibrary.zgl.activity.MessageActivity;
 import zblibrary.zgl.activity.SearchActivity;
+import zblibrary.zgl.activity.WatchHistoryActivity;
 import zblibrary.zgl.adapter.FirstTabLayoutAdapter;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
@@ -86,11 +87,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 				toActivity(SearchActivity.createIntent(getActivity(),0));
 				break;
 			case R.id.button_history:
-				if(MApplication.getInstance().isLoggedIn()){
-					toActivity(MessageActivity.createIntent(getActivity()));
-				}else{
-					toActivity(LoginActivity.createIntent(getActivity()));
-				}
+				toActivity(WatchHistoryActivity.createIntent(getActivity()));
 				break;
 			default:
 				break;

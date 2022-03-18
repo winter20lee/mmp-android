@@ -12,17 +12,15 @@
         <TextView
             style="@style/topbar_title"
             android:layout_centerHorizontal="true"
-            android:text="@string/help_title" />
+            android:text="观影历史" />
 
     </RelativeLayout>
 
     <LinearLayout
         android:background="@drawable/radius_8_shap"
-        android:layout_marginTop="10dp"
-        android:paddingRight="12dp"
-        android:paddingLeft="12dp"
+        android:layout_marginTop="1dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <include layout="@layout/base_http_list_fragment"/>
     </LinearLayout>
 </LinearLayout>

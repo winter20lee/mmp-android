@@ -34,11 +34,10 @@
         android:id="@+id/button_history"
         android:layout_width="14dp"
         android:layout_height="14dp"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="14dp"
-        android:layout_alignParentRight="true"
-        android:src="@mipmap/home_history"
-        />
+        android:src="@mipmap/home_history" />
 
     <TextView
         android:id="@+id/button_cancle"
@@ -49,7 +48,7 @@
         android:layout_alignParentRight="true"
         android:text="取消"
         android:textColor="#323038"
-        android:textSize="12sp"
+        android:textSize="13sp"
         android:visibility="gone"
         />
 

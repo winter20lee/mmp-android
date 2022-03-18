@@ -65,7 +65,6 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 					showShortToast("Please enter the search content");
 					return;
 				}
-				msearchlayout.et_searchtext_search.setText(keyword);
 				showSearchResu(keyword);
 			}
 			@Override
