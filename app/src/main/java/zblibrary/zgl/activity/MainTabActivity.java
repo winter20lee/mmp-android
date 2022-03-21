@@ -14,6 +14,7 @@ import zblibrary.zgl.R;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.fragment.ClassificationSearchFragment;
 import zblibrary.zgl.fragment.FirstFragment;
+import zblibrary.zgl.fragment.MemberCenterFragment;
 import zblibrary.zgl.fragment.MineFragment;
 import zuo.biao.library.base.BaseBottomTabActivity;
 import zuo.biao.library.base.BaseEvent;
@@ -72,7 +73,7 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	public Fragment getFragment(int position) {
 		switch (position) {
 		case 1:
-			return ClassificationSearchFragment.createInstance("");
+			return MemberCenterFragment.createInstance();
 		case 2:
 			return MineFragment.createInstance();
 		default:
