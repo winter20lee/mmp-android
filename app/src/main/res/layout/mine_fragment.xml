@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/activity_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
     tools:ignore="MissingDefaultResource">
@@ -15,499 +17,358 @@
                 android:layout_width="match_parent"
                 android:background="@mipmap/mine_bg"
                 android:paddingTop="44dp"
-                android:layout_height="200dp">
+                android:layout_height="320dp">
 
                 <ImageView
                     android:id="@+id/mine_head"
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="28dp"
-                    android:layout_marginLeft="20dp"
                     android:src="@mipmap/defult_head" />
                 <TextView
                     android:id="@+id/mine_name"
                     android:layout_marginTop="28dp"
                     android:layout_toRightOf="@id/mine_head"
                     android:layout_marginLeft="12dp"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
+                    tools:text="如果变成回忆"
                     android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/mine_phone"
+                    android:id="@+id/mine_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/mine_name"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="5dp"
                     android:layout_toRightOf="@id/mine_head"
-                    android:text="Phone:"
-                    android:textColor="#FFD8D2"
+                    android:text="游客"
+                    android:textColor="#95949D"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/mine_id"
+                    android:id="@+id/mine_phone"
                     android:layout_marginTop="5dp"
-                    android:layout_below="@id/mine_phone"
+                    android:layout_below="@id/mine_name"
                     android:textSize="12sp"
                     android:layout_marginLeft="12dp"
-                    android:layout_toRightOf="@id/mine_head"
-                    android:textColor="#FFD8D2"
-                    android:text="ID:"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#87869E"
+                    android:text="（未绑定手机号）"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
                 <ImageView
                     android:id="@+id/mine_set"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="24dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@mipmap/mine_set"
-                    android:layout_height="24dp">
-                </ImageView>
-
-                <TextView
-                    android:id="@+id/mine_points_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mine_set"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Points:"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/mine_points"
-                    android:layout_below="@id/mine_points_title"
-                    android:textSize="18sp"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:padding="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="16dp"
-                    android:textColor="@color/white"
-                    android:text=""
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/mine_points_des"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mine_points"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="16dp"
-                    android:text="Points Details"
-                    android:textColor="@color/white"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="4dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:background="@drawable/radius_8_shap"
-                android:padding="10dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/myorder_title"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:src="@mipmap/mine_set"/>
 
                 <ImageView
-                    android:id="@+id/mine_all"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:adjustViewBounds="true"
-                    android:src="@mipmap/first_duobao"
-                     />
+                    android:id="@+id/mine_history"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:padding="10dp"
+                    android:layout_toLeftOf="@id/mine_set"
+                    android:layout_marginRight="16dp"
+                    android:src="@mipmap/mine_history"/>
 
                 <LinearLayout
-                    android:layout_below="@id/mine_all"
+                    android:id="@+id/mine_watch_time"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="20dp"
-                    android:layout_height="wrap_content">
-                    <RelativeLayout
-                        android:id="@+id/mine_daizhifu"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
-
-                        <View
-                            android:id="@+id/mine_daizhifu_points"
-                            android:visibility="gone"
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_toRightOf="@id/mine_daizhifu_iv"
-                            android:background="@drawable/mine_red_point_shap"
-                            />
-
-                        <ImageView
-                            android:id="@+id/mine_daizhifu_iv"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@mipmap/mine_daizhifu" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="@string/myorder_dzf"
-                            android:layout_below="@id/mine_daizhifu_iv"
-                            android:layout_marginTop="7dp"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="#333333"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"/>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/mine_daifahuo"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
-
-                        <View
-                            android:id="@+id/mine_daifahuo_points"
-                            android:visibility="gone"
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_toRightOf="@id/mine_daifahuo_iv"
-                            android:background="@drawable/mine_red_point_shap"
-                            />
-
-                        <ImageView
-                            android:id="@+id/mine_daifahuo_iv"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@mipmap/mine_daifahuo" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="@string/myorder_dfh"
-                            android:layout_below="@id/mine_daifahuo_iv"
-                            android:layout_marginTop="7dp"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="#333333"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"/>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/mine_daishouhuo"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
-
-                        <View
-                            android:id="@+id/mine_daishouhuo_points"
-                            android:visibility="gone"
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_toRightOf="@id/mine_daishouhuo_iv"
-                            android:background="@drawable/mine_red_point_shap"
-                            />
-
-                        <ImageView
-                            android:id="@+id/mine_daishouhuo_iv"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@mipmap/mine_daishouhuo" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/mine_daishouhuo_iv"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="7dp"
-                            android:text="@string/myorder_dsh"
-                            android:textColor="#333333"
-                            android:textSize="12sp" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/mine_yiwancheng"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
-
-                        <View
-                            android:visibility="gone"
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_toRightOf="@id/mine_yiwancheng_iv"
-                            android:background="@drawable/mine_red_point_shap"
-                            />
-
-                        <ImageView
-                            android:id="@+id/mine_yiwancheng_iv"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@mipmap/mine_yiwancheng" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="@string/myorder_finish"
-                            android:layout_below="@id/mine_yiwancheng_iv"
-                            android:layout_marginTop="7dp"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="#333333"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"/>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/mine_yiguanbi"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
-
-                        <View
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:visibility="gone"
-                            android:layout_toRightOf="@id/mine_yiguanbi_iv"
-                            android:background="@drawable/mine_red_point_shap"
-                            />
-
-                        <ImageView
-                            android:id="@+id/mine_yiguanbi_iv"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@mipmap/mine_yiguanbi" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="@string/myorder_close"
-                            android:layout_below="@id/mine_yiguanbi_iv"
-                            android:layout_marginTop="7dp"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="#333333"
-                            android:textSize="12sp"
-                            android:layout_height="wrap_content"/>
-                    </RelativeLayout>
-                </LinearLayout>
-            </RelativeLayout>
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:background="@drawable/radius_8_shap"
-                android:padding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mine_dbdd"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
-                        android:id="@+id/mine_gmjl"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_marginRight="5dp"
-                        android:layout_height="match_parent">
-
-                        <View
-                            android:id="@+id/mine_gmjl_points"
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:visibility="gone"
-                            android:layout_alignParentRight="true"
-                            android:background="@drawable/mine_red_point_shap"
-                            />
-
-                        <ImageView
-                            android:id="@+id/mine_gmjl_iv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:src="@mipmap/mine_gmjl" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/mine_zjjl"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="5dp"
-                        android:layout_height="match_parent">
-
-                        <View
-                            android:id="@+id/mine_zjjl_points"
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:visibility="gone"
-                            android:layout_alignParentRight="true"
-                            android:background="@drawable/mine_red_point_shap"
-                            />
-
-                        <ImageView
-                            android:id="@+id/mine_zjjl_iv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:src="@mipmap/mine_zjjl" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:padding="10dp"
-                android:background="@drawable/radius_8_shap"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/mine_shdz"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/mine_shdz_iv"
-                        android:layout_width="24dp"
-                        android:src="@mipmap/mine_shdz"
-                        android:layout_height="24dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:text="@string/mine_shdz"
-                        android:textColor="#333333"
-                        android:textSize="12sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/mine_znxx"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_height="match_parent">
+                    android:layout_height="70dp"
+                    android:layout_below="@+id/mine_phone"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/radius_4_black_shap"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="bottom">
 
+                        <TextView
+                            android:id="@+id/mine_left_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#FF3462"
+                            android:textSize="20sp" />
 
-                        <ImageView
-                            android:id="@+id/mine_znxx_iv"
-                            android:layout_width="24dp"
-                            android:src="@mipmap/mine_znxx"
-                            android:layout_height="24dp"/>
-
-                        <View
-                            android:id="@+id/mine_znxx_points"
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_gravity="right"
-                            android:visibility="gone"
-                            android:background="@drawable/mine_red_point_shap" />
-
+                        <TextView
+                            android:id="@+id/mine_total_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" / 1"
+                            android:textColor="#95949D"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="@string/mine_znxx"
-                        android:layout_below="@id/mine_znxx_iv"
-                        android:layout_marginTop="7dp"
-                        android:textColor="#333333"
-                        android:textSize="12sp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="今日剩余播放次数"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/mine_bzzn"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_height="match_parent">
+                    android:id="@+id/mine_vip_text"
+                    android:layout_below="@id/mine_watch_time"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/mine_bzzn_iv"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@mipmap/mine_bzzn" />
+                        android:layout_width="12dp"
+                        android:src="@mipmap/mine_gth"
+                        android:layout_height="12dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="@string/help_title"
-                        android:layout_marginTop="7dp"
-                        android:textColor="#333333"
-                        android:textSize="12sp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content"
+                        android:text="充值VIP，每日无限次观影"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </LinearLayout>
-
                 <LinearLayout
-                    android:id="@+id/mine_kefu"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_height="match_parent">
+                    android:id="@+id/mine_phone_text"
+                    android:layout_below="@id/mine_vip_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/mine_kefu_iv"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@mipmap/mine_kefu" />
+                        android:layout_width="12dp"
+                        android:src="@mipmap/mine_gth"
+                        android:layout_height="12dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="Chat with us"
-                        android:layout_marginTop="7dp"
-                        android:textColor="#333333"
-                        android:textSize="12sp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="wrap_content"
+                        android:text="建议绑定手机号，防止VIP身份丢失"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
-            </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/mine_exit_iv"
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:text="@string/mine_logout"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="-55dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/radius_out_shaodw"
+                android:padding="10dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/mine_wdtq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的特权"
+                    android:textColor="#323038"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/mine_wdtq_divider"
+                    android:layout_below="@id/mine_wdtq"
+                    android:layout_width="1dp"
+                    android:layout_height="44dp"
+                    android:background="#F2F2F2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/mine_mzgycs"
+                    android:layout_below="@id/mine_wdtq"
+                    android:layout_width="wrap_content"
+                    android:text="每日观影次数"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#323038"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/mine_mzgycs_"
+                    android:layout_below="@id/mine_wdtq"
+                    android:layout_toLeftOf="@id/mine_wdtq_divider"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:text="0 / 1"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#87869E"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:id="@+id/mine_xzcs"
+                    android:layout_below="@id/mine_mzgycs"
+                    android:layout_width="wrap_content"
+                    android:text="下载次数"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#323038"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/mine_xzcs_"
+                    android:layout_below="@id/mine_mzgycs"
+                    android:layout_toLeftOf="@id/mine_wdtq_divider"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:text="0 / 1"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#87869E"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/mine_zskf"
+                    android:layout_below="@id/mine_wdtq"
+                    android:layout_width="wrap_content"
+                    android:layout_toRightOf="@id/mine_wdtq_divider"
+                    android:text="专属客服"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#323038"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/mine_zskf_"
+                    android:layout_below="@id/mine_wdtq"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_right"
+                    android:layout_width="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="12dp"/>
+
+
+                <TextView
+                    android:id="@+id/mine_kftj"
+                    android:layout_below="@id/mine_zskf"
+                    android:layout_width="wrap_content"
+                    android:text="客服推荐"
+                    android:layout_toRightOf="@id/mine_wdtq_divider"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#323038"
+                    android:textSize="12sp"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/mine_kftj_"
+                    android:layout_below="@id/mine_zskf"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_right"
+                    android:layout_width="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="12dp"/>
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:textColor="#333333"
-                android:background="@drawable/radius_8_shap"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:layout_height="40dp"/>
+                android:padding="10dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="50dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="下载"
+                    android:textSize="13sp"
+                    android:textColor="#323038"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正在下载（0）/ 已下载（1）"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:gravity="right"
+                    android:textColor="#95949D"
+                    />
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@mipmap/first_more"
+                    />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F4F4F5"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="50dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的收藏"
+                    android:textSize="13sp"
+                    android:textColor="#323038"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:gravity="right"
+                    android:textColor="#95949D"
+                    />
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@mipmap/first_more"
+                    />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F4F4F5"
+                />
         </LinearLayout>
     </ScrollView>
 

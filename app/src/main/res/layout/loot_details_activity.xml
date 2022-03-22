@@ -181,7 +181,7 @@
                         android:paddingTop="0dp"
                         android:paddingBottom="0dp"
                         android:paddingRight="5dp"
-                        android:background="@drawable/radius_4_red_shap"
+                        android:background="@drawable/radius_4_black_shap"
                         />
 
                 </FrameLayout>
@@ -213,7 +213,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:layout_marginTop="15dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
@@ -252,7 +252,7 @@
             <!--我得参与-->
             <LinearLayout
                 android:orientation="vertical"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
@@ -286,7 +286,7 @@
                 android:id="@+id/ll_loot_yijiexiao"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:paddingLeft="12dp"
                 android:visibility="gone"
                 android:layout_width="match_parent"
@@ -410,7 +410,7 @@
                 android:paddingRight="12dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -496,7 +496,7 @@
                 android:paddingRight="12dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -709,7 +709,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView

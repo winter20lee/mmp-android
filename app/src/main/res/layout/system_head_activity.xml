@@ -16,7 +16,7 @@
 
     <LinearLayout
         style="@style/match_wrap"
-        android:background="@drawable/radius_8_shap"
+        android:background="@drawable/radius_4_shap"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:paddingLeft="12dp"

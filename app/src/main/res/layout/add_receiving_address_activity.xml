@@ -26,7 +26,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:background="@drawable/radius_8_shap"
+        android:background="@drawable/radius_4_shap"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:paddingRight="12dp"
@@ -133,7 +133,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:background="@drawable/radius_8_shap"
+        android:background="@drawable/radius_4_shap"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp">

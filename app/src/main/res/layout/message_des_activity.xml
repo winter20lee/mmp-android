@@ -23,7 +23,7 @@
             android:orientation="vertical"
             android:layout_marginTop="10dp"
             android:padding="20dp"
-            android:background="@drawable/radius_8_shap"
+            android:background="@drawable/radius_4_shap"
             >
             <LinearLayout
                 android:orientation="horizontal"

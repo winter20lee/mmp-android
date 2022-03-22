@@ -9,7 +9,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/classfi_ser_lot_tablayout"
-        android:background="@drawable/radius_8_shap"
+        android:background="@drawable/radius_4_shap"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

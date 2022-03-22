@@ -285,7 +285,7 @@ public class LootSubmitOrderActivity extends BaseActivity implements OnBottomDra
 	}
 
 	private void onClickStyle(TextView view){
-		view.setBackgroundResource(R.drawable.radius_4_red_shap);
+		view.setBackgroundResource(R.drawable.radius_4_black_shap);
 		view.setTextColor(Color.parseColor("#ffffff"));
 		new Thread(() -> {
 			try {
@@ -314,7 +314,7 @@ public class LootSubmitOrderActivity extends BaseActivity implements OnBottomDra
 	private void setBaoweiState(boolean isSele){
 		isTail = isSele;
 		if(isSele){
-			loot_submit_order_baowei.setBackgroundResource(R.drawable.radius_4_red_shap);
+			loot_submit_order_baowei.setBackgroundResource(R.drawable.radius_4_black_shap);
 			loot_submit_order_baowei.setTextColor(Color.parseColor("#ffffff"));
 		}else{
 			loot_submit_order_baowei.setBackgroundResource(R.drawable.radius_4_line_shap);

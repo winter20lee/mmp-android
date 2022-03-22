@@ -6,7 +6,7 @@
     <RelativeLayout
         style="@style/match_wrap"
         android:layout_marginTop="10dp"
-        android:background="@drawable/radius_8_shap"
+        android:background="@drawable/radius_4_shap"
         >
 
         <ImageView

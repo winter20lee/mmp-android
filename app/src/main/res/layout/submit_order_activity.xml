@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:background="@drawable/radius_8_shap"
+        android:background="@drawable/radius_4_shap"
         android:layout_marginTop="10dp"
         >
         <ImageView
@@ -51,7 +51,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:paddingRight="12dp"
                 android:paddingLeft="12dp"
                 android:layout_height="wrap_content">
@@ -60,7 +60,7 @@
 
             <FrameLayout
                 android:layout_marginTop="10dp"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:paddingRight="12dp"
                 android:paddingLeft="12dp"
                 android:layout_width="match_parent"

@@ -96,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="15dp"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:layout_height="wrap_content" >
 
                 <TextView
@@ -192,7 +192,7 @@
                 android:id="@+id/play_video_tflx"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:layout_width="match_parent"
@@ -203,7 +203,7 @@
                 android:id="@+id/play_video_cnxh"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

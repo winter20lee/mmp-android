@@ -299,7 +299,7 @@ public class SortView extends RelativeLayout implements View.OnClickListener {
         LinearLayout.LayoutParams.MATCH_PARENT,
         LayoutParams.MATCH_PARENT);
         sortView.setLayoutParams(layoutParamsRoot);
-        sort_rl.setBackgroundResource(R.drawable.radius_8_shap);
+        sort_rl.setBackgroundResource(R.drawable.radius_4_shap);
         sort_rl.setPadding(StringUtil.dp2px(context,12),StringUtil.dp2px(context,12),StringUtil.dp2px(context,12),StringUtil.dp2px(context,30));
     }
 

@@ -349,7 +349,7 @@ public class LootDetailsActivity extends BaseActivity implements OnClickListener
         if(state==1){
             return getString(R.string.loot_details_dsx);
         }else if(state==2){
-            product_details_state.setBackgroundResource(R.drawable.radius_4_red_shap);
+            product_details_state.setBackgroundResource(R.drawable.radius_4_black_shap);
             return getString(R.string.loot_details_dbz);
         }else if(state==3){
             product_details_state.setBackgroundResource(R.drawable.radius_4_yellow_shap);

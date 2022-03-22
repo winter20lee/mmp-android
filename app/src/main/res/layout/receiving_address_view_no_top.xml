@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/radius_8_shap"
+        android:background="@drawable/radius_4_shap"
         android:paddingLeft="12dp"
         android:paddingTop="20dp"
         android:paddingRight="12dp"
@@ -17,7 +17,7 @@
             android:layout_width="50dp"
             android:layout_height="20dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/radius_4_red_shap"
+            android:background="@drawable/radius_4_black_shap"
             android:gravity="center"
             android:text="@string/add_address_def"
             android:textColor="#ffffff"

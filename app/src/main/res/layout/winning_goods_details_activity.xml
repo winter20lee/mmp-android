@@ -42,7 +42,7 @@
                 />
 
             <LinearLayout
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:paddingRight="12dp"
@@ -152,7 +152,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:paddingRight="12dp"
@@ -181,7 +181,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@drawable/radius_8_shap"
+                android:background="@drawable/radius_4_shap"
                 android:orientation="vertical"
                 android:id="@+id/order_details_hgpz"
                 android:visibility="gone"

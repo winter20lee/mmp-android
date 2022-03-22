@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/radius_8_shap"
+    android:background="@drawable/radius_4_shap"
     android:layout_marginTop="10dp"
     android:paddingBottom="20dp"
     android:paddingTop="20dp"

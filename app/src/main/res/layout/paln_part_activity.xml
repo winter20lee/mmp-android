@@ -21,7 +21,7 @@
         android:layout_marginTop="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:background="@drawable/radius_8_shap"
+        android:background="@drawable/radius_4_shap"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -84,7 +84,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:background="@drawable/radius_8_shap"
+        android:background="@drawable/radius_4_shap"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content">
         <include layout="@layout/base_http_list_fragment"
