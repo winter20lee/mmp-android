@@ -77,7 +77,7 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 
 	@Override
 	public void initEvent() {//必须调用
-
+		findView(R.id.mine_head).setOnClickListener(this);
 		findView(R.id.mine_set).setOnClickListener(this);
 	}
 
@@ -100,7 +100,7 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 	@Override
 	public void onClick(View v) {//直接调用不会显示v被点击效果
 		switch (v.getId()) {
-			case R.id.mine_set:
+			case R.id.mine_head:
 				if(!MApplication.getInstance().isLoggedIn()){
 					toActivity(LoginActivity.createIntent(context));
 				}else{

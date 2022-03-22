@@ -1,5 +1,6 @@
 package zblibrary.zgl.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ import org.devio.takephoto.uitl.TConstant;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import zblibrary.zgl.R;
@@ -33,6 +36,7 @@ import zuo.biao.library.interfaces.OnUpLoadResponseListener;
 import zuo.biao.library.manager.SystemBarTintManager;
 import zuo.biao.library.manager.UpLoadOssManager;
 import zuo.biao.library.ui.BottomMenuWindow;
+import zuo.biao.library.ui.ItemDialog;
 import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.DataKeeper;
 import zuo.biao.library.util.GlideUtil;
@@ -40,7 +44,7 @@ import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.PermissionUtils;
 import zuo.biao.library.util.StringUtil;
 
-public class UserInfoActivity extends TakePhotoActivity implements View.OnClickListener , OnHttpResponseListener {
+public class UserInfoActivity extends TakePhotoActivity implements View.OnClickListener , OnHttpResponseListener, DatePickerDialog.OnDateSetListener {
 	private static final String TAG = "UserInfoActivity";
 	private static final int REQUEST_TO_BOTTOM_MENU = 10;
 	private static final int REQUEST_TO_BOTTOM_GRID = 20;
@@ -99,6 +103,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 	public void initEvent() {//必须调用
 		findViewById(R.id.user_info_headpic).setOnClickListener(this);
 		user_info_change_nickname.setOnClickListener(this);
+		user_info_phonenum.setOnClickListener(this);
 	}
 
 	@Override
@@ -107,12 +112,21 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 			case R.id.user_info_headpic:
 				Intent intent = new Intent(this, BottomMenuWindow.class);
 				intent.putExtra(BottomMenuWindow.INTENT_TITLE, "");
-				intent.putExtra(BottomMenuWindow.INTENT_ITEMS, new String[]{"System head portrait","Mobile album", "Photographing"});
+				intent.putExtra(BottomMenuWindow.INTENT_ITEMS, new String[]{"拍照", "相册"});
 				startActivityForResult(intent, REQUEST_TO_BOTTOM_MENU);
 				break;
+			case R.id.user_info_phonenum:
+				initCalendar();
+				break;
 			case R.id.user_info_change_nickname:
-				intent = new Intent(this, UpdateNickNameActivity.class);
-				startActivity(intent);
+				ItemDialog itemDialog = new ItemDialog(this,new String[]{"男", "女"},"选择性别",0,new ItemDialog.OnDialogItemClickListener(){
+
+					@Override
+					public void onDialogItemClick(int requestCode, int position, String item) {
+						user_info_change_nickname.setText(item);
+					}
+				});
+				itemDialog.show();
 				break;
 		}
 	}
@@ -216,16 +230,9 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				if (data != null) {
 					switch (data.getIntExtra(BottomMenuWindow.RESULT_ITEM_ID, -1)) {
 						case 0:
-							if(StringUtil.isNotEmpty(MApplication.getInstance().getCurrentUserAvatar(),true)){
-								startActivityForResult(SystemHeadActivity.createIntent(this,MApplication.getInstance().getCurrentUserAvatar(),bottomGrids), REQUEST_TO_BOTTOM_GRID);
-							}else{
-								startActivityForResult(SystemHeadActivity.createIntent(this,"",bottomGrids), REQUEST_TO_BOTTOM_GRID);
-							}
+							selectPicFromCamera();//照相
 							break;
 						case 1:
-							selectPicFromCamera();//照相
-							return;
-						case 2:
 							selectPicFromLocal();//从图库筛选
 							return;
 						default:
@@ -293,5 +300,23 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				GlideUtil.loadCircle(UserInfoActivity.this,picturePath,mUserInfoHeadpic);
 			}
 		});
+	}
+
+	private void initCalendar(){
+		//获取日历的一个实例，里面包含了当前的时分秒
+		Calendar calendar = Calendar.getInstance();
+		//构建一个日期对话框，该对话框已经集成了日期选择器
+		//DatePickerDialog的第二个构造参数指定了日期监听器
+		DatePickerDialog dialog = new DatePickerDialog(this,this
+				,calendar.get(Calendar.YEAR)//年份
+				,calendar.get(Calendar.MONTH)//月份
+				,calendar.get(Calendar.DAY_OF_MONTH));//日子
+		//把日期对话框显示在界面上
+		dialog.show();
+	}
+
+	@Override
+	public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+		user_info_phonenum.setText(year+"."+month+1+"."+dayOfMonth);
 	}
 }

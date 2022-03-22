@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/activity_page"
+    android:background="@color/white"
     tools:ignore="MissingDefaultResource">
 
     <RelativeLayout style="@style/topbar_bg" >
@@ -11,7 +12,25 @@
         <TextView
             style="@style/topbar_title"
             android:layout_centerHorizontal="true"
-            android:text="Me" />
+            android:text="个人资料" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#40323038"
+            android:layout_alignParentBottom="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="#FF3462"
+            android:textSize="13sp"
+            android:layout_marginRight="12dp"
+            />
 
     </RelativeLayout>
     <LinearLayout
@@ -19,29 +38,37 @@
         android:orientation="vertical"
         android:layout_marginTop="10dp"
         android:background="@drawable/radius_4_shap"
-        android:paddingRight="24dp"
-        android:paddingLeft="24dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
         android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="76dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/userinfo_touxiang"
-                android:textSize="14sp"
-                android:textColor="#3E3E3E"
+                android:text="头像"
+                android:textSize="13sp"
+                android:textColor="#95949D"
                 android:layout_centerVertical="true"
                 />
 
             <ImageView
                 android:id="@+id/user_info_headpic"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/oval_alpha"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/first_more" />
 
         </RelativeLayout>
         <View
@@ -55,20 +82,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/userinfo_userid"
-                android:textSize="14sp"
-                android:textColor="#3E3E3E"
+                android:text="昵称"
+                android:textSize="13sp"
+                android:textColor="#95949D"
                 android:layout_centerVertical="true"
                 />
 
-            <TextView
+            <EditText
                 android:id="@+id/user_info_userid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:textColor="#999999"
-                android:textSize="14sp" />
+                android:textColor="#323038"
+                android:textSize="13sp" />
         </RelativeLayout>
         <View
             android:layout_width="match_parent"
@@ -83,28 +110,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="@string/userinfo_nickname"
-                android:textColor="#3E3E3E"
-                android:textSize="14sp" />
+                android:text="性别"
+                android:textColor="#95949D"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/user_info_change_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@id/user_info_change_right"
-                android:text="@string/userinfo_changename"
-                android:textColor="#999999"
-                android:textSize="14sp" />
+                android:text="男"
+                android:textColor="#323038"
+                android:textSize="13sp" />
+
             <ImageView
                 android:id="@+id/user_info_change_right"
-                android:layout_width="wrap_content"
-                android:layout_height="10dp"
-                android:adjustViewBounds="true"
-                android:src="@mipmap/user_info_right"
-                android:layout_centerVertical="true"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_alignParentRight="true"
-                />
+                android:layout_centerVertical="true"
+                android:src="@mipmap/first_more" />
         </RelativeLayout>
         <View
             android:layout_width="match_parent"
@@ -119,19 +146,55 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="@string/userinfo_phonenum"
-                android:textColor="#3E3E3E"
-                android:textSize="14sp" />
+                android:text="生日"
+                android:textColor="#95949D"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/user_info_phonenum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#999999"
-                android:layout_alignParentRight="true"
+                android:textSize="13sp"
+                android:textColor="#323038"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/user_info_birth_right"
                 android:layout_centerVertical="true"
                 />
+            <ImageView
+                android:id="@+id/user_info_birth_right"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/first_more" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E9E9E9"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="简介"
+                android:textSize="13sp"
+                android:textColor="#95949D"
+                android:layout_marginTop="16dp"
+                />
+
+            <EditText
+                android:id="@+id/user_info_jianjie"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentRight="true"
+                android:gravity="left"
+                android:hint="简单介绍下自己，300字以内"
+                android:textColor="#323038"
+                android:textSize="13sp" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
