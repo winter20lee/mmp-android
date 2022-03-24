@@ -22,11 +22,15 @@
             />
 
     </LinearLayout>
-
+<FrameLayout
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/classfi_ser_lot_tablayout"
         android:background="@drawable/radius_4_shap"
         android:layout_width="match_parent"
+        android:layout_marginRight="40dp"
         android:layout_height="wrap_content"
         app:tabIndicatorHeight="0dp"
         app:tabPaddingEnd="5dp"
@@ -36,6 +40,18 @@
         app:tabRippleColor="@color/transparent"
         app:tabTextAppearance="@style/TabLayoutTextStyle"
         app:tabTextColor="#333333" />
+
+    <ImageView
+        android:id="@+id/first_side"
+        android:layout_width="30dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_height="30dp"
+        android:src="@mipmap/first_side"
+        android:padding="7dp"
+        android:layout_marginRight="7dp"
+        />
+</FrameLayout>
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/classfi_ser_lot_view_pager"

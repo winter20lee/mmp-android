@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.activity.BottomPayWindow;
+import zblibrary.zgl.activity.FirstSideWindow;
 import zblibrary.zgl.activity.MyNumberActivity;
 import zblibrary.zgl.activity.PayActivity;
 import zblibrary.zgl.activity.WinningGoodsActivity;
@@ -164,7 +164,6 @@ public class AllOrderView extends BaseView<AllOrder.ResultModel> implements OnCl
 			break;
 		case R.id.myorder_des:
 			if(data.orderStatus==1){
-				toActivity(BottomPayWindow.createIntent(context,data.orderAmount,data.orderNo,"LOOT",true,data.orderPoint));
 			} else if(data.orderStatus==3){
 				toActivity(WinningGoodsActivity.createIntent(context));
 			}

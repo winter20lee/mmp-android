@@ -39,7 +39,7 @@
     </style>
 
     <style name="bottom_window_page" parent="activity_page">
-        <item name="android:gravity">bottom|center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
         <item name="android:background">@color/alpha_complete</item>
     </style>
 

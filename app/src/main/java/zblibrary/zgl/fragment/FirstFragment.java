@@ -7,19 +7,28 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 import zblibrary.zgl.R;
+import zblibrary.zgl.activity.FirstSideWindow;
 import zblibrary.zgl.activity.LoginActivity;
 import zblibrary.zgl.activity.MessageActivity;
 import zblibrary.zgl.activity.SearchActivity;
 import zblibrary.zgl.activity.WatchHistoryActivity;
+import zblibrary.zgl.adapter.FirstSideAdapter;
 import zblibrary.zgl.adapter.FirstTabLayoutAdapter;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
+import zblibrary.zgl.model.FirstTabPosEvent;
 import zblibrary.zgl.model.GoodsCategory;
 import zblibrary.zgl.util.HttpRequest;
+import zuo.biao.library.base.BaseEvent;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.GsonUtil;
 
@@ -40,6 +49,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		setContentView(R.layout.first_fragment);
+		EventBus.getDefault().register(this);
 		initView();
 		initData();
 		initEvent();
@@ -51,6 +61,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	public void initView() {//必须调用
 		findView(R.id.et_searchtext_search,this);
 		findView(R.id.button_history,this);
+		findView(R.id.first_side,this);
 		tabLayout = findView(R.id.classfi_ser_lot_tablayout);
 		viewPager = findView(R.id.classfi_ser_lot_view_pager);
 	}
@@ -78,6 +89,11 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 		findView(R.id.et_searchtext_search).setOnClickListener(this);
 	}
 
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void onFirstTabPosEvent(FirstTabPosEvent firstTabPosEvent){
+		tabLayout.setScrollPosition(0, firstTabPosEvent.pos, true);
+	}
+
 
 
 	@Override
@@ -88,6 +104,9 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 				break;
 			case R.id.button_history:
 				toActivity(WatchHistoryActivity.createIntent(getActivity()));
+				break;
+			case R.id.first_side:
+				toActivity(FirstSideWindow.createIntent(getActivity()));
 				break;
 			default:
 				break;
@@ -119,4 +138,9 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 		return view;
 	}
 
+	@Override
+	public void onDestroy() {
+		EventBus.getDefault().unregister(this);
+		super.onDestroy();
+	}
 }

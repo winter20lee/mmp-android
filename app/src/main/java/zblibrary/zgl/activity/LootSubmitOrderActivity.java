@@ -245,7 +245,6 @@ public class LootSubmitOrderActivity extends BaseActivity implements OnBottomDra
 				SubmitOrder submitOrder  = GsonUtil.GsonToBean(resultData,SubmitOrder.class);
 				if(resultCode == 1000 && submitOrder!=null && StringUtil.isNotEmpty(submitOrder.orderNo,true)){
 					if(isJifen){
-						toActivity(BottomPayWindow.createIntent(context,lootDes.unitPrice*Integer.parseInt(shop_cart_num.getText().toString()),submitOrder.orderNo,"LOOT",pointsAndStatus.points));
 					}else {
 						toActivity(PayActivity.createIntent(context,lootDes.unitPrice*Integer.parseInt(shop_cart_num.getText().toString()),submitOrder.orderNo,"LOOT","third"));
 					}
