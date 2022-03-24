@@ -10,6 +10,7 @@ import android.widget.TextView;
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.LoginActivity;
 import zblibrary.zgl.activity.MainTabActivity;
+import zblibrary.zgl.activity.MyLikeActivity;
 import zblibrary.zgl.activity.UserInfoActivity;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
@@ -26,7 +27,7 @@ import zuo.biao.library.util.StringUtil;
  */
 public class MineFragment extends BaseFragment implements OnClickListener, OnDialogButtonClickListener , OnHttpResponseListener {
 	private ImageView mine_head;
-	private TextView mine_name,mine_phone;
+	private TextView mine_name,mine_phone,mine_down_state;
 	private final int REQUEST = 12001;
 	public static MineFragment createInstance() {
 		return new MineFragment();
@@ -55,6 +56,7 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 		mine_head = findView(R.id.mine_head);
 		mine_name = findView(R.id.mine_name);
 		mine_phone = findView(R.id.mine_phone);
+		mine_down_state = findView(R.id.mine_down_state);
 	}
 
 	@Override
@@ -66,6 +68,9 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 		}else{
 			mine_head.setImageResource(R.mipmap.defult_head);
 		}
+		mine_down_state.setText("正在下载（"+ MyDownFilesFragment.TasksManager.getImpl().getDowningCounts()+"）/ " +
+				"已下载（"+ MyDownFilesFragment.TasksManager.getImpl().getDownedCounts()+"）");
+
 	}
 
 
@@ -79,6 +84,8 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 	public void initEvent() {//必须调用
 		findView(R.id.mine_head).setOnClickListener(this);
 		findView(R.id.mine_set).setOnClickListener(this);
+		findView(R.id.mine_like).setOnClickListener(this);
+		findView(R.id.mine_down).setOnClickListener(this);
 	}
 
 	@Override
@@ -107,7 +114,16 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 					toActivity(UserInfoActivity.createIntent(context));
 				}
 				break;
-
+			case R.id.mine_like:
+				if(!MApplication.getInstance().isLoggedIn()){
+					toActivity(LoginActivity.createIntent(context));
+				}else{
+					toActivity(MyLikeActivity.createIntent(context));
+				}
+				break;
+			case R.id.mine_down:
+				((MainTabActivity)getActivity()).showDownFile();
+				break;
 			default:
 				break;
 		}
@@ -131,4 +147,5 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 	public void onHttpError(int requestCode, Exception e, String message) {
 
 	}
+
 }

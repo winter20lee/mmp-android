@@ -1,5 +1,5 @@
 
-package zblibrary.zgl.activity;
+package zblibrary.zgl.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -29,21 +30,31 @@ import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.model.FileDownloadStatus;
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 import zblibrary.zgl.R;
+import zblibrary.zgl.activity.MainTabActivity;
 import zblibrary.zgl.application.MApplication;
-import zuo.biao.library.base.BaseActivity;
+import zblibrary.zgl.model.RefreshDownEvent;
+import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.util.StringUtil;
 
 /**
- * Created by Jacksgong on 1/9/16.
+ * 下载
  */
-public class MyDownFilesActivity extends BaseActivity {
+public class MyDownFilesFragment extends BaseFragment implements View.OnClickListener {
 
-    private TaskItemAdapter adapter;
+    private static TaskItemAdapter adapter;
+    private TextView mydown_edit,mydown_sel_all,mydown_sel_del;
+    private RecyclerView recyclerView;
+    private static ArrayList<TaskItemViewHolder> delIds = new ArrayList<>();
     private  static String[] BIG_FILE_URLS = {
             "http://cdn.llsapp.com/android/LLS-v4.0-595-20160908-143200.apk",
             // 5m
@@ -56,27 +67,32 @@ public class MyDownFilesActivity extends BaseActivity {
             "http://wxtest.9fbank.com/download/9f_onecard_release_v3.3.7.apk",
     };
 
-    /**获取启动MessageDesActivity的intent
-     * @param context
-     * @return
-     */
     public static Intent createIntent(Context context) {
-        return new Intent(context, MyDownFilesActivity.class);
+        return new Intent(context, MyDownFilesFragment.class);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         setContentView(R.layout.mydown_file_activity);
-
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rvBaseRecycler);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter = new TaskItemAdapter());
-
-
+        EventBus.getDefault().register(this);
+        mydown_edit = findView(R.id.mydown_edit);
+        mydown_sel_all = findView(R.id.mydown_sel_all);
+        mydown_sel_del = findView(R.id.mydown_sel_del);
+        recyclerView =  findView(R.id.rvBaseRecycler);
+        findView(R.id.mydown_file_back,this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        if(adapter==null){
+            adapter = new TaskItemAdapter();
+        }
+        recyclerView.setAdapter(adapter);
+        mydown_edit.setOnClickListener(this);
+        mydown_sel_all.setOnClickListener(this);
+        mydown_sel_del.setOnClickListener(this);
         TasksManager.getImpl().onCreate(new WeakReference<>(this));
+        return view;
     }
+
 
     @Override
     public void initView() {
@@ -95,7 +111,7 @@ public class MyDownFilesActivity extends BaseActivity {
 
     public void postNotifyDataChanged() {
         if (adapter != null) {
-            runOnUiThread(new Runnable() {
+            getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     if (adapter != null) {
@@ -105,16 +121,90 @@ public class MyDownFilesActivity extends BaseActivity {
             });
         }
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onRefreshEvent(RefreshDownEvent baseEvent){
+        mydown_edit.setText("编辑");
+        adapter.isEditState = false;
+        findView(R.id.mydown_bottom_divid).setVisibility(View.GONE);
+        findView(R.id.mydown_bottom_edit).setVisibility(View.GONE);
+        postNotifyDataChanged();
+        if(baseEvent.isStart){
+            adapter.autoClick(getHolder(TasksManager.getImpl().getTaskCounts()-1));
+            showShortToast("开始下载");
+        }
+    }
 
-    @Override
-    protected void onDestroy() {
-//        TasksManager.getImpl().onDestroy();
-//        adapter = null;
-//        FileDownloader.getImpl().pauseAll();
-        super.onDestroy();
+    private TaskItemViewHolder getHolder(int index){
+        if(null == recyclerView || null==recyclerView.getAdapter()||recyclerView.getAdapter().getItemCount()==0){
+            return null;
+        }
+        int count = recyclerView.getAdapter().getItemCount();
+        if(index < 0 || index > count-1){
+            return null;
+        }
+
+        TaskItemViewHolder myViewHolder = (TaskItemViewHolder) recyclerView.findViewHolderForAdapterPosition(0);//获取到对应Item的View
+        if(myViewHolder==null){
+            RecyclerView.RecycledViewPool pool = recyclerView.getRecycledViewPool();
+            int type =0;
+            int recycledViewCount = pool.getRecycledViewCount(type);
+            myViewHolder = (TaskItemViewHolder) pool.getRecycledView(type);
+            try {
+                pool.putRecycledView(myViewHolder);
+            }catch (Exception e){
+
+            }
+        }
+
+        return myViewHolder;
     }
 
 
+    @Override
+    public void onDestroy() {
+//        TasksManager.getImpl().onDestroy();
+//        adapter = null;
+//        FileDownloader.getImpl().pauseAll();
+        adapter.isEditState = false;
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.mydown_edit:
+                if(mydown_edit.getText().toString().equals("编辑")){
+                    mydown_edit.setText("完成");
+                    adapter.isEditState = true;
+                    findView(R.id.mydown_bottom_divid).setVisibility(View.VISIBLE);
+                    findView(R.id.mydown_bottom_edit).setVisibility(View.VISIBLE);
+                }else{
+                    mydown_edit.setText("编辑");
+                    adapter.isEditState = false;
+                    findView(R.id.mydown_bottom_divid).setVisibility(View.GONE);
+                    findView(R.id.mydown_bottom_edit).setVisibility(View.GONE);
+                }
+                postNotifyDataChanged();
+                break;
+            case R.id.mydown_sel_all:
+
+                break;
+            case R.id.mydown_sel_del:
+                for (TaskItemViewHolder holder:delIds) {
+                    FileDownloader.getImpl().pause(holder.id);
+                    new File(TasksManager.getImpl().get(holder.position).getPath()).delete();
+                    holder.taskActionBtn.setEnabled(true);
+                    holder.updateNotDownloaded(FileDownloadStatus.INVALID_STATUS, 0, 0);
+                    TasksManager.getImpl().delTask(holder.id+"");
+                }
+                postNotifyDataChanged();
+                break;
+            case R.id.mydown_file_back:
+                ((MainTabActivity)getActivity()).hideDownFile();
+                break;
+        }
+    }
 
 
     // ============================================================================ view adapter ===
@@ -206,21 +296,23 @@ public class MyDownFilesActivity extends BaseActivity {
         }
 
         private TextView taskNameTv;
-        private TextView taskStatusTv;
+        private TextView taskStatusTv,taskTotalTv;
         private ProgressBar taskPb;
         private Button taskActionBtn;
-
+        private ImageView taskSelectIv;
         private void assignViews() {
+            taskSelectIv = (ImageView) findViewById(R.id.task_select_iv);
             taskNameTv = (TextView) findViewById(R.id.task_name_tv);
             taskStatusTv = (TextView) findViewById(R.id.task_status_tv);
             taskPb = (ProgressBar) findViewById(R.id.task_pb);
             taskActionBtn = (Button) findViewById(R.id.task_action_btn);
+            taskTotalTv = (TextView)findViewById(R.id.task_total_tv);
         }
 
     }
 
     private static class TaskItemAdapter extends RecyclerView.Adapter<TaskItemViewHolder> {
-
+        private static boolean isEditState;
         private FileDownloadListener taskDownloadListener = new FileDownloadSampleListener() {
 
             private TaskItemViewHolder checkCurrentHolder(final BaseDownloadTask task) {
@@ -243,6 +335,7 @@ public class MyDownFilesActivity extends BaseActivity {
                 tag.updateDownloading(FileDownloadStatus.pending, soFarBytes
                         , totalBytes);
                 tag.taskStatusTv.setText(R.string.tasks_manager_demo_status_pending);
+                tag.taskTotalTv.setText(StringUtil.bytes2kb(totalBytes));
             }
 
             @Override
@@ -267,6 +360,7 @@ public class MyDownFilesActivity extends BaseActivity {
                 tag.updateDownloading(FileDownloadStatus.connected, soFarBytes
                         , totalBytes);
                 tag.taskStatusTv.setText(R.string.tasks_manager_demo_status_connected);
+                tag.taskTotalTv.setText(StringUtil.bytes2kb(totalBytes));
             }
 
             @Override
@@ -314,7 +408,7 @@ public class MyDownFilesActivity extends BaseActivity {
                 if (tag == null) {
                     return;
                 }
-
+                tag.taskTotalTv.setText(StringUtil.bytes2kb(task.getLargeFileTotalBytes()));
                 tag.updateDownloaded();
                 TasksManager.getImpl().removeTaskForViewHolder(task.getId());
             }
@@ -334,20 +428,7 @@ public class MyDownFilesActivity extends BaseActivity {
                     FileDownloader.getImpl().pause(holder.id);
                 } else if (action.equals(v.getResources().getString(R.string.start))) {
                     // to start
-                    // to start
-                    final TasksManagerModel model = TasksManager.getImpl().get(holder.position);
-                    final BaseDownloadTask task = FileDownloader.getImpl().create(model.getUrl())
-                            .setPath(model.getPath())
-                            .setCallbackProgressTimes(100)
-                            .setListener(taskDownloadListener);
-
-                    TasksManager.getImpl()
-                            .addTaskForViewHolder(task);
-
-                    TasksManager.getImpl()
-                            .updateViewHolder(holder.id, holder);
-
-                    task.start();
+                    autoClick(holder);
                 } else if (action.equals(v.getResources().getString(R.string.delete))) {
                     // to delete
                     new File(TasksManager.getImpl().get(holder.position).getPath()).delete();
@@ -356,6 +437,38 @@ public class MyDownFilesActivity extends BaseActivity {
                 }
             }
         };
+        private View.OnClickListener taskSeleOnClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            if (v.getTag() == null) {
+                    return;
+                }
+                TaskItemViewHolder holder = (TaskItemViewHolder) v.getTag();
+                if(delIds.contains(holder)){
+                    delIds.remove(holder);
+                    holder.taskSelectIv.setImageResource(R.mipmap.shopping_car_unselect);
+                }else{
+                    delIds.add(holder);
+                    holder.taskSelectIv.setImageResource(R.mipmap.shopping_car_select);
+                }
+            }
+        };
+        public void autoClick(TaskItemViewHolder holder){
+            TasksManagerModel model = TasksManager.getImpl().get(holder.position);
+            BaseDownloadTask task = FileDownloader.getImpl().create(model.getUrl())
+                    .setPath(model.getPath())
+                    .setCallbackProgressTimes(100)
+                    .setListener(taskDownloadListener);
+
+            TasksManager.getImpl()
+                    .addTaskForViewHolder(task);
+
+            TasksManager.getImpl()
+                    .updateViewHolder(holder.id, holder);
+
+            task.start();
+        }
 
         @Override
         public TaskItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -365,22 +478,29 @@ public class MyDownFilesActivity extends BaseActivity {
                             .inflate(R.layout.item_tasks_manager, parent, false));
 
             holder.taskActionBtn.setOnClickListener(taskActionOnClickListener);
+            holder.taskSelectIv.setOnClickListener(taskSeleOnClickListener);
             return holder;
         }
 
         @Override
         public void onBindViewHolder(TaskItemViewHolder holder, int position) {
             final TasksManagerModel model = TasksManager.getImpl().get(position);
+//
+            if(isEditState){
+                holder.taskSelectIv.setVisibility(View.VISIBLE);
+            }else{
+                holder.taskSelectIv.setVisibility(View.GONE);
+            }
 
             holder.update(model.getId(), position);
             holder.taskActionBtn.setTag(holder);
+            holder.taskSelectIv.setTag(holder);
             holder.taskNameTv.setText(model.getName());
 
             TasksManager.getImpl()
                     .updateViewHolder(holder.id, holder);
 
             holder.taskActionBtn.setEnabled(true);
-
 
             if (TasksManager.getImpl().isReady()) {
                 final int status = TasksManager.getImpl().getStatus(model.getId(), model.getPath());
@@ -395,6 +515,10 @@ public class MyDownFilesActivity extends BaseActivity {
                     holder.updateNotDownloaded(status, 0, 0);
                 } else if (TasksManager.getImpl().isDownloaded(status)) {
                     // already downloaded and exist
+                    File file = new File(model.getPath());
+                    if(file.exists()){
+                        holder.taskTotalTv.setText(StringUtil.bytes2kb(file.length()));
+                    }
                     holder.updateDownloaded();
                 } else if (status == FileDownloadStatus.progress) {
                     // downloading
@@ -437,7 +561,7 @@ public class MyDownFilesActivity extends BaseActivity {
             dbController = new TasksManagerDBController();
             modelList = dbController.getAllTasks();
 
-            initDemo();
+//            initDemo();
         }
 
         private void initDemo() {
@@ -475,7 +599,7 @@ public class MyDownFilesActivity extends BaseActivity {
 
         private FileDownloadConnectListener listener;
 
-        private void registerServiceConnectionListener(final WeakReference<MyDownFilesActivity>
+        private void registerServiceConnectionListener(final WeakReference<MyDownFilesFragment>
                                                                activityWeakReference) {
             if (listener != null) {
                 FileDownloader.getImpl().removeServiceConnectListener(listener);
@@ -512,7 +636,7 @@ public class MyDownFilesActivity extends BaseActivity {
             listener = null;
         }
 
-        public void onCreate(final WeakReference<MyDownFilesActivity> activityWeakReference) {
+        public void onCreate(final WeakReference<MyDownFilesFragment> activityWeakReference) {
             if (!FileDownloader.getImpl().isServiceConnected()) {
                 FileDownloader.getImpl().bindService();
                 registerServiceConnectionListener(activityWeakReference);
@@ -567,6 +691,27 @@ public class MyDownFilesActivity extends BaseActivity {
             return modelList.size();
         }
 
+
+        public int getDowningCounts() {
+            int count = 0;
+            for (TasksManagerModel tasksManagerModel:modelList) {
+                if(getStatus(tasksManagerModel.id,tasksManagerModel.path) == FileDownloadStatus.progress){
+                    ++count;
+                }
+            }
+            return count;
+        }
+
+        public int getDownedCounts() {
+            int count = 0;
+            for (TasksManagerModel tasksManagerModel:modelList) {
+                if(isDownloaded(getStatus(tasksManagerModel.id,tasksManagerModel.path))){
+                    ++count;
+                }
+            }
+            return count;
+        }
+
         public TasksManagerModel addTask(final String url) {
             return addTask(url, createPath(url));
         }
@@ -595,6 +740,17 @@ public class MyDownFilesActivity extends BaseActivity {
             }
 
             return FileDownloadUtils.getDefaultSaveFilePath(url);
+        }
+
+        public void delTask(String id){
+
+            for(TasksManagerModel tasksManagerModel:modelList){
+                if((tasksManagerModel.id+"") .equals(id)){
+                    modelList.remove(tasksManagerModel);
+                    FileDownloadUtils.deleteTaskFiles(tasksManagerModel.url,tasksManagerModel.path);
+                }
+            }
+            dbController.deleTask(id);
         }
     }
 
@@ -653,7 +809,9 @@ public class MyDownFilesActivity extends BaseActivity {
             return succeed ? model : null;
         }
 
-
+        public void deleTask(String id){
+            db.delete(TABLE_NAME, "id = ? ", new String[]{id});
+        }
     }
 
     // ----------------------- model
@@ -745,6 +903,4 @@ public class MyDownFilesActivity extends BaseActivity {
             return cv;
         }
     }
-
-
 }

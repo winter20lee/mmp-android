@@ -3,26 +3,85 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/activity_page"
+    android:background="@color/white"
     tools:ignore="MissingDefaultResource">
 
     <RelativeLayout style="@style/topbar_bg" >
 
-        <ImageView style="@style/topbar_return_img" />
+        <ImageView style="@style/topbar_return_img"
+            android:id="@+id/mydown_file_back"
+            />
 
         <TextView
             style="@style/topbar_title"
             android:layout_centerHorizontal="true"
-            android:text="@string/help_title" />
+            android:text="下载" />
 
+        <TextView
+            android:id="@+id/mydown_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编辑"
+            android:textSize="13sp"
+            android:textColor="#323038"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#40323038"
+            android:layout_alignParentBottom="true"
+            />
     </RelativeLayout>
 
     <LinearLayout
         android:background="@drawable/radius_4_shap"
-        android:layout_marginTop="10dp"
         android:paddingRight="12dp"
         android:paddingLeft="12dp"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include layout="@layout/base_recycler_fragment"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/mydown_bottom_divid"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#40323038"
+        />
+    <LinearLayout
+        android:id="@+id/mydown_bottom_edit"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/mydown_sel_all"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="全选"
+            android:textColor="#87869E"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_height="match_parent"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="14dp"
+            android:background="#F2F2F2"
+
+            />
+        <TextView
+            android:id="@+id/mydown_sel_del"
+            android:layout_weight="1"
+            android:text="删除"
+            android:textColor="#87869E"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 </LinearLayout>

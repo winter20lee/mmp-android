@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.KeyEvent;
+import android.view.View;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -12,10 +13,10 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import zblibrary.zgl.R;
 import zblibrary.zgl.application.MApplication;
-import zblibrary.zgl.fragment.ClassificationSearchFragment;
 import zblibrary.zgl.fragment.FirstFragment;
 import zblibrary.zgl.fragment.MemberCenterFragment;
 import zblibrary.zgl.fragment.MineFragment;
+import zblibrary.zgl.model.RefreshDownEvent;
 import zuo.biao.library.base.BaseBottomTabActivity;
 import zuo.biao.library.base.BaseEvent;
 import zuo.biao.library.manager.SystemBarTintManager;
@@ -25,7 +26,7 @@ import zuo.biao.library.manager.SystemBarTintManager;
  */
 public class MainTabActivity extends BaseBottomTabActivity {
 	private static final String TAG = "MainTabActivity";
-
+	private View myDownFilesFragment;
 	public static Intent createIntent(Context context) {
 		return new Intent(context, MainTabActivity.class);
 	}
@@ -42,13 +43,14 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	@Override
 	public void initView() {// 必须调用
 		super.initView();
+		myDownFilesFragment =findViewById(R.id.fg_title);
+		myDownFilesFragment.setVisibility(View.GONE);
 		exitAnim = R.anim.bottom_push_out;
 	}
 
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
-		selectFragment(4);
 	}
 
 	@Override
@@ -97,7 +99,6 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	@Override
 	public void initData() {// 必须调用
 		super.initData();
-
 	}
 
 	@Override
@@ -120,6 +121,10 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		switch(keyCode){
 		case KeyEvent.KEYCODE_BACK:
+			if(myDownFilesFragment.getVisibility() == View.VISIBLE){
+				myDownFilesFragment.setVisibility(View.GONE);
+				return true;
+			}
 			long secondTime = System.currentTimeMillis();
 			if(secondTime - firstTime > 2000){
 				showShortToast("Press again to exit");
@@ -141,6 +146,16 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onMoonEvent(BaseEvent baseEvent){
 		toActivity(LoginActivity.createIntent(this));
+	}
+
+	public void showDownFile(){
+		myDownFilesFragment.setVisibility(View.VISIBLE);
+		EventBus.getDefault().post(new RefreshDownEvent(false));
+	}
+
+	public void hideDownFile(){
+		myDownFilesFragment.setVisibility(View.GONE);
+
 	}
 
 	@Override

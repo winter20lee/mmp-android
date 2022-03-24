@@ -295,6 +295,7 @@
 
 
             <LinearLayout
+                android:id="@+id/mine_down"
                 android:orientation="horizontal"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="12dp"
@@ -313,6 +314,7 @@
                     android:textColor="#323038"
                     />
                 <TextView
+                    android:id="@+id/mine_down_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="正在下载（0）/ 已下载（1）"
@@ -333,6 +335,7 @@
                 android:background="#F4F4F5"
                 />
             <LinearLayout
+                android:id="@+id/mine_like"
                 android:orientation="horizontal"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"

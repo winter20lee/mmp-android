@@ -234,10 +234,9 @@
             android:id="@+id/play_video_down"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="17dp"
-            android:src="@mipmap/down"
             android:layout_toLeftOf="@id/play_video_like"
-            />
+            android:padding="17dp"
+            android:src="@mipmap/down" />
 
         <ImageView
             android:id="@+id/play_video_like"

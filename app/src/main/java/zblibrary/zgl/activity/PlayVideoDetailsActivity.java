@@ -1,32 +1,32 @@
 package zblibrary.zgl.activity;
 
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.fragment.MyDownFilesFragment;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.FirstBanner;
 import zblibrary.zgl.model.FirstCategory;
 import zblibrary.zgl.model.ProductDes;
+import zblibrary.zgl.model.RefreshDownEvent;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryView;
 import zuo.biao.library.base.BaseActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 import zblibrary.zgl.R;
@@ -34,7 +34,6 @@ import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.ui.FlowLayout;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
-import zuo.biao.library.util.WebViewSettingsUtils;
 
 /**商品详情
  */
@@ -131,6 +130,8 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
             case R.id.play_video_share:
                 break;
             case R.id.play_video_down:
+                MyDownFilesFragment.TasksManager.getImpl().addTask("http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4");
+                EventBus.getDefault().post(new RefreshDownEvent(true));
                 break;
             case R.id.play_video_like:
                 break;

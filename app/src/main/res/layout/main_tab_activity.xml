@@ -4,6 +4,13 @@
     android:fitsSystemWindows="false"
     >
 
+    <fragment
+        android:id="@+id/fg_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="zblibrary.zgl.fragment.MyDownFilesFragment"
+        />
+
     <FrameLayout
         android:id="@+id/flMainTabFragmentContainer"
         style="@style/match_match"
