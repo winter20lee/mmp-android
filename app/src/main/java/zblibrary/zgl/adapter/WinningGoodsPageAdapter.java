@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 import zblibrary.zgl.R;
-import zblibrary.zgl.fragment.WinningGoodsFragment;
+import zblibrary.zgl.fragment.LastFragment;
 
 /**
  * 消息内容子页面适配器
@@ -28,19 +28,19 @@ public class WinningGoodsPageAdapter extends FragmentPagerAdapter {
 	@Override
 	public Fragment getItem(int position) {
 		if(position==0){
-			return WinningGoodsFragment.createInstance("ALL");
+			return LastFragment.createInstance("ALL");
 		}else  if(position==1){
-			return WinningGoodsFragment.createInstance("WAIT_PICK");
+			return LastFragment.createInstance("WAIT_PICK");
 		}else  if(position==2){
-			return WinningGoodsFragment.createInstance("WAIT_SEND");
+			return LastFragment.createInstance("WAIT_SEND");
 		}else  if(position==3){
-			return WinningGoodsFragment.createInstance("WAIT_TRANSFER");
+			return LastFragment.createInstance("WAIT_TRANSFER");
 		} else  if(position==4){
-			return WinningGoodsFragment.createInstance("WAIT_RECEIVE");
+			return LastFragment.createInstance("WAIT_RECEIVE");
 		}else  if(position==5){
-			return WinningGoodsFragment.createInstance("FINISHED");
+			return LastFragment.createInstance("FINISHED");
 		}
-		return WinningGoodsFragment.createInstance("");
+		return LastFragment.createInstance("");
 	}
 
 	@Override

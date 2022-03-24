@@ -51,7 +51,7 @@ public class MyOrderFragment extends BaseHttpRecyclerFragment<MyOrder.ResultMode
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		setContentView(R.layout.myorder_fragment);
+		setContentView(R.layout.last_fragment);
 		argument = getArguments();
 		if (argument != null) {
 			type = argument.getString(INTENT_TITLE);
