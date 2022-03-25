@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import zblibrary.zgl.R;
-import zblibrary.zgl.model.Message;
+import zblibrary.zgl.model.Order;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.interfaces.OnBottomDragListener;
@@ -21,17 +21,17 @@ public class MessageDesActivity extends BaseActivity implements  OnBottomDragLis
 	 * @param context
 	 * @return
 	 */
-	public static Intent createIntent(Context context, Message.MessageData messageData) {
+	public static Intent createIntent(Context context, Order.MessageData messageData) {
 		return new Intent(context, MessageDesActivity.class)
 				.putExtra(INTENT_ID, messageData);
 	}
-	private Message.MessageData messageData;
+	private Order.MessageData messageData;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.message_des_activity, this);
 		intent = getIntent();
-		messageData = (Message.MessageData) intent.getSerializableExtra(INTENT_ID);
+		messageData = (Order.MessageData) intent.getSerializableExtra(INTENT_ID);
 		initView();
 		initData();
 		initEvent();

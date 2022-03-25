@@ -144,7 +144,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="zblibrary.zgl.activity.MessageActivity"
+            android:name="zblibrary.zgl.activity.OrderActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity

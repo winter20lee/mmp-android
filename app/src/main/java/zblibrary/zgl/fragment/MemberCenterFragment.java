@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import zblibrary.zgl.R;
+import zblibrary.zgl.activity.OrderActivity;
 import zblibrary.zgl.adapter.MemberCardAdapter;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
@@ -28,6 +30,7 @@ public class MemberCenterFragment extends BaseFragment implements
 	private List<FirstBanner> firstBannerList = new ArrayList<>();
 	private Gallery member_center_gallery;
 	private ImageView member_center_equity;
+	private TextView member_canter_order;
 	public static MemberCenterFragment createInstance() {
 		return new MemberCenterFragment();
 	}
@@ -49,6 +52,7 @@ public class MemberCenterFragment extends BaseFragment implements
 	public void initView() {//必须调用
 		member_center_gallery = findView(R.id.member_center_gallery);
 		member_center_equity = findView(R.id.member_center_equity);
+		member_canter_order = findView(R.id.member_canter_order);
 	}
 
 	@Override
@@ -69,6 +73,7 @@ public class MemberCenterFragment extends BaseFragment implements
 
 			}
 		});
+		member_canter_order.setOnClickListener(view -> toActivity(OrderActivity.createIntent(context)));
 	}
 
 

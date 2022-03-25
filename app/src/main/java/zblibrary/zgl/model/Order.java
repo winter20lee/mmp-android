@@ -5,9 +5,9 @@ import java.util.List;
 
 import zuo.biao.library.base.BaseModel;
 
-/**站内信
+/**订单
  */
-public class Message  {
+public class Order {
 	public int totalCount;
 	public int totalPage;
 	public int pageNo;

@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.adapter.MessageAdapter;
-import zblibrary.zgl.model.Message;
+import zblibrary.zgl.adapter.OrderAdapter;
+import zblibrary.zgl.model.Order;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseHttpListActivity;
 import zuo.biao.library.interfaces.AdapterCallBack;
@@ -21,19 +21,19 @@ import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.util.GsonUtil;
 
 /**
- * 站内信
+ * 订单
  */
-public class MessageActivity extends BaseHttpListActivity<Message.MessageData, ListView, MessageAdapter> implements OnBottomDragListener {
+public class OrderActivity extends BaseHttpListActivity<Order.MessageData, ListView, OrderAdapter> implements OnBottomDragListener {
 
 
 	public static Intent createIntent(Context context) {
-		return new Intent(context, MessageActivity.class);
+		return new Intent(context, OrderActivity.class);
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.message_activity, this);
+		setContentView(R.layout.order_activity, this);
 
 		initView();
 		initData();
@@ -48,12 +48,12 @@ public class MessageActivity extends BaseHttpListActivity<Message.MessageData, L
 	}
 
 	@Override
-	public void setList(final List<Message.MessageData> list) {
-		setList(new AdapterCallBack<MessageAdapter>() {
+	public void setList(final List<Order.MessageData> list) {
+		setList(new AdapterCallBack<OrderAdapter>() {
 
 			@Override
-			public MessageAdapter createAdapter() {
-				return new MessageAdapter(context);
+			public OrderAdapter createAdapter() {
+				return new OrderAdapter(context);
 			}
 
 			@Override
@@ -78,11 +78,11 @@ public class MessageActivity extends BaseHttpListActivity<Message.MessageData, L
 	}
 
 	@Override
-	public List<Message.MessageData> parseArray(String json) {
+	public List<Order.MessageData> parseArray(String json) {
 		try {
 			String data = GsonUtil.GsonData(json);
-			Message message = GsonUtil.GsonToBean(data,Message.class);
-			List<Message.MessageData> messageDataList = message.result;
+			Order message = GsonUtil.GsonToBean(data, Order.class);
+			List<Order.MessageData> messageDataList = message.result;
 			onStopRefresh();
 			if(message.totalPage > message.pageNo){
 				onStopLoadMore(true);
