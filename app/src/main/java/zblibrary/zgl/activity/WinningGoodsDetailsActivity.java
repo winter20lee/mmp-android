@@ -105,7 +105,6 @@ public class WinningGoodsDetailsActivity extends BaseActivity implements OnBotto
                 break;
             case R.id.submit_order_submit:
                 if(winningGoodsDetails.winStatus==1){
-                    toActivity(RepurchaseActivity.createIntent(context,orderNo));
                 }
                 break;
             case R.id.kefu:

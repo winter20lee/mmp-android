@@ -11,10 +11,10 @@ import java.util.List;
 
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.PlayVideoDetailsActivity;
-import zblibrary.zgl.adapter.LastAdapter;
-import zblibrary.zgl.model.Last;
+import zblibrary.zgl.adapter.FirstLastAdapter;
+import zblibrary.zgl.model.FirstLast;
 import zblibrary.zgl.util.HttpRequest;
-import zblibrary.zgl.view.LastView;
+import zblibrary.zgl.view.FirstLastView;
 import zuo.biao.library.base.BaseHttpRecyclerFragment;
 import zuo.biao.library.interfaces.AdapterCallBack;
 import zuo.biao.library.util.GsonUtil;
@@ -23,12 +23,12 @@ import zuo.biao.library.util.StringUtil;
 /**
  *  最新
  */
-public class LastFragment extends BaseHttpRecyclerFragment<Last.ResultModel, LastView, LastAdapter> {
+public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.ResultModel, FirstLastView, FirstLastAdapter> {
 
 	private String type;
-	private Last winningGoods;
-	public static LastFragment createInstance(String type) {
-		LastFragment fragment = new LastFragment();
+	private FirstLast winningGoods;
+	public static FirstLastFragment createInstance(String type) {
+		FirstLastFragment fragment = new FirstLastFragment();
 		Bundle bundle = new Bundle();
 		bundle.putString(INTENT_TITLE, type);
 		fragment.setArguments(bundle);
@@ -38,7 +38,7 @@ public class LastFragment extends BaseHttpRecyclerFragment<Last.ResultModel, Las
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		setContentView(R.layout.last_fragment);
+		setContentView(R.layout.first_last_fragment);
 		argument = getArguments();
 		if (argument != null) {
 			type = argument.getString(INTENT_TITLE);
@@ -57,12 +57,12 @@ public class LastFragment extends BaseHttpRecyclerFragment<Last.ResultModel, Las
 	}
 
 	@Override
-	public void setList(final List<Last.ResultModel> list) {
-		setList(new AdapterCallBack<LastAdapter>() {
+	public void setList(final List<FirstLast.ResultModel> list) {
+		setList(new AdapterCallBack<FirstLastAdapter>() {
 
 			@Override
-			public LastAdapter createAdapter() {
-				return new LastAdapter(context);
+			public FirstLastAdapter createAdapter() {
+				return new FirstLastAdapter(context);
 			}
 
 			@Override
@@ -90,12 +90,12 @@ public class LastFragment extends BaseHttpRecyclerFragment<Last.ResultModel, Las
 	}
 
 	@Override
-	public List<Last.ResultModel> parseArray(String json) {
+	public List<FirstLast.ResultModel> parseArray(String json) {
 		if(StringUtil.isEmpty(json)){
 			return new ArrayList<>();
 		}
-		winningGoods = GsonUtil.GsonToBean(json, Last.class);
-		List<Last.ResultModel> resultModelList = winningGoods.result;
+		winningGoods = GsonUtil.GsonToBean(json, FirstLast.class);
+		List<FirstLast.ResultModel> resultModelList = winningGoods.result;
 		if(resultModelList==null){
 			return new ArrayList<>();
 		}

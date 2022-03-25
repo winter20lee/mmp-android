@@ -210,7 +210,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="zblibrary.zgl.activity.RepurchaseActivity"
+            android:name="zblibrary.zgl.activity.SetActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity

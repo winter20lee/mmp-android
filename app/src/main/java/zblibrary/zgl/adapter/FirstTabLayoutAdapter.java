@@ -8,7 +8,7 @@ import java.util.List;
 
 import zblibrary.zgl.fragment.FirstRecommendFragment;
 import zblibrary.zgl.fragment.SearchFragment;
-import zblibrary.zgl.fragment.LastFragment;
+import zblibrary.zgl.fragment.FirstLastFragment;
 import zblibrary.zgl.model.GoodsCategory;
 
 /**
@@ -37,7 +37,7 @@ public class FirstTabLayoutAdapter extends FragmentPagerAdapter {
         if(position==0){
             return FirstRecommendFragment.createInstance();
         } else if(position==1){
-            return LastFragment.createInstance("");
+            return FirstLastFragment.createInstance("");
         }
         else{
             return SearchFragment.createInstance("");

@@ -11,7 +11,9 @@ import zblibrary.zgl.R;
 import zblibrary.zgl.activity.LoginActivity;
 import zblibrary.zgl.activity.MainTabActivity;
 import zblibrary.zgl.activity.MyLikeActivity;
+import zblibrary.zgl.activity.SetActivity;
 import zblibrary.zgl.activity.UserInfoActivity;
+import zblibrary.zgl.activity.WatchHistoryActivity;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
@@ -82,10 +84,11 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 
 	@Override
 	public void initEvent() {//必须调用
-		findView(R.id.mine_head).setOnClickListener(this);
-		findView(R.id.mine_set).setOnClickListener(this);
-		findView(R.id.mine_like).setOnClickListener(this);
-		findView(R.id.mine_down).setOnClickListener(this);
+		findView(R.id.mine_head,this);
+		findView(R.id.mine_set,this);
+		findView(R.id.mine_like,this);
+		findView(R.id.mine_down,this);
+		findView(R.id.mine_history,this);
 	}
 
 	@Override
@@ -123,6 +126,16 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 				break;
 			case R.id.mine_down:
 				((MainTabActivity)getActivity()).showDownFile();
+				break;
+			case R.id.mine_history:
+				if(!MApplication.getInstance().isLoggedIn()){
+					toActivity(LoginActivity.createIntent(context));
+				}else{
+					toActivity(WatchHistoryActivity.createIntent(context));
+				}
+				break;
+			case R.id.mine_set:
+				toActivity(SetActivity.createIntent(context));
 				break;
 			default:
 				break;

@@ -7,15 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import zblibrary.zgl.R;
-import zblibrary.zgl.model.Last;
+import zblibrary.zgl.model.FirstLast;
 import zuo.biao.library.base.BaseView;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.StringUtil;
 
-public class LastView extends BaseView<Last.ResultModel> {
+public class FirstLastView extends BaseView<FirstLast.ResultModel> {
 
-	public LastView(Activity context, ViewGroup parent) {
-		super(context, R.layout.last_view, parent);
+	public FirstLastView(Activity context, ViewGroup parent) {
+		super(context, R.layout.first_last_view, parent);
 	}
 
 	public ImageView last_pic;
@@ -31,8 +31,8 @@ public class LastView extends BaseView<Last.ResultModel> {
 	}
 
 	@Override
-	public void bindView(Last.ResultModel data_){
-		super.bindView(data_ != null ? data_ : new Last.ResultModel());
+	public void bindView(FirstLast.ResultModel data_){
+		super.bindView(data_ != null ? data_ : new FirstLast.ResultModel());
 
 		if(data!=null && data.mainImage!=null && data.mainImage.size()>0){
 			GlideUtil.loadRound(context,data.mainImage.get(0),last_pic,R.dimen.dim_2);

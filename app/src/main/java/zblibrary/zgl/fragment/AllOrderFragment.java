@@ -36,7 +36,7 @@ public class AllOrderFragment extends BaseHttpRecyclerFragment<AllOrder.ResultMo
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		setContentView(R.layout.last_fragment);
+		setContentView(R.layout.first_last_fragment);
 		argument = getArguments();
 		if (argument != null) {
 			type = argument.getString(INTENT_TITLE);

@@ -4,7 +4,7 @@ package zblibrary.zgl.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Last {
+public class FirstLast {
 
 	public int totalCount;
 	public int totalPage;
