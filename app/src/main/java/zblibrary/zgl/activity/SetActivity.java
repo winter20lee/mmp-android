@@ -64,6 +64,7 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
                 toActivity(UserInfoActivity.createIntent(this));
                 break;
             case R.id.set_phone:
+                toActivity(BingPhoneActivity.createIntent(this));
                 break;
             case R.id.set_autoplay:
                 break;
