@@ -17,7 +17,6 @@ import zblibrary.zgl.activity.WatchHistoryActivity;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
-import zblibrary.zgl.model.PointsRules;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.ui.AlertDialog.OnDialogButtonClickListener;
@@ -147,10 +146,7 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 		switch (requestCode){
 			case REQUEST:
 				if(StringUtil.isNotEmpty(resultData,true)){
-					PointsRules pointsRules = GsonUtil.GsonToBean(resultData,PointsRules.class);
-					if(pointsRules !=null){
-						MApplication.getInstance().setPointsRules(pointsRules);
-					}
+
 				}
 				break;
 		}

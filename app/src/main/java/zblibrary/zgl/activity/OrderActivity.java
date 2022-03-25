@@ -117,8 +117,5 @@ public class OrderActivity extends BaseHttpListActivity<Order.MessageData, ListV
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		toActivity(MessageDesActivity.createIntent(context, list.get(position)));
-		list.get(position).readStatus = true;
-		adapter.notifyDataSetInvalidated();
 	}
 }

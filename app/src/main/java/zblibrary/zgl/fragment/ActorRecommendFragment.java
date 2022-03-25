@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.activity.LootDetailsActivity;
+import zblibrary.zgl.activity.PlayVideoDetailsActivity;
 import zblibrary.zgl.adapter.ActorRecommendAdapter;
 import zblibrary.zgl.model.ActorRecommend;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.ActorRecommendView;
-import zblibrary.zgl.view.SpaceItemDecoration;
 import zuo.biao.library.base.BaseHttpRecyclerFragment;
 import zuo.biao.library.interfaces.AdapterCallBack;
 import zuo.biao.library.util.GsonUtil;
@@ -103,7 +102,7 @@ public class ActorRecommendFragment extends BaseHttpRecyclerFragment<ActorRecomm
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		if (id > 0) {
-			toActivity(LootDetailsActivity.createIntent(context,id+""));
+			toActivity(PlayVideoDetailsActivity.createIntent(context,id));
 		}
 	}
 }

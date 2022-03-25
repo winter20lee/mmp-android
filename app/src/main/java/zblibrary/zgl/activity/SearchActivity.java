@@ -4,17 +4,12 @@ package zblibrary.zgl.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.fragment.app.FragmentTransaction;
 
-import java.util.List;
-
 import zblibrary.zgl.R;
-import zblibrary.zgl.fragment.ClassificationSearchFragment;
 import zblibrary.zgl.fragment.SearchFragment;
-import zblibrary.zgl.manager.DataManager;
 import zblibrary.zgl.view.SearchLayout;
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.interfaces.OnBottomDragListener;

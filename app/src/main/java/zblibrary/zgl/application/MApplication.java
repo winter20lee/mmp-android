@@ -1,7 +1,6 @@
 package zblibrary.zgl.application;
 
 import zblibrary.zgl.manager.DataManager;
-import zblibrary.zgl.model.PointsRules;
 import zblibrary.zgl.model.User;
 import zuo.biao.library.base.BaseApplication;
 import zuo.biao.library.manager.HttpManager;
@@ -78,21 +77,12 @@ public class MApplication extends BaseApplication {
 
 
 	private static User currentUser = null;
-	private static PointsRules pointsRules = null;
 	private static String serviceUrl = null;
 	public User getCurrentUser() {
 		if (currentUser == null) {
 			currentUser = DataManager.getInstance().getUser();
 		}
 		return currentUser;
-	}
-
-	public PointsRules getPointsRules() {
-		return pointsRules;
-	}
-
-	public void setPointsRules(PointsRules pointsRules) {
-		 this.pointsRules = pointsRules;
 	}
 
 	public String getServiceUrl() {

@@ -87,14 +87,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="zblibrary.zgl.activity.UpdateNickNameActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.MyOrderActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
             android:name="zblibrary.zgl.activity.SearchActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -102,10 +94,6 @@
             android:name="zblibrary.zgl.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.AllOrdersActivity"
-            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="zblibrary.zgl.activity.PlayVideoDetailsActivity"
@@ -116,31 +104,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="zblibrary.zgl.activity.OrderDetailsActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.WinningGoodsActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.WinningGoodsDetailsActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.ReceivingAddressActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.AddAndEditAddressActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
             android:name="zblibrary.zgl.activity.UserInfoActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.SystemHeadActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -152,61 +116,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="zblibrary.zgl.activity.ProductDesSelectWindow"
-            android:screenOrientation="portrait"
-            android:theme="@style/Window"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.LootDetailsActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.PlanWinActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.PlanPartActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.MyNumberActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
             android:name="zblibrary.zgl.activity.UpdateNickNameActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             tools:ignore="DuplicateActivity" />
         <activity
             android:name="zblibrary.zgl.activity.WatchHistoryActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.SubmitOrderActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.LootSubmitOrderActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.PayActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.HelpDetailsActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.FirstDuobaoActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.PointDestailActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="zblibrary.zgl.activity.RewardinKindActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity

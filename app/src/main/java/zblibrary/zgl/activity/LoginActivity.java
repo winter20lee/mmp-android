@@ -54,15 +54,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 	public void initView() {//必须调用
 		login_message = findView(R.id.login_message);
 		login_phone = findView(R.id.login_phone);
-		SpannableString phoness = new SpannableString(getString(R.string.login_hint_phone));//定义hint的值
-		AbsoluteSizeSpan phoneass = new AbsoluteSizeSpan(12,true);//设置字体大小 true表示单位是sp
-		phoness.setSpan(phoneass, 0, phoness.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-		login_phone.setHint(new SpannedString(phoness));
 		login_code = findView(R.id.login_code);
-		SpannableString ss = new SpannableString(getString(R.string.login_hint_password));//定义hint的值
-		AbsoluteSizeSpan ass = new AbsoluteSizeSpan(12,true);//设置字体大小 true表示单位是sp
-		ss.setSpan(ass, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-		login_code.setHint(new SpannedString(ss));
 		login_login = findView(R.id.login_login);
 	}
 

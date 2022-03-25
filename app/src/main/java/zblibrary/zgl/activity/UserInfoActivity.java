@@ -245,8 +245,8 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				break;
 			case REQUEST_TO_BOTTOM_GRID:
 				if (data != null) {
-					String url = data.getStringExtra(SystemHeadActivity.RESULT_DATA);
-					setPicture(url);
+//					String url = data.getStringExtra(SystemHeadActivity.RESULT_DATA);
+//					setPicture(url);
 				}
 				break;
 			default:

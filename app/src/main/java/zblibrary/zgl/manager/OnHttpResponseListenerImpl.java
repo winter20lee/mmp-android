@@ -14,7 +14,6 @@ limitations under the License.*/
 
 package zblibrary.zgl.manager;
 
-import zblibrary.zgl.activity.UpdateNickNameActivity;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.Log;

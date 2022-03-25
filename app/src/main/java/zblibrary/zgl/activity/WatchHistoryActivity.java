@@ -112,6 +112,6 @@ public class WatchHistoryActivity extends BaseHttpListActivity<Customize, ListVi
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		toActivity(HelpDetailsActivity.createIntent(context,messageDataList.get(position).key,messageDataList.get(position).getValue()));
+		toActivity(PlayVideoDetailsActivity.createIntent(context,position));
 	}
 }

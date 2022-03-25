@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDes  {
+public class PlayVideoDes {
 
 	public int id;
 	public int goodsCategoryId;
@@ -36,17 +36,5 @@ public class ProductDes  {
 		public String attributionKeyName;
 		public String attributionValId;
 		public String attributionValName;
-	}
-
-
-	public ShoppingCart.ResultModel transData(){
-		ShoppingCart.ResultModel resultModel = new ShoppingCart.ResultModel();
-		resultModel.goodsId = id;
-		resultModel.goodsPrice = price;
-		resultModel.goodsName = name;
-		ArrayList<String> mainImage1 = new ArrayList<>();
-		mainImage1.addAll(mainImage);
-		resultModel.mainImage = mainImage1;
-		return resultModel;
 	}
 }

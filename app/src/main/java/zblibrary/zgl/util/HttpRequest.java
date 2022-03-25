@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import zblibrary.zgl.model.RequestLootOrderInfo;
 import zblibrary.zgl.model.RequestOrderInfo;
 import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.manager.HttpManager;
@@ -395,17 +394,6 @@ public class HttpRequest {
 		request.put("goodsList", goodsList);
 		request.put("shoppingCarGoodsIdList", shoppingCarGoodsIdList);
 		HttpManager.getInstance().post(request, URL_BASE + "/order/mall/order/create",true,requestCode, listener);
-	}
-	/**提交商城订单
-	 */
-	public static void createLootOrder(String token, int orderAmount, RequestLootOrderInfo lootList, final int requestCode, final OnHttpResponseListener listener) {
-		Map<String, Object> request = new HashMap<>();
-		request.put("token", token);
-		request.put("orderAmount", orderAmount);
-		ArrayList<RequestLootOrderInfo> requestLootOrderInfos = new ArrayList<>();
-		requestLootOrderInfos.add(lootList);
-		request.put("lootList", requestLootOrderInfos);
-		HttpManager.getInstance().post(request, URL_BASE + "/order/loot/order/create",true,requestCode, listener);
 	}
 
 	/**获取订单详情

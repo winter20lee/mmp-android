@@ -5,7 +5,7 @@ import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.FirstBanner;
 import zblibrary.zgl.model.FirstCategory;
-import zblibrary.zgl.model.ProductDes;
+import zblibrary.zgl.model.PlayVideoDes;
 import zblibrary.zgl.model.RefreshDownEvent;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryView;
@@ -46,7 +46,7 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     private StandardGSYVideoPlayer videoPlayer;
     private long goodsId = 0;
     private TextView product_details_name,product_details_price,product_details_jianjie;
-    private ProductDes productDes;
+    private PlayVideoDes productDes;
     private List<FirstBanner> firstBannerList = new ArrayList<>();
     private OrientationUtils orientationUtils;
     private FlowLayout msearch_history;
@@ -181,7 +181,7 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
         switch (requestCode){
             case REQUEST_CODE_DES:
-                productDes =GsonUtil.GsonToBean(resultData,ProductDes.class);
+                productDes =GsonUtil.GsonToBean(resultData, PlayVideoDes.class);
                 initData();
                 break;
             case REQUEST_MALL_REFRESH:
