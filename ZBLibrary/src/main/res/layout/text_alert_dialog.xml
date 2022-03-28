@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/edit_item_text_bg"
+    android:clickable="true"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="94dp"
+    android:layout_marginBottom="50dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvAlertDialogTitle"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvAlertDialogMessage"
+            android:layout_margin="20dp"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            tools:text="1.参数配置 2.性能分析 屏幕方面,四款新机的屏幕尺寸相比iPhone 12系列没有什么变动,分别是5.4英 寸(2340×1080分辨率)、6.1英寸(2532×1170分辨率)、6.1英寸(2560×1170分辨率)以及6... 3.小编点评 小编为大家推荐的是iPhone13Pro,这款手机可以为用户提供很好的手机性价比, 同时为用户提供很好的电池容量,带来很好的手机120Hz的屏幕刷新,带来很好的..."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+
+
+        <Button
+            android:id="@+id/btnAlertDialogNegative"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/to_alpha"
+            android:padding="@dimen/item_distance"
+            android:text="我知道了"
+            android:textStyle="bold"
+            android:textColor="#FF5123" />
+
+
+</LinearLayout>

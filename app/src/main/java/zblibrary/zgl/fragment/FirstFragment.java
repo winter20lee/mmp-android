@@ -25,6 +25,8 @@ import zblibrary.zgl.model.FirstTabPosEvent;
 import zblibrary.zgl.model.GoodsCategory;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.ui.ImageAlertDialog;
+import zuo.biao.library.ui.TextAlertDialog;
 import zuo.biao.library.util.GsonUtil;
 
 /**首页
@@ -76,6 +78,14 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 		goodsCategoryList.add(goodsCategory);
 		adapter.setList(goodsCategoryList);
 		HttpRequest.getGoodsCategory(REQUEST_GOODSCATEGORY, new OnHttpResponseListenerImpl(this));
+//		final String sText = "测试自定义标签：<br><br><br><br><br><br><br><br><br><br><br>" +
+//				"<br><br><br><br><br><br><br><br><br><br><br><br><br>" +
+//				"<br><br><br><br><br><br><br><br><br><br><br><br><br>" +
+//				"<br><br><br><br><br><br><br><br><br><br><br><br><br>" +
+//				"<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h1><mxgsa>测试自定义标签</mxgsa></h1>";
+//		new TextAlertDialog(context,"最新公告",sText).show();
+
+//		new ImageAlertDialog(context,"https://t7.baidu.com/it/u=1267369966,436219007&fm=193&f=GIF","https://www.baidu.com").show();
 	}
 
 	@Override
