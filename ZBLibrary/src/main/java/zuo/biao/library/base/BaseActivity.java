@@ -85,7 +85,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		SystemBarTintManager.setStatusBarMode(this,false);
+		SystemBarTintManager.setStatusBarMode(this);
 		context = (BaseActivity) getActivity();
 		isAlive = true;
 		fragmentManager = getSupportFragmentManager();

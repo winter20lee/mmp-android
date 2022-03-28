@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -19,15 +21,14 @@ import zblibrary.zgl.model.GoodsCategory;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.R;
 import zuo.biao.library.base.BaseBottomWindow;
-import zuo.biao.library.ui.ExpandableGridView;
 import zuo.biao.library.util.GsonUtil;
 
 public class FirstSideWindow extends BaseBottomWindow implements  OnHttpResponseListener {
     public static final int REQUEST_GOODSCATEGORY = 110000;
-    private ExpandableGridView expandableGridView;
+    private GridView expandableGridView;
     private FirstSideAdapter firstSideAdapter;
     private List<GoodsCategory> goodsCategoryList = new ArrayList<>();
-    private TextView first_side_close;
+    private ImageView first_side_close;
     public static Intent createIntent(Context context) {
         return new Intent(context, FirstSideWindow.class);
     }

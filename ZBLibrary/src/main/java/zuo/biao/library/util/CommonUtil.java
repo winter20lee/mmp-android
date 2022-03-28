@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.List;
 
 import zuo.biao.library.R;
+
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
@@ -476,7 +477,4 @@ public class CommonUtil {
 		}
 		return false;
 	}
-
-
-
 }

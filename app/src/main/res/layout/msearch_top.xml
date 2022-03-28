@@ -2,14 +2,15 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="32dp"
+    android:layout_height="44dp"
     android:id="@+id/search_root"
+    android:background="#282828"
     >
 
     <EditText
         android:id="@+id/et_searchtext_search"
         android:layout_width="match_parent"
-        android:layout_height="34dp"
+        android:layout_height="32dp"
         android:layout_marginLeft="14dp"
         android:layout_centerVertical="true"
         android:background="@drawable/search_baground_shap"
@@ -20,7 +21,8 @@
         android:paddingRight="160dp"
         android:singleLine="true"
         android:hint="请输入关键字"
-        android:textColor="#666666"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#95949D"
         android:textSize="12dp" />
 
     <ImageView
@@ -47,7 +49,7 @@
         android:layout_marginRight="14dp"
         android:layout_alignParentRight="true"
         android:text="取消"
-        android:textColor="#323038"
+        android:textColor="#FFFFFF"
         android:textSize="13sp"
         android:visibility="gone"
         />

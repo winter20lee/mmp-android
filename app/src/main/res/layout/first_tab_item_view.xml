@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:background="@drawable/tab_bg_selector"
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp"
+    android:gravity="center_vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <zblibrary.zgl.view.CustomStateImageView
+        android:id="@+id/first_tab_item_iv"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        />
+
+    <TextView
+        android:id="@+id/first_tab_item_text"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/classification_search_tab_item_textcolor_selector"
+        android:textSize="14sp"
+        />
+
+</LinearLayout>

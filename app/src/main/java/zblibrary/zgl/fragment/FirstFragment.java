@@ -1,11 +1,20 @@
 package zblibrary.zgl.fragment;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.tabs.TabLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,9 +33,9 @@ import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.FirstTabPosEvent;
 import zblibrary.zgl.model.GoodsCategory;
 import zblibrary.zgl.util.HttpRequest;
+import zblibrary.zgl.view.CustomStateImageView;
 import zuo.biao.library.base.BaseFragment;
-import zuo.biao.library.ui.ImageAlertDialog;
-import zuo.biao.library.ui.TextAlertDialog;
+import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 
 /**首页
@@ -41,7 +50,6 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	public static FirstFragment createInstance() {
 		return new FirstFragment();
 	}
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
@@ -137,11 +145,30 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 		showShortToast(message);
 	}
 	public View getTabView(int position) {
-		View view = LayoutInflater.from(context).inflate(R.layout.classification_search_tab_item_view, null);
-		TextView txt_title = (TextView) view.findViewById(R.id.classification_search_tab_item);
+		View view = LayoutInflater.from(context).inflate(R.layout.first_tab_item_view, null);
+		TextView txt_title = (TextView) view.findViewById(R.id.first_tab_item_text);
 		txt_title.setText(goodsCategoryList.get(position).name);
+		CustomStateImageView image_view = (CustomStateImageView) view.findViewById(R.id.first_tab_item_iv);
+		Glide.with(context).load("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic170.nipic.com%2Ffile%2F20180616%2F27311375_201323548035_2.jpg&refer=http%3A%2F%2Fpic170.nipic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1651042180&t=cc9e2beb9ceb3804785a7f9be0ffdd20").into(new SimpleTarget<Drawable>() {
+
+			@Override
+			public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+				goodsCategoryList.get(position).drawable_nomal = resource;
+			}
+
+		});
+		Glide.with(context).load("https://img1.baidu.com/it/u=1645832847,2375824523&fm=253&fmt=auto&app=138&f=JPEG?w=480&h=480").into(new SimpleTarget<Drawable>() {
+
+			@Override
+			public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+				goodsCategoryList.get(position).drawable_press = resource;
+				image_view.setBackgroundDrawable(image_view.getResource(goodsCategoryList.get(position).drawable_nomal,goodsCategoryList.get(position).drawable_press));
+			}
+
+		});
 		return view;
 	}
+
 
 	@Override
 	public void onDestroy() {

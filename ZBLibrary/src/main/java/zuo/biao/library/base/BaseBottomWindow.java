@@ -33,7 +33,7 @@ public abstract class BaseBottomWindow extends BaseActivity {
 
 		vBaseBottomWindowRoot = findView(R.id.vBaseBottomWindowRoot);
 
-		vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_window_enter));
+		vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.right_push_in));
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public abstract class BaseBottomWindow extends BaseActivity {
 		}
 		isExit = true;
 
-		vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_window_exit));
+		vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.right_push_out));
 		vBaseBottomWindowRoot.setVisibility(View.GONE);
 
 		exitHandler.sendEmptyMessageDelayed(0, 200);

@@ -3,14 +3,14 @@
     <!-- 边框颜色值 -->
     <item android:left="20dp" android:right="20dp" android:height="3dp" android:gravity="bottom">
         <shape>
-            <solid android:color="#E2291F" />
+            <solid android:color="#FFE300" />
             <corners android:radius="1.5dp"  />
         </shape>
     </item>
 
     <item android:bottom="3dp"> <!--设置除了顶部都有边框-->
         <shape>
-            <solid android:color="#ffffff" />
+            <solid android:color="#282828" />
         </shape>
     </item>
 

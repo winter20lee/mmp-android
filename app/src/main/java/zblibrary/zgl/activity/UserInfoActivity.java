@@ -66,7 +66,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_info_activity);
-		SystemBarTintManager.setStatusBarMode(this,true);
+		SystemBarTintManager.setStatusBarMode(this);
 		initView();
 		initData();
 		initEvent();

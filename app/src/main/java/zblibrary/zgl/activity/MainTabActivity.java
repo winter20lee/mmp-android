@@ -49,6 +49,11 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	}
 
 	@Override
+	protected void selectTab(int position) {
+
+	}
+
+	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 	}
@@ -80,19 +85,6 @@ public class MainTabActivity extends BaseBottomTabActivity {
 			return MineFragment.createInstance();
 		default:
 			return FirstFragment.createInstance();
-		}
-	}
-
-	@Override
-	protected void selectTab(int position) {
-		switch (position)
-		{
-			case 2:
-				SystemBarTintManager.fullScreen(this);
-				break;
-			default:
-				SystemBarTintManager.setStatusBarMode(this,true);
-				break;
 		}
 	}
 

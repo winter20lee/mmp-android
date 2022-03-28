@@ -55,4 +55,5 @@ dependencies {
     api 'com.android.support:multidex:1.0.3'
 
     api 'com.liulishuo.filedownloader:library:1.7.7'//文件下载
+    api 'com.github.Liberuman:ShadowDrawable:0.1'
 }

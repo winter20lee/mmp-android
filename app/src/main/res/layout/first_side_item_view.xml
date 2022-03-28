@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/radius_4_gray_shap"
-    android:layout_height="32dp">
+    android:id="@+id/first_side_ll"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_height="78dp">
+
+    <ImageView
+        android:id="@+id/first_side_iv"
+        android:layout_width="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_height="32dp"/>
 
     <TextView
         android:id="@+id/first_side_tv"
-        android:textSize="12sp"
+        android:layout_marginTop="3dp"
+        android:textSize="13sp"
         android:text="9.7万"
-        android:textColor="#999999"
+        android:textStyle="bold"
+        android:textColor="#282828"
         android:gravity="center"
         android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-</FrameLayout>
+</LinearLayout>

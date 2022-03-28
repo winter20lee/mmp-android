@@ -7,52 +7,39 @@
     style="@style/activity_page">
     <include layout="@layout/statebar_view"/>
     <!--搜索-->
-    <LinearLayout
+    <include
+        layout="@layout/msearch_top"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:background="@color/white"
-        android:paddingLeft="12dp"
-        android:paddingRight="12sp"
-        android:layout_height="44dp">
-        <include
-            layout="@layout/msearch_top"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+        android:layout_height="44dp" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="#282828"
+        android:layout_height="wrap_content">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/classfi_ser_lot_tablayout"
+            android:background="#282828"
+            android:layout_width="match_parent"
+            android:layout_marginRight="40dp"
             android:layout_height="wrap_content"
+            app:tabIndicatorHeight="0dp"
+            app:tabPaddingEnd="5dp"
+            app:tabPaddingStart="5dp"
+            app:tabMode="scrollable"
+            app:tabBackground="@color/transparent"
+            app:tabRippleColor="@color/transparent"
+            app:tabTextAppearance="@style/TabLayoutTextStyle"
+            app:tabTextColor="#333333" />
+
+        <ImageView
+            android:id="@+id/first_side"
+            android:layout_width="30dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_height="30dp"
+            android:src="@mipmap/first_side"
+            android:padding="7dp"
+            android:layout_marginRight="7dp"
             />
-
-    </LinearLayout>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="wrap_content">
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/classfi_ser_lot_tablayout"
-        android:background="@drawable/radius_4_shap"
-        android:layout_width="match_parent"
-        android:layout_marginRight="40dp"
-        android:layout_height="wrap_content"
-        app:tabIndicatorHeight="0dp"
-        app:tabPaddingEnd="5dp"
-        app:tabPaddingStart="5dp"
-        app:tabMode="scrollable"
-        app:tabBackground="@color/transparent"
-        app:tabRippleColor="@color/transparent"
-        app:tabTextAppearance="@style/TabLayoutTextStyle"
-        app:tabTextColor="#333333" />
-
-    <ImageView
-        android:id="@+id/first_side"
-        android:layout_width="30dp"
-        android:layout_gravity="right|center_vertical"
-        android:layout_height="30dp"
-        android:src="@mipmap/first_side"
-        android:padding="7dp"
-        android:layout_marginRight="7dp"
-        />
-</FrameLayout>
-
+    </FrameLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/classfi_ser_lot_view_pager"

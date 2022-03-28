@@ -3,13 +3,13 @@
     <!-- 边框颜色值 -->
     <item>
         <shape>
-            <solid android:color="#ffffff" />
+            <solid android:color="#282828" />
         </shape>
     </item>
 
     <item android:bottom="0.5dp"> <!--设置除了顶部都有边框-->
         <shape>
-            <solid android:color="#ffffff" />
+            <solid android:color="#282828" />
         </shape>
     </item>
 

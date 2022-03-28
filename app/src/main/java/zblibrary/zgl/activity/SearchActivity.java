@@ -34,7 +34,7 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_activity, this);
-		SystemBarTintManager.setStatusBarMode(this,false);
+		SystemBarTintManager.setStatusBarMode(this);
 		intent = getIntent();
 //		range = intent.getIntExtra(INTENT_RANGE, range);
 		initView();
