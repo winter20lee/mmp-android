@@ -4,4 +4,12 @@
     <declare-styleable name="RatioRelativeLayout">
         <attr name="relativeRatio" format="float" />
     </declare-styleable>
+
+    <declare-styleable name="vericationCodeInput">
+        <attr name="inputlength" format="integer" />
+        <attr name="child_layout" format="reference" />
+        <attr name="child_edit_id" format="reference" />
+        <attr name="child_img_id" format="reference" />
+        <attr name="ispwd" format="boolean" />
+    </declare-styleable>
 </resources>
