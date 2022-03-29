@@ -16,7 +16,7 @@ import zblibrary.zgl.R;
 import zblibrary.zgl.adapter.BannerViewPagerHolder;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
-import zblibrary.zgl.model.FirstBanner;
+import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryView;
@@ -32,7 +32,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 	private static final int REQUEST_MALL_REFRESH = 10002;
 	private MZBannerView mMZBanner ;
 	private SmartRefreshLayout srlBaseHttpRecycler;
-	private List<FirstBanner> firstBannerList = new ArrayList<>();
+	private List<ListByPos> firstBannerList = new ArrayList<>();
 	private MZHolderCreator mzHolderCreator;
 	private int pageNoMall = 1;
 	private LinearLayout first_categoty_content;
@@ -76,7 +76,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 	@Override
 	public void onRefresh(RefreshLayout refreshLayout) {
 		//banner
-		HttpRequest.getFirstBanner(REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
+		HttpRequest.getListByPos("1",REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 		//商城
 		HttpRequest.getFirstMall(pageNoMall,REQUEST_MALL_REFRESH, new OnHttpResponseListenerImpl(this));
 	}
@@ -87,7 +87,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 		switch (requestCode){
 			case REQUEST_BANNER:
 				firstBannerList.clear();
-				firstBannerList.addAll(GsonUtil.jsonToList(resultData,FirstBanner.class));
+				firstBannerList.addAll(GsonUtil.jsonToList(resultData, ListByPos.class));
 				mMZBanner.setPages(firstBannerList,mzHolderCreator );
 				mMZBanner.start();
 				onStopRefresh();

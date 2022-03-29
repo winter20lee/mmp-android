@@ -48,12 +48,13 @@ public class HttpRequest {
 	}
 
 
-	/**首页广告轮播
+	/**会员
 	 */
-	public static void getFirstBanner(final int requestCode, final OnHttpResponseListener listener) {
+	public static void getMemberShip(final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
-		HttpManager.getInstance().get(request, URL_BASE + "/promotion/ads/app/info", requestCode, listener);
+		HttpManager.getInstance().get(request, URL_BASE + "/api/membership/list", requestCode, listener);
 	}
+
 
 	/**站内信
 	 */

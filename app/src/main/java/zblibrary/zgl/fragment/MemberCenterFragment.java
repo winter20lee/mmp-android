@@ -16,7 +16,8 @@ import zblibrary.zgl.activity.OrderActivity;
 import zblibrary.zgl.adapter.MemberCardAdapter;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
-import zblibrary.zgl.model.FirstBanner;
+import zblibrary.zgl.model.ListByPos;
+import zblibrary.zgl.model.MemberCenter;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.GlideUtil;
@@ -27,7 +28,9 @@ import zuo.biao.library.util.GsonUtil;
 public class MemberCenterFragment extends BaseFragment implements
 		OnHttpResponseListener{
 	private static final int REQUEST_BANNER = 10000;
-	private List<FirstBanner> firstBannerList = new ArrayList<>();
+	private static final int REQUEST_MEMBER = 10001;
+	private List<ListByPos> listByPos = new ArrayList<>();
+	private List<MemberCenter> memberCenters = new ArrayList<>();
 	private Gallery member_center_gallery;
 	private ImageView member_center_equity;
 	private TextView member_canter_order;
@@ -43,7 +46,8 @@ public class MemberCenterFragment extends BaseFragment implements
 		initData();
 		initEvent();
 		//banner
-		HttpRequest.getFirstBanner(REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
+		HttpRequest.getListByPos("2",REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
+		HttpRequest.getMemberShip(REQUEST_MEMBER, new OnHttpResponseListenerImpl(this));
 		return view;
 	}
 
@@ -65,7 +69,7 @@ public class MemberCenterFragment extends BaseFragment implements
 		member_center_gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-				GlideUtil.load(context,firstBannerList.get(i).imgUrl,member_center_equity);
+				GlideUtil.loadNoLoading(context,memberCenters.get(i).descImg,member_center_equity);
 			}
 
 			@Override
@@ -82,10 +86,14 @@ public class MemberCenterFragment extends BaseFragment implements
 	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
 		switch (requestCode){
 			case REQUEST_BANNER:
-				firstBannerList.clear();
-				firstBannerList.addAll(GsonUtil.jsonToList(resultData,FirstBanner.class));
+				listByPos.clear();
+				listByPos.addAll(GsonUtil.jsonToList(resultData,ListByPos.class));
+				break;
+			case REQUEST_MEMBER:
+				memberCenters.clear();
+				memberCenters.addAll(GsonUtil.jsonToList(resultData,MemberCenter.class));
 				//设置适配器
-				member_center_gallery.setAdapter(new MemberCardAdapter(context, firstBannerList));
+				member_center_gallery.setAdapter(new MemberCardAdapter(context, memberCenters));
 				break;
 		}
 	}

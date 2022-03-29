@@ -3,7 +3,7 @@ package zblibrary.zgl.activity;
 import zblibrary.zgl.fragment.MyDownFilesFragment;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
-import zblibrary.zgl.model.FirstBanner;
+import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.model.PlayVideoDes;
 import zblibrary.zgl.model.RefreshDownEvent;
@@ -47,7 +47,7 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     private long goodsId = 0;
     private TextView product_details_name,product_details_price,product_details_jianjie;
     private PlayVideoDes productDes;
-    private List<FirstBanner> firstBannerList = new ArrayList<>();
+    private List<ListByPos> firstBannerList = new ArrayList<>();
     private OrientationUtils orientationUtils;
     private FlowLayout msearch_history;
     private LinearLayout play_video_tflx,play_video_cnxh;

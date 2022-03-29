@@ -33,13 +33,13 @@
 <!--            style="@style/ll_vertical_match_match"-->
 <!--            android:layout_weight="1" >-->
             <LinearLayout
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15sp"
                 android:layout_weight="1"
                 style="@style/ll_vertical_match_match" >
 
                 <LinearLayout
                     android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15sp"
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -74,12 +74,14 @@
                 <Gallery
                     android:id="@+id/member_center_gallery"
                     android:layout_width="match_parent"
+                    android:spacing="15dp"
                     android:layout_height="200dp"/>
             <ImageView
                 android:id="@+id/member_center_equity"
                 android:layout_width="match_parent"
-                android:background="@color/alpha_1"
-                android:layout_height="100dp"/>
+                android:adjustViewBounds="true"
+                android:layout_marginTop="-80dp"
+                android:layout_height="wrap_content"/>
 
                 <ImageView
                     android:id="@+id/member_center_ad"
@@ -91,6 +93,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:gravity="bottom"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15sp"
                     android:paddingBottom="20dp"
                     android:layout_height="match_parent">
                     <LinearLayout

@@ -81,6 +81,41 @@ public class GlideUtil {
     }
 
     /**
+     * 正常
+     */
+    public static void loadNoLoading(Context context, String url, ImageView imageView) {
+        if(StringUtil.isEmpty(url)){
+            imageView.setImageResource(errorImg);
+            return;
+        }
+        if (context instanceof Activity) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                if (((Activity) context).isDestroyed())
+                    return;
+            }
+        }
+        RequestOptions options = new RequestOptions()
+                .error(errorImg);
+
+        Glide.with(context)
+                .load(url)
+                .apply(options)
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object o, Target<Drawable> target, boolean b) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable drawable, Object o, Target<Drawable> target, DataSource dataSource, boolean b) {
+                        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                        return false;
+                    }
+                })
+                .into(imageView);
+    }
+
+    /**
      * 圆形
      */
     public static void loadCircle(Context context, String url, ImageView imageView) {
