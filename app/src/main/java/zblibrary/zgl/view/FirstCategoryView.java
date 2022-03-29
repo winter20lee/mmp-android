@@ -14,13 +14,13 @@ import java.util.List;
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.PlayVideoDetailsActivity;
 import zblibrary.zgl.adapter.FirstCategoryAdapter;
-import zblibrary.zgl.model.FirstCategory;
+import zblibrary.zgl.model.SecondCategory;
 import zuo.biao.library.base.BaseView;
 import zuo.biao.library.ui.ExpandableGridView;
 
-public class FirstCategoryView extends BaseView<FirstCategory> {
+public class FirstCategoryView extends BaseView<SecondCategory> {
 
-	private List<FirstCategory.ResultModel> firstHotProductList = new ArrayList<>();
+	private List<SecondCategory.ResultModel> firstHotProductList = new ArrayList<>();
 	private FirstCategoryAdapter firstCategoryAdapter;
 	private boolean isShowChangeButton;
 	public FirstCategoryView(Activity context, ViewGroup parent) {
@@ -53,8 +53,8 @@ public class FirstCategoryView extends BaseView<FirstCategory> {
 	}
 
 	@Override
-	public void bindView(FirstCategory data_){
-		super.bindView(data_ != null ? data_ : new FirstCategory());
+	public void bindView(SecondCategory data_){
+		super.bindView(data_ != null ? data_ : new SecondCategory());
 		firstHotProductList.addAll(data.result);
 		firstCategoryAdapter.refresh(firstHotProductList);
 	}

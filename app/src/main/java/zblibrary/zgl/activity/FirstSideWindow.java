@@ -3,34 +3,26 @@ package zblibrary.zgl.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 import zblibrary.zgl.adapter.FirstSideAdapter;
-import zblibrary.zgl.interfaces.OnHttpResponseListener;
-import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.FirstTabPosEvent;
-import zblibrary.zgl.model.GoodsCategory;
-import zblibrary.zgl.util.HttpRequest;
+import zblibrary.zgl.model.FirstCategory;
 import zuo.biao.library.R;
 import zuo.biao.library.base.BaseBottomWindow;
-import zuo.biao.library.util.GsonUtil;
 
-public class FirstSideWindow extends BaseBottomWindow implements  OnHttpResponseListener {
-    public static final int REQUEST_GOODSCATEGORY = 110000;
+public class FirstSideWindow extends BaseBottomWindow {
     private GridView expandableGridView;
     private FirstSideAdapter firstSideAdapter;
-    private List<GoodsCategory> goodsCategoryList = new ArrayList<>();
+    private List<FirstCategory.FirstCategorySerializable> firstCategoryList;
     private ImageView first_side_close;
-    public static Intent createIntent(Context context) {
-        return new Intent(context, FirstSideWindow.class);
+    public static Intent createIntent(Context context,List<FirstCategory.FirstCategorySerializable> firstCategoryList) {
+        return new Intent(context, FirstSideWindow.class).putExtra(INTENT_ID, (Serializable) firstCategoryList);
     }
 
     @Override
@@ -38,10 +30,10 @@ public class FirstSideWindow extends BaseBottomWindow implements  OnHttpResponse
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_side_window);
         intent = getIntent();
+        firstCategoryList = (List<FirstCategory.FirstCategorySerializable>) intent.getSerializableExtra(INTENT_ID);
         initView();
         initData();
         initEvent();
-        HttpRequest.getGoodsCategory(REQUEST_GOODSCATEGORY, new OnHttpResponseListenerImpl(this));
     }
 
     @Override
@@ -58,6 +50,7 @@ public class FirstSideWindow extends BaseBottomWindow implements  OnHttpResponse
         super.initData();
         firstSideAdapter = new FirstSideAdapter(this);
         expandableGridView.setAdapter(firstSideAdapter);
+        firstSideAdapter.refresh(firstCategoryList);
     }
 
     @Override
@@ -70,12 +63,9 @@ public class FirstSideWindow extends BaseBottomWindow implements  OnHttpResponse
             return true;
         });
 
-        firstSideAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                EventBus.getDefault().post(new FirstTabPosEvent(i));
-                finish();
-            }
+        firstSideAdapter.setOnItemClickListener((adapterView, view, i, l) -> {
+            EventBus.getDefault().post(new FirstTabPosEvent(i));
+            finish();
         });
     }
 
@@ -83,25 +73,5 @@ public class FirstSideWindow extends BaseBottomWindow implements  OnHttpResponse
     @Override
     protected void setResult() {
 
-    }
-
-
-    @Override
-    public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
-        GoodsCategory goodsCategory = new GoodsCategory();
-        goodsCategory.id=1;
-        goodsCategory.name="推荐";
-        goodsCategoryList.add(goodsCategory);
-        goodsCategory = new GoodsCategory();
-        goodsCategory.id=2;
-        goodsCategory.name="最新";
-        goodsCategoryList.add(goodsCategory);
-        goodsCategoryList.addAll(GsonUtil.jsonToList(resultData, GoodsCategory.class));
-        firstSideAdapter.refresh(goodsCategoryList);
-    }
-
-    @Override
-    public void onHttpError(int requestCode, Exception e, String message) {
-        showShortToast(message);
     }
 }

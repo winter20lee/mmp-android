@@ -7,12 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.model.FirstCategory;
+import zblibrary.zgl.model.SecondCategory;
 import zuo.biao.library.base.BaseView;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.StringUtil;
 
-public class FirstCategoryViewItem extends BaseView<FirstCategory.ResultModel>{
+public class FirstCategoryViewItem extends BaseView<SecondCategory.ResultModel>{
 	private static final String TAG = "UserView";
 
 	public FirstCategoryViewItem(Activity context, ViewGroup parent) {
@@ -32,8 +32,8 @@ public class FirstCategoryViewItem extends BaseView<FirstCategory.ResultModel>{
 	}
 
 	@Override
-	public void bindView(FirstCategory.ResultModel data_){
-		super.bindView(data_ != null ? data_ : new FirstCategory.ResultModel());
+	public void bindView(SecondCategory.ResultModel data_){
+		super.bindView(data_ != null ? data_ : new SecondCategory.ResultModel());
 
 		if(data!=null && data.mainImage!=null && data.mainImage.size()>0){
 			GlideUtil.loadRound(context,data.mainImage.get(0),hot_product_pic,R.dimen.dim_2);

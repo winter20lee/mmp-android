@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
@@ -28,15 +28,19 @@ import zblibrary.zgl.activity.FirstSideWindow;
 import zblibrary.zgl.activity.SearchActivity;
 import zblibrary.zgl.activity.WatchHistoryActivity;
 import zblibrary.zgl.adapter.FirstTabLayoutAdapter;
+import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
+import zblibrary.zgl.model.AppInitInfo;
 import zblibrary.zgl.model.FirstTabPosEvent;
-import zblibrary.zgl.model.GoodsCategory;
+import zblibrary.zgl.model.FirstCategory;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.CustomStateImageView;
 import zuo.biao.library.base.BaseFragment;
-import zuo.biao.library.util.GlideUtil;
+import zuo.biao.library.ui.ImageAlertDialog;
+import zuo.biao.library.ui.TextAlertDialog;
 import zuo.biao.library.util.GsonUtil;
+import zuo.biao.library.util.StringUtil;
 
 /**首页
  */
@@ -46,7 +50,8 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	private TabLayout tabLayout;
 	private ViewPager viewPager;
 	private FirstTabLayoutAdapter adapter;
-	private List<GoodsCategory> goodsCategoryList = new ArrayList<>();;
+	private List<FirstCategory> firstCategoryList = new ArrayList<>();
+	private List<FirstCategory.FirstCategorySerializable> firstCategorySerializables = new ArrayList<>();
 	public static FirstFragment createInstance() {
 		return new FirstFragment();
 	}
@@ -58,6 +63,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 		initView();
 		initData();
 		initEvent();
+		showDialog();
 		return view;
 	}
 
@@ -76,24 +82,20 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 		adapter = new FirstTabLayoutAdapter(getChildFragmentManager());
 		viewPager.setAdapter(adapter);
 		tabLayout.setupWithViewPager(viewPager);
-		GoodsCategory goodsCategory = new GoodsCategory();
-		goodsCategory.id=1;
-		goodsCategory.name="推荐";
-		goodsCategoryList.add(goodsCategory);
-		goodsCategory = new GoodsCategory();
-		goodsCategory.id=2;
-		goodsCategory.name="最新";
-		goodsCategoryList.add(goodsCategory);
-		adapter.setList(goodsCategoryList);
-		HttpRequest.getGoodsCategory(REQUEST_GOODSCATEGORY, new OnHttpResponseListenerImpl(this));
-//		final String sText = "测试自定义标签：<br><br><br><br><br><br><br><br><br><br><br>" +
-//				"<br><br><br><br><br><br><br><br><br><br><br><br><br>" +
-//				"<br><br><br><br><br><br><br><br><br><br><br><br><br>" +
-//				"<br><br><br><br><br><br><br><br><br><br><br><br><br>" +
-//				"<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h1><mxgsa>测试自定义标签</mxgsa></h1>";
-//		new TextAlertDialog(context,"最新公告",sText).show();
-
-//		new ImageAlertDialog(context,"https://t7.baidu.com/it/u=1267369966,436219007&fm=193&f=GIF","https://www.baidu.com").show();
+		FirstCategory firstCategory = new FirstCategory();
+		firstCategory.id=1;
+		firstCategory.name="推荐";
+		firstCategory.drawable = ResourcesCompat.getDrawable(getResources(), R.mipmap.first_comm, null);
+		firstCategory.drawableSelected = ResourcesCompat.getDrawable(getResources(), R.mipmap.first_comm_select, null);
+		firstCategoryList.add(firstCategory);
+		firstCategory = new FirstCategory();
+		firstCategory.id=2;
+		firstCategory.name="最新";
+		firstCategory.drawable =  ResourcesCompat.getDrawable(getResources(),R.mipmap.first_new, null);
+		firstCategory.drawableSelected = ResourcesCompat.getDrawable(getResources(),R.mipmap.first_new_select, null);
+		firstCategoryList.add(firstCategory);
+		adapter.setList(firstCategoryList);
+		HttpRequest.getFirstCategory(REQUEST_GOODSCATEGORY, new OnHttpResponseListenerImpl(this));
 	}
 
 	@Override
@@ -107,7 +109,22 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 		tabLayout.setScrollPosition(0, firstTabPosEvent.pos, true);
 	}
 
-
+	private void showDialog(){
+		AppInitInfo appInitInfo = MApplication.getInstance().getAppInitInfo();
+		if(appInitInfo!=null){
+			AppInitInfo.SysNoticeBean sysNotice = appInitInfo.sysNotice;
+			if(sysNotice!=null){
+				String contentType = sysNotice.contentType;
+				if(StringUtil.isNotEmpty(contentType,true)){
+					if(contentType.equals("1")){
+						new TextAlertDialog(context,sysNotice.title,sysNotice.content).show();
+					}else if(contentType.equals("2")){
+						new ImageAlertDialog(context,sysNotice.content,"https://www.baidu.com").show();
+					}
+				}
+			}
+		}
+	}
 
 	@Override
 	public void onClick(View v) {//直接调用不会显示v被点击效果
@@ -119,7 +136,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 				toActivity(WatchHistoryActivity.createIntent(getActivity()));
 				break;
 			case R.id.first_side:
-				toActivity(FirstSideWindow.createIntent(getActivity()));
+				toActivity(FirstSideWindow.createIntent(getActivity(),firstCategorySerializables));
 				break;
 			default:
 				break;
@@ -130,11 +147,13 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
 		switch (requestCode){
 			case REQUEST_GOODSCATEGORY:
-				goodsCategoryList.addAll(GsonUtil.jsonToList(resultData, GoodsCategory.class));
-				adapter.setList(goodsCategoryList);
-				viewPager.setOffscreenPageLimit(goodsCategoryList.size());
-				for (int i=0 ;i< goodsCategoryList.size();i++) {
+				firstCategoryList.addAll(GsonUtil.jsonToList(resultData, FirstCategory.class));
+				adapter.setList(firstCategoryList);
+				viewPager.setOffscreenPageLimit(firstCategoryList.size());
+				for (int i = 0; i< firstCategoryList.size(); i++) {
 					tabLayout.getTabAt(i).setCustomView(getTabView(i));
+					FirstCategory.FirstCategorySerializable firstCategorySerializable= firstCategoryList.get(i).transData();
+					firstCategorySerializables.add(firstCategorySerializable);
 				}
 				break;
 		}
@@ -147,25 +166,32 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	public View getTabView(int position) {
 		View view = LayoutInflater.from(context).inflate(R.layout.first_tab_item_view, null);
 		TextView txt_title = (TextView) view.findViewById(R.id.first_tab_item_text);
-		txt_title.setText(goodsCategoryList.get(position).name);
+		txt_title.setText(firstCategoryList.get(position).name);
 		CustomStateImageView image_view = (CustomStateImageView) view.findViewById(R.id.first_tab_item_iv);
-		Glide.with(context).load("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic170.nipic.com%2Ffile%2F20180616%2F27311375_201323548035_2.jpg&refer=http%3A%2F%2Fpic170.nipic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1651042180&t=cc9e2beb9ceb3804785a7f9be0ffdd20").into(new SimpleTarget<Drawable>() {
+		if(firstCategoryList.get(position).drawable==null){
+			Glide.with(context).load(firstCategoryList.get(position).icon).into(new SimpleTarget<Drawable>() {
 
-			@Override
-			public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-				goodsCategoryList.get(position).drawable_nomal = resource;
-			}
+				@Override
+				public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+					firstCategoryList.get(position).drawable = resource;
+				}
 
-		});
-		Glide.with(context).load("https://img1.baidu.com/it/u=1645832847,2375824523&fm=253&fmt=auto&app=138&f=JPEG?w=480&h=480").into(new SimpleTarget<Drawable>() {
+			});
+		}
+		if(firstCategoryList.get(position).drawableSelected==null){
+			Glide.with(context).load(firstCategoryList.get(position).iconSelected).into(new SimpleTarget<Drawable>() {
 
-			@Override
-			public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-				goodsCategoryList.get(position).drawable_press = resource;
-				image_view.setBackgroundDrawable(image_view.getResource(goodsCategoryList.get(position).drawable_nomal,goodsCategoryList.get(position).drawable_press));
-			}
+				@Override
+				public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+					firstCategoryList.get(position).drawableSelected = resource;
+					image_view.setBackgroundDrawable(image_view.getResource(firstCategoryList.get(position).drawable, firstCategoryList.get(position).drawableSelected));
+				}
 
-		});
+			});
+		}else{
+			image_view.setBackgroundDrawable(image_view.getResource(firstCategoryList.get(position).drawable, firstCategoryList.get(position).drawableSelected));
+		}
+
 		return view;
 	}
 

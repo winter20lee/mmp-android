@@ -44,7 +44,7 @@ public class GsonUtil {
 	public static String GsonMessage(String resultJson) throws Exception{
 		String resultMessage = "";
 		JSONObject jsonObject = new JSONObject(resultJson);
-		resultMessage = jsonObject.getString("message");
+		resultMessage = jsonObject.getString("msg");
 		return resultMessage;
 	}
 

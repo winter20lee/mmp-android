@@ -9,16 +9,16 @@ import java.util.List;
 import zblibrary.zgl.fragment.FirstRecommendFragment;
 import zblibrary.zgl.fragment.SearchFragment;
 import zblibrary.zgl.fragment.FirstLastFragment;
-import zblibrary.zgl.model.GoodsCategory;
+import zblibrary.zgl.model.FirstCategory;
 
 /**
  * 消息内容子页面适配器
  */
 public class FirstTabLayoutAdapter extends FragmentPagerAdapter {
-    private List<GoodsCategory> goodsCategoryList;
+    private List<FirstCategory> firstCategoryList;
     public FirstTabLayoutAdapter(FragmentManager fm) {
         super(fm);
-        this.goodsCategoryList = new ArrayList<>();
+        this.firstCategoryList = new ArrayList<>();
     }
 
     /**
@@ -26,9 +26,9 @@ public class FirstTabLayoutAdapter extends FragmentPagerAdapter {
      *
      * @param datas
      */
-    public void setList(List<GoodsCategory> datas) {
-        this.goodsCategoryList.clear();
-        this.goodsCategoryList.addAll(datas);
+    public void setList(List<FirstCategory> datas) {
+        this.firstCategoryList.clear();
+        this.firstCategoryList.addAll(datas);
         notifyDataSetChanged();
     }
 
@@ -46,12 +46,12 @@ public class FirstTabLayoutAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return goodsCategoryList.size();
+        return firstCategoryList.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        String plateName = goodsCategoryList.get(position).name;
+        String plateName = firstCategoryList.get(position).name;
         if (plateName == null) {
             plateName = "";
         } else if (plateName.length() > 15) {

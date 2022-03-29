@@ -1,40 +1,30 @@
-
 package zblibrary.zgl.model;
+import android.graphics.drawable.Drawable;
 
-import java.util.ArrayList;
-import java.util.List;
+import zuo.biao.library.base.BaseModel;
 
-/**商城
- */
-public class FirstCategory {
+public class FirstCategory  {
+        public int id;
+        public String name;
+        public int weight;
+        public String icon;
+        public String iconSelected;
+        public String iconBig;
+        public Drawable drawable;
+        public Drawable drawableSelected;
+        public static class FirstCategorySerializable extends BaseModel{
 
-
-	public int totalCount;
-	public int totalPage;
-	public int pageNo;
-	public int pageSize;
-	public List<ResultModel> result;
-
-	public static class ResultModel {
-		public int id;
-		public int price;
-		public int toSell;
-		public int saleNum;
-		public int goodsCategoryId;
-		public String code;
-		public String name;
-		public String desc;
-		public String keywords;
-		public ArrayList<String> mainImage;
-		public int tagType;
-		public int toLoot;
-		public int viewTimes;
-		public int status;
-		public String gmtOnline;
-		public String gmtOffline;
-		public String gmtCreate;
-		public String gmtModify;
-		public String detail;
-		public String mobileDetail;
-	}
+                public String name;
+                public String iconBig;
+                @Override
+                protected boolean isCorrect() {
+                        return true;
+                }
+        }
+        public FirstCategorySerializable transData(){
+                FirstCategorySerializable firstCategorySerializable = new FirstCategorySerializable();
+                firstCategorySerializable.iconBig = this.iconBig;
+                firstCategorySerializable.name = this.name;
+                return firstCategorySerializable;
+        }
 }

@@ -4,11 +4,11 @@ package zblibrary.zgl.adapter;
 import android.app.Activity;
 import android.view.ViewGroup;
 
-import zblibrary.zgl.model.FirstCategory;
+import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.view.FirstCategoryViewItem;
 import zuo.biao.library.base.BaseAdapter;
 
-public class FirstCategoryAdapter extends BaseAdapter<FirstCategory.ResultModel, FirstCategoryViewItem> {
+public class FirstCategoryAdapter extends BaseAdapter<SecondCategory.ResultModel, FirstCategoryViewItem> {
 
 	public FirstCategoryAdapter(Activity context) {
 		super(context);

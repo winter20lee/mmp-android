@@ -65,7 +65,7 @@ public class OnHttpResponseListenerImpl implements OnHttpResponseListener
 		if (listener == null) {
 			listener = this;
 		}
-		if ((e == null && exception == null) && resultCode ==1000) {
+		if ((e == null && exception == null) && resultCode == 0) {
 			listener.onHttpSuccess(requestCode, resultCode, resultData,resultMessage);
 		} else {
 			listener.onHttpError(requestCode, new Exception(TAG + ": e = " + e + "; \n exception = " + exception),resultMessage);

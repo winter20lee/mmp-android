@@ -4,11 +4,11 @@ package zblibrary.zgl.adapter;
 import android.app.Activity;
 import android.view.ViewGroup;
 
-import zblibrary.zgl.model.GoodsCategory;
+import zblibrary.zgl.model.FirstCategory;
 import zblibrary.zgl.view.FirstSideViewItem;
 import zuo.biao.library.base.BaseAdapter;
 
-public class FirstSideAdapter extends BaseAdapter<GoodsCategory, FirstSideViewItem> {
+public class FirstSideAdapter extends BaseAdapter<FirstCategory.FirstCategorySerializable, FirstSideViewItem> {
 
 	public FirstSideAdapter(Activity context) {
 		super(context);

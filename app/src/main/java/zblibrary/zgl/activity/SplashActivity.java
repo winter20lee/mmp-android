@@ -1,35 +1,28 @@
-/*Copyright ©2015 TommyLemon(https://github.com/TommyLemon)
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.*/
 
 package zblibrary.zgl.activity;
 
 import zblibrary.zgl.R;
+import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.interfaces.OnHttpResponseListener;
+import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
+import zblibrary.zgl.model.AppInitInfo;
+import zblibrary.zgl.util.HttpRequest;
+import zuo.biao.library.util.GsonUtil;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 /**闪屏activity，保证点击桌面应用图标后无延时响应
- * @author Lemon
  */
-public class SplashActivity extends Activity {
+public class SplashActivity extends Activity implements OnHttpResponseListener {
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		HttpRequest.getAppInitInfo(0,new OnHttpResponseListenerImpl(this) );
 		new Handler().postDelayed(new Runnable() {
 
 			@Override
@@ -46,4 +39,15 @@ public class SplashActivity extends Activity {
 		overridePendingTransition(R.anim.fade, R.anim.hold);
 	}
 
+
+	@Override
+	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
+		AppInitInfo appInitInfo = GsonUtil.GsonToBean(resultData,AppInitInfo.class);
+		MApplication.getInstance().setAppInitInfo(appInitInfo);
+	}
+
+	@Override
+	public void onHttpError(int requestCode, Exception e, String message) {
+
+	}
 }

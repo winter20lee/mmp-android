@@ -11,7 +11,7 @@ import java.util.List;
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.PlayVideoDetailsActivity;
 import zblibrary.zgl.adapter.FirstCategoryAdapter;
-import zblibrary.zgl.model.FirstCategory;
+import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryViewItem;
 import zblibrary.zgl.view.SpaceItemDecoration;
@@ -23,7 +23,7 @@ import zuo.biao.library.util.GsonUtil;
  *  搜索
  */
 public class SearchFragment extends BaseHttpRecyclerFragment
-		<FirstCategory.ResultModel, FirstCategoryViewItem, FirstCategoryAdapter> {
+		<SecondCategory.ResultModel, FirstCategoryViewItem, FirstCategoryAdapter> {
 
 	private String tagType;
 	private String goodsCategoryId = "";
@@ -58,7 +58,7 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 	}
 
 	@Override
-	public void setList(final List<FirstCategory.ResultModel> list) {
+	public void setList(final List<SecondCategory.ResultModel> list) {
 		setList(new AdapterCallBack<FirstCategoryAdapter>() {
 
 			@Override
@@ -88,22 +88,22 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 	}
 
 	@Override
-	public List<FirstCategory.ResultModel> parseArray(String json) {
+	public List<SecondCategory.ResultModel> parseArray(String json) {
 		onStopRefresh();
 		if(json==null){
 			return new ArrayList<>();
 		}
-		FirstCategory firstCategory = GsonUtil.GsonToBean(json, FirstCategory.class);
-		if(firstCategory ==null || firstCategory.result==null){
+		SecondCategory secondCategory = GsonUtil.GsonToBean(json, SecondCategory.class);
+		if(secondCategory ==null || secondCategory.result==null){
 			return new ArrayList<>();
 		}
 
-		if(firstCategory.totalPage > firstCategory.pageNo){
+		if(secondCategory.totalPage > secondCategory.pageNo){
 			onStopLoadMore(true);
 		}else{
 			onStopLoadMore(false);
 		}
-		return firstCategory.result;
+		return secondCategory.result;
 	}
 
 	@Override

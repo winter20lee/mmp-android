@@ -1,11 +1,15 @@
 package zblibrary.zgl.application;
 
 import zblibrary.zgl.manager.DataManager;
+import zblibrary.zgl.model.AppInitInfo;
 import zblibrary.zgl.model.User;
+import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseApplication;
 import zuo.biao.library.manager.HttpManager;
 
 import android.util.Log;
+
+import java.util.Random;
 
 /**Application
  */
@@ -77,7 +81,7 @@ public class MApplication extends BaseApplication {
 
 
 	private static User currentUser = null;
-	private static String serviceUrl = null;
+	private static AppInitInfo appInitInfo = null;
 	public User getCurrentUser() {
 		if (currentUser == null) {
 			currentUser = DataManager.getInstance().getUser();
@@ -85,12 +89,13 @@ public class MApplication extends BaseApplication {
 		return currentUser;
 	}
 
-	public String getServiceUrl() {
-		return serviceUrl;
+	public AppInitInfo getAppInitInfo() {
+		return appInitInfo;
 	}
 
-	public void setServiceUrl(String serviceUrl) {
-		this.serviceUrl = serviceUrl;
+	public void setAppInitInfo(AppInitInfo appInitInfo) {
+		this.appInitInfo = appInitInfo;
+		setDomains();
 	}
 
 	public void saveCurrentUser(User user) {
@@ -118,5 +123,13 @@ public class MApplication extends BaseApplication {
 
 	public boolean isLoggedIn() {
 		return getCurrentUserId() > 0;
+	}
+
+	private void setDomains(){
+		if(appInitInfo!=null && appInitInfo.domains!=null &&  appInitInfo.domains.size()>0){
+			Random r = new Random();
+			int pos = r.nextInt(appInitInfo.domains.size());
+			HttpRequest.URL_BASE = appInitInfo.domains.get(pos);
+		}
 	}
 }

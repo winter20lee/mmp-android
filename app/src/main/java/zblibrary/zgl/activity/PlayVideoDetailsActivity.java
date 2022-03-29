@@ -4,7 +4,7 @@ import zblibrary.zgl.fragment.MyDownFilesFragment;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.FirstBanner;
-import zblibrary.zgl.model.FirstCategory;
+import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.model.PlayVideoDes;
 import zblibrary.zgl.model.RefreshDownEvent;
 import zblibrary.zgl.util.HttpRequest;
@@ -185,18 +185,18 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
                 initData();
                 break;
             case REQUEST_MALL_REFRESH:
-                FirstCategory firstCategory = GsonUtil.GsonToBean(resultData, FirstCategory.class);
+                SecondCategory secondCategory = GsonUtil.GsonToBean(resultData, SecondCategory.class);
                 FirstCategoryView receivingAddressView = new FirstCategoryView(context,play_video_tflx);
                 play_video_tflx.addView(receivingAddressView.createView());
                 receivingAddressView.setTitle("同分类下");
-                receivingAddressView.bindView(firstCategory);
+                receivingAddressView.bindView(secondCategory);
                 break;
             case REQUEST_MALL_LIKE:
-                FirstCategory firstCategory1 = GsonUtil.GsonToBean(resultData, FirstCategory.class);
+                SecondCategory secondCategory1 = GsonUtil.GsonToBean(resultData, SecondCategory.class);
                 FirstCategoryView receivingAddressView1 = new FirstCategoryView(context,play_video_cnxh);
                 play_video_cnxh.addView(receivingAddressView1.createView());
                 receivingAddressView1.setTitle("猜你喜欢");
-                receivingAddressView1.bindView(firstCategory1);
+                receivingAddressView1.bindView(secondCategory1);
                 break;
         }
     }

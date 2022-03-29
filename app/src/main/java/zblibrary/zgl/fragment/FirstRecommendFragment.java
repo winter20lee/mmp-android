@@ -17,7 +17,7 @@ import zblibrary.zgl.adapter.BannerViewPagerHolder;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.FirstBanner;
-import zblibrary.zgl.model.FirstCategory;
+import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryView;
 import zuo.biao.library.base.BaseFragment;
@@ -93,10 +93,10 @@ public class FirstRecommendFragment extends BaseFragment implements
 				onStopRefresh();
 				break;
 			case REQUEST_MALL_REFRESH:
-				FirstCategory firstCategory = GsonUtil.GsonToBean(resultData, FirstCategory.class);
+				SecondCategory secondCategory = GsonUtil.GsonToBean(resultData, SecondCategory.class);
 				FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content,true);
 				first_categoty_content.addView(receivingAddressView.createView());
-				receivingAddressView.bindView(firstCategory);
+				receivingAddressView.bindView(secondCategory);
 				onStopRefresh();
 				onStopLoadMore(false);
 				break;
