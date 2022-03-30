@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/ll_vertical_match_match">
     <include layout="@layout/statebar_view"/>
-    <RelativeLayout style="@style/topbar_bg" >
+    <RelativeLayout style="@style/topbar_bg"
+        android:background="#282828"
+        >
         <TextView
             style="@style/topbar_title"
+            android:textColor="@color/white"
             android:text="会员中心" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#40323038"
-            android:layout_alignParentBottom="true"
-            />
 
         <TextView
             android:id="@+id/member_canter_order"
@@ -24,7 +20,7 @@
             android:text="订单"
             android:gravity="center"
             android:textSize="13sp"
-            android:textColor="#323038"
+            android:textColor="#FFFFFF"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
@@ -34,6 +30,7 @@
 <!--            android:layout_weight="1" >-->
             <LinearLayout
                 android:layout_weight="1"
+                android:background="@color/white"
                 style="@style/ll_vertical_match_match" >
 
                 <LinearLayout
@@ -76,19 +73,24 @@
                     android:layout_width="match_parent"
                     android:spacing="15dp"
                     android:layout_height="200dp"/>
-            <ImageView
-                android:id="@+id/member_center_equity"
-                android:layout_width="match_parent"
-                android:adjustViewBounds="true"
-                android:layout_marginTop="-80dp"
-                android:layout_height="wrap_content"/>
-
-                <ImageView
-                    android:id="@+id/member_center_ad"
-                    android:layout_marginTop="10dp"
+                <zblibrary.zgl.view.RatioImageView
+                    android:id="@+id/member_center_equity"
                     android:layout_width="match_parent"
-                    android:background="@color/alpha_1"
-                    android:layout_height="100dp"/>
+                    android:adjustViewBounds="true"
+                    android:layout_marginTop="-80dp"
+                    app:ratio="2.7"
+                    android:layout_height="wrap_content"/>
+
+                <com.zhouwei.mzbanner.MZBannerView
+                    android:id="@+id/member_center_ad"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    app:canLoop="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    app:indicatorAlign="center"
+                    app:open_mz_mode="false" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,9 +135,9 @@
                             android:id="@+id/member_canter_price"
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
-                            android:text="¥ 100.00"
+                            android:text="¥ 0.00"
                             android:layout_marginLeft="10dp"
-                            android:textColor="#FF3462"
+                            android:textColor="#FFE300"
                             android:textSize="12sp"
                             android:layout_height="wrap_content"/>
                         <TextView
@@ -144,8 +146,8 @@
                             android:layout_marginRight="20dp"
                             android:gravity="center"
                             android:textSize="12sp"
-                            android:textColor="#ffffff"
-                            android:background="@drawable/radius_20_red_shap"
+                            android:textColor="#282828"
+                            android:background="@drawable/radius_20_yellow_shap"
                             android:text="立即支付"
                             />
                     </LinearLayout>

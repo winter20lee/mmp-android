@@ -9,10 +9,14 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zhouwei.mzbanner.MZBannerView;
+import com.zhouwei.mzbanner.holder.MZHolderCreator;
+
 import java.util.ArrayList;
 import java.util.List;
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.OrderActivity;
+import zblibrary.zgl.adapter.BannerViewPagerHolder;
 import zblibrary.zgl.adapter.MemberCardAdapter;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
@@ -34,6 +38,9 @@ public class MemberCenterFragment extends BaseFragment implements
 	private Gallery member_center_gallery;
 	private ImageView member_center_equity;
 	private TextView member_canter_order;
+	private TextView member_canter_price;
+	private MZBannerView member_center_ad ;
+	private MZHolderCreator mzHolderCreator;
 	public static MemberCenterFragment createInstance() {
 		return new MemberCenterFragment();
 	}
@@ -57,11 +64,13 @@ public class MemberCenterFragment extends BaseFragment implements
 		member_center_gallery = findView(R.id.member_center_gallery);
 		member_center_equity = findView(R.id.member_center_equity);
 		member_canter_order = findView(R.id.member_canter_order);
+		member_canter_price = findView(R.id.member_canter_price);
+		member_center_ad = findView(R.id.member_center_ad);
 	}
 
 	@Override
 	public void initData() {//必须调用
-
+		mzHolderCreator = (MZHolderCreator<BannerViewPagerHolder>) () -> new BannerViewPagerHolder();
 	}
 
 	@Override
@@ -70,6 +79,7 @@ public class MemberCenterFragment extends BaseFragment implements
 			@Override
 			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 				GlideUtil.loadNoLoading(context,memberCenters.get(i).descImg,member_center_equity);
+				member_canter_price.setText("¥ "+memberCenters.get(i).discountPrice);
 			}
 
 			@Override
@@ -88,6 +98,8 @@ public class MemberCenterFragment extends BaseFragment implements
 			case REQUEST_BANNER:
 				listByPos.clear();
 				listByPos.addAll(GsonUtil.jsonToList(resultData,ListByPos.class));
+				member_center_ad.setPages(listByPos,mzHolderCreator );
+				member_center_ad.start();
 				break;
 			case REQUEST_MEMBER:
 				memberCenters.clear();
