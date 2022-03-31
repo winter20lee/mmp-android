@@ -8,7 +8,7 @@ import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.view.FirstCategoryViewItem;
 import zuo.biao.library.base.BaseAdapter;
 
-public class FirstCategoryAdapter extends BaseAdapter<SecondCategory.ResultModel, FirstCategoryViewItem> {
+public class FirstCategoryAdapter extends BaseAdapter<SecondCategory.VideoListBean.ResultBean, FirstCategoryViewItem> {
 
 	public FirstCategoryAdapter(Activity context) {
 		super(context);

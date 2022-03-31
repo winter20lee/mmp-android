@@ -12,34 +12,35 @@ import zuo.biao.library.base.BaseView;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.StringUtil;
 
-public class FirstCategoryViewItem extends BaseView<SecondCategory.ResultModel>{
+public class FirstCategoryViewItem extends BaseView<SecondCategory.VideoListBean.ResultBean>{
 	private static final String TAG = "UserView";
 
 	public FirstCategoryViewItem(Activity context, ViewGroup parent) {
 		super(context, R.layout.first_category_item_view, parent);
 	}
 
-	public ImageView hot_product_pic;
-	public TextView hot_product_title;
-	public TextView hot_product_price;
+	public ImageView first_category_item_iv;
+	public TextView first_category_item_play;
+	public TextView first_category_item_longs,first_category_item_title,first_category_item_label;
 	@SuppressLint("InflateParams")
 	@Override
 	public View createView() {
-		hot_product_pic = findView(R.id.hot_product_pic);
-		hot_product_title = findView(R.id.hot_product_title);
-		hot_product_price = findView(R.id.hot_product_price);
+		first_category_item_iv = findView(R.id.first_category_item_iv);
+		first_category_item_play = findView(R.id.first_category_item_play);
+		first_category_item_longs = findView(R.id.first_category_item_longs);
+		first_category_item_title = findView(R.id.first_category_item_title);
+		first_category_item_label = findView(R.id.first_category_item_label);
 		return super.createView();
 	}
 
 	@Override
-	public void bindView(SecondCategory.ResultModel data_){
-		super.bindView(data_ != null ? data_ : new SecondCategory.ResultModel());
+	public void bindView(SecondCategory.VideoListBean.ResultBean data_){
+		super.bindView(data_ != null ? data_ : new SecondCategory.VideoListBean.ResultBean());
 
-		if(data!=null && data.mainImage!=null && data.mainImage.size()>0){
-			GlideUtil.loadRound(context,data.mainImage.get(0),hot_product_pic,R.dimen.dim_2);
+		if(data!=null && StringUtil.isNotEmpty(data.coverUrl,true)){
+			GlideUtil.loadRound(context,data.coverUrl,first_category_item_iv,R.dimen.dim_2);
 		}
 
-		hot_product_title.setText(data.name);
-		hot_product_price.setText(StringUtil.changeF2Y(data.price));
+		first_category_item_title.setText(data.name);
 	}
 }

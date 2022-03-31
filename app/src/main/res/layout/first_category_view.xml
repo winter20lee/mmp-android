@@ -11,11 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
+        <ImageView
+            android:id="@+id/first_category_title_icon"
+            android:layout_centerVertical="true"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@mipmap/title_icon"
+            />
+
         <TextView
             android:id="@+id/first_category_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/first_category_title_icon"
+            android:layout_marginLeft="5dp"
             android:text="标题"
             android:textColor="#333333"
             android:textSize="16dp"
@@ -51,17 +61,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/first_change"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+    <LinearLayout
+        android:id="@+id/first_category_bottom"
+        android:orientation="horizontal"
         android:layout_marginTop="15dp"
-        android:text="换一换"
-        android:textSize="12sp"
-        android:textColor="#87869E"
-        android:gravity="center"
-        android:background="@drawable/radius_4_gray_shap"
-        android:visibility="gone"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:id="@+id/first_bottom_change"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginRight="12.5dp"
+            android:background="@drawable/radius_4_gray_shap"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/first_bottom_change"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="换一换"
+                android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#282828"
+                android:gravity="center"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/first_bottom_more"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/radius_4_gray_shap"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="12.5dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginRight="5dp"
+                android:src="@mipmap/first_bottom_more"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更多片源"
+                android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#282828"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
 
 </LinearLayout>

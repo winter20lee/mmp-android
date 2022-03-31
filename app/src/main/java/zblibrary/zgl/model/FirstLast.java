@@ -1,6 +1,7 @@
 
 package zblibrary.zgl.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FirstLast {
@@ -52,5 +53,24 @@ public class FirstLast {
 				public String iconSelected;
 				public String iconBig;
 			}
+		}
+
+		public SecondCategory transData(){
+			SecondCategory secondCategory = new SecondCategory();
+			SecondCategory.VideoCatalogBean videoCatalogBean = new SecondCategory.VideoCatalogBean();
+			videoCatalogBean.name = "最新";
+			secondCategory.videoCatalog = videoCatalogBean;
+
+			ArrayList<SecondCategory.VideoListBean.ResultBean> resultBeans = new ArrayList<>();
+			for (ResultBean resultBean1:result) {
+				SecondCategory.VideoListBean.ResultBean resultBean = new SecondCategory.VideoListBean.ResultBean();
+				resultBean.coverUrl = resultBean1.coverUrl;
+				resultBean.name =resultBean1.name;
+				resultBeans.add(resultBean);
+			}
+			SecondCategory.VideoListBean videoListBean = new SecondCategory.VideoListBean();
+			videoListBean.result = resultBeans;
+			secondCategory.videoList = videoListBean;
+			return  secondCategory;
 		}
 }

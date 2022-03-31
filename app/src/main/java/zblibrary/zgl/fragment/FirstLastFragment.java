@@ -26,7 +26,7 @@ import zuo.biao.library.util.StringUtil;
 public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.ResultBean, FirstLastView, FirstLastAdapter> {
 
 	private String type;
-	private FirstLast winningGoods;
+	private FirstLast firstLast;
 	public static FirstLastFragment createInstance(String type) {
 		FirstLastFragment fragment = new FirstLastFragment();
 		Bundle bundle = new Bundle();
@@ -94,13 +94,13 @@ public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.Result
 		if(StringUtil.isEmpty(json)){
 			return new ArrayList<>();
 		}
-		winningGoods = GsonUtil.GsonToBean(json, FirstLast.class);
-		List<FirstLast.ResultBean> resultModelList = winningGoods.result;
+		firstLast = GsonUtil.GsonToBean(json, FirstLast.class);
+		List<FirstLast.ResultBean> resultModelList = firstLast.result;
 		if(resultModelList==null){
 			return new ArrayList<>();
 		}
 		onStopRefresh();
-		if(winningGoods.totalPage > winningGoods.pageNo){
+		if(firstLast.totalPage > firstLast.pageNo){
 			onStopLoadMore(true);
 		}else{
 			onStopLoadMore(false);
@@ -112,7 +112,7 @@ public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.Result
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		toActivity(PlayVideoDetailsActivity.createIntent(context,winningGoods.result.get(position).id));
+		toActivity(PlayVideoDetailsActivity.createIntent(context, firstLast.result.get(position).id));
 	}
 
 }

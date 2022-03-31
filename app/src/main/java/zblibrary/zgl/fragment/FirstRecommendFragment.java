@@ -16,6 +16,7 @@ import zblibrary.zgl.R;
 import zblibrary.zgl.adapter.BannerViewPagerHolder;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
+import zblibrary.zgl.model.FirstLast;
 import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.util.HttpRequest;
@@ -29,21 +30,32 @@ import zuo.biao.library.util.GsonUtil;
 public class FirstRecommendFragment extends BaseFragment implements
 		OnHttpResponseListener, OnStopLoadListener, OnRefreshListener {
 	private static final int REQUEST_BANNER = 10000;
-	private static final int REQUEST_MALL_REFRESH = 10002;
+	private static final int REQUEST_COMM_REFRESH = 10002;
+	private static final int REQUEST_NEW_REFRESH = 10003;
 	private MZBannerView mMZBanner ;
 	private SmartRefreshLayout srlBaseHttpRecycler;
 	private List<ListByPos> firstBannerList = new ArrayList<>();
 	private MZHolderCreator mzHolderCreator;
-	private int pageNoMall = 1;
+	private int pageComm = 1;
 	private LinearLayout first_categoty_content;
-	public static FirstRecommendFragment createInstance() {
-		return new FirstRecommendFragment();
+	private boolean isCommend;
+	private int pageNew=1;
+	public static FirstRecommendFragment createInstance(boolean isCommend) {
+		FirstRecommendFragment fragment = new FirstRecommendFragment();
+		Bundle bundle = new Bundle();
+		bundle.putBoolean(INTENT_TITLE, isCommend);
+		fragment.setArguments(bundle);
+		return fragment;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		setContentView(R.layout.first_recomm_fragment);
+		argument = getArguments();
+		if (argument != null) {
+			isCommend = argument.getBoolean(INTENT_TITLE);
+		}
 		initView();
 		initData();
 		initEvent();
@@ -75,10 +87,14 @@ public class FirstRecommendFragment extends BaseFragment implements
 
 	@Override
 	public void onRefresh(RefreshLayout refreshLayout) {
-		//banner
-		HttpRequest.getListByPos("1",REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
-		//商城
-		HttpRequest.getFirstMall(pageNoMall,REQUEST_MALL_REFRESH, new OnHttpResponseListenerImpl(this));
+		if(isCommend){
+			//banner
+			HttpRequest.getListByPos("1",REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
+			//最新
+			HttpRequest.getNewest(pageNew,4,REQUEST_NEW_REFRESH,new OnHttpResponseListenerImpl(this));
+			//推荐
+			HttpRequest.getIndex(pageComm,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
+		}
 	}
 
 
@@ -92,13 +108,23 @@ public class FirstRecommendFragment extends BaseFragment implements
 				mMZBanner.start();
 				onStopRefresh();
 				break;
-			case REQUEST_MALL_REFRESH:
-				SecondCategory secondCategory = GsonUtil.GsonToBean(resultData, SecondCategory.class);
-				FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content,true);
-				first_categoty_content.addView(receivingAddressView.createView());
-				receivingAddressView.bindView(secondCategory);
+			case REQUEST_COMM_REFRESH:
+
+				ArrayList<SecondCategory> secondCategory = (ArrayList<SecondCategory>) GsonUtil.jsonToList(resultData, SecondCategory.class);
+				for(int i=0;i<secondCategory.size();i++){
+					FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content,true);
+					first_categoty_content.addView(receivingAddressView.createView());
+					receivingAddressView.bindView(secondCategory.get(i));
+				}
+
 				onStopRefresh();
 				onStopLoadMore(false);
+				break;
+			case REQUEST_NEW_REFRESH:
+				FirstLast firstLast = GsonUtil.GsonToBean(resultData, FirstLast.class);
+				FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content,true);
+				first_categoty_content.addView(receivingAddressView.createView(),0);
+				receivingAddressView.bindView(firstLast.transData());
 				break;
 		}
 	}

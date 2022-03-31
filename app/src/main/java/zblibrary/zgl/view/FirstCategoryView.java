@@ -20,7 +20,7 @@ import zuo.biao.library.ui.ExpandableGridView;
 
 public class FirstCategoryView extends BaseView<SecondCategory> {
 
-	private List<SecondCategory.ResultModel> firstHotProductList = new ArrayList<>();
+	private List<SecondCategory.VideoListBean.ResultBean> firstHotProductList = new ArrayList<>();
 	private FirstCategoryAdapter firstCategoryAdapter;
 	private boolean isShowChangeButton;
 	public FirstCategoryView(Activity context, ViewGroup parent) {
@@ -47,7 +47,7 @@ public class FirstCategoryView extends BaseView<SecondCategory> {
 			toActivity(PlayVideoDetailsActivity.createIntent(context, id));
 		});
 		if(isShowChangeButton){
-			findView(R.id.first_change).setVisibility(View.VISIBLE);
+			findView(R.id.first_category_bottom).setVisibility(View.VISIBLE);
 		}
 		return super.createView();
 	}
@@ -55,8 +55,9 @@ public class FirstCategoryView extends BaseView<SecondCategory> {
 	@Override
 	public void bindView(SecondCategory data_){
 		super.bindView(data_ != null ? data_ : new SecondCategory());
-		firstHotProductList.addAll(data.result);
+		firstHotProductList.addAll(data.videoList.result);
 		firstCategoryAdapter.refresh(firstHotProductList);
+		first_category_title.setText(data.videoCatalog.name);
 	}
 
 	public void setTitle(String title){

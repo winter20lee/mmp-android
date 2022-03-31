@@ -64,6 +64,24 @@ public class HttpRequest {
 		HttpManager.getInstance().post(request, URL_BASE + "/api/video/newest", true,requestCode, listener);
 	}
 
+	/**最新
+	 */
+	public static void getNewest(int pageNo,int pageSize,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put(PAGE_NUM, pageNo);
+		request.put(PAGE_SiZE, pageSize);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/video/newest", true,requestCode, listener);
+	}
+
+	/**推荐
+	 */
+	public static void getIndex(int pageNo,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put(PAGE_NUM, pageNo);
+		request.put(PAGE_SiZE, 4);
+		HttpManager.getInstance().get(request, URL_BASE + "/api/video/index",requestCode, listener);
+	}
+
 
 	/**站内信
 	 */
