@@ -55,6 +55,15 @@ public class HttpRequest {
 		HttpManager.getInstance().get(request, URL_BASE + "/api/membership/list", requestCode, listener);
 	}
 
+	/**最新
+	 */
+	public static void getNewest(int pageNo,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put(PAGE_NUM, pageNo);
+		request.put(PAGE_SiZE, 20);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/video/newest", true,requestCode, listener);
+	}
+
 
 	/**站内信
 	 */

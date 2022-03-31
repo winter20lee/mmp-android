@@ -23,7 +23,7 @@ import zuo.biao.library.util.StringUtil;
 /**
  *  最新
  */
-public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.ResultModel, FirstLastView, FirstLastAdapter> {
+public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.ResultBean, FirstLastView, FirstLastAdapter> {
 
 	private String type;
 	private FirstLast winningGoods;
@@ -57,7 +57,7 @@ public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.Result
 	}
 
 	@Override
-	public void setList(final List<FirstLast.ResultModel> list) {
+	public void setList(final List<FirstLast.ResultBean> list) {
 		setList(new AdapterCallBack<FirstLastAdapter>() {
 
 			@Override
@@ -83,19 +83,19 @@ public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.Result
 
 	@Override
 	public void getListAsync(final int page) {
-		HttpRequest.getFirstMall(page,-page,this);
+		HttpRequest.getNewest(page,-page,this);
 		if(page==1){
 			onStopLoadMore(true);
 		}
 	}
 
 	@Override
-	public List<FirstLast.ResultModel> parseArray(String json) {
+	public List<FirstLast.ResultBean> parseArray(String json) {
 		if(StringUtil.isEmpty(json)){
 			return new ArrayList<>();
 		}
 		winningGoods = GsonUtil.GsonToBean(json, FirstLast.class);
-		List<FirstLast.ResultModel> resultModelList = winningGoods.result;
+		List<FirstLast.ResultBean> resultModelList = winningGoods.result;
 		if(resultModelList==null){
 			return new ArrayList<>();
 		}
