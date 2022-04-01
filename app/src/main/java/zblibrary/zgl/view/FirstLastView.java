@@ -39,8 +39,12 @@ public class FirstLastView extends BaseView<FirstLast.ResultBean> {
 			GlideUtil.loadRound(context,data.coverUrl,last_pic,R.dimen.dim_2);
 		}
 		last_title.setText(data.name);
-		last_time.setText(data.name);
-		last_times.setText(data.name);
-		last_length.setText(data.name);
+		last_time.setText(data.gmtCreate);
+		last_times.setText(data.playCnt+"");
+		if (StringUtil.isEmpty(data.length)){
+			last_length.setText("");
+		}else{
+			last_length.setText(data.length);
+		}
 	}
 }

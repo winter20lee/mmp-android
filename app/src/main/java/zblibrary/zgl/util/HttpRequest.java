@@ -75,11 +75,13 @@ public class HttpRequest {
 
 	/**推荐
 	 */
-	public static void getIndex(int pageNo,final int requestCode, final OnHttpResponseListener listener) {
+	public static void getIndex(int pageNo,int catalogId,int level,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put(PAGE_NUM, pageNo);
 		request.put(PAGE_SiZE, 4);
-		HttpManager.getInstance().get(request, URL_BASE + "/api/video/index",requestCode, listener);
+		request.put("catalogId", catalogId);
+		request.put("level",level);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/video/hot/catalog",true,requestCode, listener);
 	}
 
 
@@ -97,23 +99,19 @@ public class HttpRequest {
 	/**首页商城
 	 */
 	public static void getFirstMall(int pageNo,final int requestCode, final OnHttpResponseListener listener) {
-		getMallSearch(pageNo,"","","","","",requestCode,listener);
+//		getMallSearch(pageNo,"","","","","",requestCode,listener);
 	}
 
 
-	/**商品搜索接口
+	/**搜索接口
 	 */
-	public static void getMallSearch(int pageNo,String tagType,String goodsCategoryId,String orderByname,
-									 String orderBy,String keywords,final int requestCode, final OnHttpResponseListener listener) {
+	public static void getSearch(int pageNo,int secondLevelCatalogId,String keywords,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put(PAGE_NUM, pageNo);
 		request.put(PAGE_SiZE, 10);
-		request.put("tagType", tagType);
-		request.put("goodsCategoryId", goodsCategoryId);
-		request.put("orderByName", orderByname);
-		request.put("orderBy", orderBy);
+		request.put("secondLevelCatalogId", secondLevelCatalogId);
 		request.put("keywords", keywords);
-		HttpManager.getInstance().get(request, URL_BASE + "/goods/spu/index/list", requestCode, listener);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/video/search", true,requestCode, listener);
 	}
 
 	/**商品详情

@@ -25,10 +25,6 @@ import zuo.biao.library.util.GsonUtil;
 public class SearchFragment extends BaseHttpRecyclerFragment
 		<SecondCategory.VideoListBean.ResultBean, FirstCategoryViewItem, FirstCategoryAdapter> {
 
-	private String tagType;
-	private String goodsCategoryId = "";
-	private String orderByname = "gmtOnline";
-	private String orderBy = "asc";
 	private String keyWord = "";
 	public static SearchFragment createInstance(String keyWord) {
 		SearchFragment fragment = new SearchFragment();
@@ -84,7 +80,7 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 
 	@Override
 	public void getListAsync(final int page) {
-		HttpRequest.getMallSearch(page,tagType,goodsCategoryId,orderByname,orderBy,keyWord,-page, this);
+		HttpRequest.getSearch(page,0,keyWord,-page, this);
 	}
 
 	@Override
@@ -93,17 +89,17 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 		if(json==null){
 			return new ArrayList<>();
 		}
-		SecondCategory secondCategory = GsonUtil.GsonToBean(json, SecondCategory.class);
-		if(secondCategory ==null || secondCategory.videoList.result==null){
+		SecondCategory.VideoListBean videoListBean = GsonUtil.GsonToBean(json, SecondCategory.VideoListBean.class);
+		if(videoListBean ==null || videoListBean.result == null ){
 			return new ArrayList<>();
 		}
 
-		if(secondCategory.videoList.totalPage > secondCategory.videoList.pageNo){
+		if(videoListBean.totalPage > videoListBean.pageNo){
 			onStopLoadMore(true);
 		}else{
 			onStopLoadMore(false);
 		}
-		return secondCategory.videoList.result;
+		return videoListBean.result;
 	}
 
 	@Override

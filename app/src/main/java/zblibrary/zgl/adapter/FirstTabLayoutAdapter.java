@@ -35,12 +35,12 @@ public class FirstTabLayoutAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if(position==0){
-            return FirstRecommendFragment.createInstance(true);
+            return FirstRecommendFragment.createInstance(true,0);
         } else if(position==1){
             return FirstLastFragment.createInstance("");
         }
         else{
-            return SearchFragment.createInstance("");
+            return FirstRecommendFragment.createInstance(false,firstCategoryList.get(position).id);
         }
     }
 

@@ -32,6 +32,7 @@ import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.AppInitInfo;
+import zblibrary.zgl.model.FirstTabIdEvent;
 import zblibrary.zgl.model.FirstTabPosEvent;
 import zblibrary.zgl.model.FirstCategory;
 import zblibrary.zgl.util.HttpRequest;
@@ -83,13 +84,13 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 		viewPager.setAdapter(adapter);
 		tabLayout.setupWithViewPager(viewPager);
 		FirstCategory firstCategory = new FirstCategory();
-		firstCategory.id=1;
+		firstCategory.id=-1;
 		firstCategory.name="推荐";
 		firstCategory.drawable = ResourcesCompat.getDrawable(getResources(), R.mipmap.first_comm, null);
 		firstCategory.drawableSelected = ResourcesCompat.getDrawable(getResources(), R.mipmap.first_comm_select, null);
 		firstCategoryList.add(firstCategory);
 		firstCategory = new FirstCategory();
-		firstCategory.id=2;
+		firstCategory.id=0;
 		firstCategory.name="最新";
 		firstCategory.drawable =  ResourcesCompat.getDrawable(getResources(),R.mipmap.first_new, null);
 		firstCategory.drawableSelected = ResourcesCompat.getDrawable(getResources(),R.mipmap.first_new_select, null);
@@ -107,6 +108,22 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onFirstTabPosEvent(FirstTabPosEvent firstTabPosEvent){
 		tabLayout.setScrollPosition(0, firstTabPosEvent.pos, true);
+		viewPager.setCurrentItem(firstTabPosEvent.pos);
+	}
+
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void onFirstTabIdEvent(FirstTabIdEvent firstTabIdEvent){
+		int pos =-1;
+		for (int i=0;i<firstCategoryList.size();i++) {
+			FirstCategory category = firstCategoryList.get(i);
+			if(category.id == firstTabIdEvent.id){
+				pos = i;
+			}
+		}
+		if(pos !=-1){
+			tabLayout.setScrollPosition(0, pos, true);
+			viewPager.setCurrentItem(pos);
+		}
 	}
 
 	private void showDialog(){

@@ -21,10 +21,8 @@ import zuo.biao.library.util.StringUtil;
  */
 public class SearchActivity extends BaseActivity implements OnBottomDragListener {
 
-
 	public static final String INTENT_RANGE = "INTENT_RANGE";
 	private SearchLayout msearchlayout;
-	private FrameLayout frameLayout;
 	public static Intent createIntent(Context context, int range) {
 		return new Intent(context, SearchActivity.class).putExtra(INTENT_RANGE, range);
 	}
@@ -34,9 +32,7 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_activity, this);
-		SystemBarTintManager.setStatusBarMode(this);
 		intent = getIntent();
-//		range = intent.getIntExtra(INTENT_RANGE, range);
 		initView();
 		initData();
 		initEvent();
@@ -45,7 +41,6 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 	@Override
 	public void initView() {//必须调用
 		msearchlayout = findView(R.id.msearchlayout);
-		frameLayout = findView(R.id.search_result_fg);
 	}
 
 

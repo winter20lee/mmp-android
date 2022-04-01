@@ -7,8 +7,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/msearchlayout"
-        android:background="@color/white"
+        android:background="#282828"
         android:paddingRight="12dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
         android:paddingLeft="12dp"
         app:search_hint=""
         />

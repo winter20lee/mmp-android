@@ -40,10 +40,12 @@ public class FirstRecommendFragment extends BaseFragment implements
 	private LinearLayout first_categoty_content;
 	private boolean isCommend;
 	private int pageNew=1;
-	public static FirstRecommendFragment createInstance(boolean isCommend) {
+	private int catalogId=0;
+	public static FirstRecommendFragment createInstance(boolean isCommend,int catalogId) {
 		FirstRecommendFragment fragment = new FirstRecommendFragment();
 		Bundle bundle = new Bundle();
 		bundle.putBoolean(INTENT_TITLE, isCommend);
+		bundle.putInt(INTENT_ID, catalogId);
 		fragment.setArguments(bundle);
 		return fragment;
 	}
@@ -55,6 +57,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 		argument = getArguments();
 		if (argument != null) {
 			isCommend = argument.getBoolean(INTENT_TITLE);
+			catalogId = argument.getInt(INTENT_ID);
 		}
 		initView();
 		initData();
@@ -93,7 +96,12 @@ public class FirstRecommendFragment extends BaseFragment implements
 			//最新
 			HttpRequest.getNewest(pageNew,4,REQUEST_NEW_REFRESH,new OnHttpResponseListenerImpl(this));
 			//推荐
-			HttpRequest.getIndex(pageComm,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
+			HttpRequest.getIndex(pageComm,catalogId,1,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
+		}else{
+			//banner
+			HttpRequest.getListByPos("1",REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
+			//一级分类
+			HttpRequest.getIndex(pageComm,catalogId,2,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}
 	}
 
@@ -109,7 +117,9 @@ public class FirstRecommendFragment extends BaseFragment implements
 				onStopRefresh();
 				break;
 			case REQUEST_COMM_REFRESH:
-
+				if(!isCommend){
+					first_categoty_content.removeAllViews();
+				}
 				ArrayList<SecondCategory> secondCategory = (ArrayList<SecondCategory>) GsonUtil.jsonToList(resultData, SecondCategory.class);
 				for(int i=0;i<secondCategory.size();i++){
 					FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content,true);
@@ -121,6 +131,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 				onStopLoadMore(false);
 				break;
 			case REQUEST_NEW_REFRESH:
+				first_categoty_content.removeAllViews();
 				FirstLast firstLast = GsonUtil.GsonToBean(resultData, FirstLast.class);
 				FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content,true);
 				first_categoty_content.addView(receivingAddressView.createView(),0);

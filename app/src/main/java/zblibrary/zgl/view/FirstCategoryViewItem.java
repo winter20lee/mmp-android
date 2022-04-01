@@ -42,5 +42,12 @@ public class FirstCategoryViewItem extends BaseView<SecondCategory.VideoListBean
 		}
 
 		first_category_item_title.setText(data.name);
+		if(StringUtil.isEmpty(data.length)){
+			first_category_item_longs.setText("");
+		}else{
+			first_category_item_longs.setText(data.length);
+		}
+		first_category_item_label.setText(data.tag);
+		first_category_item_play.setText(data.playCnt+"");
 	}
 }
