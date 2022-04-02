@@ -26,10 +26,12 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 		<SecondCategory.VideoListBean.ResultBean, FirstCategoryViewItem, FirstCategoryAdapter> {
 
 	private String keyWord = "";
-	public static SearchFragment createInstance(String keyWord) {
+	private int cateGoryId;
+	public static SearchFragment createInstance(String keyWord,int cateGoryId) {
 		SearchFragment fragment = new SearchFragment();
 		Bundle bundle = new Bundle();
 		bundle.putString(INTENT_PHONE, keyWord);
+		bundle.putInt(INTENT_ID, cateGoryId);
 		fragment.setArguments(bundle);
 		return fragment;
 	}
@@ -40,6 +42,7 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 		argument = getArguments();
 		if (argument != null) {
 			keyWord = argument.getString(INTENT_PHONE);
+			cateGoryId = argument.getInt(INTENT_ID);
 		}
 		initView();
 		initData();
@@ -80,7 +83,7 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 
 	@Override
 	public void getListAsync(final int page) {
-		HttpRequest.getSearch(page,0,keyWord,-page, this);
+		HttpRequest.getSearch(page,cateGoryId,keyWord,-page, this);
 	}
 
 	@Override

@@ -53,7 +53,7 @@ public class MemberCenterFragment extends BaseFragment implements
 		initData();
 		initEvent();
 		//banner
-		HttpRequest.getListByPos("2",REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
+		HttpRequest.getListByPos(2,0,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 		HttpRequest.getMemberShip(REQUEST_MEMBER, new OnHttpResponseListenerImpl(this));
 		return view;
 	}

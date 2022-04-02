@@ -41,10 +41,11 @@ public class HttpRequest {
 
 	/**广告位
 	 */
-	public static void getListByPos(String pos,final int requestCode, final OnHttpResponseListener listener) {
+	public static void getListByPos(int pos,int catalogId,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put("pos",pos);
-		HttpManager.getInstance().get(request, URL_BASE + "/api/ads/listByPos", requestCode, listener);
+		request.put("catalogId",catalogId);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/ads/list",true, requestCode, listener);
 	}
 
 
@@ -95,11 +96,12 @@ public class HttpRequest {
 	}
 
 
-
-	/**首页商城
+	/**猜你喜欢
 	 */
-	public static void getFirstMall(int pageNo,final int requestCode, final OnHttpResponseListener listener) {
-//		getMallSearch(pageNo,"","","","","",requestCode,listener);
+	public static void getRecommend(long videoId,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put("videoId", videoId);
+		HttpManager.getInstance().get(request, URL_BASE + "/api/video/recommend", requestCode, listener);
 	}
 
 
@@ -114,12 +116,23 @@ public class HttpRequest {
 		HttpManager.getInstance().post(request, URL_BASE + "/api/video/search", true,requestCode, listener);
 	}
 
-	/**商品详情
+	/**搜索接口
 	 */
-	public static void getProductDes(long goodsId,final int requestCode, final OnHttpResponseListener listener) {
+	public static void getSearch(int pageNo,int pageSize,int secondLevelCatalogId,String keywords,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
-		request.put(GOODS_ID, goodsId);
-		HttpManager.getInstance().get(request, URL_BASE + "/goods/spu/info", requestCode, listener);
+		request.put(PAGE_NUM, pageNo);
+		request.put(PAGE_SiZE, pageSize);
+		request.put("secondLevelCatalogId", secondLevelCatalogId);
+		request.put("keywords", keywords);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/video/search", true,requestCode, listener);
+	}
+
+	/**视频详情
+	 */
+	public static void getVideoDes(long id,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put(ID, id);
+		HttpManager.getInstance().get(request, URL_BASE + "/api/video/detail", requestCode, listener);
 	}
 
 

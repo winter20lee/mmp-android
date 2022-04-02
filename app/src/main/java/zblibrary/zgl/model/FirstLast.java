@@ -35,11 +35,12 @@ public class FirstLast {
 				SecondCategory.VideoListBean.ResultBean resultBean = new SecondCategory.VideoListBean.ResultBean();
 				resultBean.coverUrl = resultBean1.coverUrl;
 				resultBean.name =resultBean1.name;
+				resultBean.id = resultBean1.id;
 				resultBeans.add(resultBean);
 			}
 			SecondCategory.VideoListBean videoListBean = new SecondCategory.VideoListBean();
 			videoListBean.result = resultBeans;
-			secondCategory.videPageData = videoListBean;
+			secondCategory.videoPageData = videoListBean;
 			return  secondCategory;
 		}
 }

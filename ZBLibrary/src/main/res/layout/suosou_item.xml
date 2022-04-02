@@ -5,8 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:textSize="14sp"
+    android:textSize="12sp"
     android:background="@drawable/sousuo_bg_gray_1"
-    android:textColor="#5A6FFF"
+    android:textColor="#282828"
     >
 </TextView>

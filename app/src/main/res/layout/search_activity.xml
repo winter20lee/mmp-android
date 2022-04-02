@@ -2,18 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/activity_page">
-
-    <zblibrary.zgl.view.SearchLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/msearchlayout"
         android:background="#282828"
-        android:paddingRight="12dp"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:paddingLeft="12dp"
-        app:search_hint=""
-        />
+        android:layout_height="wrap_content">
+        <ImageView style="@style/topbar_return_img"
+            android:id="@+id/search_back"
+            android:visibility="gone"
+            />
+        <zblibrary.zgl.view.SearchLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/msearchlayout"
+            android:background="#282828"
+            android:paddingRight="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingLeft="12dp"
+            app:search_hint=""
+            />
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/search_result_fg"
         android:layout_width="match_parent"

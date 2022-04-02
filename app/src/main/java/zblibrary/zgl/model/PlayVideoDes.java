@@ -1,40 +1,45 @@
 
 package zblibrary.zgl.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlayVideoDes {
 
-	public int id;
-	public int goodsCategoryId;
-	public int price;
-	public String code;
-	public String name;
-	public String desc;
-	public String keywords;
-	public List<String> mainImage;
-	public int tagType;
-	public int toLoot;
-	public int viewTimes;
-	public int status;
-	public String gmtOnline;
-	public String gmtOffline;
-	public String gmtCreate;
-	public String gmtModify;
-	public String detail;
-	public String mobileDetail;
-	public int saleNum;
-	public int stock;
-	public String goodsSpec;
-	public List<GoodsSpecModel> goodsSpec1;
-	public List<String> detailsImage;
+		public int id;
+		public String name;
+		public String length;
+		public VideoActorBean videoActor;
+		public String bango;
+		public String director;
+		public String coverUrl;
+		public String videoUrl;
+		public String tag;
+		public int catalogFirstLevelId;
+		public int catalogSecondLevelId;
+		public int favCnt;
+		public int viewCnt;
+		public int playCnt;
+		public String gmtCreate;
+		public ArrayList<ActorVideoListBean> actorVideoList;
+		public static class VideoActorBean {
+			public int id;
+			public String name;
+			public String birthday;
+			public int height;
+			public String bwh;
+			public String img;
+		}
 
-	public static class GoodsSpecModel implements Serializable {
-		public String attributionKeyId;
-		public String attributionKeyName;
-		public String attributionValId;
-		public String attributionValName;
+	public static class ActorVideoListBean {
+
+		public int id;
+		public String name;
+		public String length;
+		public String coverUrl;
+		public String tag;
+		public int playCnt;
+		public int catalogFirstLevelId;
+		public int catalogSecondLevelId;
+		public String gmtCreate;
 	}
 }

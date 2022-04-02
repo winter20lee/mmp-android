@@ -64,6 +64,7 @@
     <LinearLayout
         android:id="@+id/first_category_bottom"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="40dp">

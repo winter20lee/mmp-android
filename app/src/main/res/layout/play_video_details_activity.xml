@@ -93,6 +93,8 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/product_details_actor"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="15dp"
@@ -119,38 +121,35 @@
                 <ImageView
                     android:id="@+id/play_video_head"
                     android:layout_width="100dp"
-                    android:layout_below="@id/msearch_history"
                     android:layout_height="100dp"
+                    android:layout_below="@id/msearch_history"
                     android:layout_marginTop="20dp"
-                    android:background="@color/alpha_1"
-                    />
+                    android:background="@color/alpha_1" />
 
                 <TextView
                     android:id="@+id/play_video_name"
-                    android:layout_below="@id/msearch_history"
                     android:layout_width="wrap_content"
-                    android:layout_toRightOf="@id/play_video_head"
                     android:layout_height="wrap_content"
-                    android:textSize="14dp"
+                    android:layout_below="@id/msearch_history"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@id/play_video_head"
                     android:textColor="#323038"
+                    android:textSize="14dp"
                     android:textStyle="bold"
-                    tools:text="张碧晨"
-                    />
+                    tools:text="张碧晨" />
 
                 <TextView
                     android:id="@+id/play_video_birthday"
-                    android:layout_below="@id/play_video_name"
                     android:layout_width="wrap_content"
-                    android:layout_toRightOf="@id/play_video_head"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
+                    android:layout_below="@id/play_video_name"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="6dp"
+                    android:layout_toRightOf="@id/play_video_head"
                     android:textColor="#95949D"
-                    tools:text="生日：1985.11.20"
-                    />
+                    android:textSize="12dp"
+                    tools:text="生日：1985.11.20" />
 
                 <TextView
                     android:id="@+id/play_video_shengao"
@@ -178,13 +177,13 @@
                     tools:text="三维：胸92cm / 腰59cm / 臀88c"
                     />
 
-                <fragment
-                    android:id="@+id/play_video_recomm"
-                    android:name="zblibrary.zgl.fragment.ActorRecommendFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+
+                <zuo.biao.library.ui.EmptyRecyclerView
+                    android:layout_marginTop="30dp"
                     android:layout_below="@id/play_video_head"
-                    android:layout_marginTop="30dp" />
+                    android:id="@+id/play_video_recomm"
+                    style="@style/lv_no_divider"
+                    />
 
             </RelativeLayout>
             <!--同分类下-->

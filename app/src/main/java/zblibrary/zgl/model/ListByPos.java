@@ -5,4 +5,5 @@ public class ListByPos {
     public String positon;
     public String catalogId;
     public String imgUrl;
+    public String link;
 }

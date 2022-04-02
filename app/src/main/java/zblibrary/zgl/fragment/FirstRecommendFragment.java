@@ -28,7 +28,7 @@ import zuo.biao.library.util.GsonUtil;
 /**首页
  */
 public class FirstRecommendFragment extends BaseFragment implements
-		OnHttpResponseListener, OnStopLoadListener, OnRefreshListener {
+		OnHttpResponseListener, OnStopLoadListener, OnRefreshListener, FirstCategoryView.OnClickChangeListener {
 	private static final int REQUEST_BANNER = 10000;
 	private static final int REQUEST_COMM_REFRESH = 10002;
 	private static final int REQUEST_NEW_REFRESH = 10003;
@@ -41,6 +41,10 @@ public class FirstRecommendFragment extends BaseFragment implements
 	private boolean isCommend;
 	private int pageNew=1;
 	private int catalogId=0;
+	private FirstCategoryView firstCategoryViewLast;
+	private ArrayList<FirstCategoryView> firstCategoryViewArrayList = new ArrayList<>();
+	private boolean isRefresh;
+	private int posFirstCategoryView;
 	public static FirstRecommendFragment createInstance(boolean isCommend,int catalogId) {
 		FirstRecommendFragment fragment = new FirstRecommendFragment();
 		Bundle bundle = new Bundle();
@@ -90,18 +94,20 @@ public class FirstRecommendFragment extends BaseFragment implements
 
 	@Override
 	public void onRefresh(RefreshLayout refreshLayout) {
+		isRefresh = true;
 		if(isCommend){
+			pageNew = 1;
 			//banner
-			HttpRequest.getListByPos("1",REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
+			HttpRequest.getListByPos(1,0,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 			//最新
 			HttpRequest.getNewest(pageNew,4,REQUEST_NEW_REFRESH,new OnHttpResponseListenerImpl(this));
 			//推荐
-			HttpRequest.getIndex(pageComm,catalogId,1,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
+			HttpRequest.getIndex(pageComm,catalogId,0,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}else{
 			//banner
-			HttpRequest.getListByPos("1",REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
+			HttpRequest.getListByPos(catalogId,0,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 			//一级分类
-			HttpRequest.getIndex(pageComm,catalogId,2,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
+			HttpRequest.getIndex(pageComm,catalogId,1,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}
 	}
 
@@ -117,25 +123,41 @@ public class FirstRecommendFragment extends BaseFragment implements
 				onStopRefresh();
 				break;
 			case REQUEST_COMM_REFRESH:
-				if(!isCommend){
-					first_categoty_content.removeAllViews();
-				}
 				ArrayList<SecondCategory> secondCategory = (ArrayList<SecondCategory>) GsonUtil.jsonToList(resultData, SecondCategory.class);
-				for(int i=0;i<secondCategory.size();i++){
-					FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content,true);
-					first_categoty_content.addView(receivingAddressView.createView());
-					receivingAddressView.bindView(secondCategory.get(i));
+				if(isRefresh){
+					if(!isCommend){
+						first_categoty_content.removeAllViews();
+					}
+					firstCategoryViewArrayList.clear();
+					for(int i=0;i<secondCategory.size();i++){
+						FirstCategoryView firstCategoryViewRecomm = new FirstCategoryView(context,first_categoty_content,true,isCommend,false);
+						firstCategoryViewRecomm.setPos(i);
+						firstCategoryViewRecomm.setOnClickChangeListener(this);
+						first_categoty_content.addView(firstCategoryViewRecomm.createView());
+						firstCategoryViewRecomm.bindView(secondCategory.get(i));
+						firstCategoryViewArrayList.add(firstCategoryViewRecomm);
+					}
+					onStopRefresh();
+					onStopLoadMore(false);
+					isRefresh = false;
+				}else{
+					FirstCategoryView firstCategoryViewRecomm = firstCategoryViewArrayList.get(posFirstCategoryView);
+					firstCategoryViewRecomm.bindView(secondCategory.get(0));
 				}
 
-				onStopRefresh();
-				onStopLoadMore(false);
 				break;
 			case REQUEST_NEW_REFRESH:
-				first_categoty_content.removeAllViews();
 				FirstLast firstLast = GsonUtil.GsonToBean(resultData, FirstLast.class);
-				FirstCategoryView receivingAddressView = new FirstCategoryView(context,first_categoty_content,true);
-				first_categoty_content.addView(receivingAddressView.createView(),0);
-				receivingAddressView.bindView(firstLast.transData());
+				if(pageNew == 1){
+					first_categoty_content.removeAllViews();
+					firstCategoryViewLast = new FirstCategoryView(context,first_categoty_content,true,isCommend,true);
+					firstCategoryViewLast.setOnClickChangeListener(this);
+					first_categoty_content.addView(firstCategoryViewLast.createView(),0);
+					firstCategoryViewLast.bindView(firstLast.transData());
+				}else{
+					firstCategoryViewLast.bindView(firstLast.transData());
+				}
+
 				break;
 		}
 	}
@@ -165,5 +187,22 @@ public class FirstRecommendFragment extends BaseFragment implements
 				srlBaseHttpRecycler.finishLoadMoreWithNoMoreData();
 			}
 		});
+	}
+
+
+	@Override
+	public void onClickChangeLast() {
+		++pageNew;
+		HttpRequest.getNewest(pageNew,4,REQUEST_NEW_REFRESH,new OnHttpResponseListenerImpl(this));
+	}
+
+	@Override
+	public void onClickChangeRecom(int catalogId,int pos,int pageNum) {
+		posFirstCategoryView = pos;
+		if(isCommend){
+			HttpRequest.getIndex(pageNum,catalogId,0,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
+		}else{
+			HttpRequest.getIndex(pageNum,catalogId,2,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
+		}
 	}
 }

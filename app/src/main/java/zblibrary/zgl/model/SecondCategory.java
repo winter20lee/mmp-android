@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class SecondCategory {
 		public VideoCatalogBean videoCatalog;
-		public VideoListBean videPageData;
+		public VideoListBean videoPageData;
 		public static class VideoCatalogBean {
 			public int id;
 			public String name;
