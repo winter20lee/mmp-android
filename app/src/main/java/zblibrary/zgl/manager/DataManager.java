@@ -43,18 +43,18 @@ public class DataManager {
 	/**获取当前用户id
 	 * @return
 	 */
-	public long getUserId() {
+	public String getUserId() {
 		User user = getUser();
-		return user == null ? 0 : user.respUserVo.id;
+		return user == null ? "" : user.userInfo.userId;
 	}
 
-	/**获取当前用户的手机号
-	 * @return
-	 */
-	public String getUserPhone() {
-		User user = getUser();
-		return user == null ? "" : user.respUserVo.mobile;
-	}
+//	/**获取当前用户的手机号
+//	 * @return
+//	 */
+//	public String getUserPhone() {
+//		User user = getUser();
+//		return user == null ? "" : user.userInfo.mobile;
+//	}
 
 	/**获取用户
 	 * @return
@@ -97,17 +97,17 @@ public class DataManager {
 		sdf.edit().remove(KEY_USER).commit();
 	}
 
-	/**设置当前用户手机号
-	 * @param phone
-	 */
-	public void setUserPhone(String phone) {
-		User user = getUser();
-		if (user == null) {
-			user = new User();
-		}
-		user.respUserVo.mobile = phone;
-		saveUser(user);
-	}
+//	/**设置当前用户手机号
+//	 * @param phone
+//	 */
+//	public void setUserPhone(String phone) {
+//		User user = getUser();
+//		if (user == null) {
+//			user = new User();
+//		}
+//		user.userInfo.mobile = phone;
+//		saveUser(user);
+//	}
 
 	/**设置当前用户姓名
 	 * @param name
@@ -117,7 +117,7 @@ public class DataManager {
 		if (user == null) {
 			user = new User();
 		}
-		user.respUserVo.username = name;
+		user.userInfo.nickName = name;
 		saveUser(user);
 	}
 

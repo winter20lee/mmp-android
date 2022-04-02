@@ -63,12 +63,7 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 	@Override
 	public void initData() {//必须调用
 		mine_name.setText(MApplication.getInstance().getCurrentUserNickName());
-		mine_phone.setText("Phone:"+MApplication.getInstance().getCurrentUserPhone());
-		if(StringUtil.isNotEmpty(MApplication.getInstance().getCurrentUserAvatar(),true)){
-			GlideUtil.loadCircle(context,MApplication.getInstance().getCurrentUserAvatar(),mine_head);
-		}else{
-			mine_head.setImageResource(R.mipmap.defult_head);
-		}
+		mine_head.setImageResource(R.mipmap.defult_head);
 		mine_down_state.setText("正在下载（"+ MyDownFilesFragment.TasksManager.getImpl().getDowningCounts()+"）/ " +
 				"已下载（"+ MyDownFilesFragment.TasksManager.getImpl().getDownedCounts()+"）");
 

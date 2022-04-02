@@ -6,8 +6,12 @@ import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.AppInitInfo;
+import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
+import zuo.biao.library.util.AESUtil;
+import zuo.biao.library.util.DeviceIdUtil;
 import zuo.biao.library.util.GsonUtil;
+import zuo.biao.library.util.MD5Utils;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,11 +22,12 @@ import android.os.Handler;
  */
 public class SplashActivity extends Activity implements OnHttpResponseListener {
 
-
+	private final int APP_INIT_CODE = 1110;
+	private final int DEVICE_LOGIN_CODE = 1120;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		HttpRequest.getAppInitInfo(0,new OnHttpResponseListenerImpl(this) );
+		HttpRequest.getAppInitInfo(APP_INIT_CODE,new OnHttpResponseListenerImpl(this) );
 		new Handler().postDelayed(new Runnable() {
 
 			@Override
@@ -42,12 +47,32 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 
 	@Override
 	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
-		AppInitInfo appInitInfo = GsonUtil.GsonToBean(resultData,AppInitInfo.class);
-		MApplication.getInstance().setAppInitInfo(appInitInfo);
+		switch (requestCode){
+			case APP_INIT_CODE:
+				AppInitInfo appInitInfo = GsonUtil.GsonToBean(resultData,AppInitInfo.class);
+				MApplication.getInstance().setAppInitInfo(appInitInfo);
+				HttpRequest.loginByDeviceId(getDeviceToken(),DEVICE_LOGIN_CODE,new OnHttpResponseListenerImpl(this) );
+				break;
+			case DEVICE_LOGIN_CODE:
+				User user = GsonUtil.GsonToBean(resultData,User.class);
+				MApplication.getInstance().saveCurrentUser(user);
+				break;
+		}
+
 	}
 
 	@Override
 	public void onHttpError(int requestCode, Exception e, String message) {
 
+	}
+
+	private String getDeviceToken(){
+		String orgDeviceId = DeviceIdUtil.getDeviceId(this);
+		String agentCode = "ac";
+		String md5Salt = "mmp2022";
+		String md5DeviceId = MD5Utils.md5(orgDeviceId+agentCode+md5Salt);
+		String andDeviceId = md5DeviceId + "|" + orgDeviceId;
+		String deviceToken = AESUtil.encrypt(andDeviceId);
+		return deviceToken;
 	}
 }

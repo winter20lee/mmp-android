@@ -93,12 +93,8 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		}
 		user_info_userid.setText(MApplication.getInstance().getCurrentUserId()+"");
 		user_info_change_nickname.setText(MApplication.getInstance().getCurrentUserNickName());
-		user_info_phonenum.setText(MApplication.getInstance().getCurrentUserPhone());
-		if(StringUtil.isNotEmpty(MApplication.getInstance().getCurrentUserAvatar(),true)){
-			GlideUtil.loadCircle(UserInfoActivity.this,MApplication.getInstance().getCurrentUserAvatar(),mUserInfoHeadpic);
-		}else{
-			mUserInfoHeadpic.setImageResource(R.mipmap.defult_head);
-		}
+		user_info_phonenum.setText(MApplication.getInstance().getCurrentUserBirthday());
+		mUserInfoHeadpic.setImageResource(R.mipmap.defult_head);
 	}
 	public void initEvent() {//必须调用
 		findViewById(R.id.user_info_headpic).setOnClickListener(this);
@@ -110,10 +106,10 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 	public void onClick(View v) {
 		switch (v.getId()){
 			case R.id.user_info_headpic:
-				Intent intent = new Intent(this, BottomMenuWindow.class);
-				intent.putExtra(BottomMenuWindow.INTENT_TITLE, "");
-				intent.putExtra(BottomMenuWindow.INTENT_ITEMS, new String[]{"拍照", "相册"});
-				startActivityForResult(intent, REQUEST_TO_BOTTOM_MENU);
+//				Intent intent = new Intent(this, BottomMenuWindow.class);
+//				intent.putExtra(BottomMenuWindow.INTENT_TITLE, "");
+//				intent.putExtra(BottomMenuWindow.INTENT_ITEMS, new String[]{"拍照", "相册"});
+//				startActivityForResult(intent, REQUEST_TO_BOTTOM_MENU);
 				break;
 			case R.id.user_info_phonenum:
 				initCalendar();
@@ -263,7 +259,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		switch (requestCode){
 			case REQUEST_UPLOAD:
 				GlideUtil.loadCircle(UserInfoActivity.this,picturePath,mUserInfoHeadpic);
-				MApplication.getInstance().setCurrentUserAvatar(picturePath);
+//				MApplication.getInstance().setCurrentUserAvatar(picturePath);
 				CommonUtil.dismissProgressDialog(UserInfoActivity.this);
 				break;
 			case REQUEST_TOKEN:
@@ -280,7 +276,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 
 	@Override
 	public void onHttpError(int requestCode, Exception e, String message) {
-		picturePath = MApplication.getInstance().getCurrentUserAvatar();
+//		picturePath = MApplication.getInstance().getCurrentUserAvatar();
 		GlideUtil.loadCircle(UserInfoActivity.this,picturePath,mUserInfoHeadpic);
 		CommonUtil.dismissProgressDialog(UserInfoActivity.this);
 	}
@@ -296,7 +292,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 			@Override
 			public void onUploadFile() {
 				CommonUtil.dismissProgressDialog(UserInfoActivity.this);
-				picturePath = MApplication.getInstance().getCurrentUserAvatar();
+//				picturePath = MApplication.getInstance().getCurrentUserAvatar();
 				GlideUtil.loadCircle(UserInfoActivity.this,picturePath,mUserInfoHeadpic);
 			}
 		});

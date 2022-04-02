@@ -169,6 +169,14 @@ public class HttpRequest {
 		HttpManager.getInstance().get(request, URL_BASE + "/user/sendVerifyCode", requestCode, listener);
 	}
 
+	/**设备id登录
+	 */
+	public static void loginByDeviceId(String deviceToken,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put("deviceToken", deviceToken);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/loginByDeviceId", true,requestCode, listener);
+	}
+
 	/**修改昵称
 	 * @param requestCode
 	 * @param listener

@@ -48,6 +48,7 @@ public class HttpManager {
 	private static final String VERIFYTOKEN = "verifyToken";
 	private static final String TOKEN = "token";
 	private static final String IDCODE = "idCode";
+	private static final String AGENTCODE = "agentCode";
 
 	private Context context;
 	private SSLSocketFactory socketFactory;// 单例
@@ -133,6 +134,7 @@ public class HttpManager {
 									.addHeader(VERIFYTOKEN,getVerifyToken())
 									.addHeader(TOKEN,token)
 									.addHeader(IDCODE,idCode)
+									.addHeader(AGENTCODE,"huawei")
 									.url(sb.toString())
 									.build()
 					);
@@ -255,6 +257,7 @@ public class HttpManager {
 									.addHeader(VERIFYTOKEN,getVerifyToken())
 									.addHeader(TOKEN,token)
 									.addHeader(IDCODE,idCode)
+									.addHeader(AGENTCODE,"huawei")
 									.post(requestBody)
 									.build()
 					);

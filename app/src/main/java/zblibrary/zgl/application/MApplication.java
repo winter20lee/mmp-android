@@ -6,6 +6,7 @@ import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseApplication;
 import zuo.biao.library.manager.HttpManager;
+import zuo.biao.library.util.StringUtil;
 
 import android.util.Log;
 
@@ -32,50 +33,60 @@ public class MApplication extends BaseApplication {
 	/**获取当前用户id
 	 * @return
 	 */
-	public long getCurrentUserId() {
+	public String getCurrentUserId() {
 		currentUser = getCurrentUser();
-		Log.d(TAG, "getCurrentUserId  currentUserId = " + (currentUser == null ? "null" : currentUser.respUserVo.id));
-		return currentUser == null ? 0 : currentUser.respUserVo.id;
+		Log.d(TAG, "getCurrentUserId  currentUserId = " + (currentUser == null ? "null" : currentUser.userInfo.userId));
+		return currentUser == null ? "" : currentUser.userInfo.userId;
 	}
-	/**获取当前用户phone
-	 * @return
-	 */
-	public String getCurrentUserPhone() {
-		currentUser = getCurrentUser();
-		return currentUser == null ? null : currentUser.respUserVo.mobile;
-	}
+//	/**获取当前用户phone
+//	 * @return
+//	 */
+//	public String getCurrentUserPhone() {
+//		currentUser = getCurrentUser();
+//		return currentUser == null ? null : currentUser.userInfo.mobile;
+//	}
 
-	/**获取当前用户头像
-	 * @return
-	 */
-	public String getCurrentUserAvatar() {
-		currentUser = getCurrentUser();
-		return currentUser == null ? null : currentUser.respUserVo.avatar;
-	}
-
-	/**设置当前用户头像
-	 * @return
-	 */
-	public void  setCurrentUserAvatar(String avatar) {
-		currentUser = getCurrentUser();
-		currentUser.respUserVo.avatar = avatar;
-		saveCurrentUser(currentUser);
-	}
+//	/**获取当前用户头像
+//	 * @return
+//	 */
+//	public String getCurrentUserAvatar() {
+//		currentUser = getCurrentUser();
+//		return currentUser == null ? null : currentUser.userInfo.avatar;
+//	}
+//
+//	/**设置当前用户头像
+//	 * @return
+//	 */
+//	public void  setCurrentUserAvatar(String avatar) {
+//		currentUser = getCurrentUser();
+//		currentUser.userInfo.avatar = avatar;
+//		saveCurrentUser(currentUser);
+//	}
 
 	/**获取当前用户昵称
 	 * @return
 	 */
 	public String getCurrentUserNickName() {
 		currentUser = getCurrentUser();
-		return currentUser == null ? null : currentUser.respUserVo.nickname;
+		return currentUser == null ? null : currentUser.userInfo.nickName;
 	}
+
+
+	/**获取当前用户生日
+	 * @return
+	 */
+	public String getCurrentUserBirthday() {
+		currentUser = getCurrentUser();
+		return currentUser == null ? null : currentUser.userInfo.birthday;
+	}
+
 
 	/**保存当前用户昵称
 	 * @return
 	 */
 	public void saveCurrentUserNickName(String nickName) {
 		currentUser = getCurrentUser();
-		currentUser.respUserVo.nickname = nickName;
+		currentUser.userInfo.nickName = nickName;
 		saveCurrentUser(currentUser);
 	}
 
@@ -103,7 +114,7 @@ public class MApplication extends BaseApplication {
 			Log.e(TAG, "saveCurrentUser  currentUser == null >> return;");
 			return;
 		}
-		if (user.respUserVo.id <= 0) {
+		if (StringUtil.isEmpty(user.userInfo.userId)) {
 			Log.e(TAG, "saveCurrentUser  user.getId() <= 0" +
 					" && StringUtil.isNotEmpty(user.getName(), true) == false >> return;");
 			return;
@@ -122,7 +133,7 @@ public class MApplication extends BaseApplication {
 	
 
 	public boolean isLoggedIn() {
-		return getCurrentUserId() > 0;
+		return !StringUtil.isEmpty(getCurrentUserId());
 	}
 
 	private void setDomains(){

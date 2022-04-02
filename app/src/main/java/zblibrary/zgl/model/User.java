@@ -2,19 +2,22 @@
 package zblibrary.zgl.model;
 
 /**用户类
- * @author Lemon
  */
 public class User {
 
 
-	public RespUserVoModel respUserVo;
-	public String token;
+		public String token;
+		public UserInfoBean userInfo;
 
-	public static class RespUserVoModel {
-		public int id;
-		public String avatar;
-		public String nickname;
-		public String username;
-		public String mobile;
+		public static class UserInfoBean {
+			public String userId;
+			public String nickName;
+			public int status;
+			public String birthday;
+			public int gender;
+			public String personal;
+			public int isBindPhone;
+			public String memberLevelCode;
+			public String gmtMemberExpired;
 	}
 }

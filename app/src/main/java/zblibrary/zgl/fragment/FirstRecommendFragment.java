@@ -23,6 +23,7 @@ import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryView;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.interfaces.OnStopLoadListener;
+import zuo.biao.library.ui.WebViewActivity;
 import zuo.biao.library.util.GsonUtil;
 
 /**首页
@@ -83,6 +84,12 @@ public class FirstRecommendFragment extends BaseFragment implements
 	public void initData() {//必须调用
 		mzHolderCreator = (MZHolderCreator<BannerViewPagerHolder>) () -> new BannerViewPagerHolder();
 		mMZBanner.setPages(firstBannerList,mzHolderCreator );
+		mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
+			@Override
+			public void onPageClick(View view, int position) {
+				toActivity(WebViewActivity.createIntent(context,"",firstBannerList.get(position).link));
+			}
+		});
 
 	}
 
