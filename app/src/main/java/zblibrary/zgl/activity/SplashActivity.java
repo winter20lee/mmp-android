@@ -68,11 +68,11 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 
 	private String getDeviceToken(){
 		String orgDeviceId = DeviceIdUtil.getDeviceId(this);
-		String agentCode = "ac";
+		String agentCode = "huawei";
 		String md5Salt = "mmp2022";
-		String md5DeviceId = MD5Utils.md5(orgDeviceId+agentCode+md5Salt);
+		String md5DeviceId = MD5Utils.getLowerMD5Code(orgDeviceId+agentCode+md5Salt);
 		String andDeviceId = md5DeviceId + "|" + orgDeviceId;
-		String deviceToken = AESUtil.encrypt(andDeviceId);
+		String deviceToken = AESUtil.encryptDeviceToken(andDeviceId);
 		return deviceToken;
 	}
 }

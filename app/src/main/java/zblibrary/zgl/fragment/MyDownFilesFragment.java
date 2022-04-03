@@ -37,13 +37,16 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.MainTabActivity;
+import zblibrary.zgl.activity.PlayVideoDetailsActivity;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.model.RefreshDownEvent;
 import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.StringUtil;
 
 /**
@@ -54,7 +57,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
     private static TaskItemAdapter adapter;
     private TextView mydown_edit,mydown_sel_all,mydown_sel_del;
     private RecyclerView recyclerView;
-    private static ArrayList<TaskItemViewHolder> delIds = new ArrayList<>();
+    private static ArrayList<Integer> delIds = new ArrayList<>();
     private  static String[] BIG_FILE_URLS = {
             "http://cdn.llsapp.com/android/LLS-v4.0-595-20160908-143200.apk",
             // 5m
@@ -83,7 +86,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
         findView(R.id.mydown_file_back,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         if(adapter==null){
-            adapter = new TaskItemAdapter();
+            adapter = new TaskItemAdapter(getActivity());
         }
         recyclerView.setAdapter(adapter);
         mydown_edit.setOnClickListener(this);
@@ -191,13 +194,12 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
 
                 break;
             case R.id.mydown_sel_del:
-                for (TaskItemViewHolder holder:delIds) {
-                    FileDownloader.getImpl().pause(holder.id);
-                    new File(TasksManager.getImpl().get(holder.position).getPath()).delete();
-                    holder.taskActionBtn.setEnabled(true);
-                    holder.updateNotDownloaded(FileDownloadStatus.INVALID_STATUS, 0, 0);
-                    TasksManager.getImpl().delTask(holder.id+"");
+                for (Integer id:delIds) {
+                    FileDownloader.getImpl().pause(id);
+//                    new File(TasksManager.getImpl().get(holder.position).getPath()).delete();
+                    TasksManager.getImpl().delTask(id+"");
                 }
+                delIds.clear();
                 postNotifyDataChanged();
                 break;
             case R.id.mydown_file_back:
@@ -300,6 +302,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
         private ProgressBar taskPb;
         private Button taskActionBtn;
         private ImageView taskSelectIv;
+        private ImageView taskPic;
         private void assignViews() {
             taskSelectIv = (ImageView) findViewById(R.id.task_select_iv);
             taskNameTv = (TextView) findViewById(R.id.task_name_tv);
@@ -307,11 +310,16 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
             taskPb = (ProgressBar) findViewById(R.id.task_pb);
             taskActionBtn = (Button) findViewById(R.id.task_action_btn);
             taskTotalTv = (TextView)findViewById(R.id.task_total_tv);
+            taskPic = (ImageView) findViewById(R.id.task_pic);
         }
 
     }
 
     private static class TaskItemAdapter extends RecyclerView.Adapter<TaskItemViewHolder> {
+        private Context context;
+        public TaskItemAdapter(Context context){
+            this.context = context;
+        }
         private static boolean isEditState;
         private FileDownloadListener taskDownloadListener = new FileDownloadSampleListener() {
 
@@ -431,9 +439,11 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                     autoClick(holder);
                 } else if (action.equals(v.getResources().getString(R.string.delete))) {
                     // to delete
-                    new File(TasksManager.getImpl().get(holder.position).getPath()).delete();
-                    holder.taskActionBtn.setEnabled(true);
-                    holder.updateNotDownloaded(FileDownloadStatus.INVALID_STATUS, 0, 0);
+//                    new File(TasksManager.getImpl().get(holder.position).getPath()).delete();
+//                    holder.taskActionBtn.setEnabled(true);
+//                    holder.updateNotDownloaded(FileDownloadStatus.INVALID_STATUS, 0, 0);
+                    Intent intent = PlayVideoDetailsActivity.createIntent(context,TasksManager.getImpl().get(holder.position).vid);
+                    context.startActivity(intent);
                 }
             }
         };
@@ -445,11 +455,11 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                     return;
                 }
                 TaskItemViewHolder holder = (TaskItemViewHolder) v.getTag();
-                if(delIds.contains(holder)){
-                    delIds.remove(holder);
+                if(delIds.contains(holder.id)){
+                    delIds.remove(holder.id);
                     holder.taskSelectIv.setImageResource(R.mipmap.shopping_car_unselect);
                 }else{
-                    delIds.add(holder);
+                    delIds.add(holder.id);
                     holder.taskSelectIv.setImageResource(R.mipmap.shopping_car_select);
                 }
             }
@@ -492,10 +502,18 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                 holder.taskSelectIv.setVisibility(View.GONE);
             }
 
+
+            if(!delIds.contains(holder.id)){
+                holder.taskSelectIv.setImageResource(R.mipmap.shopping_car_unselect);
+            }else{
+                holder.taskSelectIv.setImageResource(R.mipmap.shopping_car_select);
+            }
+
             holder.update(model.getId(), position);
             holder.taskActionBtn.setTag(holder);
             holder.taskSelectIv.setTag(holder);
             holder.taskNameTv.setText(model.getName());
+            GlideUtil.load(context,model.pic,holder.taskPic);
 
             TasksManager.getImpl()
                     .updateViewHolder(holder.id, holder);
@@ -561,7 +579,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
             dbController = new TasksManagerDBController();
             modelList = dbController.getAllTasks();
 
-//            initDemo();
+            initDemo();
         }
 
         private void initDemo() {
@@ -569,7 +587,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                 final int demoSize = BIG_FILE_URLS.length;
                 for (int i = 0; i < demoSize; i++) {
                     final String url = BIG_FILE_URLS[i];
-                    addTask(url);
+//                    addTask(i,i+"",url);
                 }
             }
         }
@@ -712,11 +730,11 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
             return count;
         }
 
-        public TasksManagerModel addTask(final String url) {
-            return addTask(url, createPath(url));
+        public TasksManagerModel addTask(final int vid,final String name,final String pic,final String url) {
+            return addTask(vid,name,pic,url, createPath(url));
         }
 
-        public TasksManagerModel addTask(final String url, final String path) {
+        public TasksManagerModel addTask(final int vid,final String name,final String pic,final String url, final String path) {
             if (TextUtils.isEmpty(url) || TextUtils.isEmpty(path)) {
                 return null;
             }
@@ -726,7 +744,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
             if (model != null) {
                 return model;
             }
-            final TasksManagerModel newModel = dbController.addTask(url, path);
+            final TasksManagerModel newModel = dbController.addTask(vid,name,pic,url, path);
             if (newModel != null) {
                 modelList.add(newModel);
             }
@@ -743,13 +761,20 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
         }
 
         public void delTask(String id){
-
-            for(TasksManagerModel tasksManagerModel:modelList){
+            Iterator<TasksManagerModel> it_b=modelList.iterator();
+            while(it_b.hasNext()){
+                TasksManagerModel tasksManagerModel=it_b.next();
                 if((tasksManagerModel.id+"") .equals(id)){
-                    modelList.remove(tasksManagerModel);
                     FileDownloadUtils.deleteTaskFiles(tasksManagerModel.url,tasksManagerModel.path);
+                    it_b.remove();
                 }
             }
+//            for(TasksManagerModel tasksManagerModel:modelList){
+//                if((tasksManagerModel.id+"") .equals(id)){
+//                    FileDownloadUtils.deleteTaskFiles(tasksManagerModel.url,tasksManagerModel.path);
+//                    modelList.remove(tasksManagerModel);
+//                }
+//            }
             dbController.deleTask(id);
         }
     }
@@ -780,6 +805,8 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                     model.setName(c.getString(c.getColumnIndex(TasksManagerModel.NAME)));
                     model.setUrl(c.getString(c.getColumnIndex(TasksManagerModel.URL)));
                     model.setPath(c.getString(c.getColumnIndex(TasksManagerModel.PATH)));
+                    model.pic = c.getString(c.getColumnIndex(TasksManagerModel.PIC));
+                    model.vid = c.getInt(c.getColumnIndex(TasksManagerModel.VID));
                     list.add(model);
                 } while (c.moveToPrevious());
             } finally {
@@ -791,7 +818,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
             return list;
         }
 
-        public TasksManagerModel addTask(final String url, final String path) {
+        public TasksManagerModel addTask(final int vid,final String name,final String pic,final String url, final String path) {
             if (TextUtils.isEmpty(url) || TextUtils.isEmpty(path)) {
                 return null;
             }
@@ -801,9 +828,12 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
 
             TasksManagerModel model = new TasksManagerModel();
             model.setId(id);
-            model.setName(MApplication.getInstance().getString(R.string.tasks_manager_name, id));
+//            model.setName(MApplication.getInstance().getString(R.string.tasks_manager_name, id));
+            model.setName(name);
             model.setUrl(url);
             model.setPath(path);
+            model.pic = pic;
+            model.vid = vid;
 
             final boolean succeed = db.insert(TABLE_NAME, null, model.toContentValues()) != -1;
             return succeed ? model : null;
@@ -833,12 +863,16 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                             + "%s INTEGER PRIMARY KEY, " // id, download id
                             + "%s VARCHAR, " // name
                             + "%s VARCHAR, " // url
-                            + "%s VARCHAR " // path
+                            + "%s VARCHAR, " // path
+                            + "%s VARCHAR, " // pic
+                            + "%s INTEGER " // vid
                             + ")"
                     , TasksManagerModel.ID
                     , TasksManagerModel.NAME
                     , TasksManagerModel.URL
                     , TasksManagerModel.PATH
+                    , TasksManagerModel.PIC
+                    , TasksManagerModel.VID
 
             ));
         }
@@ -856,11 +890,15 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
         public final static String NAME = "name";
         public final static String URL = "url";
         public final static String PATH = "path";
+        public final static String PIC = "pic";
+        public final static String VID = "vid";
 
         private int id;
         private String name;
         private String url;
         private String path;
+        public String pic;
+        public int vid;
 
         public int getId() {
             return id;
@@ -900,6 +938,8 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
             cv.put(NAME, name);
             cv.put(URL, url);
             cv.put(PATH, path);
+            cv.put(PIC, pic);
+            cv.put(VID, vid);
             return cv;
         }
     }

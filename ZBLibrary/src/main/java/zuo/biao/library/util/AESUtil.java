@@ -12,6 +12,11 @@ public class AESUtil {
 	private static final String KEY = "j}aZR+J9D2*ocll3";
 	private static final String IV = "la#dLL!~MlJ#AN0)";
 	private static final String CHARSETNAME = "UTF-8";
+
+	public static final String DEVICE_TOKEN_CRYP_STRING = "xEd+JsinhLRZx6fI";
+
+	public static final String DEVICE_TOKEN_IV_STRING = "eSC+OHuc0YpqHWGj";
+
 	/**
 	 * 加密
 	 *
@@ -24,6 +29,28 @@ public class AESUtil {
 			byte[] strArr = cleartext.getBytes(CHARSETNAME);
 			SecretKey secretKey = new SecretKeySpec(KEY.getBytes(CHARSETNAME), AES);
 			IvParameterSpec ivSpec = new IvParameterSpec(IV.getBytes(CHARSETNAME));
+			Cipher cipher = Cipher.getInstance(CBC_PKCS5_PADDING);
+			cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
+			byte[] arrByte  = cipher.doFinal(strArr);
+			String result = Base64.encodeToString(arrByte,Base64.NO_WRAP);
+			return result;
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	/**
+	 * 加密
+	 *
+	 * @param cleartext
+	 * @return
+	 */
+	public static String encryptDeviceToken( String cleartext) {
+		try
+		{
+			byte[] strArr = cleartext.getBytes(CHARSETNAME);
+			SecretKey secretKey = new SecretKeySpec(DEVICE_TOKEN_CRYP_STRING.getBytes(CHARSETNAME), AES);
+			IvParameterSpec ivSpec = new IvParameterSpec(DEVICE_TOKEN_IV_STRING.getBytes(CHARSETNAME));
 			Cipher cipher = Cipher.getInstance(CBC_PKCS5_PADDING);
 			cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
 			byte[] arrByte  = cipher.doFinal(strArr);

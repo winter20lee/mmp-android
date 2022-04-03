@@ -158,8 +158,10 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
             case R.id.play_video_share:
                 break;
             case R.id.play_video_down:
-                MyDownFilesFragment.TasksManager.getImpl().addTask(productDes.videoUrl);
-                EventBus.getDefault().post(new RefreshDownEvent(true));
+                MyDownFilesFragment.TasksManager.getImpl().addTask(productDes.id,productDes.name,productDes.coverUrl,productDes.videoUrl);
+//                MyDownFilesFragment.TasksManager.getImpl().addTask("http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4");
+//                EventBus.getDefault().post(new RefreshDownEvent(true));
+                showShortToast("已加入下载队列");
                 break;
             case R.id.play_video_like:
                 break;

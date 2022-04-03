@@ -47,8 +47,9 @@ public class HttpManager {
 	private static final String TAG = "HttpManager";
 	private static final String VERIFYTOKEN = "verifyToken";
 	private static final String TOKEN = "token";
-	private static final String IDCODE = "idCode";
-	private static final String AGENTCODE = "agentCode";
+	private static final String AC = "ac";
+	private static final String OS = "os";
+	private static final String PT = "pt";
 
 	private Context context;
 	private SSLSocketFactory socketFactory;// 单例
@@ -133,8 +134,9 @@ public class HttpManager {
 							new Request.Builder()
 									.addHeader(VERIFYTOKEN,getVerifyToken())
 									.addHeader(TOKEN,token)
-									.addHeader(IDCODE,idCode)
-									.addHeader(AGENTCODE,"huawei")
+									.addHeader(AC,"huawei")
+									.addHeader(OS,"android")
+									.addHeader(PT,"huawei")
 									.url(sb.toString())
 									.build()
 					);
@@ -256,8 +258,9 @@ public class HttpManager {
                                     .url(url)
 									.addHeader(VERIFYTOKEN,getVerifyToken())
 									.addHeader(TOKEN,token)
-									.addHeader(IDCODE,idCode)
-									.addHeader(AGENTCODE,"huawei")
+									.addHeader(AC,"huawei")
+									.addHeader(OS,"android")
+									.addHeader(PT,"huawei")
 									.post(requestBody)
 									.build()
 					);

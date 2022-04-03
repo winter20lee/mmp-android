@@ -19,6 +19,7 @@
             />
 
         <ImageView
+            android:id="@+id/task_pic"
             android:layout_width="93dp"
             android:layout_height="60dp"
             android:src="@color/alpha_1"
