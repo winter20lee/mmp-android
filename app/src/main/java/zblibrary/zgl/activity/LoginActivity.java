@@ -78,11 +78,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 		login_code.setOnCompleteListener(new VerificationCodeInputView.Listener() {
 			@Override
 			public void onComplete(String content) {
-				if(checkPhone() && checkCode()){
 					showProgressDialog("");
 					HttpRequest.loginByVerifyCode(login_phone.getText().toString(),login_code.getText().toString(),
 							REQUEST_CODE_LOGIN,new OnHttpResponseListenerImpl(LoginActivity.this));
-				}
 			}
 		});
 	}
@@ -99,18 +97,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 	public void onClick(View v) {
 		switch (v.getId()){
 			case R.id.login_message:
-				sendVerifyCode();
-				login_phone_num.setVisibility(View.GONE);
-				login_ver_code.setVisibility(View.VISIBLE);
+				if(sendVerifyCode()){
+					login_phone_num.setVisibility(View.GONE);
+					login_ver_code.setVisibility(View.VISIBLE);
+					login_ver_code.requestFocus();
+				}
 				break;
 		}
 	}
 
-	private void sendVerifyCode(){
+	private boolean sendVerifyCode(){
 		if(checkPhone()){
 			HttpRequest.sendVerifyCode(login_phone.getText().toString(),REQUEST_CODE_CODE,new OnHttpResponseListenerImpl(this));
 			count.start();
+			return true;
 		}
+		return false;
 	}
 
 	@Override
@@ -129,22 +131,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 	private boolean  checkPhone(){
 		String phone = login_phone.getText().toString();
 		if(StringUtil.isEmpty(phone,true)) {
-			showShortToast("Mobile phone number cannot be empty");
+			showShortToast("手机号不能为空");
 			return false;
-		}else if(phone.length() !=10){
-			showShortToast("The mobile phone number must be 10 digits");
-			return false;
-		}
-		return true;
-	}
-
-	private boolean  checkCode(){
-		String phone = login_code.getText().toString();
-		if(StringUtil.isEmpty(phone,true)) {
-			showShortToast("Code cannot be empty");
-			return false;
-		}else if(phone.length() !=6){
-			showShortToast("The code number must be 6 digits");
+		}else if(phone.length() !=11){
+			showShortToast("请输入11位手机号");
 			return false;
 		}
 		return true;
@@ -155,19 +145,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 		dismissProgressDialog();
 		Log.d(TAG,resultData);
 		if(requestCode == REQUEST_CODE_CODE){
-			showShortToast("Obtaining the verification code succeeded");
+			showShortToast("验证码已发送");
 		}else if(requestCode == REQUEST_CODE_LOGIN){
 			if(StringUtil.isEmpty(resultData)){
-				showShortToast("Login failed");
+				showShortToast("登陆失败");
 				return;
 			}
 			User user = GsonUtil.GsonToBean(resultData,User.class);
 			if(user==null){
-				showShortToast("Login failed");
+				showShortToast("登陆失败");
 				return;
 			}
 			MApplication.getInstance().saveCurrentUser(user);
-			showShortToast("Login successful");
+			showShortToast("登陆成功");
 			finish();
 		}
 	}

@@ -68,6 +68,7 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 		login_phone.addTextChangedListener(this);
 		login_code.addTextChangedListener(this);
 		login_login.setOnClickListener(this);
+		findView(R.id.login_tologin,this);
 	}
 
 	@Override
@@ -87,9 +88,12 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 			case R.id.login_login:
 				if(checkPhone() && checkCode()){
 					showProgressDialog("");
-					HttpRequest.loginByVerifyCode(login_phone.getText().toString(),login_code.getText().toString(),
+					HttpRequest.bindMobile(login_phone.getText().toString(),login_code.getText().toString(),
 							REQUEST_CODE_LOGIN,new OnHttpResponseListenerImpl(this));
 				}
+				break;
+			case R.id.login_tologin:
+				toActivity(LoginActivity.createIntent(this));
 				break;
 		}
 	}
@@ -104,10 +108,10 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 	private boolean  checkPhone(){
 		String phone = login_phone.getText().toString();
 		if(StringUtil.isEmpty(phone,true)) {
-			showShortToast("Mobile phone number cannot be empty");
+			showShortToast("手机号不能为空");
 			return false;
-		}else if(phone.length() !=10){
-			showShortToast("The mobile phone number must be 10 digits");
+		}else if(phone.length() !=11){
+			showShortToast("请输入11位手机号");
 			return false;
 		}
 		return true;

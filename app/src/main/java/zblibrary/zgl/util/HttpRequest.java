@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.model.RequestOrderInfo;
 import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.manager.HttpManager;
@@ -27,8 +28,8 @@ public class HttpRequest {
 	public static final String GOODS_ID = "goodsId";
 	public static final String LOOT_ID = "lootId";
 	public static final String LOOT_PLAN_ID = "lootPlanId";
-	public static final String MOBILE = "mobile";
-	public static final String CODE = "code";
+	public static final String MOBILE = "mobileNo";
+	public static final String CODE = "verifyCode";
 	public static final String DEVICETYPE = "deviceType";
 	public static final String DEVICEINFO = "deviceInfo";
 
@@ -154,9 +155,21 @@ public class HttpRequest {
 		Map<String, Object> request = new HashMap<>();
 		request.put(MOBILE, mobile);
 		request.put(CODE, code);
-		request.put(DEVICETYPE, 1);
-		request.put(DEVICEINFO, android.os.Build.MODEL);
-		HttpManager.getInstance().post(request, URL_BASE + "/user/loginByVerifyCode",true, requestCode, listener);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/loginByMobile",true, requestCode, listener);
+	}
+
+
+	/**绑定
+	 * @param mobile
+	 * @param code
+	 * @param listener
+	 */
+	public static void bindMobile(final String mobile, final String code,
+										 final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put(MOBILE, mobile);
+		request.put(CODE, code);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/bindMobile",true, requestCode, listener);
 	}
 
 	/**发送验证码
@@ -166,7 +179,7 @@ public class HttpRequest {
 	public static void sendVerifyCode(final String mobileNo, final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put("mobileNo", mobileNo);
-		HttpManager.getInstance().get(request, URL_BASE + "/user/sendVerifyCode", requestCode, listener);
+		HttpManager.getInstance().get(request, URL_BASE + "/api/sendVerifyCode", requestCode, listener);
 	}
 
 	/**设备id登录
@@ -184,6 +197,30 @@ public class HttpRequest {
 	public static void getUploadToken(final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		HttpManager.getInstance().get(request, URL_BASE + "/user/getUploadToken",requestCode, listener);
+	}
+
+	/**取消收藏
+	 */
+	public static void getFavCancel(final long id,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put("id", id);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/vedio/fav/cancel",true,requestCode, listener);
+	}
+
+	/**添加藏
+	 */
+	public static void getFav(final long id,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put("id", id);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/vedio/fav",true,requestCode, listener);
+	}
+
+	/**添加播放记录
+	 */
+	public static void getPlay(final long id,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put("id", id);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/vedio/play",true,requestCode, listener);
 	}
 
 
@@ -207,23 +244,24 @@ public class HttpRequest {
 		HttpManager.getInstance().get(request, URL_BASE + "/promotion/customize/USER_HEADER_ICON/list", requestCode, listener);
 	}
 
-	/**获取帮助信息
-	 * @param requestCode
-	 * @param listener
+	/**收藏记录
 	 */
-	public static void getHelpInfoList(final int requestCode, final OnHttpResponseListener listener) {
-		Map<String, Object> request = new HashMap<>();
-		HttpManager.getInstance().get(request, URL_BASE + "/promotion/customize/HELP_INFO/list", requestCode, listener);
-	}
-
-
-	/**订单列表
-	 */
-	public static void getLootPlanWinList(int pageNo, final int requestCode, final OnHttpResponseListener listener) {
+	public static void getMyfav(final int pageNo,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put(PAGE_NUM, pageNo);
 		request.put(PAGE_SiZE, 10);
-		HttpManager.getInstance().get(request, URL_BASE + "/loot/plan/win/list", requestCode, listener);
+		request.put("userId", MApplication.getInstance().getCurrentUserId());
+		HttpManager.getInstance().post(request, URL_BASE + "/api/user/getMyfav", true,requestCode, listener);
+	}
+
+	/**播放记录
+	 */
+	public static void getMyplay(final int pageNo,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put(PAGE_NUM, pageNo);
+		request.put(PAGE_SiZE, 10);
+		request.put("userId", MApplication.getInstance().getCurrentUserId());
+		HttpManager.getInstance().post(request, URL_BASE + "/api/user/getMyplay", true,requestCode, listener);
 	}
 
 

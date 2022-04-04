@@ -49,6 +49,9 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     public static final int REQUEST_CODE_DES = 10001;
     private static final int REQUEST_MALL_REFRESH = 10002;
     private static final int REQUEST_MALL_LIKE = 10003;
+    private static final int REQUEST_PLAY_RECORD = 10004;
+    private static final int REQUEST_ADD_FAV = 10005;
+    private static final int REQUEST_CANCLE_FAV = 10006;
     private StandardGSYVideoPlayer videoPlayer;
     private long videoId = 0;
     private TextView product_details_name,product_details_price,product_details_jianjie,play_video_name
@@ -57,7 +60,7 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     private OrientationUtils orientationUtils;
     private FlowLayout msearch_history;
     private LinearLayout play_video_tflx,play_video_cnxh;
-    private ImageView play_video_head;
+    private ImageView play_video_head,play_video_like;
     private EmptyRecyclerView play_video_recomm;
     private ActorRecommendAdapter actorRecommendAdapter;
     public static Intent createIntent(Context context, long productId) {
@@ -131,6 +134,8 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
         }
         //同分类下
         HttpRequest.getSearch(1,4,productDes.catalogSecondLevelId,"",REQUEST_MALL_REFRESH, new OnHttpResponseListenerImpl(this));
+        //播放记录
+        HttpRequest.getPlay(videoId,REQUEST_PLAY_RECORD, new OnHttpResponseListenerImpl(this));
     }
 
     @Override
@@ -138,7 +143,7 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
         findView(R.id.play_video_back,this);
         findView(R.id.play_video_share,this);
         findView(R.id.play_video_down,this);
-        findView(R.id.play_video_like,this);
+        play_video_like = findView(R.id.play_video_like,this);
     }
 
     @Override
@@ -164,6 +169,15 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
                 showShortToast("已加入下载队列");
                 break;
             case R.id.play_video_like:
+
+                if(play_video_like.getTag()!=null ){
+                    boolean tag = (boolean) play_video_like.getTag();
+                    if(tag){
+                        HttpRequest.getFavCancel(videoId,REQUEST_CANCLE_FAV, new OnHttpResponseListenerImpl(this));
+                        return;
+                    }
+                }
+                HttpRequest.getFav(videoId,REQUEST_ADD_FAV, new OnHttpResponseListenerImpl(this));
                 break;
             default:
                 break;
@@ -237,6 +251,15 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
                 play_video_cnxh.addView(receivingAddressView1.createView());
                 receivingAddressView1.bindView(secondCategory);
                 break;
+            case REQUEST_ADD_FAV:
+                play_video_like.setImageResource(R.mipmap.collection_s);
+                play_video_like.setTag(true);
+                break;
+            case REQUEST_CANCLE_FAV:
+                play_video_like.setImageResource(R.mipmap.collection);
+                play_video_like.setTag(false);
+                break;
+
         }
     }
 

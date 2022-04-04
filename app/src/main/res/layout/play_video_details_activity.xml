@@ -241,10 +241,9 @@
             android:id="@+id/play_video_like"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="17dp"
-            android:src="@mipmap/collection"
             android:layout_alignParentRight="true"
-            />
+            android:padding="17dp"
+            android:src="@mipmap/collection" />
 
     </RelativeLayout>
 </LinearLayout>

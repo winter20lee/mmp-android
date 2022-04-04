@@ -14,6 +14,8 @@ import java.util.List;
 import zblibrary.zgl.R;
 import zblibrary.zgl.adapter.WatchHistoryAdapter;
 import zblibrary.zgl.model.Customize;
+import zblibrary.zgl.model.MyLike;
+import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseHttpListActivity;
 import zuo.biao.library.interfaces.AdapterCallBack;
@@ -24,9 +26,9 @@ import zuo.biao.library.util.GsonUtil;
 /**
  * 我的收藏
  */
-public class MyLikeActivity extends BaseHttpListActivity<Customize, ListView, WatchHistoryAdapter> implements OnBottomDragListener {
+public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, ListView, WatchHistoryAdapter> implements OnBottomDragListener {
 
-	private List<Customize> messageDataList;
+	private List<MyLike> messageDataList;
 	public static Intent createIntent(Context context) {
 		return new Intent(context, MyLikeActivity.class);
 	}
@@ -49,7 +51,7 @@ public class MyLikeActivity extends BaseHttpListActivity<Customize, ListView, Wa
 	}
 
 	@Override
-	public void setList(final List<Customize> list) {
+	public void setList(final List<MyLike.ResultBean> list) {
 		setList(new AdapterCallBack<WatchHistoryAdapter>() {
 
 			@Override
@@ -72,24 +74,30 @@ public class MyLikeActivity extends BaseHttpListActivity<Customize, ListView, Wa
 
 	@Override
 	public void getListAsync(final int page) {
-		HttpRequest.getHelpInfoList(page,this);
+		HttpRequest.getMyfav(page,-page,this);
 		if(page==1){
 			onStopLoadMore(true);
 		}
 	}
 
 	@Override
-	public List<Customize> parseArray(String json) {
+	public List<MyLike.ResultBean> parseArray(String json) {
+		MyLike myLike ;
 		try {
-			messageDataList = GsonUtil.jsonToList(GsonUtil.GsonData(json), Customize.class);
-			messageDataList.get(messageDataList.size()-1).isEnd = true;
+			myLike = GsonUtil.GsonToBean(GsonUtil.GsonData(json), MyLike.class);
 		} catch (Exception e) {
-			e.printStackTrace();
-			messageDataList = new ArrayList<>();
+			return new ArrayList<>();
 		}
-		onStopRefresh();
-		onStopLoadMore(false);
-		return messageDataList;
+		if(myLike ==null || myLike.result == null ){
+			return new ArrayList<>();
+		}
+
+		if(myLike.totalPage > myLike.pageNo){
+			onStopLoadMore(true);
+		}else{
+			onStopLoadMore(false);
+		}
+		return myLike.result;
 	}
 
 	@Override
