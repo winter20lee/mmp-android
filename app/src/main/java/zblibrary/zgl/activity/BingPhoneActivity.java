@@ -45,7 +45,6 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 		initView();
 		initData();
 		initEvent();
-		MApplication.getInstance().logout();
 	}
 
 
@@ -136,17 +135,7 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 		if(requestCode == REQUEST_CODE_CODE){
 			showShortToast("Obtaining the verification code succeeded");
 		}else if(requestCode == REQUEST_CODE_LOGIN){
-			if(StringUtil.isEmpty(resultData)){
-				showShortToast("Login failed");
-				return;
-			}
-			User user = GsonUtil.GsonToBean(resultData,User.class);
-			if(user==null){
-				showShortToast("Login failed");
-				return;
-			}
-			MApplication.getInstance().saveCurrentUser(user);
-			showShortToast("Login successful");
+			toActivity(LoginActivity.createIntent(context));
 			finish();
 		}
 	}

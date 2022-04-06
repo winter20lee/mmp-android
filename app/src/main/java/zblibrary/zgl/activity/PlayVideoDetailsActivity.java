@@ -3,6 +3,7 @@ package zblibrary.zgl.activity;
 import zblibrary.zgl.adapter.ActorRecommendAdapter;
 import zblibrary.zgl.fragment.MyDownFilesFragment;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
+import zblibrary.zgl.manager.DataManager;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.SecondCategory;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.liulishuo.filedownloader.util.FileDownloadUtils;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -63,10 +65,10 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     private ImageView play_video_head,play_video_like;
     private EmptyRecyclerView play_video_recomm;
     private ActorRecommendAdapter actorRecommendAdapter;
+    private String localPath;
     public static Intent createIntent(Context context, long productId) {
         return new Intent(context, PlayVideoDetailsActivity.class).putExtra(INTENT_ID, productId);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,12 +187,22 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     }
 
     private void initPlayer(){
-        String source1 = productDes.videoUrl;
-        videoPlayer.setUp(source1, true, productDes.name);
+        String source;
+        if(StringUtil.isNotEmpty(productDes.videoUrl,true)){
+           String localSource =  FileDownloadUtils.getDefaultSaveFilePath(productDes.videoUrl);
+            if(StringUtil.isFilePathExist(localSource)){
+                source = localSource;
+            }else{
+                source = productDes.videoUrl;
+            }
+        }else{
+            source = productDes.videoUrl;
+        }
+        videoPlayer.setUp(source, true, productDes.name);
         //增加封面
         ImageView imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setImageResource(R.mipmap.defult_head);
+        GlideUtil.load(this,productDes.coverUrl,imageView);
         videoPlayer.setThumbImageView(imageView);
         //增加title
         videoPlayer.getTitleTextView().setVisibility(View.VISIBLE);
@@ -212,8 +224,10 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
 
         ///不需要屏幕旋转
         videoPlayer.setNeedOrientationUtils(false);
-
-        videoPlayer.startPlayLogic();
+        boolean isAutoPlay = DataManager.getInstance().getAutoPlayState();
+        if(isAutoPlay){
+            videoPlayer.startPlayLogic();
+        }
     }
 
     @Override

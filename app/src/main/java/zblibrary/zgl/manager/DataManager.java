@@ -37,7 +37,7 @@ public class DataManager {
 
 	private String PATH_USER = "PATH_USER";
 	public final String KEY_USER = "KEY_USER";
-	public final String KEY_SEARCH_HISTORY = "KEY_SEARCH_HISTORY";
+	public final String KEY_AUTO_PLAY = "KEY_AUTO_PLAY";
 
 
 	/**获取当前用户id
@@ -97,6 +97,28 @@ public class DataManager {
 		sdf.edit().remove(KEY_USER).commit();
 	}
 
+	/**保存自动播放
+	 */
+	public void saveAutoPlayState(boolean  isAutoPlay) {
+		SharedPreferences sdf = context.getSharedPreferences(PATH_USER, Context.MODE_PRIVATE);
+		if (sdf == null) {
+			Log.e(TAG, "saveUser sdf == null || user == null >> return;");
+			return;
+		}
+		sdf.edit().remove(KEY_AUTO_PLAY).putBoolean(KEY_AUTO_PLAY, isAutoPlay).commit();
+	}
+
+	/**获取自动播放
+	 */
+	public boolean getAutoPlayState() {
+		SharedPreferences sdf = context.getSharedPreferences(PATH_USER, Context.MODE_PRIVATE);
+		if (sdf == null) {
+			Log.e(TAG, "saveUser sdf == null || user == null >> return;");
+			return true;
+		}
+		return sdf.getBoolean(KEY_AUTO_PLAY, true);
+	}
+
 //	/**设置当前用户手机号
 //	 * @param phone
 //	 */
@@ -119,38 +141,5 @@ public class DataManager {
 		}
 		user.userInfo.nickName = name;
 		saveUser(user);
-	}
-
-	public void saveSearchHistory(List<String> searchHistory){
-		SharedPreferences sdf = context.getSharedPreferences(PATH_USER, Context.MODE_PRIVATE);
-		if (sdf == null) {
-			Log.e(TAG, "save searchHistory sdf == null  >> return;");
-			return;
-		}
-		if (searchHistory == null) {
-			Log.w(TAG, "save searchHistory searchHistory == null >>  searchHistory = new ArrayList();");
-			searchHistory = new ArrayList<>();
-		}
-		SharedPreferences.Editor editor = sdf.edit();
-		String Json = GsonUtil.GsonString(searchHistory);
-		editor.putString(KEY_SEARCH_HISTORY, Json);
-		editor.commit();
-	}
-
-	public List<String> getSearchHistory(){
-		SharedPreferences sdf = context.getSharedPreferences(PATH_USER, Context.MODE_PRIVATE);
-		if (sdf == null) {
-			Log.e(TAG, "get sdf == null >>  return;");
-			return new ArrayList<>();
-		}
-		String json = sdf.getString(KEY_SEARCH_HISTORY, null);
-		if(StringUtil.isEmpty(json)){
-			return new ArrayList<>();
-		}
-		List<String> list  = GsonUtil.jsonToList(json,String.class);
-		if(list==null){
-			return  new ArrayList<>();
-		}
-		return list;
 	}
 }

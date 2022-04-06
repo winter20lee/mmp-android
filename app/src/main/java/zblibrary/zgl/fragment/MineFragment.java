@@ -26,7 +26,7 @@ import zuo.biao.library.util.StringUtil;
 
 /**我的
  */
-public class MineFragment extends BaseFragment implements OnClickListener, OnDialogButtonClickListener , OnHttpResponseListener {
+public class MineFragment extends BaseFragment implements OnClickListener, OnDialogButtonClickListener {
 	private ImageView mine_head;
 	private TextView mine_name,mine_phone,mine_down_state;
 	private final int REQUEST = 12001;
@@ -47,8 +47,6 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 	@Override
 	public void onResume() {
 		super.onResume();
-		//积分
-		HttpRequest.getUserPointsRules(REQUEST, new OnHttpResponseListenerImpl(this));
 		initData();
 	}
 
@@ -66,7 +64,11 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 		mine_head.setImageResource(R.mipmap.defult_head);
 		mine_down_state.setText("正在下载（"+ MyDownFilesFragment.TasksManager.getImpl().getDowningCounts()+"）/ " +
 				"已下载（"+ MyDownFilesFragment.TasksManager.getImpl().getDownedCounts()+"）");
-
+		if(MApplication.getInstance().isBindUserPhone()){
+			mine_phone.setVisibility(View.INVISIBLE);
+		}else{
+			mine_phone.setVisibility(View.VISIBLE);
+		}
 	}
 
 
@@ -135,21 +137,4 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 				break;
 		}
 	}
-
-	@Override
-	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
-		switch (requestCode){
-			case REQUEST:
-				if(StringUtil.isNotEmpty(resultData,true)){
-
-				}
-				break;
-		}
-	}
-
-	@Override
-	public void onHttpError(int requestCode, Exception e, String message) {
-
-	}
-
 }

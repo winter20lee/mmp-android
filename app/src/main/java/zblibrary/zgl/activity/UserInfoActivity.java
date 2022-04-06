@@ -95,7 +95,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 			takePhoto = getTakePhoto();
 		}
 		user_info_userid.setText(MApplication.getInstance().getCurrentUserNickName());
-		user_info_change_nickname.setText(MApplication.getInstance().getCurrentUserNickName());
+		user_info_change_nickname.setText(MApplication.getInstance().getCurrentUserSex());
 		user_info_phonenum.setText(MApplication.getInstance().getCurrentUserBirthday());
 		user_info_jianjie.setText(MApplication.getInstance().getCurrentUserPersonal());
 		mUserInfoHeadpic.setImageResource(R.mipmap.defult_head);

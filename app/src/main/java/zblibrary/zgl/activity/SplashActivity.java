@@ -8,10 +8,12 @@ import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.AppInitInfo;
 import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
+import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.util.AESUtil;
 import zuo.biao.library.util.DeviceIdUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.MD5Utils;
+import zuo.biao.library.util.StringUtil;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,7 +29,9 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		HttpRequest.getAppInitInfo(APP_INIT_CODE,new OnHttpResponseListenerImpl(this) );
+
 		new Handler().postDelayed(new Runnable() {
 
 			@Override
@@ -51,7 +55,9 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 			case APP_INIT_CODE:
 				AppInitInfo appInitInfo = GsonUtil.GsonToBean(resultData,AppInitInfo.class);
 				MApplication.getInstance().setAppInitInfo(appInitInfo);
-				HttpRequest.loginByDeviceId(getDeviceToken(),DEVICE_LOGIN_CODE,new OnHttpResponseListenerImpl(this) );
+				if(StringUtil.isEmpty(HttpManager.getInstance().getToken())){
+					HttpRequest.loginByDeviceId(getDeviceToken(),DEVICE_LOGIN_CODE,new OnHttpResponseListenerImpl(this) );
+				}
 				break;
 			case DEVICE_LOGIN_CODE:
 				User user = GsonUtil.GsonToBean(resultData,User.class);

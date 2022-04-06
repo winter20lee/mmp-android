@@ -135,8 +135,8 @@ public class HttpManager {
 									.addHeader(VERIFYTOKEN,getVerifyToken())
 									.addHeader(TOKEN,token)
 									.addHeader(AC,"huawei")
-									.addHeader(OS,"android")
-									.addHeader(PT,"huawei")
+									.addHeader(OS,"Android")
+									.addHeader(PT,DeviceIdUtil.getDeviceBrand()+" "+DeviceIdUtil.getSystemModel())
 									.url(sb.toString())
 									.build()
 					);
@@ -259,8 +259,8 @@ public class HttpManager {
 									.addHeader(VERIFYTOKEN,getVerifyToken())
 									.addHeader(TOKEN,token)
 									.addHeader(AC,"huawei")
-									.addHeader(OS,"android")
-									.addHeader(PT,"huawei")
+									.addHeader(OS,"Android")
+									.addHeader(PT,DeviceIdUtil.getDeviceBrand()+" "+DeviceIdUtil.getSystemModel())
 									.post(requestBody)
 									.build()
 					);
@@ -422,7 +422,7 @@ public class HttpManager {
 		return response.isSuccessful() ? response.body().string() : null;
 	}
 
-	private String getToken() {
+	public String getToken() {
 		SharedPreferences sdf = context.getSharedPreferences("PATH_USER", Context.MODE_PRIVATE);
 		if (sdf == null) {
 			Log.e(TAG, "get sdf == null >>  return;");

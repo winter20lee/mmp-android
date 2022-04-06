@@ -38,13 +38,19 @@ public class MApplication extends BaseApplication {
 		Log.d(TAG, "getCurrentUserId  currentUserId = " + (currentUser == null ? "null" : currentUser.userInfo.userId));
 		return currentUser == null ? "" : currentUser.userInfo.userId;
 	}
-//	/**获取当前用户phone
-//	 * @return
-//	 */
-//	public String getCurrentUserPhone() {
-//		currentUser = getCurrentUser();
-//		return currentUser == null ? null : currentUser.userInfo.mobile;
-//	}
+	/**获取当前用户phone
+	 * @return
+	 */
+	public boolean isBindUserPhone() {
+		currentUser = getCurrentUser();
+		if(currentUser == null){
+			return false;
+		}
+		if(currentUser.userInfo.isBindPhone==1){
+			return true;
+		}
+		return false;
+	}
 
 //	/**获取当前用户头像
 //	 * @return

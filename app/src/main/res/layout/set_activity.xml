@@ -87,9 +87,11 @@
             android:layout_height="wrap_content" />
 
         <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@mipmap/first_more"/>
+            android:id="@+id/set_autoplay_iv"
+            android:layout_width="40dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/auto_play_open"/>
+
     </LinearLayout>
     <View
         android:layout_width="match_parent"

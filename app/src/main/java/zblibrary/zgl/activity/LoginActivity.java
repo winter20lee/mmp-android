@@ -52,7 +52,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 		initView();
 		initData();
 		initEvent();
-		MApplication.getInstance().logout();
 	}
 
 

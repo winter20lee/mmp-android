@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Objects;
 import zblibrary.zgl.R;
+import zblibrary.zgl.manager.DataManager;
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.util.CleanDataUtils;
@@ -19,6 +22,7 @@ import zuo.biao.library.util.CleanDataUtils;
  */
 public class SetActivity extends BaseActivity implements OnBottomDragListener, View.OnClickListener {
     private TextView set_clear_text;
+    private ImageView set_autoplay_iv;
     public static Intent createIntent(Context context) {
         return new Intent(context, SetActivity.class);
     }
@@ -35,6 +39,7 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
     @Override
     public void initView() {//必须调用
         set_clear_text = findView(R.id.set_clear_text);
+        set_autoplay_iv = findView(R.id.set_autoplay_iv);
     }
 
     @Override
@@ -45,6 +50,8 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
         } catch (Exception e) {
             e.printStackTrace();
         }
+        boolean isAutoPlay = DataManager.getInstance().getAutoPlayState();
+        set_autoplay_iv.setImageResource(isAutoPlay == true ? R.mipmap.auto_play_open:R.mipmap.auto_play_close);
     }
 
 
@@ -67,6 +74,14 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
                 toActivity(BingPhoneActivity.createIntent(this));
                 break;
             case R.id.set_autoplay:
+                boolean isAutoPlay = DataManager.getInstance().getAutoPlayState();
+                if(isAutoPlay){
+                    DataManager.getInstance().saveAutoPlayState(false);
+                    set_autoplay_iv.setImageResource(R.mipmap.auto_play_close);
+                }else{
+                    DataManager.getInstance().saveAutoPlayState(true);
+                    set_autoplay_iv.setImageResource(R.mipmap.auto_play_open);
+                }
                 break;
             case R.id.set_push:
                 break;
