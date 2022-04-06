@@ -22,15 +22,15 @@
             />
 
         <TextView
+            android:id="@+id/user_info_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="保存"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:textColor="#FF3462"
-            android:textSize="13sp"
             android:layout_marginRight="12dp"
-            />
+            android:text="保存"
+            android:textColor="#FF3462"
+            android:textSize="13sp" />
 
     </RelativeLayout>
     <LinearLayout
@@ -92,8 +92,8 @@
                 android:id="@+id/user_info_userid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:textColor="#323038"
                 android:textSize="13sp" />
         </RelativeLayout>
@@ -189,8 +189,8 @@
                 android:id="@+id/user_info_jianjie"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginTop="40dp"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="40dp"
                 android:gravity="left"
                 android:hint="简单介绍下自己，300字以内"
                 android:textColor="#323038"

@@ -71,6 +71,33 @@ public class MApplication extends BaseApplication {
 		return currentUser == null ? null : currentUser.userInfo.nickName;
 	}
 
+	/**获取当前用户昵称
+	 * @return
+	 */
+	public void setCurrentUserNickName(String nickName) {
+		currentUser = getCurrentUser();
+		currentUser.userInfo.nickName = nickName;
+		saveCurrentUser(currentUser);
+	}
+
+
+	/**获取当前用户简介
+	 * @return
+	 */
+	public String getCurrentUserPersonal() {
+		currentUser = getCurrentUser();
+		return currentUser == null ? null : currentUser.userInfo.personal;
+	}
+
+	/**获取当前用户简介
+	 * @return
+	 */
+	public void setCurrentUserPersonal(String personal) {
+		currentUser = getCurrentUser();
+		currentUser.userInfo.personal = personal;
+		saveCurrentUser(currentUser);
+	}
+
 
 	/**获取当前用户生日
 	 * @return
@@ -78,6 +105,41 @@ public class MApplication extends BaseApplication {
 	public String getCurrentUserBirthday() {
 		currentUser = getCurrentUser();
 		return currentUser == null ? null : currentUser.userInfo.birthday;
+	}
+
+	/**获取当前用户性别
+	 * @return
+	 */
+	public String getCurrentUserSex() {
+		currentUser = getCurrentUser();
+		if(currentUser != null && currentUser.userInfo.gender==2){
+			return "女";
+		}
+		return "男";
+	}
+
+
+	/**获取当前用户性别
+	 * @return
+	 */
+	public void setCurrentUserSex(String gender) {
+		currentUser = getCurrentUser();
+		if(gender.equals("女")){
+			currentUser.userInfo.gender = 2;
+		}else {
+			currentUser.userInfo.gender = 1;
+		}
+		saveCurrentUser(currentUser);
+	}
+
+
+	/**获取当前用户生日
+	 * @return
+	 */
+	public void setCurrentUserBirthday(String birthday) {
+		currentUser = getCurrentUser();
+		currentUser.userInfo.birthday = birthday;
+		saveCurrentUser(currentUser);
 	}
 
 

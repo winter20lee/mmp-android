@@ -234,6 +234,16 @@ public class HttpRequest {
 		request.put("avatar", avatar);
 		HttpManager.getInstance().post(request, URL_BASE + "/user/updateUserAvatar", true,requestCode, listener);
 	}
+	/**修改用户信息
+	 */
+	public static void updateUserInfo(String nickName, String birthday,int gender,String personal,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put("nickName", nickName);
+		request.put("birthday", birthday);
+		request.put("gender", gender);
+		request.put("personal", personal);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/user/updateInfo", true,requestCode, listener);
+	}
 
 	/**获取头像列表
 	 * @param requestCode

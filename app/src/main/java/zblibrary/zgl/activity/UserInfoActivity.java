@@ -51,11 +51,12 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 	private static final int REQUEST_TOKEN = 50000;
 	private static final int REQUEST_UPLOAD = 50001;
 	private static final int REQUEST_DEFULT_HEAD = 50002;
+	private static final int REQUEST_INFO = 50003;
 	private String picturePath;
 	private ImageView mUserInfoHeadpic;
 	private TakePhoto takePhoto;
 	private File cameraFile;
-	private TextView user_info_change_nickname,user_info_userid,user_info_phonenum;
+	private TextView user_info_change_nickname,user_info_userid,user_info_phonenum,user_info_save,user_info_jianjie;
 	private ArrayList<Customize> bottomGrids = new ArrayList<>();
 	public static Intent createIntent(Context context) {
 		return new Intent(context, UserInfoActivity.class);
@@ -70,7 +71,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		initView();
 		initData();
 		initEvent();
-		HttpRequest.getUserDefultHeadList(REQUEST_DEFULT_HEAD,new OnHttpResponseListenerImpl(this));
+//		HttpRequest.getUserDefultHeadList(REQUEST_DEFULT_HEAD,new OnHttpResponseListenerImpl(this));
 	}
 
 	@Override
@@ -84,6 +85,8 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		user_info_change_nickname = findViewById(R.id.user_info_change_nickname);
 		user_info_userid = findViewById(R.id.user_info_userid);
 		user_info_phonenum = findViewById(R.id.user_info_phonenum);
+		user_info_save = findViewById(R.id.user_info_save);
+		user_info_jianjie = findViewById(R.id.user_info_jianjie);
 	}
 
 
@@ -91,15 +94,18 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		if(takePhoto==null){
 			takePhoto = getTakePhoto();
 		}
-		user_info_userid.setText(MApplication.getInstance().getCurrentUserId()+"");
+		user_info_userid.setText(MApplication.getInstance().getCurrentUserNickName());
 		user_info_change_nickname.setText(MApplication.getInstance().getCurrentUserNickName());
 		user_info_phonenum.setText(MApplication.getInstance().getCurrentUserBirthday());
+		user_info_jianjie.setText(MApplication.getInstance().getCurrentUserPersonal());
 		mUserInfoHeadpic.setImageResource(R.mipmap.defult_head);
 	}
 	public void initEvent() {//必须调用
 		findViewById(R.id.user_info_headpic).setOnClickListener(this);
 		user_info_change_nickname.setOnClickListener(this);
 		user_info_phonenum.setOnClickListener(this);
+		user_info_save.setOnClickListener(this);
+		user_info_jianjie.setOnClickListener(this);
 	}
 
 	@Override
@@ -123,6 +129,16 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 					}
 				});
 				itemDialog.show();
+				break;
+			case R.id.user_info_save:
+				int sex ;
+				if(user_info_change_nickname.getText().toString().equals("男")){
+					sex = 1;
+				}else{
+					sex = 2;
+				}
+				HttpRequest.updateUserInfo(user_info_userid.getText().toString(),user_info_phonenum.getText().toString(),sex,
+						user_info_jianjie.getText().toString(),REQUEST_INFO,new OnHttpResponseListenerImpl(UserInfoActivity.this));
 				break;
 		}
 	}
@@ -270,6 +286,14 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				break;
 			case REQUEST_DEFULT_HEAD:
 				bottomGrids = (ArrayList<Customize>) GsonUtil.jsonToList(resultData, Customize.class);
+				break;
+			case REQUEST_INFO:
+				CommonUtil.showShortToast(this,"提交成功");
+				MApplication.getInstance().setCurrentUserPersonal(user_info_jianjie.getText().toString());
+				MApplication.getInstance().setCurrentUserBirthday(user_info_phonenum.getText().toString());
+				MApplication.getInstance().setCurrentUserSex(user_info_change_nickname.getText().toString());
+				MApplication.getInstance().setCurrentUserNickName(user_info_userid.getText().toString());
+				finish();
 				break;
 		}
 	}
