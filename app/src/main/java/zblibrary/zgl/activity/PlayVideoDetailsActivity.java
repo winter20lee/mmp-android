@@ -1,5 +1,7 @@
 package zblibrary.zgl.activity;
 
+import static zuo.biao.library.interfaces.Presenter.INTENT_ID;
+
 import zblibrary.zgl.adapter.ActorRecommendAdapter;
 import zblibrary.zgl.fragment.MyDownFilesFragment;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
@@ -15,6 +17,7 @@ import zuo.biao.library.base.BaseActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +30,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
+import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
+import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
@@ -39,13 +44,14 @@ import zblibrary.zgl.R;
 import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.ui.EmptyRecyclerView;
 import zuo.biao.library.ui.FlowLayout;
+import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
 
 /**视频详情
  */
-public class PlayVideoDetailsActivity extends BaseActivity implements OnClickListener, OnBottomDragListener
+public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer> implements OnClickListener, OnBottomDragListener
         , OnHttpResponseListener {
     public static final String TAG = "ProductDetailsActivity";
     public static final int REQUEST_CODE_DES = 10001;
@@ -59,13 +65,11 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     private TextView product_details_name,product_details_price,product_details_jianjie,play_video_name
             ,play_video_birthday,play_video_shengao,play_video_sanwei;
     private PlayVideoDes productDes;
-    private OrientationUtils orientationUtils;
     private FlowLayout msearch_history;
     private LinearLayout play_video_tflx,play_video_cnxh;
     private ImageView play_video_head,play_video_like;
     private EmptyRecyclerView play_video_recomm;
     private ActorRecommendAdapter actorRecommendAdapter;
-    private String localPath;
     public static Intent createIntent(Context context, long productId) {
         return new Intent(context, PlayVideoDetailsActivity.class).putExtra(INTENT_ID, productId);
     }
@@ -73,11 +77,11 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.play_video_details_activity, this);
-        intent = getIntent();
+        setContentView(R.layout.play_video_details_activity);
+        Intent intent = getIntent();
         videoId = intent.getLongExtra(INTENT_ID, videoId);
         if (videoId == 0) {
-            finishWithError("视频不存在！");
+            CommonUtil.showShortToast(this,"视频不存在！");
             return;
         }
         initView();
@@ -86,39 +90,42 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
         HttpRequest.getVideoDes(videoId,REQUEST_CODE_DES, new OnHttpResponseListenerImpl(this));
         //猜你喜欢
         HttpRequest.getRecommend(videoId,REQUEST_MALL_LIKE, new OnHttpResponseListenerImpl(this));
+
     }
 
-    @Override
     public void initView() {//必须调用
-        videoPlayer = findView(R.id.video_player);
-        product_details_name = findView(R.id.product_details_name);
-        product_details_price = findView(R.id.product_details_price);
-        product_details_jianjie = findView(R.id.product_details_jianjie);
-        msearch_history =  findView(R.id.msearch_history);
-        play_video_tflx = findView(R.id.play_video_tflx);
-        play_video_cnxh = findView(R.id.play_video_cnxh);
-        play_video_name = findView(R.id.play_video_name);
-        play_video_birthday = findView(R.id.play_video_birthday);
-        play_video_shengao = findView(R.id.play_video_shengao);
-        play_video_sanwei = findView(R.id.play_video_sanwei);
-        play_video_head = findView(R.id.play_video_head);
-        play_video_recomm = findView(R.id.play_video_recomm);
+        videoPlayer = findViewById(R.id.video_player);
+        product_details_name = findViewById(R.id.product_details_name);
+        product_details_price = findViewById(R.id.product_details_price);
+        product_details_jianjie = findViewById(R.id.product_details_jianjie);
+        msearch_history =  findViewById(R.id.msearch_history);
+        play_video_tflx = findViewById(R.id.play_video_tflx);
+        play_video_cnxh = findViewById(R.id.play_video_cnxh);
+        play_video_name = findViewById(R.id.play_video_name);
+        play_video_birthday = findViewById(R.id.play_video_birthday);
+        play_video_shengao = findViewById(R.id.play_video_shengao);
+        play_video_sanwei = findViewById(R.id.play_video_sanwei);
+        play_video_head = findViewById(R.id.play_video_head);
+        play_video_recomm = findViewById(R.id.play_video_recomm);
 
 
     }
 
-    @Override
     public void initData() {//必须调用
         if(productDes==null)
             return;
-        initPlayer();
+        initVideoBuilderMode();
+        boolean isAutoPlay = DataManager.getInstance().getAutoPlayState();
+        if(isAutoPlay){
+            videoPlayer.startPlayLogic();
+        }
         product_details_name.setText(productDes.name);
         product_details_jianjie.setText(productDes.tag);
         product_details_price.setText(productDes.playCnt+"次播放");
 
         if(productDes.videoActor!=null){
-            findView(R.id.product_details_actor).setVisibility(View.VISIBLE);
-            LayoutInflater mInflater = LayoutInflater.from(context);
+            findViewById(R.id.product_details_actor).setVisibility(View.VISIBLE);
+            LayoutInflater mInflater = LayoutInflater.from(this);
             TextView tv = (TextView) mInflater.inflate(R.layout.suosou_item,msearch_history, false);
             tv.setText(productDes.videoActor.name);
             msearch_history.addView(tv);
@@ -126,9 +133,9 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
             play_video_birthday.setText("生日："+productDes.videoActor.birthday);
             play_video_shengao.setText("身高："+productDes.videoActor.height);
             play_video_sanwei.setText("三维："+productDes.videoActor.bwh);
-            GlideUtil.load(context,productDes.videoActor.img,play_video_head);
+            GlideUtil.load(this,productDes.videoActor.img,play_video_head);
 
-            LinearLayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
             play_video_recomm.setLayoutManager(layoutManager);
             actorRecommendAdapter = new ActorRecommendAdapter(this);
             play_video_recomm.setAdapter(actorRecommendAdapter);
@@ -140,12 +147,11 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
         HttpRequest.getPlay(videoId,REQUEST_PLAY_RECORD, new OnHttpResponseListenerImpl(this));
     }
 
-    @Override
     public void initEvent() {//必须调用
-        findView(R.id.play_video_back,this);
-        findView(R.id.play_video_share,this);
-        findView(R.id.play_video_down,this);
-        play_video_like = findView(R.id.play_video_like,this);
+//        findViewById(R.id.play_video_back,this);
+//        findViewById(R.id.play_video_share,this);
+//        findViewById(R.id.play_video_down,this);
+//        play_video_like = findViewById(R.id.play_video_like,this);
     }
 
     @Override
@@ -168,7 +174,7 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
                 MyDownFilesFragment.TasksManager.getImpl().addTask(productDes.id,productDes.name,productDes.coverUrl,productDes.videoUrl);
 //                MyDownFilesFragment.TasksManager.getImpl().addTask("http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4");
 //                EventBus.getDefault().post(new RefreshDownEvent(true));
-                showShortToast("已加入下载队列");
+                CommonUtil.showShortToast(this,"已加入下载队列");
                 break;
             case R.id.play_video_like:
 
@@ -186,50 +192,6 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
         }
     }
 
-    private void initPlayer(){
-        String source;
-        if(StringUtil.isNotEmpty(productDes.videoUrl,true)){
-           String localSource =  FileDownloadUtils.getDefaultSaveFilePath(productDes.videoUrl);
-            if(StringUtil.isFilePathExist(localSource)){
-                source = localSource;
-            }else{
-                source = productDes.videoUrl;
-            }
-        }else{
-            source = productDes.videoUrl;
-        }
-        videoPlayer.setUp(source, true, productDes.name);
-        //增加封面
-        ImageView imageView = new ImageView(this);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        GlideUtil.load(this,productDes.coverUrl,imageView);
-        videoPlayer.setThumbImageView(imageView);
-        //增加title
-        videoPlayer.getTitleTextView().setVisibility(View.VISIBLE);
-        //设置返回键
-        videoPlayer.getBackButton().setVisibility(View.VISIBLE);
-        //设置旋转
-        orientationUtils = new OrientationUtils(this, videoPlayer);
-        //设置全屏按键功能,这是使用的是选择屏幕，而不是全屏
-        videoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                videoPlayer.startWindowFullscreen(context, false, true);
-            }
-        });
-        //是否可以滑动调整
-        videoPlayer.setIsTouchWiget(true);
-        //设置返回按键功能
-        videoPlayer.getBackButton().setOnClickListener(v -> onBackPressed());
-
-        ///不需要屏幕旋转
-        videoPlayer.setNeedOrientationUtils(false);
-        boolean isAutoPlay = DataManager.getInstance().getAutoPlayState();
-        if(isAutoPlay){
-            videoPlayer.startPlayLogic();
-        }
-    }
-
     @Override
     public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
         switch (requestCode){
@@ -244,7 +206,7 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
                 SecondCategory.VideoCatalogBean catalogBean = new SecondCategory.VideoCatalogBean();
                 catalogBean.name = "同分类下";
                 secondCategory.videoCatalog = catalogBean;
-                FirstCategoryView receivingAddressView = new FirstCategoryView(context,play_video_tflx,false);
+                FirstCategoryView receivingAddressView = new FirstCategoryView(this,play_video_tflx,false);
                 play_video_tflx.addView(receivingAddressView.createView());
                 receivingAddressView.bindView(secondCategory);
                 break;
@@ -261,7 +223,7 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
                 catalogBean = new SecondCategory.VideoCatalogBean();
                 catalogBean.name = "猜你喜欢";
                 secondCategory.videoCatalog = catalogBean;
-                FirstCategoryView receivingAddressView1 = new FirstCategoryView(context,play_video_cnxh);
+                FirstCategoryView receivingAddressView1 = new FirstCategoryView(this,play_video_cnxh);
                 play_video_cnxh.addView(receivingAddressView1.createView());
                 receivingAddressView1.bindView(secondCategory);
                 break;
@@ -303,12 +265,56 @@ public class PlayVideoDetailsActivity extends BaseActivity implements OnClickLis
     }
 
     @Override
+    public StandardGSYVideoPlayer getGSYVideoPlayer() {
+        return videoPlayer;
+    }
+
+    @Override
+    public GSYVideoOptionBuilder getGSYVideoOptionBuilder() {
+        //增加封面
+        ImageView imageView = new ImageView(this);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        GlideUtil.load(this,productDes.coverUrl,imageView);
+        String source;
+        if(StringUtil.isNotEmpty(productDes.videoUrl,true)){
+            String localSource =  FileDownloadUtils.getDefaultSaveFilePath(productDes.videoUrl);
+            if(StringUtil.isFilePathExist(localSource)){
+                source = localSource;
+            }else{
+                source = productDes.videoUrl;
+            }
+        }else{
+            source = productDes.videoUrl;
+        }
+        return new GSYVideoOptionBuilder()
+                .setThumbImageView(imageView)
+                .setUrl(source)
+                .setCacheWithPlay(true)
+                .setVideoTitle(productDes.name)
+                .setIsTouchWiget(true)
+                //.setAutoFullWithSize(true)
+                .setRotateViewAuto(false)
+                .setLockLand(false)
+                .setShowFullAnimation(false)//打开动画
+                .setNeedLockFull(true)
+                .setSeekRatio(1);
+    }
+
+    @Override
+    public void clickForFullScreen() {
+
+    }
+
+    @Override
+    public boolean getDetailOrientationRotateAuto() {
+        return true;
+    }
+
+    @Override
     public void onBackPressed() {
-///       不需要回归竖屏
-//        if (orientationUtils.getScreenType() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-//            videoPlayer.getFullscreenButton().performClick();
-//            return;
-//        }
+        if (GSYVideoManager.backFromWindowFull(this)) {
+            return;
+        }
         //释放所有
         videoPlayer.setVideoAllCallBack(null);
         super.onBackPressed();
