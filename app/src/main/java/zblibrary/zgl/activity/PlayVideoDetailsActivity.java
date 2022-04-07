@@ -107,7 +107,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         play_video_sanwei = findViewById(R.id.play_video_sanwei);
         play_video_head = findViewById(R.id.play_video_head);
         play_video_recomm = findViewById(R.id.play_video_recomm);
-
+        play_video_like = findViewById(R.id.play_video_like);
 
     }
 
@@ -118,6 +118,13 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         boolean isAutoPlay = DataManager.getInstance().getAutoPlayState();
         if(isAutoPlay){
             videoPlayer.startPlayLogic();
+        }
+        if(productDes.isfav){
+            play_video_like.setImageResource(R.mipmap.collection_s);
+            play_video_like.setTag(true);
+        }else{
+            play_video_like.setImageResource(R.mipmap.collection);
+            play_video_like.setTag(false);
         }
         product_details_name.setText(productDes.name);
         product_details_jianjie.setText(productDes.tag);
@@ -148,10 +155,10 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
     }
 
     public void initEvent() {//必须调用
-//        findViewById(R.id.play_video_back,this);
-//        findViewById(R.id.play_video_share,this);
-//        findViewById(R.id.play_video_down,this);
-//        play_video_like = findViewById(R.id.play_video_like,this);
+        findViewById(R.id.play_video_back).setOnClickListener(this);
+        findViewById(R.id.play_video_share).setOnClickListener(this);
+        findViewById(R.id.play_video_down).setOnClickListener(this);
+        play_video_like.setOnClickListener(this);
     }
 
     @Override
@@ -169,15 +176,20 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 finish();
                 break;
             case R.id.play_video_share:
+                if(productDes==null)
+                    return;
                 break;
             case R.id.play_video_down:
+                if(productDes==null)
+                    return;
                 MyDownFilesFragment.TasksManager.getImpl().addTask(productDes.id,productDes.name,productDes.coverUrl,productDes.videoUrl);
 //                MyDownFilesFragment.TasksManager.getImpl().addTask("http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4");
 //                EventBus.getDefault().post(new RefreshDownEvent(true));
                 CommonUtil.showShortToast(this,"已加入下载队列");
                 break;
             case R.id.play_video_like:
-
+                if(productDes==null)
+                    return;
                 if(play_video_like.getTag()!=null ){
                     boolean tag = (boolean) play_video_like.getTag();
                     if(tag){

@@ -20,6 +20,7 @@ public class PlayVideoDes {
 		public int viewCnt;
 		public int playCnt;
 		public String gmtCreate;
+		public boolean isfav;
 		public ArrayList<ActorVideoListBean> actorVideoList;
 		public static class VideoActorBean {
 			public int id;
