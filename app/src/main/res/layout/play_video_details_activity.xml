@@ -225,10 +225,10 @@
             android:id="@+id/play_video_share"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="17dp"
-            android:src="@mipmap/share"
             android:layout_toLeftOf="@id/play_video_down"
-            />
+            android:padding="17dp"
+            android:visibility="invisible"
+            android:src="@mipmap/share" />
 
         <ImageView
             android:id="@+id/play_video_down"

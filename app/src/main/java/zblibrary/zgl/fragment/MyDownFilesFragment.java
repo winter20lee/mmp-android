@@ -58,17 +58,6 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
     private TextView mydown_edit,mydown_sel_all,mydown_sel_del;
     private RecyclerView recyclerView;
     private static ArrayList<Integer> delIds = new ArrayList<>();
-    private  static String[] BIG_FILE_URLS = {
-            "http://cdn.llsapp.com/android/LLS-v4.0-595-20160908-143200.apk",
-            // 5m
-            "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4",
-            // 6m
-            "http://wxtest.9fbank.com/download/9f_onecard_release_v3.3.5.apk",
-            // 8m
-            "http://wxtest.9fbank.com/download/9f_onecard_release_v3.3.6.apk",
-            // 342m
-            "http://wxtest.9fbank.com/download/9f_onecard_release_v3.3.7.apk",
-    };
 
     public static Intent createIntent(Context context) {
         return new Intent(context, MyDownFilesFragment.class);
@@ -578,19 +567,8 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
         private TasksManager() {
             dbController = new TasksManagerDBController();
             modelList = dbController.getAllTasks();
-
-            initDemo();
         }
 
-        private void initDemo() {
-            if (modelList.size() <= 0) {
-                final int demoSize = BIG_FILE_URLS.length;
-                for (int i = 0; i < demoSize; i++) {
-                    final String url = BIG_FILE_URLS[i];
-//                    addTask(i,i+"",url);
-                }
-            }
-        }
 
         private SparseArray<BaseDownloadTask> taskSparseArray = new SparseArray<>();
 

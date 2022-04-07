@@ -214,15 +214,15 @@
 
                 <TextView
                     android:id="@+id/mine_mzgycs_"
-                    android:layout_below="@id/mine_wdtq"
-                    android:layout_toLeftOf="@id/mine_wdtq_divider"
-                    android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
-                    android:text="0 / 1"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mine_wdtq"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/mine_wdtq_divider"
+                    android:text="1"
                     android:textColor="#87869E"
-                    android:textSize="12sp"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="12sp" />
 
 
                 <TextView
@@ -237,60 +237,62 @@
 
                 <TextView
                     android:id="@+id/mine_xzcs_"
-                    android:layout_below="@id/mine_mzgycs"
-                    android:layout_toLeftOf="@id/mine_wdtq_divider"
-                    android:layout_marginRight="10dp"
                     android:layout_width="wrap_content"
-                    android:text="0 / 1"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mine_mzgycs"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/mine_wdtq_divider"
+                    android:text="1"
                     android:textColor="#87869E"
-                    android:textSize="12sp"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/mine_zskf"
-                    android:layout_below="@id/mine_wdtq"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mine_wdtq"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/mine_wdtq_divider"
                     android:text="专属客服"
-                    android:layout_marginTop="10dp"
-                    android:textColor="#323038"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_height="wrap_content"/>
+                    android:textColor="#CCCCCC"
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/mine_zskf_"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:layout_below="@id/mine_wdtq"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/mine_right"
-                    android:layout_width="12dp"
                     android:layout_marginTop="10dp"
-                    android:layout_height="12dp"/>
+                    android:visibility="invisible"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/mine_right" />
 
 
                 <TextView
                     android:id="@+id/mine_kftj"
-                    android:layout_below="@id/mine_zskf"
                     android:layout_width="wrap_content"
-                    android:text="客服推荐"
-                    android:layout_toRightOf="@id/mine_wdtq_divider"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mine_zskf"
                     android:layout_marginLeft="15dp"
-                    android:textColor="#323038"
-                    android:textSize="12sp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/mine_wdtq_divider"
+                    android:text="客服推荐"
+                    android:textColor="#CCCCCC"
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/mine_kftj_"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:layout_below="@id/mine_zskf"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/mine_right"
-                    android:layout_width="12dp"
                     android:layout_marginTop="10dp"
-                    android:layout_height="12dp"/>
+                    android:layout_marginRight="10dp"
+                    android:visibility="invisible"
+                    android:src="@mipmap/mine_right" />
 
             </RelativeLayout>
 

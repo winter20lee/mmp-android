@@ -1,5 +1,6 @@
 package zblibrary.zgl.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,9 +27,9 @@ import zuo.biao.library.util.StringUtil;
 
 /**我的
  */
-public class MineFragment extends BaseFragment implements OnClickListener, OnDialogButtonClickListener {
+public class MineFragment extends BaseFragment implements OnClickListener {
 	private ImageView mine_head;
-	private TextView mine_name,mine_phone,mine_down_state;
+	private TextView mine_name,mine_phone,mine_down_state,mine_mzgycs_,mine_xzcs_,mine_zskf,mine_kftj;
 	private final int REQUEST = 12001;
 	public static MineFragment createInstance() {
 		return new MineFragment();
@@ -56,6 +57,10 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 		mine_name = findView(R.id.mine_name);
 		mine_phone = findView(R.id.mine_phone);
 		mine_down_state = findView(R.id.mine_down_state);
+		mine_mzgycs_ = findView(R.id.mine_mzgycs_);
+		mine_xzcs_ = findView(R.id.mine_xzcs_);
+		mine_zskf = findView(R.id.mine_zskf);
+		mine_kftj = findView(R.id.mine_kftj);
 	}
 
 	@Override
@@ -69,14 +74,23 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 		}else{
 			mine_phone.setVisibility(View.VISIBLE);
 		}
+		if(MApplication.getInstance().isVip()){
+			mine_mzgycs_.setText("无限制");
+			mine_xzcs_.setText("无限制");
+			mine_zskf.setTextColor(Color.parseColor("#282828"));
+			mine_kftj.setTextColor(Color.parseColor("#282828"));
+			findView(R.id.mine_zskf_).setVisibility(View.VISIBLE);
+			findView(R.id.mine_kftj_).setVisibility(View.VISIBLE);
+		}else{
+			mine_mzgycs_.setText("1");
+			mine_xzcs_.setText("1");
+			mine_zskf.setTextColor(Color.parseColor("#CCCCCC"));
+			mine_kftj.setTextColor(Color.parseColor("#CCCCCC"));
+			findView(R.id.mine_zskf_).setVisibility(View.INVISIBLE);
+			findView(R.id.mine_kftj_).setVisibility(View.INVISIBLE);
+		}
 	}
 
-
-	private void logout() {
-		MApplication.getInstance().logout();
-		initData();
-		((MainTabActivity)getActivity()).selectFragment(0);
-	}
 
 	@Override
 	public void initEvent() {//必须调用
@@ -85,20 +99,6 @@ public class MineFragment extends BaseFragment implements OnClickListener, OnDia
 		findView(R.id.mine_like,this);
 		findView(R.id.mine_down,this);
 		findView(R.id.mine_history,this);
-	}
-
-	@Override
-	public void onDialogButtonClick(int requestCode, boolean isPositive) {
-		if (! isPositive) {
-			return;
-		}
-		switch (requestCode) {
-		case 0:
-			logout();
-			break;
-		default:
-			break;
-		}
 	}
 
 

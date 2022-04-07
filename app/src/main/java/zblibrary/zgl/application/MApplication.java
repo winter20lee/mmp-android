@@ -148,14 +148,15 @@ public class MApplication extends BaseApplication {
 		saveCurrentUser(currentUser);
 	}
 
-
-	/**保存当前用户昵称
-	 * @return
+	/**
+	 * 是否是会员
 	 */
-	public void saveCurrentUserNickName(String nickName) {
+	public boolean isVip(){
 		currentUser = getCurrentUser();
-		currentUser.userInfo.nickName = nickName;
-		saveCurrentUser(currentUser);
+		if(currentUser.userInfo.memberLevelCode.equals("guest")){
+			return false;
+		}
+		return true;
 	}
 
 
