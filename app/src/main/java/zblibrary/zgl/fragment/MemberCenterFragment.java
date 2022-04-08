@@ -37,7 +37,7 @@ public class MemberCenterFragment extends BaseFragment implements
 	private List<MemberCenter> memberCenters = new ArrayList<>();
 	private Gallery member_center_gallery;
 	private ImageView member_center_equity;
-	private TextView member_canter_order;
+	private TextView member_canter_order,center_pay;
 	private TextView member_canter_price;
 	private MZBannerView member_center_ad ;
 	private MZHolderCreator mzHolderCreator;
@@ -66,6 +66,7 @@ public class MemberCenterFragment extends BaseFragment implements
 		member_canter_order = findView(R.id.member_canter_order);
 		member_canter_price = findView(R.id.member_canter_price);
 		member_center_ad = findView(R.id.member_center_ad);
+		center_pay = findView(R.id.center_pay);
 	}
 
 	@Override
@@ -88,6 +89,7 @@ public class MemberCenterFragment extends BaseFragment implements
 			}
 		});
 		member_canter_order.setOnClickListener(view -> toActivity(OrderActivity.createIntent(context)));
+		center_pay.setOnClickListener(view -> showShortToast("暂未开通"));
 	}
 
 

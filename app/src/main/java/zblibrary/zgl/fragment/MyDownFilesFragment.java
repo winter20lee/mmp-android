@@ -314,6 +314,9 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
 
             private TaskItemViewHolder checkCurrentHolder(final BaseDownloadTask task) {
                 final TaskItemViewHolder tag = (TaskItemViewHolder) task.getTag();
+                if(tag == null){
+                    return null;
+                }
                 if (tag.id != task.getId()) {
                     return null;
                 }
