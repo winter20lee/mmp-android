@@ -10,7 +10,7 @@ public class AppInitInfo {
         public boolean maintenance;
         public String maintenanceInfo;
         public SysNoticeBean sysNotice;
-
+        public ArrayList<String> guideImg;
         public static class SysNoticeBean {
             public String id;
             public String contentType;
