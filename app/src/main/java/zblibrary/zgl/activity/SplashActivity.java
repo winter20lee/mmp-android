@@ -10,6 +10,7 @@ import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.SplashCount;
 import zuo.biao.library.manager.HttpManager;
+import zuo.biao.library.ui.WebViewActivity;
 import zuo.biao.library.util.AESUtil;
 import zuo.biao.library.util.DeviceIdUtil;
 import zuo.biao.library.util.GlideUtil;
@@ -21,6 +22,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 	private ImageView splash;
 	private TextView splash_tv;
 	private SplashCount splashCount;
+	private AppInitInfo appInitInfo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +49,17 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 
 		splashCount = new SplashCount(this,splash_tv,5000,1000);
 		splashCount.start();
+
+		splash.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if(appInitInfo.ads!=null && appInitInfo.ads.size()>0){
+					Intent it =  MainTabActivity.createIntent(SplashActivity.this,appInitInfo.ads.get(0).link);
+					startActivity(it);
+					finish();
+				}
+			}
+		});
 
 	}
 
@@ -60,13 +74,13 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
 		switch (requestCode){
 			case APP_INIT_CODE:
-				AppInitInfo appInitInfo = GsonUtil.GsonToBean(resultData,AppInitInfo.class);
+				appInitInfo = GsonUtil.GsonToBean(resultData,AppInitInfo.class);
 				MApplication.getInstance().setAppInitInfo(appInitInfo);
 				if(StringUtil.isEmpty(HttpManager.getInstance().getToken())){
 					HttpRequest.loginByDeviceId(getDeviceToken(),DEVICE_LOGIN_CODE,new OnHttpResponseListenerImpl(this) );
 				}
-				if(appInitInfo.guideImg!=null && appInitInfo.guideImg.size()>0){
-					GlideUtil.load(this,appInitInfo.guideImg.get(0),splash);
+				if(appInitInfo.ads!=null && appInitInfo.ads.size()>0){
+					GlideUtil.load(this,appInitInfo.ads.get(0).imgUrl,splash);
 				}
 				break;
 			case DEVICE_LOGIN_CODE:

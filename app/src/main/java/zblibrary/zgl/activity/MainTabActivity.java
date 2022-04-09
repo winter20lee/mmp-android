@@ -20,6 +20,8 @@ import zblibrary.zgl.model.RefreshDownEvent;
 import zuo.biao.library.base.BaseBottomTabActivity;
 import zuo.biao.library.base.BaseEvent;
 import zuo.biao.library.manager.SystemBarTintManager;
+import zuo.biao.library.ui.WebViewActivity;
+import zuo.biao.library.util.StringUtil;
 
 /**应用主页
  * @use MainTabActivity.createIntent(...)
@@ -27,14 +29,26 @@ import zuo.biao.library.manager.SystemBarTintManager;
 public class MainTabActivity extends BaseBottomTabActivity {
 	private static final String TAG = "MainTabActivity";
 	private View myDownFilesFragment;
+	private String url;
 	public static Intent createIntent(Context context) {
 		return new Intent(context, MainTabActivity.class);
+	}
+
+	public static Intent createIntent(Context context,String url) {
+		return new Intent(context, MainTabActivity.class).putExtra(INTENT_ID,url);
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_tab_activity);
+		intent = getIntent();
+		if(intent!=null){
+			url = intent.getStringExtra(INTENT_ID);
+			if(StringUtil.isNotEmpty(url,true)){
+				toActivity(WebViewActivity.createIntent(this,"",url));
+			}
+		}
 		initView();
 		initData();
 		initEvent();
