@@ -16,7 +16,11 @@
         style="@style/match_match"
         android:layout_weight="1" >
     </FrameLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#40323038"
+        />
     <LinearLayout
         style="@style/ll_horizontal_match_wrap"
         android:layout_height="@dimen/dim_50"

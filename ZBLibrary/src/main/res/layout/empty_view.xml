@@ -7,9 +7,9 @@
 
         <ImageView
             android:id="@+id/iv_empty_view"
-            android:layout_width="120dp"
-            android:layout_marginTop="45dp"
-            android:layout_height="110dp"
+            android:layout_width="60dp"
+            android:layout_marginTop="100dp"
+            android:layout_height="60dp"
             android:src="@mipmap/empty"
             />
         <TextView
@@ -18,8 +18,19 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:textColor="#666666"
-            android:textSize="14sp"
-            android:text="No records" />
+            android:textColor="#282828"
+            android:textSize="13sp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tv_empty_view_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:textColor="#95949D"
+            android:textSize="12sp"
+            android:text="" />
 
 </LinearLayout>

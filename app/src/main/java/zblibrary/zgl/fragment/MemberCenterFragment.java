@@ -18,6 +18,7 @@ import zblibrary.zgl.R;
 import zblibrary.zgl.activity.OrderActivity;
 import zblibrary.zgl.adapter.BannerViewPagerHolder;
 import zblibrary.zgl.adapter.MemberCardAdapter;
+import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.ListByPos;
@@ -38,7 +39,7 @@ public class MemberCenterFragment extends BaseFragment implements
 	private Gallery member_center_gallery;
 	private ImageView member_center_equity;
 	private TextView member_canter_order,center_pay;
-	private TextView member_canter_price;
+	private TextView member_canter_price,member_canter_name;
 	private MZBannerView member_center_ad ;
 	private MZHolderCreator mzHolderCreator;
 	public static MemberCenterFragment createInstance() {
@@ -67,11 +68,18 @@ public class MemberCenterFragment extends BaseFragment implements
 		member_canter_price = findView(R.id.member_canter_price);
 		member_center_ad = findView(R.id.member_center_ad);
 		center_pay = findView(R.id.center_pay);
+		member_canter_name = findView(R.id.member_canter_name);
 	}
 
 	@Override
 	public void initData() {//必须调用
 		mzHolderCreator = (MZHolderCreator<BannerViewPagerHolder>) () -> new BannerViewPagerHolder();
+		member_canter_name.setText(MApplication.getInstance().getCurrentUserNickName());
+		if(MApplication.getInstance().isBindUserPhone()){
+			findView(R.id.member_canter_phone).setVisibility(View.GONE);
+		}else{
+			findView(R.id.member_canter_phone).setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override

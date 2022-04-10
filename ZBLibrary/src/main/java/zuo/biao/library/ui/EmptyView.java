@@ -11,6 +11,7 @@ public class EmptyView extends LinearLayout{
 
     private ImageView iv_empty_view;
     private TextView tv_empty_view;
+    private TextView tv_empty_view_1;
     public EmptyView(Context context) {
         super(context);
         initView(context);
@@ -31,10 +32,16 @@ public class EmptyView extends LinearLayout{
         addView(empty_view);
         iv_empty_view =  empty_view.findViewById(R.id.iv_empty_view);
         tv_empty_view = empty_view.findViewById(R.id.tv_empty_view);
+        tv_empty_view_1 = empty_view.findViewById(R.id.tv_empty_view_1);
     }
 
-    public void setEmptyImageAndText(int resId,String emptyText){
+    public void setEmptyImage(int resId){
         iv_empty_view.setImageResource(resId);
+    }
+    public void setEmptyText(String emptyText){
         tv_empty_view.setText(emptyText);
+    }
+    public void setEmptySecondText(String emptyText){
+        tv_empty_view_1.setText(emptyText);
     }
 }

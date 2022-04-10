@@ -17,6 +17,7 @@ import zblibrary.zgl.view.FirstCategoryViewItem;
 import zblibrary.zgl.view.SpaceItemDecoration;
 import zuo.biao.library.base.BaseHttpRecyclerFragment;
 import zuo.biao.library.interfaces.AdapterCallBack;
+import zuo.biao.library.ui.EmptyView;
 import zuo.biao.library.util.GsonUtil;
 
 /**
@@ -27,6 +28,7 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 
 	private String keyWord = "";
 	private int cateGoryId;
+	private EmptyView empty_view;
 	public static SearchFragment createInstance(String keyWord,int cateGoryId) {
 		SearchFragment fragment = new SearchFragment();
 		Bundle bundle = new Bundle();
@@ -54,6 +56,9 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 	@Override
 	public void initView() {//必须调用
 		super.initView();
+		empty_view = findView(R.id.empty_view);
+		empty_view.setEmptyText("未找到您搜索的视频内容");
+		empty_view.setEmptySecondText("您可以去首页推荐，可能会有您想看的");
 	}
 
 	@Override

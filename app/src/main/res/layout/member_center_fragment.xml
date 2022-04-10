@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/ll_vertical_match_match">
-    <include layout="@layout/statebar_view"/>
+<!--    <include layout="@layout/statebar_view"/>-->
     <RelativeLayout style="@style/topbar_bg"
         android:background="#282828"
         >
