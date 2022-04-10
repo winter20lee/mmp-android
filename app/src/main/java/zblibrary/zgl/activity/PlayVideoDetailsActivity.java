@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import zblibrary.zgl.R;
 import zuo.biao.library.interfaces.OnBottomDragListener;
+import zuo.biao.library.manager.SystemBarTintManager;
 import zuo.biao.library.ui.EmptyRecyclerView;
 import zuo.biao.library.ui.FlowLayout;
 import zuo.biao.library.util.CommonUtil;
@@ -81,6 +82,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_video_details_activity);
+        SystemBarTintManager.setStatusBarMode(this);
         Intent intent = getIntent();
         videoId = intent.getLongExtra(INTENT_ID, videoId);
         if (videoId == 0) {

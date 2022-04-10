@@ -16,7 +16,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:background="@mipmap/mine_bg"
-                android:paddingTop="44dp"
                 android:layout_height="320dp">
 
                 <ImageView

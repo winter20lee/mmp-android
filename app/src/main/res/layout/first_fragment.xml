@@ -5,7 +5,7 @@
     android:clickable="true"
     android:focusable="true"
     style="@style/activity_page">
-    <include layout="@layout/statebar_view"/>
+<!--    <include layout="@layout/statebar_view"/>-->
     <!--搜索-->
     <include
         layout="@layout/msearch_top"

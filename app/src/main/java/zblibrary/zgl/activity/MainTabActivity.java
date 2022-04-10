@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.liulishuo.filedownloader.FileDownloader;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -16,6 +18,7 @@ import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.fragment.FirstFragment;
 import zblibrary.zgl.fragment.MemberCenterFragment;
 import zblibrary.zgl.fragment.MineFragment;
+import zblibrary.zgl.fragment.MyDownFilesFragment;
 import zblibrary.zgl.model.RefreshDownEvent;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseBottomTabActivity;
@@ -136,9 +139,11 @@ public class MainTabActivity extends BaseBottomTabActivity {
 			}
 			long secondTime = System.currentTimeMillis();
 			if(secondTime - firstTime > 2000){
-				showShortToast("Press again to exit");
+				showShortToast("再按一次退出应用");
 				firstTime = secondTime;
 			} else {//完全退出
+				MyDownFilesFragment.TasksManager.getImpl().onDestroy();
+				FileDownloader.getImpl().pauseAll();
 				moveTaskToBack(false);//应用退到后台
 				System.exit(0);
 			}
