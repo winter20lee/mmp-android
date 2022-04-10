@@ -154,9 +154,9 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onDestroy() {
-//        TasksManager.getImpl().onDestroy();
-//        adapter = null;
-//        FileDownloader.getImpl().pauseAll();
+        TasksManager.getImpl().onDestroy();
+        adapter = null;
+        FileDownloader.getImpl().pauseAll();
         adapter.isEditState = false;
         EventBus.getDefault().unregister(this);
         super.onDestroy();
@@ -185,7 +185,9 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
             case R.id.mydown_sel_del:
                 for (Integer id:delIds) {
                     FileDownloader.getImpl().pause(id);
-//                    new File(TasksManager.getImpl().get(holder.position).getPath()).delete();
+                    new File(TasksManager.getImpl().getById(id).getPath()).delete();
+                    new File(FileDownloadUtils.getTempPath(TasksManager.getImpl().getById(id).getPath())).delete();
+
                     TasksManager.getImpl().delTask(id+"");
                 }
                 delIds.clear();
@@ -457,19 +459,32 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
             }
         };
         public void autoClick(TaskItemViewHolder holder){
-            TasksManagerModel model = TasksManager.getImpl().get(holder.position);
-            BaseDownloadTask task = FileDownloader.getImpl().create(model.getUrl())
-                    .setPath(model.getPath())
-                    .setCallbackProgressTimes(100)
-                    .setListener(taskDownloadListener);
+            if(holder != null){
+                TasksManagerModel model = TasksManager.getImpl().get(holder.position);
+                BaseDownloadTask task = FileDownloader.getImpl().create(model.getUrl())
+                        .setPath(model.getPath())
+                        .setCallbackProgressTimes(100)
+                        .setListener(taskDownloadListener);
 
-            TasksManager.getImpl()
-                    .addTaskForViewHolder(task);
+                TasksManager.getImpl()
+                        .addTaskForViewHolder(task);
 
-            TasksManager.getImpl()
-                    .updateViewHolder(holder.id, holder);
+                TasksManager.getImpl()
+                        .updateViewHolder(holder.id, holder);
 
-            task.start();
+                task.start();
+            }else{
+                TasksManagerModel model = TasksManager.getImpl().getEnd();
+                BaseDownloadTask task = FileDownloader.getImpl().create(model.getUrl())
+                        .setPath(model.getPath())
+                        .setCallbackProgressTimes(100)
+                        .setListener(taskDownloadListener);
+
+                TasksManager.getImpl()
+                        .addTaskForViewHolder(task);
+
+                task.start();
+            }
         }
 
         @Override
@@ -653,6 +668,10 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
 
         public TasksManagerModel get(final int position) {
             return modelList.get(position);
+        }
+
+        public TasksManagerModel getEnd() {
+            return modelList.get(modelList.size()-1);
         }
 
         public TasksManagerModel getById(final int id) {

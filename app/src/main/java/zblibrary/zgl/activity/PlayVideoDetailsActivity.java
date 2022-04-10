@@ -197,8 +197,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                         HttpRequest.getDownload(productDes.id,0,new OnHttpResponseListenerImpl(this));
                     }
                     MyDownFilesFragment.TasksManager.getImpl().addTask(productDes.id,productDes.name,productDes.coverUrl,productDes.videoUrl);
-//                MyDownFilesFragment.TasksManager.getImpl().addTask("http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4");
-//                EventBus.getDefault().post(new RefreshDownEvent(true));
+                    EventBus.getDefault().post(new RefreshDownEvent(true));
                     CommonUtil.showShortToast(this,"已加入下载队列");
                 }else{
                     CommonUtil.showShortToast(this,"此视频类型无法下载");
