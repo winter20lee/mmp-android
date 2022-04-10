@@ -16,6 +16,7 @@ public class AppInitInfo {
             public String contentType;
             public String title;
             public String content;
+            public String imgUrl;
     }
 
     public static class AdsBean{

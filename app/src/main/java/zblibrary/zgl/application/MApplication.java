@@ -159,6 +159,8 @@ public class MApplication extends BaseApplication {
 		return true;
 	}
 
+	public int downloadCount;
+
 
 	private static User currentUser = null;
 	private static AppInitInfo appInitInfo = null;

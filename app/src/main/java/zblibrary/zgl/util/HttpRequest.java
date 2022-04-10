@@ -276,11 +276,19 @@ public class HttpRequest {
 
 
 
-	/**获取用户积分和抵扣比例
+	/**记录guest 的用户的下载次数
 	 */
-	public static void getUserPointsRules(final int requestCode, final OnHttpResponseListener listener) {
+	public static void getDownload(int id,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
-		HttpManager.getInstance().get(request, URL_BASE + "/user/userPoints/get", requestCode, listener);
+		request.put("id", id);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/user/download", true,requestCode, listener);
+	}
+
+	/**获取guest用户的下载次数
+	 */
+	public static void getDownloadCnt(final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		HttpManager.getInstance().get(request, URL_BASE + "/api/user/getDownloadCnt", requestCode, listener);
 	}
 
 }

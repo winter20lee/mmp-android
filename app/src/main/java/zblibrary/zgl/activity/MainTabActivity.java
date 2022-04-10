@@ -17,10 +17,13 @@ import zblibrary.zgl.fragment.FirstFragment;
 import zblibrary.zgl.fragment.MemberCenterFragment;
 import zblibrary.zgl.fragment.MineFragment;
 import zblibrary.zgl.model.RefreshDownEvent;
+import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseBottomTabActivity;
 import zuo.biao.library.base.BaseEvent;
+import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.manager.SystemBarTintManager;
 import zuo.biao.library.ui.WebViewActivity;
+import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
 
 /**应用主页

@@ -136,7 +136,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 					if(contentType.equals("1")){
 						new TextAlertDialog(context,sysNotice.title,sysNotice.content).show();
 					}else if(contentType.equals("2")){
-						new ImageAlertDialog(context,sysNotice.content,"https://www.baidu.com").show();
+						new ImageAlertDialog(context,sysNotice.imgUrl,sysNotice.content).show();
 					}
 				}
 			}

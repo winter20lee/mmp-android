@@ -29,7 +29,7 @@ import zuo.biao.library.util.StringUtil;
  */
 public class MineFragment extends BaseFragment implements OnClickListener {
 	private ImageView mine_head;
-	private TextView mine_name,mine_phone,mine_down_state,mine_mzgycs_,mine_xzcs_,mine_zskf,mine_kftj;
+	private TextView mine_name,mine_phone,mine_down_state,mine_mzgycs_,mine_xzcs_,mine_zskf,mine_kftj,mine_left_count,mine_total_count;
 	private final int REQUEST = 12001;
 	public static MineFragment createInstance() {
 		return new MineFragment();
@@ -61,6 +61,8 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 		mine_xzcs_ = findView(R.id.mine_xzcs_);
 		mine_zskf = findView(R.id.mine_zskf);
 		mine_kftj = findView(R.id.mine_kftj);
+		mine_left_count = findView(R.id.mine_left_count);
+		mine_total_count = findView(R.id.mine_total_count);
 	}
 
 	@Override
@@ -81,6 +83,8 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 			mine_kftj.setTextColor(Color.parseColor("#282828"));
 			findView(R.id.mine_zskf_).setVisibility(View.VISIBLE);
 			findView(R.id.mine_kftj_).setVisibility(View.VISIBLE);
+			mine_total_count.setText("");
+			mine_left_count.setText("无限制");
 		}else{
 			mine_mzgycs_.setText("1");
 			mine_xzcs_.setText("1");
@@ -88,6 +92,8 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 			mine_kftj.setTextColor(Color.parseColor("#CCCCCC"));
 			findView(R.id.mine_zskf_).setVisibility(View.INVISIBLE);
 			findView(R.id.mine_kftj_).setVisibility(View.INVISIBLE);
+			mine_total_count.setText(" / 1");
+			mine_left_count.setText((1-MApplication.getInstance().downloadCount)+"");
 		}
 	}
 

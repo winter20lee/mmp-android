@@ -3,6 +3,7 @@ package zblibrary.zgl.activity;
 import static zuo.biao.library.interfaces.Presenter.INTENT_ID;
 
 import zblibrary.zgl.adapter.ActorRecommendAdapter;
+import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.fragment.MyDownFilesFragment;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.DataManager;
@@ -61,6 +62,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
     private static final int REQUEST_PLAY_RECORD = 10004;
     private static final int REQUEST_ADD_FAV = 10005;
     private static final int REQUEST_CANCLE_FAV = 10006;
+    private static final int REQUEST_DOWNLOAD_COUNT = 10007;
     private StandardGSYVideoPlayer videoPlayer;
     private long videoId = 0;
     private TextView product_details_name,product_details_price,product_details_jianjie,play_video_name
@@ -91,6 +93,9 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         HttpRequest.getVideoDes(videoId,REQUEST_CODE_DES, new OnHttpResponseListenerImpl(this));
         //猜你喜欢
         HttpRequest.getRecommend(videoId,REQUEST_MALL_LIKE, new OnHttpResponseListenerImpl(this));
+        if(!MApplication.getInstance().isVip()){
+            HttpRequest.getDownloadCnt(REQUEST_DOWNLOAD_COUNT,  new OnHttpResponseListenerImpl(this));
+        }
 
     }
 
@@ -183,10 +188,22 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             case R.id.play_video_down:
                 if(productDes==null)
                     return;
-                MyDownFilesFragment.TasksManager.getImpl().addTask(productDes.id,productDes.name,productDes.coverUrl,productDes.videoUrl);
+                if(productDes.videoUrl.endsWith(".mp4") || productDes.videoUrl.endsWith(".MP4")){
+                    if(!MApplication.getInstance().isVip()){
+                        if(MApplication.getInstance().downloadCount>0){
+                            CommonUtil.showShortToast(this,"已超过下载次数");
+                            return;
+                        }
+                        HttpRequest.getDownload(productDes.id,0,new OnHttpResponseListenerImpl(this));
+                    }
+                    MyDownFilesFragment.TasksManager.getImpl().addTask(productDes.id,productDes.name,productDes.coverUrl,productDes.videoUrl);
 //                MyDownFilesFragment.TasksManager.getImpl().addTask("http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4");
 //                EventBus.getDefault().post(new RefreshDownEvent(true));
-                CommonUtil.showShortToast(this,"已加入下载队列");
+                    CommonUtil.showShortToast(this,"已加入下载队列");
+                }else{
+                    CommonUtil.showShortToast(this,"此视频类型无法下载");
+                }
+
                 break;
             case R.id.play_video_like:
                 if(productDes==null)
@@ -247,6 +264,9 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             case REQUEST_CANCLE_FAV:
                 play_video_like.setImageResource(R.mipmap.collection);
                 play_video_like.setTag(false);
+                break;
+            case REQUEST_DOWNLOAD_COUNT:
+                MApplication.getInstance().downloadCount = Integer.parseInt(resultData);
                 break;
 
         }
