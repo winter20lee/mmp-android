@@ -1,5 +1,7 @@
 package zblibrary.zgl.activity;
 
+import static zuo.biao.library.manager.UploadUtil.UPLOAD_SUCCESS_CODE;
+
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -22,19 +24,20 @@ import org.devio.takephoto.uitl.TConstant;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import zblibrary.zgl.R;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.Customize;
-import zblibrary.zgl.model.StsTokenAccessKey;
+import zblibrary.zgl.model.UploadAvatar;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseApplication;
-import zuo.biao.library.interfaces.OnUpLoadResponseListener;
 import zuo.biao.library.manager.SystemBarTintManager;
-import zuo.biao.library.manager.UpLoadOssManager;
+import zuo.biao.library.manager.UploadUtil;
 import zuo.biao.library.ui.BottomMenuWindow;
 import zuo.biao.library.ui.ItemDialog;
 import zuo.biao.library.util.CommonUtil;
@@ -44,20 +47,17 @@ import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.PermissionUtils;
 import zuo.biao.library.util.StringUtil;
 
-public class UserInfoActivity extends TakePhotoActivity implements View.OnClickListener , OnHttpResponseListener, DatePickerDialog.OnDateSetListener {
+public class UserInfoActivity extends TakePhotoActivity implements View.OnClickListener ,
+		OnHttpResponseListener, DatePickerDialog.OnDateSetListener , UploadUtil.OnUploadProcessListener {
 	private static final String TAG = "UserInfoActivity";
 	private static final int REQUEST_TO_BOTTOM_MENU = 10;
-	private static final int REQUEST_TO_BOTTOM_GRID = 20;
-	private static final int REQUEST_TOKEN = 50000;
 	private static final int REQUEST_UPLOAD = 50001;
-	private static final int REQUEST_DEFULT_HEAD = 50002;
 	private static final int REQUEST_INFO = 50003;
 	private String picturePath;
 	private ImageView mUserInfoHeadpic;
 	private TakePhoto takePhoto;
 	private File cameraFile;
 	private TextView user_info_change_nickname,user_info_userid,user_info_phonenum,user_info_save,user_info_jianjie;
-	private ArrayList<Customize> bottomGrids = new ArrayList<>();
 	public static Intent createIntent(Context context) {
 		return new Intent(context, UserInfoActivity.class);
 	}
@@ -71,7 +71,6 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		initView();
 		initData();
 		initEvent();
-//		HttpRequest.getUserDefultHeadList(REQUEST_DEFULT_HEAD,new OnHttpResponseListenerImpl(this));
 	}
 
 	@Override
@@ -112,10 +111,10 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 	public void onClick(View v) {
 		switch (v.getId()){
 			case R.id.user_info_headpic:
-//				Intent intent = new Intent(this, BottomMenuWindow.class);
-//				intent.putExtra(BottomMenuWindow.INTENT_TITLE, "");
-//				intent.putExtra(BottomMenuWindow.INTENT_ITEMS, new String[]{"拍照", "相册"});
-//				startActivityForResult(intent, REQUEST_TO_BOTTOM_MENU);
+				Intent intent = new Intent(this, BottomMenuWindow.class);
+				intent.putExtra(BottomMenuWindow.INTENT_TITLE, "");
+				intent.putExtra(BottomMenuWindow.INTENT_ITEMS, new String[]{"拍照", "相册"});
+				startActivityForResult(intent, REQUEST_TO_BOTTOM_MENU);
 				break;
 			case R.id.user_info_phonenum:
 				initCalendar();
@@ -131,14 +130,12 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				itemDialog.show();
 				break;
 			case R.id.user_info_save:
-				int sex ;
-				if(user_info_change_nickname.getText().toString().equals("男")){
-					sex = 1;
+				CommonUtil.showProgressDialog(UserInfoActivity.this,"Uploading...");
+				if(picturePath.startsWith("http")){
+					HttpRequest.updateUserAvatar(picturePath,REQUEST_UPLOAD,new OnHttpResponseListenerImpl(UserInfoActivity.this));
 				}else{
-					sex = 2;
+					upLoadOssAvatar();
 				}
-				HttpRequest.updateUserInfo(user_info_userid.getText().toString(),user_info_phonenum.getText().toString(),sex,
-						user_info_jianjie.getText().toString(),REQUEST_INFO,new OnHttpResponseListenerImpl(UserInfoActivity.this));
 				break;
 		}
 	}
@@ -160,16 +157,6 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		}
 		picturePath = path;
 		GlideUtil.loadCircle(UserInfoActivity.this,picturePath,mUserInfoHeadpic);
-		CommonUtil.showProgressDialog(UserInfoActivity.this,"Uploading...");
-		if(path.startsWith("http")){
-			HttpRequest.updateUserAvatar(picturePath,REQUEST_UPLOAD,new OnHttpResponseListenerImpl(UserInfoActivity.this));
-			return;
-		}
-		if(UpLoadOssManager.isNeedUpdateCredentialProvider()){
-			HttpRequest.getUploadToken(REQUEST_TOKEN,new OnHttpResponseListenerImpl(UserInfoActivity.this));
-		}else{
-			upLoadOssAvatar();
-		}
 	}
 
 	/**
@@ -255,12 +242,6 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 			case TConstant.RC_PICK_PICTURE_FROM_CAPTURE:
 				setPicture(cameraFile.getAbsolutePath());
 				break;
-			case REQUEST_TO_BOTTOM_GRID:
-				if (data != null) {
-//					String url = data.getStringExtra(SystemHeadActivity.RESULT_DATA);
-//					setPicture(url);
-				}
-				break;
 			default:
 				break;
 		}
@@ -275,19 +256,18 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		switch (requestCode){
 			case REQUEST_UPLOAD:
 				GlideUtil.loadCircle(UserInfoActivity.this,picturePath,mUserInfoHeadpic);
-//				MApplication.getInstance().setCurrentUserAvatar(picturePath);
-				CommonUtil.dismissProgressDialog(UserInfoActivity.this);
-				break;
-			case REQUEST_TOKEN:
-				StsTokenAccessKey stsTokenAccessKey = GsonUtil.GsonToBean(resultData,StsTokenAccessKey.class);
-				UpLoadOssManager.updateCredentialProvider(stsTokenAccessKey.accessKeyId,stsTokenAccessKey.accessKeySecret,stsTokenAccessKey.securityToken,
-						stsTokenAccessKey.endpoint,stsTokenAccessKey.bucket);
-				upLoadOssAvatar();
-				break;
-			case REQUEST_DEFULT_HEAD:
-				bottomGrids = (ArrayList<Customize>) GsonUtil.jsonToList(resultData, Customize.class);
+				MApplication.getInstance().setCurrentUserAvatar(picturePath);
+				int sex ;
+				if(user_info_change_nickname.getText().toString().equals("男")){
+					sex = 1;
+				}else{
+					sex = 2;
+				}
+				HttpRequest.updateUserInfo(user_info_userid.getText().toString(),user_info_phonenum.getText().toString(),sex,
+						user_info_jianjie.getText().toString(),REQUEST_INFO,new OnHttpResponseListenerImpl(UserInfoActivity.this));
 				break;
 			case REQUEST_INFO:
+				CommonUtil.dismissProgressDialog(UserInfoActivity.this);
 				CommonUtil.showShortToast(this,"提交成功");
 				MApplication.getInstance().setCurrentUserPersonal(user_info_jianjie.getText().toString());
 				MApplication.getInstance().setCurrentUserBirthday(user_info_phonenum.getText().toString());
@@ -300,26 +280,18 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 
 	@Override
 	public void onHttpError(int requestCode, Exception e, String message) {
-//		picturePath = MApplication.getInstance().getCurrentUserAvatar();
+		picturePath = MApplication.getInstance().getCurrentUserAvatar();
 		GlideUtil.loadCircle(UserInfoActivity.this,picturePath,mUserInfoHeadpic);
 		CommonUtil.dismissProgressDialog(UserInfoActivity.this);
 	}
 
 	private void upLoadOssAvatar(){
-		UpLoadOssManager.getInstance().UploadImage(picturePath, new OnUpLoadResponseListener() {
-			@Override
-			public void onUploadSuccess(String url) {
-				picturePath = url;
-				HttpRequest.updateUserAvatar(picturePath,REQUEST_UPLOAD,new OnHttpResponseListenerImpl(UserInfoActivity.this));
-			}
 
-			@Override
-			public void onUploadFile() {
-				CommonUtil.dismissProgressDialog(UserInfoActivity.this);
-//				picturePath = MApplication.getInstance().getCurrentUserAvatar();
-				GlideUtil.loadCircle(UserInfoActivity.this,picturePath,mUserInfoHeadpic);
-			}
-		});
+		UploadUtil uploadUtil = UploadUtil.getInstance();
+		uploadUtil.setOnUploadProcessListener(UserInfoActivity.this); //设置监听器监听上传状态
+
+		Map<String, String> params = new HashMap<String, String>();//上传map对象
+		uploadUtil.uploadFile(picturePath, "file1", "http://upload.talk36.com/upload/UploadServlet", params);
 	}
 
 	private void initCalendar(){
@@ -338,5 +310,28 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 	@Override
 	public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
 		user_info_phonenum.setText(year+"."+month+1+"."+dayOfMonth);
+	}
+
+	@Override
+	public void onUploadDone(int responseCode, String message) {
+		CommonUtil.dismissProgressDialog(UserInfoActivity.this);
+		if(responseCode == UPLOAD_SUCCESS_CODE){
+			UploadAvatar uploadAvatar = GsonUtil.GsonToBean(message,UploadAvatar.class);
+			picturePath = uploadAvatar.data.images.get(0).oUrl;
+			HttpRequest.updateUserAvatar(picturePath,REQUEST_UPLOAD,new OnHttpResponseListenerImpl(UserInfoActivity.this));
+		}else{
+			CommonUtil.showShortToast(this,message);
+		}
+		Log.d("---",responseCode+message);
+	}
+
+	@Override
+	public void onUploadProcess(int uploadSize) {
+		Log.d("---",uploadSize+"");
+	}
+
+	@Override
+	public void initUpload(int fileSize) {
+		Log.d("---",fileSize+"");
 	}
 }

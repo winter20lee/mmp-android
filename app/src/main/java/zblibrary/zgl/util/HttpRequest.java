@@ -190,14 +190,6 @@ public class HttpRequest {
 		HttpManager.getInstance().post(request, URL_BASE + "/api/loginByDeviceId", true,requestCode, listener);
 	}
 
-	/**修改昵称
-	 * @param requestCode
-	 * @param listener
-	 */
-	public static void getUploadToken(final int requestCode, final OnHttpResponseListener listener) {
-		Map<String, Object> request = new HashMap<>();
-		HttpManager.getInstance().get(request, URL_BASE + "/user/getUploadToken",requestCode, listener);
-	}
 
 	/**取消收藏
 	 */
@@ -245,14 +237,6 @@ public class HttpRequest {
 		HttpManager.getInstance().post(request, URL_BASE + "/api/user/updateInfo", true,requestCode, listener);
 	}
 
-	/**获取头像列表
-	 * @param requestCode
-	 * @param listener
-	 */
-	public static void getUserDefultHeadList(final int requestCode, final OnHttpResponseListener listener) {
-		Map<String, Object> request = new HashMap<>();
-		HttpManager.getInstance().get(request, URL_BASE + "/promotion/customize/USER_HEADER_ICON/list", requestCode, listener);
-	}
 
 	/**收藏记录
 	 */

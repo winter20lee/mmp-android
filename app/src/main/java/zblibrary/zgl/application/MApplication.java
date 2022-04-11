@@ -52,22 +52,22 @@ public class MApplication extends BaseApplication {
 		return false;
 	}
 
-//	/**获取当前用户头像
-//	 * @return
-//	 */
-//	public String getCurrentUserAvatar() {
-//		currentUser = getCurrentUser();
-//		return currentUser == null ? null : currentUser.userInfo.avatar;
-//	}
-//
-//	/**设置当前用户头像
-//	 * @return
-//	 */
-//	public void  setCurrentUserAvatar(String avatar) {
-//		currentUser = getCurrentUser();
-//		currentUser.userInfo.avatar = avatar;
-//		saveCurrentUser(currentUser);
-//	}
+	/**获取当前用户头像
+	 * @return
+	 */
+	public String getCurrentUserAvatar() {
+		currentUser = getCurrentUser();
+		return currentUser == null ? null : currentUser.userInfo.avatar;
+	}
+
+	/**设置当前用户头像
+	 * @return
+	 */
+	public void  setCurrentUserAvatar(String avatar) {
+		currentUser = getCurrentUser();
+		currentUser.userInfo.avatar = avatar;
+		saveCurrentUser(currentUser);
+	}
 
 	/**获取当前用户昵称
 	 * @return

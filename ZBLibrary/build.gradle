@@ -38,7 +38,6 @@ dependencies {
     api project(':TakePhotoLibrary')
     api 'com.yanzhenjie.permission:support:2.0.1'// 权限
     api 'com.gyf.immersionbar:immersionbar:3.0.0'//状态栏
-    api 'com.aliyun.dpa:oss-android-sdk:2.9.5'//阿里云oss
     api 'org.greenrobot:eventbus:3.1.1'//eventbus
 
     //完整版引入

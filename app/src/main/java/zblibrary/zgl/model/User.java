@@ -11,6 +11,7 @@ public class User {
 
 		public static class UserInfoBean {
 			public String userId;
+			public String avatar;
 			public String nickName;
 			public int status;
 			public String birthday;
