@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -12,6 +15,9 @@ import com.liulishuo.filedownloader.FileDownloader;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import zblibrary.zgl.R;
 import zblibrary.zgl.application.MApplication;
@@ -23,10 +29,8 @@ import zblibrary.zgl.model.RefreshDownEvent;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseBottomTabActivity;
 import zuo.biao.library.base.BaseEvent;
-import zuo.biao.library.interfaces.OnHttpResponseListener;
-import zuo.biao.library.manager.SystemBarTintManager;
+import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.ui.WebViewActivity;
-import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
 
 /**应用主页
@@ -36,6 +40,7 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	private static final String TAG = "MainTabActivity";
 	private View myDownFilesFragment;
 	private String url;
+	private Timer timer = new Timer(true);
 	public static Intent createIntent(Context context) {
 		return new Intent(context, MainTabActivity.class);
 	}
@@ -58,7 +63,28 @@ public class MainTabActivity extends BaseBottomTabActivity {
 		initView();
 		initData();
 		initEvent();
+		timer.schedule(task, 0, 10*60*1000);
 	}
+
+	private final Handler handler  = new Handler(){
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			if(msg.arg1 == 1){
+				HttpRequest.reportActive(0,null);
+			}
+		}
+	};
+
+	//任务
+	private TimerTask task = new TimerTask() {
+		public void run() {
+			Message msg = new Message();
+			msg.arg1 = 1;
+			handler.sendMessage(msg);
+		}
+	};
+
+
 
 	@Override
 	public void initView() {// 必须调用
@@ -111,6 +137,7 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	@Override
 	public void initData() {// 必须调用
 		super.initData();
+
 	}
 
 	@Override

@@ -161,8 +161,9 @@ public class HttpManager {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
-				listener.onHttpResponse(requestCode, result, exception);
+				if(listener!=null){
+					listener.onHttpResponse(requestCode, result, exception);
+				}
 			}
 
 		}.execute();
@@ -286,7 +287,9 @@ public class HttpManager {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				listener.onHttpResponse(requestCode, result, exception);
+				if(listener!=null){
+					listener.onHttpResponse(requestCode, result, exception);
+				}
 			}
 
 		}.execute();
