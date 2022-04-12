@@ -27,6 +27,7 @@ import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
+import zuo.biao.library.util.StringUtil;
 
 /**会员中心
  */
@@ -37,7 +38,7 @@ public class MemberCenterFragment extends BaseFragment implements
 	private List<ListByPos> listByPos = new ArrayList<>();
 	private List<MemberCenter> memberCenters = new ArrayList<>();
 	private Gallery member_center_gallery;
-	private ImageView member_center_equity;
+	private ImageView member_center_equity,member_canter_head;
 	private TextView member_canter_order,center_pay;
 	private TextView member_canter_price,member_canter_name;
 	private MZBannerView member_center_ad ;
@@ -59,6 +60,12 @@ public class MemberCenterFragment extends BaseFragment implements
 		return view;
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		initData();
+	}
+
 
 	@Override
 	public void initView() {//必须调用
@@ -69,16 +76,24 @@ public class MemberCenterFragment extends BaseFragment implements
 		member_center_ad = findView(R.id.member_center_ad);
 		center_pay = findView(R.id.center_pay);
 		member_canter_name = findView(R.id.member_canter_name);
+		member_canter_head = findView(R.id.member_canter_head);
 	}
 
 	@Override
 	public void initData() {//必须调用
-		mzHolderCreator = (MZHolderCreator<BannerViewPagerHolder>) () -> new BannerViewPagerHolder();
+		if(mzHolderCreator ==null){
+			mzHolderCreator = (MZHolderCreator<BannerViewPagerHolder>) () -> new BannerViewPagerHolder();
+		}
 		member_canter_name.setText(MApplication.getInstance().getCurrentUserNickName());
 		if(MApplication.getInstance().isBindUserPhone()){
 			findView(R.id.member_canter_phone).setVisibility(View.GONE);
 		}else{
 			findView(R.id.member_canter_phone).setVisibility(View.VISIBLE);
+		}
+		if(StringUtil.isEmpty(MApplication.getInstance().getCurrentUserAvatar())){
+			member_canter_head.setImageResource(R.mipmap.defult_head);
+		}else {
+			GlideUtil.loadCircle(context,MApplication.getInstance().getCurrentUserAvatar(),member_canter_head);
 		}
 	}
 

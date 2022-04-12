@@ -51,7 +51,6 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		OnHttpResponseListener, DatePickerDialog.OnDateSetListener , UploadUtil.OnUploadProcessListener {
 	private static final String TAG = "UserInfoActivity";
 	private static final int REQUEST_TO_BOTTOM_MENU = 10;
-	private static final int REQUEST_UPLOAD = 50001;
 	private static final int REQUEST_INFO = 50003;
 	private String picturePath;
 	private ImageView mUserInfoHeadpic;
@@ -73,12 +72,6 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		initEvent();
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		initData();
-	}
-
 	public void initView() {//必须调用
 		mUserInfoHeadpic = findViewById(R.id.user_info_headpic);
 		user_info_change_nickname = findViewById(R.id.user_info_change_nickname);
@@ -97,7 +90,12 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		user_info_change_nickname.setText(MApplication.getInstance().getCurrentUserSex());
 		user_info_phonenum.setText(MApplication.getInstance().getCurrentUserBirthday());
 		user_info_jianjie.setText(MApplication.getInstance().getCurrentUserPersonal());
-		mUserInfoHeadpic.setImageResource(R.mipmap.defult_head);
+		picturePath = MApplication.getInstance().getCurrentUserAvatar();
+		if(StringUtil.isNotEmpty(picturePath,true)){
+			GlideUtil.loadCircle(this,picturePath,mUserInfoHeadpic);
+		}else{
+			mUserInfoHeadpic.setImageResource(R.mipmap.defult_head);
+		}
 	}
 	public void initEvent() {//必须调用
 		findViewById(R.id.user_info_headpic).setOnClickListener(this);
@@ -130,9 +128,16 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				itemDialog.show();
 				break;
 			case R.id.user_info_save:
-				CommonUtil.showProgressDialog(UserInfoActivity.this,"Uploading...");
-				if(picturePath.startsWith("http")){
-					HttpRequest.updateUserAvatar(picturePath,REQUEST_UPLOAD,new OnHttpResponseListenerImpl(UserInfoActivity.this));
+				CommonUtil.showProgressDialog(UserInfoActivity.this,"正在提交，请稍后...");
+				if(!StringUtil.isEmpty(picturePath) && picturePath.startsWith("http")){
+					int sex ;
+					if(user_info_change_nickname.getText().toString().equals("男")){
+						sex = 1;
+					}else{
+						sex = 2;
+					}
+					HttpRequest.updateUserInfo(picturePath,user_info_userid.getText().toString(),user_info_phonenum.getText().toString(),sex,
+							user_info_jianjie.getText().toString(),REQUEST_INFO,new OnHttpResponseListenerImpl(UserInfoActivity.this));
 				}else{
 					upLoadOssAvatar();
 				}
@@ -254,18 +259,6 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 	@Override
 	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
 		switch (requestCode){
-			case REQUEST_UPLOAD:
-				GlideUtil.loadCircle(UserInfoActivity.this,picturePath,mUserInfoHeadpic);
-				MApplication.getInstance().setCurrentUserAvatar(picturePath);
-				int sex ;
-				if(user_info_change_nickname.getText().toString().equals("男")){
-					sex = 1;
-				}else{
-					sex = 2;
-				}
-				HttpRequest.updateUserInfo(user_info_userid.getText().toString(),user_info_phonenum.getText().toString(),sex,
-						user_info_jianjie.getText().toString(),REQUEST_INFO,new OnHttpResponseListenerImpl(UserInfoActivity.this));
-				break;
 			case REQUEST_INFO:
 				CommonUtil.dismissProgressDialog(UserInfoActivity.this);
 				CommonUtil.showShortToast(this,"提交成功");
@@ -273,6 +266,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				MApplication.getInstance().setCurrentUserBirthday(user_info_phonenum.getText().toString());
 				MApplication.getInstance().setCurrentUserSex(user_info_change_nickname.getText().toString());
 				MApplication.getInstance().setCurrentUserNickName(user_info_userid.getText().toString());
+				MApplication.getInstance().setCurrentUserAvatar(picturePath);
 				finish();
 				break;
 		}
@@ -318,7 +312,14 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		if(responseCode == UPLOAD_SUCCESS_CODE){
 			UploadAvatar uploadAvatar = GsonUtil.GsonToBean(message,UploadAvatar.class);
 			picturePath = uploadAvatar.data.images.get(0).oUrl;
-			HttpRequest.updateUserAvatar(picturePath,REQUEST_UPLOAD,new OnHttpResponseListenerImpl(UserInfoActivity.this));
+			int sex ;
+			if(user_info_change_nickname.getText().toString().equals("男")){
+				sex = 1;
+			}else{
+				sex = 2;
+			}
+			HttpRequest.updateUserInfo(picturePath,user_info_userid.getText().toString(),user_info_phonenum.getText().toString(),sex,
+					user_info_jianjie.getText().toString(),REQUEST_INFO,new OnHttpResponseListenerImpl(UserInfoActivity.this));
 		}else{
 			CommonUtil.showShortToast(this,message);
 		}

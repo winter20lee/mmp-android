@@ -216,24 +216,15 @@ public class HttpRequest {
 	}
 
 
-	/**修改头像
-	 * @param avatar
-	 * @param requestCode
-	 * @param listener
-	 */
-	public static void updateUserAvatar(String avatar, final int requestCode, final OnHttpResponseListener listener) {
-		Map<String, Object> request = new HashMap<>();
-		request.put("avatar", avatar);
-		HttpManager.getInstance().post(request, URL_BASE + "/user/updateUserAvatar", true,requestCode, listener);
-	}
 	/**修改用户信息
 	 */
-	public static void updateUserInfo(String nickName, String birthday,int gender,String personal,final int requestCode, final OnHttpResponseListener listener) {
+	public static void updateUserInfo(String headImg,String nickName, String birthday,int gender,String personal,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put("nickName", nickName);
 		request.put("birthday", birthday);
 		request.put("gender", gender);
 		request.put("personal", personal);
+		request.put("headImg", headImg);
 		HttpManager.getInstance().post(request, URL_BASE + "/api/user/updateInfo", true,requestCode, listener);
 	}
 

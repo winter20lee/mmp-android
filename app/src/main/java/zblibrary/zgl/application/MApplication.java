@@ -57,7 +57,7 @@ public class MApplication extends BaseApplication {
 	 */
 	public String getCurrentUserAvatar() {
 		currentUser = getCurrentUser();
-		return currentUser == null ? null : currentUser.userInfo.avatar;
+		return currentUser == null ? null : currentUser.userInfo.headImg;
 	}
 
 	/**设置当前用户头像
@@ -65,7 +65,7 @@ public class MApplication extends BaseApplication {
 	 */
 	public void  setCurrentUserAvatar(String avatar) {
 		currentUser = getCurrentUser();
-		currentUser.userInfo.avatar = avatar;
+		currentUser.userInfo.headImg = avatar;
 		saveCurrentUser(currentUser);
 	}
 

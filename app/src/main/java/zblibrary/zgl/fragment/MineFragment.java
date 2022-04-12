@@ -68,7 +68,11 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public void initData() {//必须调用
 		mine_name.setText(MApplication.getInstance().getCurrentUserNickName());
-		mine_head.setImageResource(R.mipmap.defult_head);
+		if(StringUtil.isEmpty(MApplication.getInstance().getCurrentUserAvatar())){
+			mine_head.setImageResource(R.mipmap.defult_head);
+		}else {
+			GlideUtil.loadCircle(context,MApplication.getInstance().getCurrentUserAvatar(),mine_head);
+		}
 		mine_down_state.setText("正在下载（"+ MyDownFilesFragment.TasksManager.getImpl().getDowningCounts()+"）/ " +
 				"已下载（"+ MyDownFilesFragment.TasksManager.getImpl().getDownedCounts()+"）");
 		if(MApplication.getInstance().isBindUserPhone()){
