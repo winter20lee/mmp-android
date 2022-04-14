@@ -30,12 +30,10 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
 import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
-import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import org.greenrobot.eventbus.EventBus;
@@ -82,7 +80,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_video_details_activity);
-        SystemBarTintManager.setStatusBarMode(this);
+        SystemBarTintManager.setStatusBarFull(this);
         Intent intent = getIntent();
         videoId = intent.getLongExtra(INTENT_ID, videoId);
         if (videoId == 0) {
@@ -103,6 +101,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
 
     public void initView() {//必须调用
         videoPlayer = findViewById(R.id.video_player);
+        videoPlayer.getBackButton().setVisibility(View.GONE);
         product_details_name = findViewById(R.id.product_details_name);
         product_details_price = findViewById(R.id.product_details_price);
         product_details_jianjie = findViewById(R.id.product_details_jianjie);
@@ -116,7 +115,6 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         play_video_head = findViewById(R.id.play_video_head);
         play_video_recomm = findViewById(R.id.play_video_recomm);
         play_video_like = findViewById(R.id.play_video_like);
-
     }
 
     public void initData() {//必须调用
@@ -324,11 +322,11 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 .setThumbImageView(imageView)
                 .setUrl(source)
                 .setCacheWithPlay(true)
-                .setVideoTitle(productDes.name)
                 .setIsTouchWiget(true)
                 //.setAutoFullWithSize(true)
                 .setRotateViewAuto(false)
                 .setLockLand(false)
+                .setFullHideStatusBar(true)
                 .setShowFullAnimation(false)//打开动画
                 .setNeedLockFull(true)
                 .setSeekRatio(1);

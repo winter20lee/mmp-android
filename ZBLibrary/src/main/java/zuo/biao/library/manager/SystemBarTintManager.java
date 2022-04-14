@@ -9,4 +9,10 @@ public class SystemBarTintManager {
                 .statusBarColor("#282828")
                 .init();
     }
+
+    public static void setStatusBarFull(Activity activity) {
+        ImmersionBar.with(activity).reset()
+                .fullScreen(true)
+                .init();
+    }
 }

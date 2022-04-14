@@ -299,6 +299,7 @@ public class CommonUtil {
 			@Override
 			public void run() {
 				progressDialog.dismiss();
+				progressDialog=null;
 			}
 		});
 	}

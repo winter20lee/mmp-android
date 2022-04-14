@@ -3,6 +3,8 @@ package zblibrary.zgl.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -15,6 +17,7 @@ import zblibrary.zgl.model.FirstTabPosEvent;
 import zblibrary.zgl.model.FirstCategory;
 import zuo.biao.library.R;
 import zuo.biao.library.base.BaseBottomWindow;
+import zuo.biao.library.util.Log;
 
 public class FirstSideWindow extends BaseBottomWindow {
     private GridView expandableGridView;
@@ -38,7 +41,9 @@ public class FirstSideWindow extends BaseBottomWindow {
 
     @Override
     public void initView() {//必须调用
-        super.initView();
+        enterAnim = exitAnim = R.anim.null_anim;
+        vBaseBottomWindowRoot = findView(R.id.vBaseBottomWindowRoot);
+        vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_window_enter));
         first_side_close = findView(R.id.first_side_close);
         expandableGridView = findView(R.id.first_side_gridview);
 
@@ -73,5 +78,16 @@ public class FirstSideWindow extends BaseBottomWindow {
     @Override
     protected void setResult() {
 
+    }
+
+    @Override
+    public void finish() {
+        if (isExit) {
+            return;
+        }
+        isExit = true;
+        vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.right_push_out));
+        vBaseBottomWindowRoot.setVisibility(View.GONE);
+        exitHandler.sendEmptyMessageDelayed(0, 200);
     }
 }

@@ -135,7 +135,18 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 		if(requestCode == REQUEST_CODE_CODE){
 			showShortToast("Obtaining the verification code succeeded");
 		}else if(requestCode == REQUEST_CODE_LOGIN){
-			toActivity(LoginActivity.createIntent(context));
+
+			if(StringUtil.isEmpty(resultData)){
+				showShortToast("绑定失败");
+				return;
+			}
+			User user = GsonUtil.GsonToBean(resultData,User.class);
+			if(user==null){
+				showShortToast("绑定失败");
+				return;
+			}
+			MApplication.getInstance().saveCurrentUser(user);
+			showShortToast("绑定成功");
 			finish();
 		}
 	}

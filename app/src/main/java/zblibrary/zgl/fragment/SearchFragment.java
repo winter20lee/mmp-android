@@ -18,6 +18,7 @@ import zblibrary.zgl.view.SpaceItemDecoration;
 import zuo.biao.library.base.BaseHttpRecyclerFragment;
 import zuo.biao.library.interfaces.AdapterCallBack;
 import zuo.biao.library.ui.EmptyView;
+import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.GsonUtil;
 
 /**
@@ -88,11 +89,15 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 
 	@Override
 	public void getListAsync(final int page) {
+		if(page == 1){
+			CommonUtil.showProgressDialog(context,"搜索中");
+		}
 		HttpRequest.getSearch(page,cateGoryId,keyWord,-page, this);
 	}
 
 	@Override
 	public List<SecondCategory.VideoListBean.ResultBean> parseArray(String json) {
+		CommonUtil.dismissProgressDialog(context);
 		onStopRefresh();
 		if(json==null){
 			return new ArrayList<>();

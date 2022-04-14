@@ -25,6 +25,7 @@ import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.interfaces.OnStopLoadListener;
 import zuo.biao.library.ui.WebViewActivity;
 import zuo.biao.library.util.GsonUtil;
+import zuo.biao.library.util.StringUtil;
 
 /**首页
  */
@@ -112,7 +113,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 			HttpRequest.getIndex(pageComm,catalogId,0,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}else{
 			//banner
-			HttpRequest.getListByPos(catalogId,0,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
+			HttpRequest.getListByPos(1,catalogId,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 			//一级分类
 			HttpRequest.getIndex(pageComm,catalogId,1,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}
@@ -123,10 +124,19 @@ public class FirstRecommendFragment extends BaseFragment implements
 	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
 		switch (requestCode){
 			case REQUEST_BANNER:
-				firstBannerList.clear();
-				firstBannerList.addAll(GsonUtil.jsonToList(resultData, ListByPos.class));
-				mMZBanner.setPages(firstBannerList,mzHolderCreator );
-				mMZBanner.start();
+				if(StringUtil.isEmpty(resultData)){
+					return;
+				}
+				ArrayList<ListByPos> arrayList = (ArrayList<ListByPos>) GsonUtil.jsonToList(resultData, ListByPos.class);
+				if(arrayList!=null && arrayList.size()>0){
+					firstBannerList.clear();
+					firstBannerList.addAll(arrayList);
+					mMZBanner.setPages(firstBannerList,mzHolderCreator );
+					mMZBanner.start();
+					mMZBanner.setVisibility(View.VISIBLE);
+				}else{
+					mMZBanner.setVisibility(View.GONE);
+				}
 				onStopRefresh();
 				break;
 			case REQUEST_COMM_REFRESH:

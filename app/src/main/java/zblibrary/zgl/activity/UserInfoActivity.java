@@ -103,6 +103,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		user_info_phonenum.setOnClickListener(this);
 		user_info_save.setOnClickListener(this);
 		user_info_jianjie.setOnClickListener(this);
+		findViewById(R.id.user_info_birth_right).setOnClickListener(this);
 	}
 
 	@Override
@@ -115,6 +116,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				startActivityForResult(intent, REQUEST_TO_BOTTOM_MENU);
 				break;
 			case R.id.user_info_phonenum:
+			case R.id.user_info_birth_right:
 				initCalendar();
 				break;
 			case R.id.user_info_change_nickname:
@@ -303,13 +305,25 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 
 	@Override
 	public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-		user_info_phonenum.setText(year+"."+month+1+"."+dayOfMonth);
+		String month1;
+		if(month+1<10){
+			month1 = "0"+(month+1);
+		}else{
+			month1 = ""+(month+1);
+		}
+		String dayOfMonth1;
+		if(dayOfMonth<10){
+			dayOfMonth1 = "0"+dayOfMonth;
+		}else{
+			dayOfMonth1 = ""+dayOfMonth;
+		}
+
+		user_info_phonenum.setText(year+"-"+month1+"-"+dayOfMonth1);
 	}
 
 	@Override
 	public void onUploadDone(int responseCode, String message) {
-		CommonUtil.dismissProgressDialog(UserInfoActivity.this);
-		if(responseCode == UPLOAD_SUCCESS_CODE){
+		CommonUtil.dismissProgressDialog(UserInfoActivity.this);if(responseCode == UPLOAD_SUCCESS_CODE){
 			UploadAvatar uploadAvatar = GsonUtil.GsonToBean(message,UploadAvatar.class);
 			picturePath = uploadAvatar.data.images.get(0).oUrl;
 			int sex ;
@@ -318,6 +332,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 			}else{
 				sex = 2;
 			}
+			CommonUtil.showProgressDialog(UserInfoActivity.this,"正在提交，请稍后...");
 			HttpRequest.updateUserInfo(picturePath,user_info_userid.getText().toString(),user_info_phonenum.getText().toString(),sex,
 					user_info_jianjie.getText().toString(),REQUEST_INFO,new OnHttpResponseListenerImpl(UserInfoActivity.this));
 		}else{

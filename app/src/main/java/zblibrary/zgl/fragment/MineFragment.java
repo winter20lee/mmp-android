@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import zblibrary.zgl.R;
+import zblibrary.zgl.activity.BingPhoneActivity;
 import zblibrary.zgl.activity.LoginActivity;
 import zblibrary.zgl.activity.MainTabActivity;
 import zblibrary.zgl.activity.MyLikeActivity;
@@ -109,6 +110,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 		findView(R.id.mine_like,this);
 		findView(R.id.mine_down,this);
 		findView(R.id.mine_history,this);
+		findView(R.id.mine_phone,this);
 	}
 
 
@@ -142,6 +144,9 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 				break;
 			case R.id.mine_set:
 				toActivity(SetActivity.createIntent(context));
+				break;
+			case R.id.mine_phone:
+				toActivity(BingPhoneActivity.createIntent(context));
 				break;
 			default:
 				break;

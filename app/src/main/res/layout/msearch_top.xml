@@ -18,7 +18,7 @@
         android:imeOptions="actionSearch"
         android:layout_marginRight="50dp"
         android:paddingLeft="40dp"
-        android:paddingRight="160dp"
+        android:paddingRight="140dp"
         android:singleLine="true"
         android:hint="请输入关键字"
         android:textColor="#FFFFFF"

@@ -4,7 +4,9 @@
     style="@style/activity_page"
     android:background="@color/white">
 
-    <ImageView style="@style/topbar_return_img" />
+    <ImageView style="@style/topbar_return_img"
+        android:layout_margin="16dp"
+        android:src="@mipmap/back_black"/>
 
 
     <LinearLayout
