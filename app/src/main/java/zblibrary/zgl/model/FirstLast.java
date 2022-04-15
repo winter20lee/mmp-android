@@ -36,6 +36,8 @@ public class FirstLast {
 				resultBean.coverUrl = resultBean1.coverUrl;
 				resultBean.name =resultBean1.name;
 				resultBean.id = resultBean1.id;
+				resultBean.tag = resultBean1.tag;
+				resultBean.playCnt = resultBean1.playCnt;
 				resultBeans.add(resultBean);
 			}
 			SecondCategory.VideoListBean videoListBean = new SecondCategory.VideoListBean();
