@@ -160,7 +160,7 @@ public class MApplication extends BaseApplication {
 	}
 
 	public int downloadCount;
-
+	public int playCount;
 
 	private static User currentUser = null;
 	private static AppInitInfo appInitInfo = null;

@@ -266,6 +266,13 @@ public class HttpRequest {
 		HttpManager.getInstance().get(request, URL_BASE + "/api/user/getDownloadCnt", requestCode, listener);
 	}
 
+	/**获取guest用户的播放次数
+	 */
+	public static void getDayPlayCnt(final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		HttpManager.getInstance().get(request, URL_BASE + "/api/user/getDayPlayCnt", requestCode, listener);
+	}
+
 	/**上报用户活跃状态
 	 */
 	public static void reportActive(final int requestCode, final OnHttpResponseListener listener) {

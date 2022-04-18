@@ -26,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -83,6 +84,9 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         SystemBarTintManager.setStatusBarFull(this);
         Intent intent = getIntent();
         videoId = intent.getLongExtra(INTENT_ID, videoId);
+        if(!MApplication.getInstance().isVip() && MApplication.getInstance().playCount>0){
+            Toast.makeText(this,"播放超过次数",Toast.LENGTH_SHORT).show();
+        }
         if (videoId == 0) {
             CommonUtil.showShortToast(this,"视频不存在！");
             return;

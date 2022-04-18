@@ -48,6 +48,7 @@ import zuo.biao.library.util.StringUtil;
 public class FirstFragment extends BaseFragment implements OnClickListener,
 		OnHttpResponseListener {
 	public static final int REQUEST_GOODSCATEGORY = 110000;
+	public static final int REQUEST_DAY_PLAY_COUNT = 110001;
 	private TabLayout tabLayout;
 	private ViewPager viewPager;
 	private FirstTabLayoutAdapter adapter;
@@ -103,6 +104,15 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	public void initEvent() {//必须调用
 		findView(R.id.et_searchtext_search).setFocusable(false);
 		findView(R.id.et_searchtext_search).setOnClickListener(this);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		//获取播放次数
+		if(!MApplication.getInstance().isVip()){
+			HttpRequest.getDayPlayCnt(REQUEST_DAY_PLAY_COUNT,new OnHttpResponseListenerImpl(this));
+		}
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -172,6 +182,9 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 					FirstCategory.FirstCategorySerializable firstCategorySerializable= firstCategoryList.get(i).transData();
 					firstCategorySerializables.add(firstCategorySerializable);
 				}
+				break;
+			case REQUEST_DAY_PLAY_COUNT:
+				MApplication.getInstance().playCount = Integer.parseInt(resultData);
 				break;
 		}
 	}
