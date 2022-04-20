@@ -103,7 +103,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
-                            android:textColor="#FF3462"
+                            android:textColor="#FFE300"
                             android:textSize="20sp" />
 
                         <TextView
@@ -326,8 +326,8 @@
                     android:textColor="#95949D"
                     />
                 <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@mipmap/first_more"
                     />
             </LinearLayout>
@@ -364,8 +364,8 @@
                     android:textColor="#95949D"
                     />
                 <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@mipmap/first_more"
                     />
             </LinearLayout>

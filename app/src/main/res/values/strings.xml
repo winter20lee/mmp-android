@@ -11,7 +11,7 @@
     <string name="tasks_manager_demo_status_progress">下载中...</string>
     <string name="tasks_manager_demo_status_downloading" formatted="false">Status: downloading %d</string>
     <string name="tasks_manager_demo_status_error">下载错误</string>
-    <string name="tasks_manager_demo_status_paused">等待下载</string>
+    <string name="tasks_manager_demo_status_paused">暂停下载</string>
     <string name="tasks_manager_demo_status_completed">已完成</string>
     <string name="tasks_manager_demo_status_not_downloaded">等待下载</string>
     <string name="start">Start</string>

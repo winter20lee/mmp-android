@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="编辑"
             android:textSize="13sp"
-            android:textColor="#323038"
+            android:textColor="#FFFFFF"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"

@@ -10,7 +10,7 @@
     android:orientation="vertical">
 
 
-    <ImageView
+    <zuo.biao.library.ui.RoundImageView
         android:id="@+id/tvAlertDialogImage"
         android:layout_width="match_parent"
         android:layout_weight="1"

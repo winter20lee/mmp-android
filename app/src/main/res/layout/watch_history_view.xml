@@ -3,7 +3,7 @@
     style="@style/match_wrap"
     >
 
-        <ImageView
+        <zuo.biao.library.ui.RoundImageView
             android:id="@+id/watch_history_img"
             android:layout_width="93dp"
             android:layout_height="60dp"
@@ -11,7 +11,6 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@color/alpha_1"
             />
 
         <TextView
@@ -40,17 +39,36 @@
             android:layout_height="wrap_content"/>
 
 
-        <TextView
-            android:id="@+id/watch_history_time"
-            android:maxLines="1"
-            android:lines="1"
-            android:ellipsize="end"
-            android:textColor="#95949D"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_below="@id/watch_history_label"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:textSize="12sp"
+            android:gravity="center_vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:adjustViewBounds="true"
+                    android:layout_marginRight="5dp"
+                    android:src="@mipmap/history"
+                    android:layout_below="@id/watch_history_label"
+                    android:layout_toLeftOf="@+id/watch_history_time"
+                    />
+
+                <TextView
+                    android:id="@+id/watch_history_time"
+                    android:maxLines="1"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textColor="#95949D"
+                    android:layout_marginRight="15dp"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
 
 </RelativeLayout>

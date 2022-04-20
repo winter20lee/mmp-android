@@ -17,13 +17,8 @@ import zblibrary.zgl.activity.SetActivity;
 import zblibrary.zgl.activity.UserInfoActivity;
 import zblibrary.zgl.activity.WatchHistoryActivity;
 import zblibrary.zgl.application.MApplication;
-import zblibrary.zgl.interfaces.OnHttpResponseListener;
-import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
-import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseFragment;
-import zuo.biao.library.ui.AlertDialog.OnDialogButtonClickListener;
 import zuo.biao.library.util.GlideUtil;
-import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
 
 /**我的
@@ -98,7 +93,11 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 			findView(R.id.mine_zskf_).setVisibility(View.INVISIBLE);
 			findView(R.id.mine_kftj_).setVisibility(View.INVISIBLE);
 			mine_total_count.setText(" / 1");
-			mine_left_count.setText((1-MApplication.getInstance().downloadCount)+"");
+			if(MApplication.getInstance().playCount==0){
+				mine_left_count.setText((1-MApplication.getInstance().playCount)+"");
+			}else{
+				mine_left_count.setText("0");
+			}
 		}
 	}
 

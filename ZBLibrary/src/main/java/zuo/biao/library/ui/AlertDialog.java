@@ -100,7 +100,7 @@ public class AlertDialog extends Dialog implements android.view.View.OnClickList
 	protected void onCreate(Bundle savedInstanceState) {  
 		super.onCreate(savedInstanceState);  
 		setContentView(R.layout.alert_dialog); 
-		setCanceledOnTouchOutside(true);
+		setCanceledOnTouchOutside(false);
 
 		tvTitle = findViewById(R.id.tvAlertDialogTitle);
 		tvMessage = findViewById(R.id.tvAlertDialogMessage);

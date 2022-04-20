@@ -147,7 +147,7 @@ public class VerificationCodeInputView extends LinearLayout {
                         }
                     } else {
                         if (isPassWord) {
-                            edImg.setVisibility(VISIBLE);
+                            edImg.setVisibility(GONE);
                         }
                         focus();
                         checkAndCommit();

@@ -20,6 +20,7 @@
             android:gravity="center"
             android:inputType="number"
             android:maxLength="1"
+            android:textStyle="bold"
             android:textColor="#333333">
         </EditText>
 

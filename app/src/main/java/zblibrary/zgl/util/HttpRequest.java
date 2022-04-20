@@ -234,7 +234,7 @@ public class HttpRequest {
 	public static void getMyfav(final int pageNo,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put(PAGE_NUM, pageNo);
-		request.put(PAGE_SiZE, 10);
+		request.put(PAGE_SiZE, 20);
 		request.put("userId", MApplication.getInstance().getCurrentUserId());
 		HttpManager.getInstance().post(request, URL_BASE + "/api/user/getMyfav", true,requestCode, listener);
 	}
@@ -244,7 +244,7 @@ public class HttpRequest {
 	public static void getMyplay(final int pageNo,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put(PAGE_NUM, pageNo);
-		request.put(PAGE_SiZE, 10);
+		request.put(PAGE_SiZE, 20);
 		request.put("userId", MApplication.getInstance().getCurrentUserId());
 		HttpManager.getInstance().post(request, URL_BASE + "/api/user/getMyplay", true,requestCode, listener);
 	}

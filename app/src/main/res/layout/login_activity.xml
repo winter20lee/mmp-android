@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="91dp"
+            android:layout_marginTop="40dp"
             android:orientation="vertical" >
 
             <TextView
@@ -25,14 +25,14 @@
                 android:textColor="#333333"
                 android:textStyle="bold"
                 android:textSize="20dp"
-                android:layout_marginLeft="36dp"
+                android:layout_marginLeft="30dp"
                 />
 
 
             <RelativeLayout
                 android:layout_marginTop="55dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
 
@@ -46,8 +46,8 @@
                     android:inputType="number"
                     android:maxLength="11"
                     android:maxLines="1"
-                    android:paddingLeft="13dp"
                     android:paddingStart="40dp"
+                    android:paddingLeft="13dp"
                     android:textColor="#3D3535"
                     android:textColorHint="#CCCCCC"
                     android:textSize="16dp" />
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
-        android:layout_marginTop="91dp"
+        android:layout_marginTop="40dp"
         android:orientation="vertical" >
 
         <TextView
@@ -103,7 +103,9 @@
             android:id="@+id/login_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             app:child_edit_id="@+id/ed_inputcode"
             app:child_layout="@layout/input_code_box_view"
             app:inputlength="6" />
@@ -111,7 +113,9 @@
             <TextView
                 android:id="@+id/login_message_time"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
                 android:gravity="center"
                 android:padding="15dp"
                 android:text="重新获取"

@@ -288,7 +288,7 @@
     <!-- divider <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 
     <style name="divider">
-        <item name="android:background">#f6f6f6</item>
+        <item name="android:background">#EEEEEE</item>
     </style>
 
     <style name="divider_horizontal_1dp" parent="divider">
@@ -677,6 +677,7 @@
 
     <style name="topbar_return_img" parent="topbar_left_btn">
         <item name="android:src">@mipmap/back</item>
+        <item name="android:adjustViewBounds">true</item>
     </style>
 
     <style name="topbar_right_img" parent="topbar_right_btn">

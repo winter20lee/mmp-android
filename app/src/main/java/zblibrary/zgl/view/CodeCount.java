@@ -23,7 +23,7 @@ public class CodeCount extends CountDownTimer {
     public void onTick(long millisUntilFinished) {
         //防止计时过程中重复点击
         button.setClickable(false);
-        button.setText("" + millisUntilFinished / 1000 + "s");
+        button.setText("" + millisUntilFinished / 1000 + " s后重新获取");
     }
 
     @Override

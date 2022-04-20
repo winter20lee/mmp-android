@@ -62,6 +62,7 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
         findView(R.id.set_autoplay,this);
         findView(R.id.set_push,this);
         findView(R.id.set_clear,this);
+        findView(R.id.set_login,this);
     }
 
     @Override
@@ -90,6 +91,9 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
                 String clearSize = CleanDataUtils.getTotalCacheSize(Objects.requireNonNull(this));
                 set_clear_text.setText(clearSize);
                 showShortToast("清除成功");
+                break;
+            case R.id.set_login:
+                toActivity(LoginActivity.createIntent(this));
                 break;
         }
     }

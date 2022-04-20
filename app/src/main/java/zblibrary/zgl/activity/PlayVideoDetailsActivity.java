@@ -44,6 +44,7 @@ import java.util.List;
 import zblibrary.zgl.R;
 import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.manager.SystemBarTintManager;
+import zuo.biao.library.ui.AlertDialog;
 import zuo.biao.library.ui.EmptyRecyclerView;
 import zuo.biao.library.ui.FlowLayout;
 import zuo.biao.library.util.CommonUtil;
@@ -84,12 +85,22 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         SystemBarTintManager.setStatusBarFull(this);
         Intent intent = getIntent();
         videoId = intent.getLongExtra(INTENT_ID, videoId);
-        if(!MApplication.getInstance().isVip() && MApplication.getInstance().playCount>0){
-            Toast.makeText(this,"播放超过次数",Toast.LENGTH_SHORT).show();
-        }
         if (videoId == 0) {
             CommonUtil.showShortToast(this,"视频不存在！");
             return;
+        }
+        if(!MApplication.getInstance().isVip() && MApplication.getInstance().playCount>0){
+//            new AlertDialog(this,"","今日的播放次数已使用完，充值VIP获取无限播放次数","去充值",
+//                    "取消",0,new AlertDialog.OnDialogButtonClickListener(){
+//
+//                @Override
+//                public void onDialogButtonClick(int requestCode, boolean isPositive) {
+//                    if(isPositive){
+//
+//                    }
+//                    PlayVideoDetailsActivity.this.finish();
+//                }
+//            }).show();
         }
         initView();
         initData();
@@ -137,7 +148,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             play_video_like.setTag(false);
         }
         product_details_name.setText(productDes.name);
-        product_details_jianjie.setText(productDes.tag);
+        product_details_jianjie.setText("# "+productDes.tag);
         product_details_price.setText(productDes.playCnt+"次播放");
 
         if(productDes.videoActor!=null){
@@ -150,7 +161,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             play_video_birthday.setText("生日："+productDes.videoActor.birthday);
             play_video_shengao.setText("身高："+productDes.videoActor.height);
             play_video_sanwei.setText("三围："+productDes.videoActor.bwh);
-            GlideUtil.load(this,productDes.videoActor.img,play_video_head);
+            GlideUtil.loadRound(this,productDes.videoActor.img,play_video_head);
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
             play_video_recomm.setLayoutManager(layoutManager);

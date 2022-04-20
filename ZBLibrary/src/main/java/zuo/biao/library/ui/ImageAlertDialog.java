@@ -32,7 +32,7 @@ public class ImageAlertDialog extends Dialog implements View.OnClickListener {
 		this.link = link;
 	}
 
-	private ImageView tvAlertDialogImage;
+	private RoundImageView tvAlertDialogImage;
 	private ImageView btnAlertDialogNegative;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {  
@@ -44,7 +44,8 @@ public class ImageAlertDialog extends Dialog implements View.OnClickListener {
 		btnAlertDialogNegative = findViewById(R.id.btnAlertDialogNegative);
 		btnAlertDialogNegative.setOnClickListener(this);
 		tvAlertDialogImage.setOnClickListener(this);
-		GlideUtil.loadRound(context,image,tvAlertDialogImage,StringUtil.dp2px(context,12));
+		tvAlertDialogImage.setRadius(StringUtil.dp2px(context,12));
+		GlideUtil.load(context,image,tvAlertDialogImage);
 	}
 
 	@Override

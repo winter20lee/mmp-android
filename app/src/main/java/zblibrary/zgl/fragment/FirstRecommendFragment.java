@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -47,6 +48,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 	private ArrayList<FirstCategoryView> firstCategoryViewArrayList = new ArrayList<>();
 	private boolean isRefresh;
 	private int posFirstCategoryView;
+	private RelativeLayout first_banner_rl;
 	public static FirstRecommendFragment createInstance(boolean isCommend,int catalogId) {
 		FirstRecommendFragment fragment = new FirstRecommendFragment();
 		Bundle bundle = new Bundle();
@@ -75,6 +77,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 
 	@Override
 	public void initView() {//必须调用
+		first_banner_rl = findView(R.id.first_banner_rl);
 		mMZBanner = findView(R.id.first_banner);
 		srlBaseHttpRecycler = findView(R.id.srlBaseHttpRecycler);
 		first_categoty_content = findView(R.id.first_categoty_content);
@@ -125,6 +128,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 		switch (requestCode){
 			case REQUEST_BANNER:
 				if(StringUtil.isEmpty(resultData)){
+					first_banner_rl.setVisibility(View.GONE);
 					return;
 				}
 				ArrayList<ListByPos> arrayList = (ArrayList<ListByPos>) GsonUtil.jsonToList(resultData, ListByPos.class);
@@ -133,9 +137,9 @@ public class FirstRecommendFragment extends BaseFragment implements
 					firstBannerList.addAll(arrayList);
 					mMZBanner.setPages(firstBannerList,mzHolderCreator );
 					mMZBanner.start();
-					mMZBanner.setVisibility(View.VISIBLE);
+					first_banner_rl.setVisibility(View.VISIBLE);
 				}else{
-					mMZBanner.setVisibility(View.GONE);
+					first_banner_rl.setVisibility(View.GONE);
 				}
 				onStopRefresh();
 				break;

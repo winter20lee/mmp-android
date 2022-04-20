@@ -241,6 +241,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                         / (float) total;
                 taskPb.setMax(100);
                 taskPb.setProgress((int) (percent * 100));
+                taskTotalTv.setText(StringUtil.bytes2kb(total));
             } else {
                 taskPb.setMax(1);
                 taskPb.setProgress(0);
@@ -284,7 +285,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                             R.string.tasks_manager_demo_status_downloading, status));
                     break;
             }
-
+            taskTotalTv.setText(StringUtil.bytes2kb(total));
             taskActionBtn.setText(R.string.pause);
         }
 

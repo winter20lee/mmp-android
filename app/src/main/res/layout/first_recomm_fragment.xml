@@ -15,11 +15,10 @@
             style="@style/ll_vertical_match_match"
             android:layout_weight="1" >
             <LinearLayout
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12sp"
                 style="@style/ll_vertical_match_match" >
                 <!--banner-->
                 <zuo.biao.library.ui.RatioRelativeLayout
+                    android:id="@+id/first_banner_rl"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     app:relativeRatio="2.089"
@@ -31,8 +30,9 @@
                         android:layout_height="match_parent"
                         app:canLoop="true"
                         app:indicatorAlign="center"
+                        app:middle_page_cover="true"
                         app:indicatorPaddingLeft="10dp"
-                        app:open_mz_mode="false" />
+                        app:open_mz_mode="true" />
                 </zuo.biao.library.ui.RatioRelativeLayout>
              <LinearLayout
                  android:id="@+id/first_categoty_content"

@@ -83,6 +83,7 @@ public class MemberCenterFragment extends BaseFragment implements
 	public void initData() {//必须调用
 		if(mzHolderCreator ==null){
 			mzHolderCreator = (MZHolderCreator<BannerViewPagerHolder>) () -> new BannerViewPagerHolder();
+			member_center_ad.setIndicatorRes(R.drawable.radius_1_shap,R.drawable.radius_2_shap);
 		}
 		member_canter_name.setText(MApplication.getInstance().getCurrentUserNickName());
 		if(MApplication.getInstance().isBindUserPhone()){

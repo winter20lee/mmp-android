@@ -19,7 +19,9 @@
     <ScrollView
         style="@style/match_match"
         android:layout_weight="1" >
-        <LinearLayout style="@style/ll_vertical_match_match">
+        <LinearLayout style="@style/ll_vertical_match_match"
+            android:background="#F4F4F5"
+            >
             <RelativeLayout
                 style="@style/ll_vertical_match_match"
                 android:background="@drawable/radius_8_bottom_shap"
@@ -41,30 +43,29 @@
 
                 <TextView
                     android:id="@+id/product_details_jianjie"
-                    android:layout_below="@id/product_details_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/product_details_name"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="12dp"
                     android:textColor="#87869E"
                     android:textSize="12dp"
-                    tools:text="# 颜值，技术宅，高光，好玩"
-                    />
+                    tools:text="# 颜值，技术宅，高光，好玩" />
 
                 <TextView
                     android:id="@+id/product_details_price"
-                    android:layout_below="@id/product_details_jianjie"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/product_details_jianjie"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="14dp"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="#87869E"
                     android:textSize="12dp"
-                    android:layout_marginBottom="14dp"
                     tools:text="2.6万次播放 " />
 
                 <LinearLayout
@@ -95,7 +96,7 @@
 
             <RelativeLayout
                 android:id="@+id/product_details_actor"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="15dp"
@@ -125,7 +126,7 @@
                     android:layout_height="100dp"
                     android:layout_below="@id/msearch_history"
                     android:layout_marginTop="20dp"
-                    android:background="@color/alpha_1" />
+                    />
 
                 <TextView
                     android:id="@+id/play_video_name"
@@ -218,8 +219,8 @@
             android:id="@+id/play_video_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/back"
-            android:padding="18.5dp" />
+            android:padding="18.5dp"
+            android:src="@mipmap/back_black" />
 
         <ImageView
             android:id="@+id/play_video_share"

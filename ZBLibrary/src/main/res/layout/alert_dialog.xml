@@ -43,7 +43,7 @@
             android:padding="@dimen/item_distance"
             android:text="@string/quxiao"
             android:textAllCaps="false"
-            android:textColor="@color/gray_3"
+            android:textColor="#999999"
             android:visibility="visible" />
 
         <View style="@style/divider_vertical_1px" />
@@ -55,7 +55,7 @@
             android:layout_weight="1"
             android:background="@drawable/to_alpha"
             android:padding="@dimen/item_distance"
-            android:textColor="#E2291F"
+            android:textColor="#E8CE00"
             android:textAllCaps="false"
             android:text="@string/queding" />
     </LinearLayout>

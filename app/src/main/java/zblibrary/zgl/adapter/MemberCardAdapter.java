@@ -10,6 +10,7 @@ import java.util.List;
 import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.MemberCenter;
 import zuo.biao.library.util.GlideUtil;
+import zuo.biao.library.util.StringUtil;
 
 public class MemberCardAdapter extends BaseAdapter {
 
@@ -40,7 +41,7 @@ public class MemberCardAdapter extends BaseAdapter {
         ImageView imageView = new ImageView(mContext);
         GlideUtil.load(mContext,memberCenters.get(i).cardImg,imageView);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setLayoutParams(new Gallery.LayoutParams(1000, 500));
+        imageView.setLayoutParams(new Gallery.LayoutParams(StringUtil.dp2px(mContext,240), StringUtil.dp2px(mContext,125)));
         return imageView;
     }
 }

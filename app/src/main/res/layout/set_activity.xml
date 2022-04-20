@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/activity_page"
+    android:background="@color/white"
     tools:ignore="MissingDefaultResource">
 
     <RelativeLayout style="@style/topbar_bg" >
@@ -168,5 +169,18 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#F4F4F5"/>
+
+
+    <TextView
+        android:id="@+id/set_login"
+        android:layout_width="140dp"
+        android:layout_height="44dp"
+        android:background="@drawable/radius_20_red_shap"
+        android:gravity="center"
+        android:text="更换账号"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:textSize="14dp" />
 
 </LinearLayout>
