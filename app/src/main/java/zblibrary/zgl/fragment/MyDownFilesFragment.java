@@ -261,7 +261,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
             taskActionBtn.setText(R.string.start);
         }
 
-        public void updateDownloading(final int status, final long sofar, final long total) {
+        public void updateDownloading(final int status, final long sofar, final long total,String speed) {
             final float percent = sofar
                     / (float) total;
             taskPb.setMax(100);
@@ -278,7 +278,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                     taskStatusTv.setText(R.string.tasks_manager_demo_status_connected);
                     break;
                 case FileDownloadStatus.progress:
-                    taskStatusTv.setText(R.string.tasks_manager_demo_status_progress);
+                    taskStatusTv.setText(speed);
                     break;
                 default:
                     taskStatusTv.setText(MApplication.getInstance().getString(
@@ -336,7 +336,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                 }
 
                 tag.updateDownloading(FileDownloadStatus.pending, soFarBytes
-                        , totalBytes);
+                        , totalBytes,task.getSpeed()+" k/s");
                 tag.taskStatusTv.setText(R.string.tasks_manager_demo_status_pending);
                 tag.taskTotalTv.setText(StringUtil.bytes2kb(totalBytes));
             }
@@ -361,7 +361,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                 }
 
                 tag.updateDownloading(FileDownloadStatus.connected, soFarBytes
-                        , totalBytes);
+                        , totalBytes,task.getSpeed()+" k/s");
                 tag.taskStatusTv.setText(R.string.tasks_manager_demo_status_connected);
                 tag.taskTotalTv.setText(StringUtil.bytes2kb(totalBytes));
             }
@@ -375,7 +375,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                 }
 
                 tag.updateDownloading(FileDownloadStatus.progress, soFarBytes
-                        , totalBytes);
+                        , totalBytes,task.getSpeed()+" k/s");
             }
 
             @Override
@@ -451,7 +451,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                 }
                 TaskItemViewHolder holder = (TaskItemViewHolder) v.getTag();
                 if(delIds.contains(holder.id)){
-                    delIds.remove(holder.id);
+                    delIds.remove((Integer)holder.id);
                     holder.taskSelectIv.setImageResource(R.mipmap.shopping_car_unselect);
                 }else{
                     delIds.add(holder.id);
@@ -534,7 +534,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                         status == FileDownloadStatus.connected) {
                     // start task, but file not created yet
                     holder.updateDownloading(status, TasksManager.getImpl().getSoFar(model.getId())
-                            , TasksManager.getImpl().getTotal(model.getId()));
+                            , TasksManager.getImpl().getTotal(model.getId()),"0 k/s");
                 } else if (!new File(model.getPath()).exists() &&
                         !new File(FileDownloadUtils.getTempPath(model.getPath())).exists()) {
                     // not exist file
@@ -549,7 +549,7 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                 } else if (status == FileDownloadStatus.progress) {
                     // downloading
                     holder.updateDownloading(status, TasksManager.getImpl().getSoFar(model.getId())
-                            , TasksManager.getImpl().getTotal(model.getId()));
+                            , TasksManager.getImpl().getTotal(model.getId()),"0 k/s");
                 } else {
                     // not start
                     holder.updateNotDownloaded(status, TasksManager.getImpl().getSoFar(model.getId())
