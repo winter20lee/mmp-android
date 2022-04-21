@@ -10,7 +10,9 @@
         android:layout_height="wrap_content">
         <ImageView style="@style/topbar_return_img"
             android:id="@+id/search_back"
-            android:visibility="gone"
+            android:padding="15dp"
+            android:layout_marginRight="-20dp"
+            android:visibility="visible"
             />
         <zblibrary.zgl.view.SearchLayout
             android:layout_width="match_parent"

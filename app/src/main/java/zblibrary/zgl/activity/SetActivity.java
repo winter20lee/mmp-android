@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.Objects;
 import zblibrary.zgl.R;
+import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.manager.DataManager;
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.interfaces.OnBottomDragListener;
@@ -52,6 +53,9 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
         }
         boolean isAutoPlay = DataManager.getInstance().getAutoPlayState();
         set_autoplay_iv.setImageResource(isAutoPlay == true ? R.mipmap.auto_play_open:R.mipmap.auto_play_close);
+        if(MApplication.getInstance().isBindUserPhone()){
+            findView(R.id.set_login).setVisibility(View.VISIBLE);
+        }
     }
 
 

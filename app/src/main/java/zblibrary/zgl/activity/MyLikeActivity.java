@@ -120,6 +120,6 @@ public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, List
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		toActivity(PlayVideoDetailsActivity.createIntent(context,position));
+		toActivity(PlayVideoDetailsActivity.createIntent(context,list.get(position).videoId));
 	}
 }

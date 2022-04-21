@@ -119,6 +119,6 @@ public class WatchHistoryActivity extends BaseHttpListActivity<MyLike.ResultBean
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		toActivity(PlayVideoDetailsActivity.createIntent(context,position));
+		toActivity(PlayVideoDetailsActivity.createIntent(context,list.get(position).videoId));
 	}
 }

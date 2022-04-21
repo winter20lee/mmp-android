@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
+            android:layout_marginTop="10dp"
             android:textColor="#282828"
             android:textSize="13sp"
             android:text="" />

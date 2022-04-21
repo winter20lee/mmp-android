@@ -193,10 +193,16 @@
                 android:layout_marginTop="50dp"
                 android:background="@null"
                 android:gravity="left"
-                android:textColorHint="#CCCCCC"
                 android:hint="简单介绍下自己，300字以内"
                 android:textColor="#323038"
+                android:textColorHint="#CCCCCC"
                 android:textSize="13sp" />
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E9E9E9"
+            />
     </LinearLayout>
 </LinearLayout>

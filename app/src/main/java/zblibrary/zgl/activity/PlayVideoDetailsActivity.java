@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -166,6 +167,13 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
             play_video_recomm.setLayoutManager(layoutManager);
             actorRecommendAdapter = new ActorRecommendAdapter(this);
+            actorRecommendAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent it  = PlayVideoDetailsActivity.createIntent(PlayVideoDetailsActivity.this,productDes.actorVideoList.get(i).id);
+                    startActivity(it);
+                }
+            });
             play_video_recomm.setAdapter(actorRecommendAdapter);
             actorRecommendAdapter.refresh(productDes.actorVideoList);
         }
