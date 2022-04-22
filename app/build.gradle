@@ -42,6 +42,5 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     api project(':ZBLibrary')
-    implementation 'com.github.pinguo-zhouwei:MZBannerView:v2.0.2'//banner
 }
 

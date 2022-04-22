@@ -82,16 +82,23 @@
                     app:ratio="2.7"
                     android:layout_height="wrap_content"/>
 
-                <com.zhouwei.mzbanner.MZBannerView
+                <com.stx.xhb.androidx.XBanner
                     android:id="@+id/member_center_ad"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    app:canLoop="true"
+                    app:AutoPlayTime="3000"
+                    app:isAutoPlay = "true"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    app:indicatorAlign="center"
-                    app:open_mz_mode="false" />
+                    app:pointsContainerBackground="#00aaaaaa"
+                    app:pointNormal="@drawable/radius_1_shap"
+                    app:pointSelect="@drawable/radius_2_shap"
+                    app:pointsPosition="CENTER"
+                    app:tipTextSize="12sp"
+                    app:isShowNumberIndicator="false"
+                    app:isShowIndicatorOnlyOne="true"
+                    app:pageChangeDuration="800"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -3,18 +3,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.zhouwei.mzbanner.MZBannerView;
-import com.zhouwei.mzbanner.holder.MZHolderCreator;
+import com.stx.xhb.androidx.XBanner;
 import java.util.ArrayList;
 import java.util.List;
 import zblibrary.zgl.R;
-import zblibrary.zgl.adapter.BannerViewPagerHolder;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.FirstLast;
@@ -22,9 +21,11 @@ import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryView;
+import zblibrary.zgl.view.ZoomFadePageTransformer;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.interfaces.OnStopLoadListener;
 import zuo.biao.library.ui.WebViewActivity;
+import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
 
@@ -35,10 +36,9 @@ public class FirstRecommendFragment extends BaseFragment implements
 	private static final int REQUEST_BANNER = 10000;
 	private static final int REQUEST_COMM_REFRESH = 10002;
 	private static final int REQUEST_NEW_REFRESH = 10003;
-	private MZBannerView mMZBanner ;
+	private XBanner mMZBanner ;
 	private SmartRefreshLayout srlBaseHttpRecycler;
 	private List<ListByPos> firstBannerList = new ArrayList<>();
-	private MZHolderCreator mzHolderCreator;
 	private int pageComm = 1;
 	private LinearLayout first_categoty_content;
 	private boolean isCommend;
@@ -86,20 +86,16 @@ public class FirstRecommendFragment extends BaseFragment implements
 
 	@Override
 	public void initData() {//必须调用
-		mzHolderCreator = (MZHolderCreator<BannerViewPagerHolder>) () -> new BannerViewPagerHolder();
-		mMZBanner.setPages(firstBannerList,mzHolderCreator );
-		mMZBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
-			@Override
-			public void onPageClick(View view, int position) {
-				toActivity(WebViewActivity.createIntent(context,"",firstBannerList.get(position).link));
-			}
-		});
+		//加载广告图片
+		mMZBanner.loadImage((banner, model, view, position) -> GlideUtil.load(context,((ListByPos)model).imgUrl,(ImageView) view));
+
 
 	}
 
 	@Override
 	public void initEvent() {//必须调用
 		srlBaseHttpRecycler.setOnRefreshListener(this);
+		mMZBanner.setOnItemClickListener((banner, model, view, position) -> toActivity(WebViewActivity.createIntent(context,"",((ListByPos)model).link)));
 	}
 
 
@@ -135,8 +131,9 @@ public class FirstRecommendFragment extends BaseFragment implements
 				if(arrayList!=null && arrayList.size()>0){
 					firstBannerList.clear();
 					firstBannerList.addAll(arrayList);
-					mMZBanner.setPages(firstBannerList,mzHolderCreator );
-					mMZBanner.start();
+					mMZBanner.setAutoPlayAble(firstBannerList.size()>1);
+					mMZBanner.setBannerData(firstBannerList);
+					mMZBanner.setCustomPageTransformer(new ZoomFadePageTransformer());
 					first_banner_rl.setVisibility(View.VISIBLE);
 				}else{
 					first_banner_rl.setVisibility(View.GONE);

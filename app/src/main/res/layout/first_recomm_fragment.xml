@@ -24,15 +24,20 @@
                     app:relativeRatio="2.089"
                     android:layout_height="wrap_content">
 
-                    <com.zhouwei.mzbanner.MZBannerView
+                    <com.stx.xhb.androidx.XBanner
                         android:id="@+id/first_banner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:canLoop="true"
-                        app:indicatorAlign="center"
-                        app:middle_page_cover="true"
-                        app:indicatorPaddingLeft="10dp"
-                        app:open_mz_mode="true" />
+                        app:AutoPlayTime="3000"
+                        app:isAutoPlay = "true"
+                        app:pointsContainerBackground="#00aaaaaa"
+                        app:pointNormal="@drawable/radius_1_shap"
+                        app:pointSelect="@drawable/radius_2_shap"
+                        app:pointsPosition="CENTER"
+                        app:tipTextSize="12sp"
+                        app:isShowNumberIndicator="false"
+                        app:isShowIndicatorOnlyOne="true"
+                        app:pageChangeDuration="800"/>
                 </zuo.biao.library.ui.RatioRelativeLayout>
              <LinearLayout
                  android:id="@+id/first_categoty_content"

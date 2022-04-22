@@ -9,14 +9,13 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zhouwei.mzbanner.MZBannerView;
-import com.zhouwei.mzbanner.holder.MZHolderCreator;
+import com.stx.xhb.androidx.XBanner;
 
 import java.util.ArrayList;
 import java.util.List;
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.OrderActivity;
-import zblibrary.zgl.adapter.BannerViewPagerHolder;
+import zblibrary.zgl.adapter.BannerHolderCreator;
 import zblibrary.zgl.adapter.MemberCardAdapter;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
@@ -24,7 +23,9 @@ import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.MemberCenter;
 import zblibrary.zgl.util.HttpRequest;
+import zblibrary.zgl.view.ZoomFadePageTransformer;
 import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.ui.WebViewActivity;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
@@ -41,8 +42,7 @@ public class MemberCenterFragment extends BaseFragment implements
 	private ImageView member_center_equity,member_canter_head;
 	private TextView member_canter_order,center_pay;
 	private TextView member_canter_price,member_canter_name;
-	private MZBannerView member_center_ad ;
-	private MZHolderCreator mzHolderCreator;
+	private XBanner member_center_ad ;
 	public static MemberCenterFragment createInstance() {
 		return new MemberCenterFragment();
 	}
@@ -81,10 +81,6 @@ public class MemberCenterFragment extends BaseFragment implements
 
 	@Override
 	public void initData() {//必须调用
-		if(mzHolderCreator ==null){
-			mzHolderCreator = (MZHolderCreator<BannerViewPagerHolder>) () -> new BannerViewPagerHolder();
-			member_center_ad.setIndicatorRes(R.drawable.radius_1_shap,R.drawable.radius_2_shap);
-		}
 		member_canter_name.setText(MApplication.getInstance().getCurrentUserNickName());
 		if(MApplication.getInstance().isBindUserPhone()){
 			findView(R.id.member_canter_phone).setVisibility(View.GONE);
@@ -114,6 +110,7 @@ public class MemberCenterFragment extends BaseFragment implements
 		});
 		member_canter_order.setOnClickListener(view -> toActivity(OrderActivity.createIntent(context)));
 		center_pay.setOnClickListener(view -> showShortToast("暂未开通"));
+		member_center_ad.setOnItemClickListener((banner, model, view, position) -> toActivity(WebViewActivity.createIntent(context,"",((ListByPos)model).link)));
 	}
 
 
@@ -124,8 +121,9 @@ public class MemberCenterFragment extends BaseFragment implements
 			case REQUEST_BANNER:
 				listByPos.clear();
 				listByPos.addAll(GsonUtil.jsonToList(resultData,ListByPos.class));
-				member_center_ad.setPages(listByPos,mzHolderCreator );
-				member_center_ad.start();
+				member_center_ad.setAutoPlayAble(listByPos.size()>1);
+				member_center_ad.setBannerData(listByPos, new BannerHolderCreator());
+				member_center_ad.setCustomPageTransformer(new ZoomFadePageTransformer());
 				break;
 			case REQUEST_MEMBER:
 				memberCenters.clear();
