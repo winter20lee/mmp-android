@@ -141,7 +141,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         if(isAutoPlay){
             videoPlayer.startPlayLogic();
         }
-        if(productDes.isfav){
+        if(productDes.isfav == 1){
             play_video_like.setImageResource(R.mipmap.collection_s);
             play_video_like.setTag(true);
         }else{
