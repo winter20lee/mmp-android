@@ -7,12 +7,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.liulishuo.filedownloader.FileDownloader;
+import com.liulishuo.filedownloader.util.FileDownloadUtils;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import zblibrary.zgl.R;
 import zblibrary.zgl.adapter.WatchHistoryAdapter;
+import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.fragment.MyDownFilesFragment;
+import zblibrary.zgl.interfaces.OnHttpResponseListener;
+import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.Customize;
 import zblibrary.zgl.model.MyLike;
 import zblibrary.zgl.model.SecondCategory;
@@ -26,9 +35,11 @@ import zuo.biao.library.util.GsonUtil;
 /**
  * 我的收藏
  */
-public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, ListView, WatchHistoryAdapter> implements OnBottomDragListener {
+public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, ListView, WatchHistoryAdapter> implements 
+		OnBottomDragListener, View.OnClickListener, OnHttpResponseListener {
 
-	private List<MyLike> messageDataList;
+	private ArrayList<Integer> selIds = new ArrayList<>();
+	private TextView mylike_edit,mylike_sel_all,mylike_sel_del;
 	public static Intent createIntent(Context context) {
 		return new Intent(context, MyLikeActivity.class);
 	}
@@ -48,6 +59,9 @@ public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, List
 	public void initView() {//必须调用
 		super.initView();
 		lvBaseList.setDividerHeight(0);
+		mylike_edit = findView(R.id.mylike_edit);
+		mylike_sel_all = findView(R.id.mylike_sel_all);
+		mylike_sel_del = findView(R.id.mylike_sel_del);
 	}
 
 	@Override
@@ -103,7 +117,9 @@ public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, List
 	@Override
 	public void initEvent() {//必须调用
 		super.initEvent();
-
+		mylike_edit.setOnClickListener(this);
+		mylike_sel_all.setOnClickListener(this);
+		mylike_sel_del.setOnClickListener(this);
 	}
 
 
@@ -118,8 +134,91 @@ public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, List
 	}
 
 
+	private void postNotifyDataChanged() {
+		if (adapter != null) {
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					if (adapter != null) {
+						adapter.notifyDataSetChanged();
+					}
+				}
+			});
+		}
+	}
+
+
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		toActivity(PlayVideoDetailsActivity.createIntent(context,list.get(position).videoId));
+	}
+
+	@Override
+	public void onClick(View view) {
+		switch (view.getId()) {
+			case R.id.mylike_edit:
+				if (mylike_edit.getText().toString().equals("编辑")) {
+					mylike_edit.setText("完成");
+					MApplication.getInstance().isEditFav = true;
+					findView(R.id.mylike_bottom_divid).setVisibility(View.VISIBLE);
+					findView(R.id.mylike_bottom_edit).setVisibility(View.VISIBLE);
+				} else {
+					mylike_edit.setText("编辑");
+					MApplication.getInstance().isEditFav = false;
+					findView(R.id.mylike_bottom_divid).setVisibility(View.GONE);
+					findView(R.id.mylike_bottom_edit).setVisibility(View.GONE);
+				}
+				if (adapter != null) {
+					adapter.notifyDataSetInvalidated();
+				}
+				break;
+			case R.id.mylike_sel_all:
+				for (int i=0;i<list.size();i++) {
+					MyLike.ResultBean resultBean = list.get(i);
+					resultBean.isSele = true;
+					selIds.add(resultBean.videoId);
+				}
+				if (adapter != null) {
+					adapter.notifyDataSetInvalidated();
+				}
+				break;
+			case R.id.mylike_sel_del:
+				for (int i=0;i<list.size();i++) {
+					MyLike.ResultBean resultBean = list.get(i);
+					if(resultBean.isSele){
+						selIds.add(resultBean.videoId);
+					}
+				}
+				showProgressDialog("取消中...");
+				HttpRequest.getFavCancel(selIds,1111, new OnHttpResponseListenerImpl(this));
+				break;
+		}
+	}
+
+	@Override
+	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
+		for (Integer id: selIds) {
+			for(int i=0;i<list.size();i++){
+				if(id == list.get(i).videoId){
+					list.remove(i);
+				}
+			}
+		}
+		adapter.refresh(list);
+		selIds.clear();
+		showShortToast("取消收藏成功");
+		dismissProgressDialog();
+	}
+
+	@Override
+	public void onHttpError(int requestCode, Exception e, String message) {
+		dismissProgressDialog();
+		showShortToast("取消收藏失败");
+	}
+
+	@Override
+	protected void onDestroy() {
+		MApplication.getInstance().isEditFav = false;
+		super.onDestroy();
 	}
 }

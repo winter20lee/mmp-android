@@ -9,11 +9,9 @@ import zblibrary.zgl.view.WatchHistoryView;
 import zuo.biao.library.base.BaseAdapter;
 
 public class WatchHistoryAdapter extends BaseAdapter<MyLike.ResultBean, WatchHistoryView> {
-
 	public WatchHistoryAdapter(Activity context) {
 		super(context);
 	}
-
 	@Override
 	public WatchHistoryView createView(int position, ViewGroup parent) {
 		return new WatchHistoryView(context, parent);

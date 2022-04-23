@@ -153,6 +153,9 @@ public class MApplication extends BaseApplication {
 	 */
 	public boolean isVip(){
 		currentUser = getCurrentUser();
+		if(currentUser==null || currentUser.userInfo==null){
+			return false;
+		}
 		if(currentUser.userInfo.memberLevelCode.equals("guest")){
 			return false;
 		}
@@ -161,7 +164,7 @@ public class MApplication extends BaseApplication {
 
 	public int downloadCount;
 	public int playCount;
-
+	public boolean isEditFav;
 	private static User currentUser = null;
 	private static AppInitInfo appInitInfo = null;
 	public User getCurrentUser() {

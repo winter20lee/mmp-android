@@ -151,7 +151,12 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         product_details_name.setText(productDes.name);
         product_details_jianjie.setText("# "+productDes.tag);
         product_details_price.setText(productDes.playCnt+"次播放");
-
+        ((TextView)findViewById(R.id.product_details_name_jianjie)).setText(productDes.name);
+        ((TextView)findViewById(R.id.product_details_long_jianjie)).setText("时长：--");
+        ((TextView)findViewById(R.id.product_details_play_jianjie)).setText(productDes.playCnt+"次播放");
+        ((TextView)findViewById(R.id.product_details_actor_jianjie)).setText("导演：--");
+        ((TextView)findViewById(R.id.product_details_fanhao_jianjie)).setText("番号：--");
+        ((TextView)findViewById(R.id.product_details_tag_jianjie)).setText("标签："+"# "+productDes.tag);
         if(productDes.videoActor!=null){
             findViewById(R.id.product_details_actor).setVisibility(View.VISIBLE);
             LayoutInflater mInflater = LayoutInflater.from(this);
@@ -159,6 +164,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             tv.setText(productDes.videoActor.name);
             msearch_history.addView(tv);
             play_video_name.setText(productDes.videoActor.name);
+            ((TextView)findViewById(R.id.product_details_act_jianjie)).setText("演员："+productDes.videoActor.name);
             play_video_birthday.setText("生日："+productDes.videoActor.birthday);
             play_video_shengao.setText("身高："+productDes.videoActor.height);
             play_video_sanwei.setText("三围："+productDes.videoActor.bwh);
@@ -188,6 +194,8 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         findViewById(R.id.play_video_share).setOnClickListener(this);
         findViewById(R.id.play_video_down).setOnClickListener(this);
         play_video_like.setOnClickListener(this);
+        findViewById(R.id.product_details_close_jianjie).setOnClickListener(this);
+        findViewById(R.id.product_details_jj).setOnClickListener(this);
     }
 
     @Override
@@ -239,6 +247,12 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 }
                 HttpRequest.getFav(videoId,REQUEST_ADD_FAV, new OnHttpResponseListenerImpl(this));
                 break;
+            case R.id.product_details_close_jianjie:
+                findViewById(R.id.product_details_ll_jianjie).setVisibility(View.GONE);
+                break;
+            case R.id.product_details_jj:
+                findViewById(R.id.product_details_ll_jianjie).setVisibility(View.VISIBLE);
+                break;
             default:
                 break;
         }
@@ -282,10 +296,12 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             case REQUEST_ADD_FAV:
                 play_video_like.setImageResource(R.mipmap.collection_s);
                 play_video_like.setTag(true);
+                CommonUtil.showShortToast(this,"已收藏");
                 break;
             case REQUEST_CANCLE_FAV:
                 play_video_like.setImageResource(R.mipmap.collection);
                 play_video_like.setTag(false);
+                CommonUtil.showShortToast(this,"已取消");
                 break;
             case REQUEST_DOWNLOAD_COUNT:
                 MApplication.getInstance().downloadCount = Integer.parseInt(resultData);

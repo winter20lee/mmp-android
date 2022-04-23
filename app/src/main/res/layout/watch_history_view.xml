@@ -2,21 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/match_wrap"
     >
-
-        <zuo.biao.library.ui.RoundImageView
-            android:id="@+id/watch_history_img"
-            android:layout_width="93dp"
-            android:layout_height="60dp"
-            android:adjustViewBounds="true"
+        <LinearLayout
+            android:id="@+id/watch_history_select_ll"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            />
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/watch_history_select_iv"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="12dp"
+                    android:visibility="gone"
+                    android:src="@mipmap/shopping_car_unselect"
+                    />
+
+                <zuo.biao.library.ui.RoundImageView
+                    android:id="@+id/watch_history_img"
+                    android:layout_width="93dp"
+                    android:layout_height="60dp"
+                    android:adjustViewBounds="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/watch_history_name"
             android:layout_marginTop="15dp"
-            android:layout_toRightOf="@id/watch_history_img"
+            android:layout_toRightOf="@id/watch_history_select_ll"
             android:maxLines="1"
             android:lines="1"
             android:ellipsize="end"
@@ -28,7 +44,7 @@
         <TextView
             android:id="@+id/watch_history_label"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/watch_history_img"
+            android:layout_toRightOf="@id/watch_history_select_ll"
             android:layout_below="@id/watch_history_name"
             android:maxLines="1"
             android:lines="1"

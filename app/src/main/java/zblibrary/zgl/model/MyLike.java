@@ -16,5 +16,6 @@ public class MyLike  {
 			public String videoCoverUrl;
 			public String videoTags;
 			public String gmtCreate;
+			public boolean isSele;
 		}
 }

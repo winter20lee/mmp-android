@@ -195,7 +195,17 @@ public class HttpRequest {
 	 */
 	public static void getFavCancel(final long id,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
-		request.put("id", id);
+		ArrayList<Long> arrayList = new ArrayList<>();
+		arrayList.add(id);
+		request.put("ids", arrayList);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/vedio/fav/cancel",true,requestCode, listener);
+	}
+
+	/**取消收藏
+	 */
+	public static void getFavCancel(final ArrayList<Integer> arrayList,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put("ids", arrayList);
 		HttpManager.getInstance().post(request, URL_BASE + "/api/vedio/fav/cancel",true,requestCode, listener);
 	}
 

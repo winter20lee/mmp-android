@@ -180,7 +180,11 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                 postNotifyDataChanged();
                 break;
             case R.id.mydown_sel_all:
-
+                    for(int i=0;i<TasksManager.getImpl().getTaskCounts();i++){
+                         TasksManagerModel model = TasksManager.getImpl().get(i);
+                        delIds.add(model.id);
+                    }
+                postNotifyDataChanged();
                 break;
             case R.id.mydown_sel_del:
                 for (Integer id:delIds) {

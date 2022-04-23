@@ -15,21 +15,233 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </zuo.biao.library.ui.RatioRelativeLayout>
-
-    <ScrollView
-        style="@style/match_match"
-        android:layout_weight="1" >
-        <LinearLayout style="@style/ll_vertical_match_match"
-            android:background="#F4F4F5"
-            >
-            <RelativeLayout
-                style="@style/ll_vertical_match_match"
-                android:background="@drawable/radius_8_bottom_shap"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <ScrollView
+            style="@style/match_match"
+            android:layout_weight="1" >
+            <LinearLayout style="@style/ll_vertical_match_match"
+                android:background="#F4F4F5"
                 >
-                <!--商品名称-->
-                <TextView
-                    android:id="@+id/product_details_name"
+                <RelativeLayout
+                    style="@style/ll_vertical_match_match"
+                    android:background="@drawable/radius_8_bottom_shap"
+                    >
+                    <!--商品名称-->
+                    <TextView
+                        android:id="@+id/product_details_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginRight="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#323038"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        tools:text="国潮Fashion" />
+
+                    <TextView
+                        android:id="@+id/product_details_jianjie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/product_details_name"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="12dp"
+                        android:textColor="#87869E"
+                        android:textSize="12dp"
+                        tools:text="# 颜值，技术宅，高光，好玩" />
+
+                    <TextView
+                        android:id="@+id/product_details_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/product_details_jianjie"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="14dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#87869E"
+                        android:textSize="12dp"
+                        tools:text="2.6万次播放 " />
+
+                    <LinearLayout
+                        android:id="@+id/product_details_jj"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="简介"
+                            android:textColor="#87869E"
+                            android:textSize="12dp" />
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/first_more"
+                            android:adjustViewBounds="true"
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/product_details_actor"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="15dp"
+                    android:background="@drawable/radius_4_shap"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/product_details_peizhi_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="本片演员资料"
+                        android:textColor="#323038"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <zuo.biao.library.ui.FlowLayout
+                        android:id="@+id/msearch_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/product_details_peizhi_title"
+                        android:layout_marginTop="20dp"/>
+
+                    <ImageView
+                        android:id="@+id/play_video_head"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_below="@id/msearch_history"
+                        android:layout_marginTop="20dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/play_video_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/msearch_history"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_toRightOf="@id/play_video_head"
+                        android:textColor="#323038"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        tools:text="张碧晨" />
+
+                    <TextView
+                        android:id="@+id/play_video_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/play_video_name"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_toRightOf="@id/play_video_head"
+                        android:textColor="#95949D"
+                        android:textSize="12dp"
+                        tools:text="生日：1985.11.20" />
+
+                    <TextView
+                        android:id="@+id/play_video_shengao"
+                        android:layout_below="@id/play_video_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_toRightOf="@id/play_video_head"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#95949D"
+                        tools:text="身高：178cm"
+                        />
+
+                    <TextView
+                        android:id="@+id/play_video_sanwei"
+                        android:layout_below="@id/play_video_shengao"
+                        android:layout_width="wrap_content"
+                        android:layout_toRightOf="@id/play_video_head"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#95949D"
+                        tools:text="三维：胸92cm / 腰59cm / 臀88c"
+                        />
+
+
+                    <zuo.biao.library.ui.EmptyRecyclerView
+                        android:layout_marginTop="30dp"
+                        android:layout_below="@id/play_video_head"
+                        android:id="@+id/play_video_recomm"
+                        style="@style/lv_no_divider"
+                        android:layout_marginBottom="15dp"
+                        />
+
+                </RelativeLayout>
+                <!--同分类下-->
+                <LinearLayout
+                    android:id="@+id/play_video_tflx"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/radius_4_shap"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--猜你喜欢-->
+                <LinearLayout
+                    android:id="@+id/play_video_cnxh"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/radius_4_shap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+        </ScrollView>
+        <LinearLayout
+            android:id="@+id/product_details_ll_jianjie"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/product_details_name_jianjie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="12dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="#323038"
+                    android:layout_weight="1"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    tools:text="国潮Fashion" />
+
+                <TextView
+                    android:id="@+id/product_details_close_jianjie"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="14dp"
@@ -39,178 +251,85 @@
                     android:textColor="#323038"
                     android:textSize="18dp"
                     android:textStyle="bold"
-                    tools:text="国潮Fashion" />
+                    android:text=" X " />
+            </LinearLayout>
 
-                <TextView
-                    android:id="@+id/product_details_jianjie"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/product_details_name"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="12dp"
-                    android:textColor="#87869E"
-                    android:textSize="12dp"
-                    tools:text="# 颜值，技术宅，高光，好玩" />
-
-                <TextView
-                    android:id="@+id/product_details_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/product_details_jianjie"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginBottom="14dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textColor="#87869E"
-                    android:textSize="12dp"
-                    tools:text="2.6万次播放 " />
-
-                <LinearLayout
-                    android:id="@+id/product_details_jj"
-                    android:orientation="horizontal"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="14dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#87869E"
-                        android:textSize="12dp"
-                        android:text="简介"
-                        />
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/first_more"
-                        android:adjustViewBounds="true"
-                        />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/product_details_actor"
-                android:visibility="gone"
+            <TextView
+                android:id="@+id/product_details_long_jianjie"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="15dp"
-                android:background="@drawable/radius_4_shap"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/product_details_peizhi_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="本片演员资料"
-                    android:textColor="#323038"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-
-                <zuo.biao.library.ui.FlowLayout
-                    android:id="@+id/msearch_history"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/product_details_peizhi_title"
-                    android:layout_marginTop="20dp"/>
-
-                <ImageView
-                    android:id="@+id/play_video_head"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_below="@id/msearch_history"
-                    android:layout_marginTop="20dp"
-                    />
-
-                <TextView
-                    android:id="@+id/play_video_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/msearch_history"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_toRightOf="@id/play_video_head"
-                    android:textColor="#323038"
-                    android:textSize="14dp"
-                    android:textStyle="bold"
-                    tools:text="张碧晨" />
-
-                <TextView
-                    android:id="@+id/play_video_birthday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/play_video_name"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_toRightOf="@id/play_video_head"
-                    android:textColor="#95949D"
-                    android:textSize="12dp"
-                    tools:text="生日：1985.11.20" />
-
-                <TextView
-                    android:id="@+id/play_video_shengao"
-                    android:layout_below="@id/play_video_birthday"
-                    android:layout_width="wrap_content"
-                    android:layout_toRightOf="@id/play_video_head"
-                    android:layout_height="wrap_content"
-                    android:textSize="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="6dp"
-                    android:textColor="#95949D"
-                    tools:text="身高：178cm"
-                    />
-
-                <TextView
-                    android:id="@+id/play_video_sanwei"
-                    android:layout_below="@id/play_video_shengao"
-                    android:layout_width="wrap_content"
-                    android:layout_toRightOf="@id/play_video_head"
-                    android:layout_height="wrap_content"
-                    android:textSize="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="6dp"
-                    android:textColor="#95949D"
-                    tools:text="三维：胸92cm / 腰59cm / 臀88c"
-                    />
-
-
-                <zuo.biao.library.ui.EmptyRecyclerView
-                    android:layout_marginTop="30dp"
-                    android:layout_below="@id/play_video_head"
-                    android:id="@+id/play_video_recomm"
-                    style="@style/lv_no_divider"
-                    android:layout_marginBottom="15dp"
-                    />
-
-            </RelativeLayout>
-            <!--同分类下-->
-            <LinearLayout
-                android:id="@+id/play_video_tflx"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/radius_4_shap"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#95949D"
+                android:textSize="12dp"
+                android:text="时长：" />
+            <TextView
+                android:id="@+id/product_details_play_jianjie"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <!--猜你喜欢-->
-            <LinearLayout
-                android:id="@+id/play_video_cnxh"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/radius_4_shap"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#95949D"
+                android:textSize="12dp"
+                android:text="播放：" />
+            <TextView
+                android:id="@+id/product_details_actor_jianjie"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#95949D"
+                android:textSize="12dp"
+                android:text="导演：" />
+            <TextView
+                android:id="@+id/product_details_act_jianjie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#95949D"
+                android:textSize="12dp"
+                android:text="演员：" />
+            <TextView
+                android:id="@+id/product_details_fanhao_jianjie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#95949D"
+                android:textSize="12dp"
+                android:text="番号：" />
+
+            <TextView
+                android:id="@+id/product_details_tag_jianjie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#95949D"
+                android:textSize="12dp"
+                android:text="标签：" />
 
         </LinearLayout>
-    </ScrollView>
+    </FrameLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/white"
