@@ -91,17 +91,17 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             return;
         }
         if(!MApplication.getInstance().isVip() && MApplication.getInstance().playCount>0){
-//            new AlertDialog(this,"","今日的播放次数已使用完，充值VIP获取无限播放次数","去充值",
-//                    "取消",0,new AlertDialog.OnDialogButtonClickListener(){
-//
-//                @Override
-//                public void onDialogButtonClick(int requestCode, boolean isPositive) {
-//                    if(isPositive){
-//
-//                    }
-//                    PlayVideoDetailsActivity.this.finish();
-//                }
-//            }).show();
+            new AlertDialog(this,"","今日的播放次数已使用完，充值VIP获取无限播放次数","去充值",
+                    "取消",0,new AlertDialog.OnDialogButtonClickListener(){
+
+                @Override
+                public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                    if(isPositive){
+
+                    }
+                    PlayVideoDetailsActivity.this.finish();
+                }
+            }).show();
         }
         initView();
         initData();
