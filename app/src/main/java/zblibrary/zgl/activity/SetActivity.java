@@ -15,6 +15,7 @@ import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.manager.DataManager;
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.interfaces.OnBottomDragListener;
+import zuo.biao.library.ui.AlertDialog;
 import zuo.biao.library.util.CleanDataUtils;
 
 
@@ -89,6 +90,16 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
                 }
                 break;
             case R.id.set_push:
+                new AlertDialog(this,"","确定关闭消息通知？","确定",
+                        "取消",0,new AlertDialog.OnDialogButtonClickListener(){
+
+                    @Override
+                    public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                        if(isPositive){
+
+                        }
+                    }
+                }).show();
                 break;
             case R.id.set_clear:
                 CleanDataUtils.clearAllCache(Objects.requireNonNull(this));
