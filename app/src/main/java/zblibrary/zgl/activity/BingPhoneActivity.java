@@ -13,10 +13,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import zblibrary.zgl.R;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
+import zblibrary.zgl.model.LoginEvent;
 import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.CodeCount;
@@ -45,6 +50,7 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 		initView();
 		initData();
 		initEvent();
+		EventBus.getDefault().register(this);
 	}
 
 
@@ -70,12 +76,18 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 		findView(R.id.login_tologin,this);
 	}
 
+	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void onLoginEvent(LoginEvent baseEvent){
+		finish();
+	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		if (count != null) {
 			count.cancel();
 		}
+		EventBus.getDefault().unregister(this);
 	}
 
 	@Override

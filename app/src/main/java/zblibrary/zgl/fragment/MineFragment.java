@@ -86,17 +86,23 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 			mine_total_count.setText("");
 			mine_left_count.setText("无限制");
 		}else{
-			mine_mzgycs_.setText("1");
-			mine_xzcs_.setText("1");
 			mine_zskf.setTextColor(Color.parseColor("#CCCCCC"));
 			mine_kftj.setTextColor(Color.parseColor("#CCCCCC"));
 			findView(R.id.mine_zskf_).setVisibility(View.INVISIBLE);
 			findView(R.id.mine_kftj_).setVisibility(View.INVISIBLE);
 			mine_total_count.setText(" / 1");
 			if(MApplication.getInstance().playCount==0){
-				mine_left_count.setText((1-MApplication.getInstance().playCount)+"");
+				mine_left_count.setText("1");
+				mine_mzgycs_.setText("1 / 1");
 			}else{
 				mine_left_count.setText("0");
+				mine_mzgycs_.setText("0 / 1");
+			}
+
+			if(MApplication.getInstance().downloadCount==0){
+				mine_xzcs_.setText("1 / 1");
+			}else{
+				mine_xzcs_.setText("0 / 1");
 			}
 		}
 	}

@@ -16,7 +16,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:background="@mipmap/mine_bg"
-                android:layout_height="320dp">
+                android:layout_height="270dp">
 
                 <ImageView
                     android:id="@+id/mine_head"
@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="26dp"
                     android:layout_toRightOf="@id/mine_head"
                     android:textColor="@color/white"
                     android:textSize="14sp"
@@ -83,7 +83,7 @@
                 <LinearLayout
                     android:id="@+id/mine_watch_time"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/mine_phone"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="9dp"
@@ -95,7 +95,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
                         android:gravity="bottom">
 
                         <TextView
@@ -120,6 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="今日剩余播放次数"
+                        android:layout_marginBottom="10dp"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -219,7 +220,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/mine_wdtq_divider"
-                    android:text="1"
+                    android:text="1 / 1"
                     android:textColor="#87869E"
                     android:textSize="12sp" />
 
@@ -242,7 +243,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/mine_wdtq_divider"
-                    android:text="1"
+                    android:text="1 / 1"
                     android:textColor="#87869E"
                     android:textSize="12sp" />
 

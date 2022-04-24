@@ -9,11 +9,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.Objects;
 import zblibrary.zgl.R;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.manager.DataManager;
+import zblibrary.zgl.model.LoginEvent;
 import zuo.biao.library.base.BaseActivity;
+import zuo.biao.library.base.BaseEvent;
 import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.ui.AlertDialog;
 import zuo.biao.library.util.CleanDataUtils;
@@ -36,6 +42,7 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
         initView();
         initData();
         initEvent();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -68,6 +75,11 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
         findView(R.id.set_push,this);
         findView(R.id.set_clear,this);
         findView(R.id.set_login,this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginEvent(LoginEvent baseEvent){
+        finish();
     }
 
     @Override
@@ -121,5 +133,11 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
             return;
         }
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

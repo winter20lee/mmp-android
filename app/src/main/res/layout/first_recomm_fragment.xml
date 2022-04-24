@@ -19,7 +19,6 @@
                 <!--banner-->
                 <zuo.biao.library.ui.RatioRelativeLayout
                     android:id="@+id/first_banner_rl"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     app:relativeRatio="2.089"
                     android:layout_height="wrap_content">
@@ -29,15 +28,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:AutoPlayTime="3000"
-                        app:isAutoPlay = "true"
-                        app:pointsContainerBackground="#00aaaaaa"
+                        app:isAutoPlay="true"
+                        app:isShowIndicatorOnlyOne="false"
+                        app:isShowNumberIndicator="false"
+                        app:pageChangeDuration="800"
                         app:pointNormal="@drawable/radius_1_shap"
                         app:pointSelect="@drawable/radius_2_shap"
+                        app:pointsContainerBackground="#00aaaaaa"
                         app:pointsPosition="CENTER"
-                        app:tipTextSize="12sp"
-                        app:isShowNumberIndicator="false"
-                        app:isShowIndicatorOnlyOne="true"
-                        app:pageChangeDuration="800"/>
+                        app:tipTextSize="12sp" />
                 </zuo.biao.library.ui.RatioRelativeLayout>
              <LinearLayout
                  android:id="@+id/first_categoty_content"

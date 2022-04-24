@@ -21,6 +21,7 @@ import zblibrary.zgl.R;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
+import zblibrary.zgl.model.LoginEvent;
 import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.CodeCount;
@@ -157,6 +158,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 			}
 			MApplication.getInstance().saveCurrentUser(user);
 			showShortToast("登陆成功");
+			EventBus.getDefault().post(new LoginEvent());
 			finish();
 		}
 	}

@@ -46,6 +46,8 @@ import zblibrary.zgl.activity.PlayVideoDetailsActivity;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.model.RefreshDownEvent;
 import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.ui.EmptyRecyclerView;
+import zuo.biao.library.ui.EmptyView;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.StringUtil;
 
@@ -56,7 +58,8 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
 
     private static TaskItemAdapter adapter;
     private TextView mydown_edit,mydown_sel_all,mydown_sel_del;
-    private RecyclerView recyclerView;
+    private EmptyRecyclerView recyclerView;
+    private EmptyView empty_view;
     private static ArrayList<Integer> delIds = new ArrayList<>();
 
     public static Intent createIntent(Context context) {
@@ -72,6 +75,10 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
         mydown_sel_all = findView(R.id.mydown_sel_all);
         mydown_sel_del = findView(R.id.mydown_sel_del);
         recyclerView =  findView(R.id.rvBaseRecycler);
+        empty_view = findView(R.id.empty_view);
+        empty_view.setEmptyText("暂时没有下载记录");
+        empty_view.setEmptySecondText("您可以去首页推荐看看");
+        recyclerView.setEmptyView(empty_view);
         findView(R.id.mydown_file_back,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         if(adapter==null){

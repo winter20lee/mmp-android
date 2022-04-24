@@ -43,6 +43,9 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <zuo.biao.library.ui.EmptyView
+            android:id="@+id/empty_view"
+            style="@style/match_wrap"/>
         <include layout="@layout/base_recycler_fragment"/>
     </LinearLayout>
     <View

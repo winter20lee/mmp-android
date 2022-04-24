@@ -29,7 +29,6 @@ import zblibrary.zgl.model.RefreshDownEvent;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseBottomTabActivity;
 import zuo.biao.library.base.BaseEvent;
-import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.ui.WebViewActivity;
 import zuo.biao.library.util.StringUtil;
 
@@ -102,6 +101,7 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
+		selectFragment(1);
 	}
 
 	@Override

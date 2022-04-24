@@ -91,17 +91,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             return;
         }
         if(!MApplication.getInstance().isVip() && MApplication.getInstance().playCount>0){
-            new AlertDialog(this,"","今日的播放次数已使用完，充值VIP获取无限播放次数","去充值",
-                    "取消",0,new AlertDialog.OnDialogButtonClickListener(){
-
-                @Override
-                public void onDialogButtonClick(int requestCode, boolean isPositive) {
-                    if(isPositive){
-
-                    }
-                    PlayVideoDetailsActivity.this.finish();
-                }
-            }).show();
+            showDialog();
         }
         initView();
         initData();
@@ -139,7 +129,17 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         initVideoBuilderMode();
         boolean isAutoPlay = DataManager.getInstance().getAutoPlayState();
         if(isAutoPlay){
-            videoPlayer.startPlayLogic();
+            if(!MApplication.getInstance().isVip() && MApplication.getInstance().playCount>0){
+                videoPlayer.getStartButton().setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showDialog();
+                    }
+                });
+            }else{
+                videoPlayer.startPlayLogic();
+            }
+
         }
         if(productDes.isfav == 1){
             play_video_like.setImageResource(R.mipmap.collection_s);
@@ -196,6 +196,22 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         play_video_like.setOnClickListener(this);
         findViewById(R.id.product_details_close_jianjie).setOnClickListener(this);
         findViewById(R.id.product_details_jj).setOnClickListener(this);
+    }
+
+    private void showDialog(){
+        new AlertDialog(this,"","今日的播放次数已使用完，充值VIP获取无限播放次数","去充值",
+                "取消",0,new AlertDialog.OnDialogButtonClickListener(){
+
+            @Override
+            public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                if(isPositive){
+                    Intent it = MainTabActivity.createIntent(PlayVideoDetailsActivity.this);
+                    CommonUtil.toActivity(PlayVideoDetailsActivity.this,it);
+                }else{
+
+                }
+            }
+        }).show();
     }
 
     @Override
