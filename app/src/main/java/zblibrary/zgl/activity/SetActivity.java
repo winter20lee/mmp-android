@@ -64,6 +64,11 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
         if(MApplication.getInstance().isBindUserPhone()){
             findView(R.id.set_login).setVisibility(View.VISIBLE);
         }
+        if(MApplication.getInstance().getCurrentUserPush()==0){
+            ((TextView)findView(R.id.set_push_state)).setText("已关闭");
+        }else{
+            ((TextView)findView(R.id.set_push_state)).setText("已开启");
+        }
     }
 
 
@@ -108,7 +113,15 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
                     @Override
                     public void onDialogButtonClick(int requestCode, boolean isPositive) {
                         if(isPositive){
+                            MApplication.getInstance().setCurrentUserPush(0);
 
+                        }else{
+                            MApplication.getInstance().setCurrentUserPush(1);
+                        }
+                        if(MApplication.getInstance().getCurrentUserPush()==0){
+                            ((TextView)findView(R.id.set_push_state)).setText("已关闭");
+                        }else{
+                            ((TextView)findView(R.id.set_push_state)).setText("已开启");
                         }
                     }
                 }).show();

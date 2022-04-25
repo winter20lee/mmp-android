@@ -29,13 +29,21 @@
                 />
 
 
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_marginTop="55dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="+86"
+                    android:textColor="#666666"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    />
                 <EditText
                     android:id="@+id/login_phone"
                     android:layout_width="match_parent"
@@ -46,21 +54,14 @@
                     android:inputType="number"
                     android:maxLength="11"
                     android:maxLines="1"
-                    android:paddingLeft="30dp"
+                    android:layout_marginLeft="30dp"
                     android:textColor="#3D3535"
                     android:textColorHint="#CCCCCC"
                     android:textSize="16dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="+86"
-                    android:textColor="#666666"
-                    android:textSize="12sp"
-                    android:gravity="center_vertical"
-                    />
 
-            </RelativeLayout>
+
+            </LinearLayout>
 
 
 

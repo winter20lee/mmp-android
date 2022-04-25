@@ -5,6 +5,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import zblibrary.zgl.model.ListByPos;
@@ -15,6 +17,7 @@ import zuo.biao.library.util.StringUtil;
 public class MemberCardAdapter extends BaseAdapter {
 
     private List<MemberCenter> memberCenters;
+    private List<ImageView> imageViews = new ArrayList<>();
     private Context mContext;
     public MemberCardAdapter(Context ctx, List<MemberCenter> memberCenters) {
         this.mContext = ctx;
@@ -23,25 +26,37 @@ public class MemberCardAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return memberCenters.size();// 返回数据的个数
+
+        return Integer.MAX_VALUE;// 返回数据的个数
     }
 
     @Override
-    public Object getItem(int i) {
-        return i;
+    public Object getItem(int position) {
+        if (position >= memberCenters.size()) {
+            position = position % memberCenters.size();
+        }
+        return position;
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int position) {
+        if (position >= memberCenters.size()) {
+            position = position % memberCenters.size();
+        }
+        return position;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View view, ViewGroup viewGroup) {
+        if (position >= memberCenters.size()) {
+            position = position % memberCenters.size();
+        }
         ImageView imageView = new ImageView(mContext);
-        GlideUtil.load(mContext,memberCenters.get(i).cardImg,imageView);
+        GlideUtil.load(mContext,memberCenters.get(position).cardImg,imageView);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setLayoutParams(new Gallery.LayoutParams(StringUtil.dp2px(mContext,240), StringUtil.dp2px(mContext,125)));
+//        imageViews.add(imageView);
+
         return imageView;
     }
 }

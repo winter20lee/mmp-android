@@ -266,14 +266,14 @@ public class HttpRequest {
 	public static void getDownload(int id,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put("id", id);
-		HttpManager.getInstance().post(request, URL_BASE + "/api/user/download", true,requestCode, listener);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/vedio/download", true,requestCode, listener);
 	}
 
 	/**获取guest用户的下载次数
 	 */
 	public static void getDownloadCnt(final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
-		HttpManager.getInstance().get(request, URL_BASE + "/api/user/getDownloadCnt", requestCode, listener);
+		HttpManager.getInstance().get(request, URL_BASE + "/api/user/getDayDownloadCnt", requestCode, listener);
 	}
 
 	/**获取guest用户的播放次数

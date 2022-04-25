@@ -124,6 +124,17 @@ public class MApplication extends BaseApplication {
 		return "男";
 	}
 
+	/**获取当前用户Push
+	 * @return
+	 */
+	public int getCurrentUserPush() {
+		currentUser = getCurrentUser();
+		if(currentUser != null){
+			return currentUser.userInfo.isPushOpen;
+		}
+		return 0;
+	}
+
 
 	/**获取当前用户性别
 	 * @return
@@ -145,6 +156,15 @@ public class MApplication extends BaseApplication {
 	public void setCurrentUserBirthday(String birthday) {
 		currentUser = getCurrentUser();
 		currentUser.userInfo.birthday = birthday;
+		saveCurrentUser(currentUser);
+	}
+
+	/**push
+	 * @return
+	 */
+	public void setCurrentUserPush(int state) {
+		currentUser = getCurrentUser();
+		currentUser.userInfo.isPushOpen = state;
 		saveCurrentUser(currentUser);
 	}
 

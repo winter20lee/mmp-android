@@ -66,7 +66,8 @@ public class OrderActivity extends BaseHttpListActivity<Order.MessageData, ListV
 	@Override
 	public void initData() {//必须调用
 		super.initData();
-
+		vBaseEmptyView.setEmptyText("暂时没有订单记录");
+		vBaseEmptyView.setEmptySecondText("您可以去首页推荐看看");
 	}
 
 	@Override

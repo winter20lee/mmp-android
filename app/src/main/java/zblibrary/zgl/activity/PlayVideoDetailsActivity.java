@@ -246,6 +246,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                     MyDownFilesFragment.TasksManager.getImpl().addTask(productDes.id,productDes.name,productDes.coverUrl,productDes.videoUrl);
                     EventBus.getDefault().post(new RefreshDownEvent(true));
                     CommonUtil.showShortToast(this,"已加入下载队列");
+                    MApplication.getInstance().downloadCount++;
                 }else{
                     CommonUtil.showShortToast(this,"此视频类型无法下载");
                 }

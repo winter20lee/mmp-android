@@ -25,9 +25,10 @@
         <TextView
             android:id="@+id/tvAlertDialogMessage"
             style="@style/text_middle"
+            android:layout_width="match_parent"
             android:textColor="@color/gray_4"
             android:layout_margin="@dimen/item_left_tv_padding"
-            android:gravity="left|top" />
+            android:gravity="center" />
     </LinearLayout>
 
     <View style="@style/divider_horizontal_1px" />

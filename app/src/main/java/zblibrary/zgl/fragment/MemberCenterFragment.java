@@ -98,9 +98,12 @@ public class MemberCenterFragment extends BaseFragment implements
 	public void initEvent() {//必须调用
 		member_center_gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
-			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-				GlideUtil.loadNoLoading(context,memberCenters.get(i).descImg,member_center_equity);
-				member_canter_price.setText("¥ "+memberCenters.get(i).discountPrice);
+			public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+				if (position >= memberCenters.size()) {
+					position = position % memberCenters.size();
+				}
+				GlideUtil.loadNoLoading(context,memberCenters.get(position).descImg,member_center_equity);
+				member_canter_price.setText("¥ "+memberCenters.get(position).discountPrice);
 			}
 
 			@Override
