@@ -87,7 +87,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 	@Override
 	public void initData() {//必须调用
 		//加载广告图片
-		mMZBanner.loadImage((banner, model, view, position) -> GlideUtil.load(context,((ListByPos)model).imgUrl,(ImageView) view));
+		mMZBanner.loadImage((banner, model, view, position) -> GlideUtil.load(context,((ListByPos)model).imgUrl,(ImageView) view,R.mipmap.banner_deful));
 	}
 
 	@Override
