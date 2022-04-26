@@ -107,24 +107,32 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
                 }
                 break;
             case R.id.set_push:
-                new AlertDialog(this,"","确定关闭消息通知？","确定",
-                        "取消",0,new AlertDialog.OnDialogButtonClickListener(){
+                if(MApplication.getInstance().getCurrentUserPush()==0){
+                    new AlertDialog(this,"","确定开启消息通知？","确定",
+                            "取消",0,new AlertDialog.OnDialogButtonClickListener(){
 
-                    @Override
-                    public void onDialogButtonClick(int requestCode, boolean isPositive) {
-                        if(isPositive){
-                            MApplication.getInstance().setCurrentUserPush(0);
+                        @Override
+                        public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                            if(isPositive){
+                                MApplication.getInstance().setCurrentUserPush(1);
+                                ((TextView)findView(R.id.set_push_state)).setText("已开启");
+                            }
+                        }
+                    }).show();
+                }else{
+                    new AlertDialog(this,"","确定关闭消息通知？","确定",
+                            "取消",0,new AlertDialog.OnDialogButtonClickListener(){
 
-                        }else{
-                            MApplication.getInstance().setCurrentUserPush(1);
+                        @Override
+                        public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                            if(isPositive){
+                                MApplication.getInstance().setCurrentUserPush(0);
+                                ((TextView)findView(R.id.set_push_state)).setText("已关闭");
+                            }
                         }
-                        if(MApplication.getInstance().getCurrentUserPush()==0){
-                            ((TextView)findView(R.id.set_push_state)).setText("已关闭");
-                        }else{
-                            ((TextView)findView(R.id.set_push_state)).setText("已开启");
-                        }
-                    }
-                }).show();
+                    }).show();
+                }
+
                 break;
             case R.id.set_clear:
                 CleanDataUtils.clearAllCache(Objects.requireNonNull(this));

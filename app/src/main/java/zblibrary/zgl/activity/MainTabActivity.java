@@ -95,7 +95,14 @@ public class MainTabActivity extends BaseBottomTabActivity {
 
 	@Override
 	protected void selectTab(int position) {
+		if(position==2 ){
+			try {
+				MineFragment fragment = (MineFragment) fragments[2];
+				fragment.onResume();
+			}catch (Exception e){
 
+			}
+		}
 	}
 
 	@Override
@@ -162,6 +169,8 @@ public class MainTabActivity extends BaseBottomTabActivity {
 		case KeyEvent.KEYCODE_BACK:
 			if(myDownFilesFragment.getVisibility() == View.VISIBLE){
 				myDownFilesFragment.setVisibility(View.GONE);
+				MineFragment fragment = (MineFragment) fragments[2];
+				fragment.onResume();
 				return true;
 			}
 			long secondTime = System.currentTimeMillis();
@@ -196,7 +205,8 @@ public class MainTabActivity extends BaseBottomTabActivity {
 
 	public void hideDownFile(){
 		myDownFilesFragment.setVisibility(View.GONE);
-
+		MineFragment fragment = (MineFragment) fragments[2];
+		fragment.onResume();
 	}
 
 	@Override
