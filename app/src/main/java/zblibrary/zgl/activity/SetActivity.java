@@ -63,6 +63,7 @@ public class SetActivity extends BaseActivity implements OnBottomDragListener, V
         set_autoplay_iv.setImageResource(isAutoPlay == true ? R.mipmap.auto_play_open:R.mipmap.auto_play_close);
         if(MApplication.getInstance().isBindUserPhone()){
             findView(R.id.set_login).setVisibility(View.VISIBLE);
+            findView(R.id.set_phone).setVisibility(View.GONE);
         }
         if(MApplication.getInstance().getCurrentUserPush()==0){
             ((TextView)findView(R.id.set_push_state)).setText("已关闭");

@@ -184,7 +184,7 @@ public class EditTextUtil {
 		String inputed = StringUtil.getTrimedString(et);
 		switch (type) {
 			case TYPE_VERIFY:
-				if (type == TYPE_VERIFY && inputed.length() < 4) {
+				if (type == TYPE_VERIFY && inputed.length() < 6) {
 					return showInputedError(context, et, StringUtil.isNotEmpty(errorRemind, true) ? errorRemind : "验证码不能小于4位");
 				}
 				break;

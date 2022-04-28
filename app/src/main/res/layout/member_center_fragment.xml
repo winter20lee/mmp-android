@@ -108,6 +108,7 @@
                     android:paddingBottom="20dp"
                     android:layout_height="match_parent">
                     <LinearLayout
+                        android:id="@+id/center_kefu"
                         android:layout_width="86dp"
                         android:background="@drawable/radius_left_20_blue_shap"
                         android:gravity="center_vertical"

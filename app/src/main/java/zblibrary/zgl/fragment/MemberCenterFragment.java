@@ -114,6 +114,14 @@ public class MemberCenterFragment extends BaseFragment implements
 		member_canter_order.setOnClickListener(view -> toActivity(OrderActivity.createIntent(context)));
 		center_pay.setOnClickListener(view -> showShortToast("暂未开通"));
 		member_center_ad.setOnItemClickListener((banner, model, view, position) -> toActivity(WebViewActivity.createIntent(context,"",((ListByPos)model).link)));
+		findView(R.id.center_kefu).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if(MApplication.getInstance().getAppInitInfo()!=null && StringUtil.isNotEmpty(MApplication.getInstance().getAppInitInfo().csLink,true)){
+					toActivity(WebViewActivity.createIntent(context,"客服",MApplication.getInstance().getAppInitInfo().csLink));
+				}
+			}
+		});
 	}
 
 

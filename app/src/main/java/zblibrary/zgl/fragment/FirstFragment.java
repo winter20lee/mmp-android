@@ -139,6 +139,14 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	private void showDialog(){
 		AppInitInfo appInitInfo = MApplication.getInstance().getAppInitInfo();
 		if(appInitInfo!=null){
+			if(appInitInfo.maintenance){
+				if(StringUtil.isNotEmpty(appInitInfo.maintenanceInfo,true)){
+					new TextAlertDialog(context,"系统维护",appInitInfo.maintenanceInfo,true).show();
+				}else{
+					new TextAlertDialog(context,"系统维护","系统维护中",true).show();
+				}
+				return;
+			}
 			AppInitInfo.SysNoticeBean sysNotice = appInitInfo.sysNotice;
 			if(sysNotice!=null){
 				String contentType = sysNotice.contentType;

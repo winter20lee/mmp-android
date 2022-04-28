@@ -28,6 +28,7 @@ import zblibrary.zgl.view.CodeCount;
 import zblibrary.zgl.view.VerificationCodeInputView;
 import zuo.biao.library.base.BaseActivity;
 import zuo.biao.library.interfaces.OnBottomDragListener;
+import zuo.biao.library.util.EditTextUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.Log;
 import zuo.biao.library.util.StringUtil;
@@ -107,7 +108,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 	}
 
 	private boolean sendVerifyCode(){
-		if(checkPhone()){
+		if(EditTextUtil.isInputedCorrect(this,login_phone,EditTextUtil.TYPE_PHONE,"")){
 			HttpRequest.sendVerifyCode(login_phone.getText().toString(),REQUEST_CODE_CODE,new OnHttpResponseListenerImpl(this));
 			count.start();
 			return true;
@@ -126,18 +127,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 			return;
 		}
 		finish();
-	}
-
-	private boolean  checkPhone(){
-		String phone = login_phone.getText().toString();
-		if(StringUtil.isEmpty(phone,true)) {
-			showShortToast("手机号不能为空");
-			return false;
-		}else if(phone.length() !=11){
-			showShortToast("请输入11位手机号");
-			return false;
-		}
-		return true;
 	}
 
 	@Override

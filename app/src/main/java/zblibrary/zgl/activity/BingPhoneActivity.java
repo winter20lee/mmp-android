@@ -26,6 +26,7 @@ import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.CodeCount;
 import zuo.biao.library.base.BaseActivity;
+import zuo.biao.library.util.EditTextUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.Log;
 import zuo.biao.library.util.StringUtil;
@@ -97,7 +98,7 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 				sendVerifyCode();
 				break;
 			case R.id.login_login:
-				if(checkPhone() && checkCode()){
+				if(EditTextUtil.isInputedCorrect(this,login_phone,EditTextUtil.TYPE_PHONE,"") && checkCode()){
 					showProgressDialog("");
 					HttpRequest.bindMobile(login_phone.getText().toString(),login_code.getText().toString(),
 							REQUEST_CODE_LOGIN,new OnHttpResponseListenerImpl(this));
@@ -110,22 +111,10 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 	}
 
 	private void sendVerifyCode(){
-		if(checkPhone()){
+		if(EditTextUtil.isInputedCorrect(this,login_phone,EditTextUtil.TYPE_PHONE,"")){
 			HttpRequest.sendVerifyCode(login_phone.getText().toString(),REQUEST_CODE_CODE,new OnHttpResponseListenerImpl(this));
 			count.start();
 		}
-	}
-
-	private boolean  checkPhone(){
-		String phone = login_phone.getText().toString();
-		if(StringUtil.isEmpty(phone,true)) {
-			showShortToast("手机号不能为空");
-			return false;
-		}else if(phone.length() !=11){
-			showShortToast("请输入11位手机号");
-			return false;
-		}
-		return true;
 	}
 
 	private boolean  checkCode(){
