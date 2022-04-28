@@ -195,7 +195,7 @@ public class MainTabActivity extends BaseBottomTabActivity {
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onMoonEvent(BaseEvent baseEvent){
-		toActivity(LoginActivity.createIntent(this));
+		showShortToast(baseEvent.Message);
 	}
 
 	public void showDownFile(){

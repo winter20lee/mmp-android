@@ -153,10 +153,13 @@ public class HttpManager {
 			protected void onPostExecute(Exception exception) {
 				super.onPostExecute(exception);
 				int resultCode = 0;
+				String resultMessage = "";
 				try {
 					resultCode = GsonUtil.GsonCode(result);
-					if( resultCode ==10000 || resultCode ==10003 ||resultCode ==10004 || resultCode ==10005 || resultCode ==10007) {
-						EventBus.getDefault().post(new BaseEvent());
+					resultMessage= GsonUtil.GsonMessage(result);
+					if(resultCode ==1005) {
+						EventBus.getDefault().post(new BaseEvent(resultMessage));
+						return;
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -279,10 +282,13 @@ public class HttpManager {
 			protected void onPostExecute(Exception exception) {
 				super.onPostExecute(exception);
 				int resultCode = 0;
+				String resultMessage = "";
 				try {
 					resultCode = GsonUtil.GsonCode(result);
-					if(resultCode ==10001 || resultCode ==10003 || resultCode ==10007 || resultCode ==10000) {
-						EventBus.getDefault().post(new BaseEvent());
+					resultMessage= GsonUtil.GsonMessage(result);
+					if(resultCode ==1005) {
+						EventBus.getDefault().post(new BaseEvent(resultMessage));
+						return;
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

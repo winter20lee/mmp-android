@@ -19,7 +19,6 @@ import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.manager.DataManager;
 import zblibrary.zgl.model.LoginEvent;
 import zuo.biao.library.base.BaseActivity;
-import zuo.biao.library.base.BaseEvent;
 import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.ui.AlertDialog;
 import zuo.biao.library.util.CleanDataUtils;
