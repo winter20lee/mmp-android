@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import zblibrary.zgl.R;
+import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.SecondCategory;
 import zuo.biao.library.base.BaseView;
 import zuo.biao.library.ui.RoundImageView;
@@ -41,7 +42,7 @@ public class FirstCategoryViewItem extends BaseView<SecondCategory.VideoListBean
 
 		if(data!=null && StringUtil.isNotEmpty(data.coverUrl,true)){
 			first_category_item_iv.setRadius(StringUtil.dp2px(context,2));
-			GlideUtil.load(context,data.coverUrl,first_category_item_iv);
+			GlideUtil.load(context,data.coverUrl,first_category_item_iv,R.mipmap.banner_deful);
 		}
 
 		first_category_item_title.setText(data.name);

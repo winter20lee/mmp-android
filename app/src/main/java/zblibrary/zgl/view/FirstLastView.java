@@ -38,7 +38,7 @@ public class FirstLastView extends BaseView<FirstLast.ResultBean> {
 		super.bindView(data_ != null ? data_ : new FirstLast.ResultBean());
 		if(data!=null && StringUtil.isNotEmpty(data.coverUrl,true)){
 			last_pic.setRadius(StringUtil.dp2px(context,2));
-			GlideUtil.load(context,data.coverUrl,last_pic);
+			GlideUtil.load(context,data.coverUrl,last_pic,R.mipmap.banner_deful);
 		}
 		last_title.setText(data.name);
 		last_time.setText(data.gmtCreate);
