@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.util.FileDownloadUtils;
 
@@ -26,7 +28,9 @@ import zblibrary.zgl.model.Customize;
 import zblibrary.zgl.model.MyLike;
 import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.util.HttpRequest;
+import zblibrary.zgl.view.WatchHistoryView;
 import zuo.biao.library.base.BaseHttpListActivity;
+import zuo.biao.library.base.BaseView;
 import zuo.biao.library.interfaces.AdapterCallBack;
 import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.util.GsonUtil;
@@ -36,7 +40,7 @@ import zuo.biao.library.util.GsonUtil;
  * 我的收藏
  */
 public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, ListView, WatchHistoryAdapter> implements 
-		OnBottomDragListener, View.OnClickListener, OnHttpResponseListener {
+		OnBottomDragListener, View.OnClickListener, OnHttpResponseListener ,WatchHistoryView.ItemClickListener {
 
 	private ArrayList<Integer> selIds = new ArrayList<>();
 	private TextView mylike_edit,mylike_sel_all,mylike_sel_del;
@@ -70,7 +74,7 @@ public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, List
 
 			@Override
 			public WatchHistoryAdapter createAdapter() {
-				return new WatchHistoryAdapter(context);
+				return new WatchHistoryAdapter(context,MyLikeActivity.this);
 			}
 
 			@Override
@@ -134,21 +138,6 @@ public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, List
 		finish();
 	}
 
-
-	private void postNotifyDataChanged() {
-		if (adapter != null) {
-			getActivity().runOnUiThread(new Runnable() {
-				@Override
-				public void run() {
-					if (adapter != null) {
-						adapter.notifyDataSetChanged();
-					}
-				}
-			});
-		}
-	}
-
-
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		toActivity(PlayVideoDetailsActivity.createIntent(context,list.get(position).videoId));
@@ -174,11 +163,20 @@ public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, List
 				}
 				break;
 			case R.id.mylike_sel_all:
-				for (int i=0;i<list.size();i++) {
-					MyLike.ResultBean resultBean = list.get(i);
-					resultBean.isSele = true;
-					selIds.add(resultBean.videoId);
+				if(mylike_sel_all.getText().toString().equals("全选")){
+					for (int i=0;i<list.size();i++) {
+						MyLike.ResultBean resultBean = list.get(i);
+						resultBean.isSele = true;
+					}
+					mylike_sel_all.setText("取消全选");
+				}else{
+					for (int i=0;i<list.size();i++) {
+						MyLike.ResultBean resultBean = list.get(i);
+						resultBean.isSele = false;
+					}
+					mylike_sel_all.setText("全选");
 				}
+
 				if (adapter != null) {
 					adapter.notifyDataSetInvalidated();
 				}
@@ -221,5 +219,26 @@ public class MyLikeActivity extends BaseHttpListActivity<MyLike.ResultBean, List
 	protected void onDestroy() {
 		MApplication.getInstance().isEditFav = false;
 		super.onDestroy();
+	}
+
+
+	@Override
+	public void onItemClickListener() {
+		checkSelAll();
+	}
+
+	private void checkSelAll(){
+		int total = 0;
+		for (int i=0;i<list.size();i++) {
+			MyLike.ResultBean resultBean = list.get(i);
+			if(resultBean.isSele){
+				++total;
+			}
+		}
+		if(total==list.size()){
+			mylike_sel_all.setText("取消全选");
+		}else{
+			mylike_sel_all.setText("全选");
+		}
 	}
 }

@@ -25,6 +25,10 @@ public class WatchHistoryView extends BaseView<MyLike.ResultBean>{
 	public ImageView watch_history_select_iv;
 	public RoundImageView watch_history_img;
 	public TextView watch_history_name,watch_history_label,watch_history_time;
+	public ItemClickListener itemClickListener;
+	public void setItemClickListener(ItemClickListener itemClickListener){
+		this.itemClickListener = itemClickListener;
+	}
 	@SuppressLint("InflateParams")
 	@Override
 	public View createView() {
@@ -63,7 +67,14 @@ public class WatchHistoryView extends BaseView<MyLike.ResultBean>{
 				}else{
 					watch_history_select_iv.setImageResource(R.mipmap.shopping_car_select);
 				}
+				if(itemClickListener!=null){
+					itemClickListener.onItemClickListener();
+				}
 			}
 		});
+	}
+
+	public interface ItemClickListener{
+		void onItemClickListener();
 	}
 }

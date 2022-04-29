@@ -29,6 +29,8 @@ public class PlayVideoDes {
 			public int height;
 			public String bwh;
 			public String img;
+			public String bango;
+			public String director;
 		}
 
 	public static class ActorVideoListBean {

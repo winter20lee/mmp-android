@@ -152,10 +152,22 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         product_details_jianjie.setText("# "+productDes.tag);
         product_details_price.setText(productDes.playCnt+"次播放");
         ((TextView)findViewById(R.id.product_details_name_jianjie)).setText(productDes.name);
-        ((TextView)findViewById(R.id.product_details_long_jianjie)).setText("时长：--");
+        if(StringUtil.isEmpty(productDes.length)){
+            findViewById(R.id.product_details_long_jianjie).setVisibility(View.GONE);
+        }else{
+            ((TextView)findViewById(R.id.product_details_long_jianjie)).setText("时长："+productDes.length);
+        }
         ((TextView)findViewById(R.id.product_details_play_jianjie)).setText(productDes.playCnt+"次播放");
-        ((TextView)findViewById(R.id.product_details_actor_jianjie)).setText("导演：--");
-        ((TextView)findViewById(R.id.product_details_fanhao_jianjie)).setText("番号：--");
+        if(StringUtil.isEmpty(productDes.videoActor.director)){
+            findViewById(R.id.product_details_actor_jianjie).setVisibility(View.GONE);
+        }else{
+            ((TextView)findViewById(R.id.product_details_actor_jianjie)).setText("导演："+productDes.videoActor.director);
+        }
+        if(StringUtil.isEmpty(productDes.videoActor.bango)){
+            findViewById(R.id.product_details_fanhao_jianjie).setVisibility(View.GONE);
+        }else{
+            ((TextView)findViewById(R.id.product_details_fanhao_jianjie)).setText("番号："+productDes.videoActor.bango);
+        }
         ((TextView)findViewById(R.id.product_details_tag_jianjie)).setText("标签："+"# "+productDes.tag);
         if(productDes.videoActor!=null){
             findViewById(R.id.product_details_actor).setVisibility(View.VISIBLE);
