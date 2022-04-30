@@ -128,6 +128,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_below="@id/msearch_history"
+                        android:src="@mipmap/defult_head_round"
                         android:layout_marginTop="20dp"
                         />
 

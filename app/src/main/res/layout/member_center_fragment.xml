@@ -89,8 +89,6 @@
                     app:AutoPlayTime="3000"
                     app:isAutoPlay = "true"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     app:pointsContainerBackground="#00aaaaaa"
                     app:pointNormal="@drawable/radius_1_shap"
                     app:pointSelect="@drawable/radius_2_shap"

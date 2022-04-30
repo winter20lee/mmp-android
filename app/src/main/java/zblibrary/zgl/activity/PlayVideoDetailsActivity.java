@@ -180,7 +180,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             play_video_birthday.setText("生日："+productDes.videoActor.birthday);
             play_video_shengao.setText("身高："+productDes.videoActor.height);
             play_video_sanwei.setText("三围："+productDes.videoActor.bwh);
-            GlideUtil.loadRound(this,productDes.videoActor.img,play_video_head);
+            GlideUtil.load(this,productDes.videoActor.img,play_video_head,R.mipmap.defult_head_round);
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
             play_video_recomm.setLayoutManager(layoutManager);
