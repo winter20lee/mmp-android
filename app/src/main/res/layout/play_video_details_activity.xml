@@ -110,7 +110,7 @@
                         android:id="@+id/product_details_peizhi_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:text="本片演员资料"
                         android:textColor="#323038"
                         android:textSize="15dp"
@@ -121,7 +121,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/product_details_peizhi_title"
-                        android:layout_marginTop="20dp"/>
+                        android:layout_marginTop="10dp"/>
 
                     <ImageView
                         android:id="@+id/play_video_head"
@@ -129,7 +129,7 @@
                         android:layout_height="100dp"
                         android:layout_below="@id/msearch_history"
                         android:src="@mipmap/defult_head_round"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         />
 
                     <TextView
@@ -209,6 +209,8 @@
                     android:id="@+id/play_video_cnxh"
                     android:orientation="vertical"
                     android:layout_marginTop="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:background="@drawable/radius_4_shap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
