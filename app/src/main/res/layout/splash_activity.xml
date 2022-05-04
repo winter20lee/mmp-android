@@ -16,5 +16,13 @@
         android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/radius_20_gray_shap"
+        android:text="4s 跳过"
+        android:paddingLeft="10dp"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         />
 </FrameLayout>

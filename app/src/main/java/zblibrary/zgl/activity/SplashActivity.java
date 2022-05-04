@@ -61,6 +61,15 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 			}
 		});
 
+		splash_tv.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent it =  MainTabActivity.createIntent(SplashActivity.this);
+				startActivity(it);
+				finish();
+			}
+		});
+
 	}
 
 	@Override

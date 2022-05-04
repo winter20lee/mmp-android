@@ -39,6 +39,7 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 		initView();
 		initData();
 		initEvent();
+		showSearchResu("");
 	}
 
 	@Override
@@ -53,11 +54,11 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 		msearchlayout.SetCallBackListener(new SearchLayout.setSearchCallBackListener() {
 			@Override
 			public void Search(String keyword) {
-//				//进行或联网搜索
-				if(StringUtil.isEmpty(keyword)){
-					showShortToast("Please enter the search content");
-					return;
-				}
+////				//进行或联网搜索
+//				if(StringUtil.isEmpty(keyword)){
+//					showShortToast("请输入搜索内容");
+//					return;
+//				}
 				showSearchResu(keyword);
 			}
 			@Override

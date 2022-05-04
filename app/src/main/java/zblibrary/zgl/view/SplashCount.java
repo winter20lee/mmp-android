@@ -26,7 +26,7 @@ public class SplashCount extends CountDownTimer {
     @Override
     public void onTick(long millisUntilFinished) {
         int time  = (int) (millisUntilFinished / 1000);
-        textView.setText(time  + "s");
+        textView.setText(time  + "s 跳过");
     }
 
     @Override

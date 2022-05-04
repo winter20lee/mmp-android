@@ -68,7 +68,8 @@ public class WatchHistoryActivity extends BaseHttpListActivity<MyLike.ResultBean
 	@Override
 	public void initData() {//必须调用
 		super.initData();
-
+		vBaseEmptyView.setEmptyText("暂时没有观看记录");
+		vBaseEmptyView.setEmptySecondText("您可以去首页推荐看看");
 	}
 
 	@Override

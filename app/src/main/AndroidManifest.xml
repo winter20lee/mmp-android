@@ -133,7 +133,7 @@
         <activity
             android:name="zblibrary.zgl.activity.FirstSideWindow"
             android:screenOrientation="portrait"
-            android:theme="@style/Window"
+            android:theme="@style/Window_side"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity

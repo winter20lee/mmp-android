@@ -171,7 +171,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 				toActivity(WatchHistoryActivity.createIntent(getActivity()));
 				break;
 			case R.id.first_side:
-				toActivity(FirstSideWindow.createIntent(getActivity(),firstCategorySerializables));
+				toActivity(FirstSideWindow.createIntent(getActivity(),firstCategorySerializables),false);
 				break;
 			default:
 				break;
@@ -184,7 +184,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 			case REQUEST_GOODSCATEGORY:
 				firstCategoryList.addAll(GsonUtil.jsonToList(resultData, FirstCategory.class));
 				adapter.setList(firstCategoryList);
-				viewPager.setOffscreenPageLimit(firstCategoryList.size());
+//				viewPager.setOffscreenPageLimit(firstCategoryList.size());
 				for (int i = 0; i< firstCategoryList.size(); i++) {
 					tabLayout.getTabAt(i).setCustomView(getTabView(i));
 					FirstCategory.FirstCategorySerializable firstCategorySerializable= firstCategoryList.get(i).transData();

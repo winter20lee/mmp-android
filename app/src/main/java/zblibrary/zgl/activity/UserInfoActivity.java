@@ -114,6 +114,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				intent.putExtra(BottomMenuWindow.INTENT_TITLE, "");
 				intent.putExtra(BottomMenuWindow.INTENT_ITEMS, new String[]{"拍照", "相册"});
 				startActivityForResult(intent, REQUEST_TO_BOTTOM_MENU);
+				overridePendingTransition(0, 0);
 				break;
 			case R.id.user_info_phonenum:
 			case R.id.user_info_birth_right:

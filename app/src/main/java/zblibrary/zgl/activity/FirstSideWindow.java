@@ -43,7 +43,7 @@ public class FirstSideWindow extends BaseBottomWindow {
     public void initView() {//必须调用
         enterAnim = exitAnim = R.anim.null_anim;
         vBaseBottomWindowRoot = findView(R.id.vBaseBottomWindowRoot);
-        vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_window_enter));
+//        vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade));
         first_side_close = findView(R.id.first_side_close);
         expandableGridView = findView(R.id.first_side_gridview);
 
@@ -65,6 +65,7 @@ public class FirstSideWindow extends BaseBottomWindow {
             finish();
         });
         vBaseBottomWindowRoot.setOnTouchListener((v, event) -> {
+            finish();
             return true;
         });
 
@@ -86,7 +87,7 @@ public class FirstSideWindow extends BaseBottomWindow {
             return;
         }
         isExit = true;
-        vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.right_push_out));
+//        vBaseBottomWindowRoot.startAnimation(AnimationUtils.loadAnimation(context, R.anim.right_push_out));
         vBaseBottomWindowRoot.setVisibility(View.GONE);
         exitHandler.sendEmptyMessageDelayed(0, 200);
     }
