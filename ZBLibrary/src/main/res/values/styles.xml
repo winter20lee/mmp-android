@@ -973,6 +973,10 @@
         <item name="android:windowBackground">@color/alpha_6</item>
     </style>
 
+    <style name="Window_side" parent="@style/Window">
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
     <style name="WindowCompleteAlpha" parent="Window">
         <item name="android:windowBackground">@color/alpha_complete</item>
     </style>
