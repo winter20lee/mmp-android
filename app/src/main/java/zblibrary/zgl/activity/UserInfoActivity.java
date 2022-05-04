@@ -131,7 +131,16 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 				break;
 			case R.id.user_info_save:
 				CommonUtil.showProgressDialog(UserInfoActivity.this,"正在提交，请稍后...");
-				if(!StringUtil.isEmpty(picturePath) && picturePath.startsWith("http")){
+				if(StringUtil.isEmpty(picturePath)){
+					int sex ;
+					if(user_info_change_nickname.getText().toString().equals("男")){
+						sex = 1;
+					}else{
+						sex = 2;
+					}
+					HttpRequest.updateUserInfo("",user_info_userid.getText().toString(),user_info_phonenum.getText().toString(),sex,
+							user_info_jianjie.getText().toString(),REQUEST_INFO,new OnHttpResponseListenerImpl(UserInfoActivity.this));
+				} else if(!StringUtil.isEmpty(picturePath) && picturePath.startsWith("http")){
 					int sex ;
 					if(user_info_change_nickname.getText().toString().equals("男")){
 						sex = 1;
