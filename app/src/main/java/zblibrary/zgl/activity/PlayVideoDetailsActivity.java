@@ -250,7 +250,19 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 if(productDes.videoUrl.endsWith(".mp4") || productDes.videoUrl.endsWith(".MP4")){
                     if(!MApplication.getInstance().isVip()){
                         if(MApplication.getInstance().downloadCount>0){
-                            CommonUtil.showShortToast(this,"已超过下载次数");
+                            new AlertDialog(this,"","今日的下载次数已使用完，充值VIP获取无限下载次数","去充值",
+                                    "取消",0,new AlertDialog.OnDialogButtonClickListener(){
+
+                                @Override
+                                public void onDialogButtonClick(int requestCode, boolean isPositive) {
+                                    if(isPositive){
+                                        Intent it = MainTabActivity.createIntent(PlayVideoDetailsActivity.this);
+                                        CommonUtil.toActivity(PlayVideoDetailsActivity.this,it);
+                                    }else{
+
+                                    }
+                                }
+                            }).show();
                             return;
                         }
                         HttpRequest.getDownload(productDes.id,0,new OnHttpResponseListenerImpl(this));
