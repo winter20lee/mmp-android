@@ -73,8 +73,10 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 				"已下载（"+ MyDownFilesFragment.TasksManager.getImpl().getDownedCounts()+"）");
 		if(MApplication.getInstance().isBindUserPhone()){
 			mine_phone.setVisibility(View.INVISIBLE);
+			findView(R.id.mine_bangding).setVisibility(View.INVISIBLE);
 		}else{
 			mine_phone.setVisibility(View.VISIBLE);
+			findView(R.id.mine_bangding).setVisibility(View.VISIBLE);
 		}
 		if(MApplication.getInstance().isVip()){
 			mine_mzgycs_.setText("无限制");
@@ -116,6 +118,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 		findView(R.id.mine_down,this);
 		findView(R.id.mine_history,this);
 		findView(R.id.mine_phone,this);
+		findView(R.id.mine_bangding,this);
 	}
 
 
@@ -151,6 +154,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 				toActivity(SetActivity.createIntent(context));
 				break;
 			case R.id.mine_phone:
+			case R.id.mine_bangding:
 				toActivity(BingPhoneActivity.createIntent(context));
 				break;
 			default:

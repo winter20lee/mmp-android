@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -440,9 +441,11 @@ public class MyDownFilesFragment extends BaseFragment implements View.OnClickLis
                 if (action.equals(v.getResources().getString(R.string.pause))) {
                     // to pause
                     FileDownloader.getImpl().pause(holder.id);
+                    Toast.makeText(context,"暂停中...",Toast.LENGTH_SHORT).show();
                 } else if (action.equals(v.getResources().getString(R.string.start))) {
                     // to start
                     autoClick(holder);
+                    Toast.makeText(context,"下载中...",Toast.LENGTH_SHORT).show();
                 } else if (action.equals(v.getResources().getString(R.string.delete))) {
                     // to delete
 //                    new File(TasksManager.getImpl().get(holder.position).getPath()).delete();
