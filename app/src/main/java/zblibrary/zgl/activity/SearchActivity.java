@@ -44,7 +44,11 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 		initView();
 		initData();
 		initEvent();
-		showSearchResu(keyword,"");
+		if(StringUtil.isNotEmpty(keyword,true)){
+			showSearchResu(keyword,"");
+		}else{
+			showSearchResu(keyword);
+		}
 	}
 
 	@Override

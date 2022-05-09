@@ -23,7 +23,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="43dp"
                     android:src="@mipmap/defult_head" />
 
                 <TextView
@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="41dp"
                     android:layout_toRightOf="@id/mine_head"
                     android:textColor="@color/white"
                     android:textSize="14sp"
