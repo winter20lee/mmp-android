@@ -21,6 +21,7 @@ import zblibrary.zgl.model.FirstTabIdEvent;
 import zblibrary.zgl.model.SecondCategory;
 import zuo.biao.library.base.BaseView;
 import zuo.biao.library.ui.ExpandableGridView;
+import zuo.biao.library.util.StringUtil;
 
 public class FirstCategoryView extends BaseView<SecondCategory> implements View.OnClickListener {
 
@@ -32,8 +33,10 @@ public class FirstCategoryView extends BaseView<SecondCategory> implements View.
 	private OnClickChangeListener onClickChangeListener;
 	private int pos;
 	private int pageNum=1;
-	public FirstCategoryView(Activity context, ViewGroup parent) {
+	private String tag = "";
+	public FirstCategoryView(Activity context, ViewGroup parent,String tag) {
 		super(context, R.layout.first_category_view, parent);
+		this.tag = tag;
 	}
 
 	public FirstCategoryView(Activity context, ViewGroup parent,boolean isShowChangeButton) {
@@ -100,7 +103,11 @@ public class FirstCategoryView extends BaseView<SecondCategory> implements View.
 				if(isRecommend){
 					EventBus.getDefault().post(new FirstTabIdEvent(data.videoCatalog.id));
 				}else{
-					toActivity(SearchActivity.createIntent(context,data.videoCatalog.id));
+					if(StringUtil.isNotEmpty(tag,true)){
+						toActivity(SearchActivity.createIntent(context,tag));
+					}else{
+						toActivity(SearchActivity.createIntent(context,data.videoCatalog.id));
+					}
 				}
 				break;
 			case R.id.first_bottom_change:

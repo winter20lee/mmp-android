@@ -30,6 +30,7 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 	private String keyWord = "";
 	private int cateGoryId;
 	private EmptyView empty_view;
+	private boolean isLike;
 	public static SearchFragment createInstance(String keyWord,int cateGoryId) {
 		SearchFragment fragment = new SearchFragment();
 		Bundle bundle = new Bundle();
@@ -38,6 +39,17 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 		fragment.setArguments(bundle);
 		return fragment;
 	}
+
+	public static SearchFragment createInstance(String keyWord,int cateGoryId,boolean isLike) {
+		SearchFragment fragment = new SearchFragment();
+		Bundle bundle = new Bundle();
+		bundle.putString(INTENT_PHONE, keyWord);
+		bundle.putInt(INTENT_ID, cateGoryId);
+		bundle.putBoolean(INTENT_TYPE, isLike);
+		fragment.setArguments(bundle);
+		return fragment;
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
@@ -46,6 +58,7 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 		if (argument != null) {
 			keyWord = argument.getString(INTENT_PHONE);
 			cateGoryId = argument.getInt(INTENT_ID);
+			isLike = argument.getBoolean(INTENT_TYPE);
 		}
 		initView();
 		initData();
@@ -92,7 +105,11 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 		if(page == 1){
 			CommonUtil.showProgressDialog(context,"搜索中");
 		}
-		HttpRequest.getSearch(page,cateGoryId,keyWord,-page, this);
+		if(isLike){
+			HttpRequest.getSearchLike(page,cateGoryId,keyWord,-page, this);
+		}else{
+			HttpRequest.getSearch(page,cateGoryId,keyWord,-page, this);
+		}
 	}
 
 	@Override

@@ -141,6 +141,7 @@ public class MemberCenterFragment extends BaseFragment implements
 				memberCenters.addAll(GsonUtil.jsonToList(resultData,MemberCenter.class));
 				//设置适配器
 				member_center_gallery.setAdapter(new MemberCardAdapter(context, memberCenters));
+				member_center_gallery.setSelection(3);
 				break;
 		}
 	}

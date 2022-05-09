@@ -59,8 +59,7 @@ public class GlideUtil {
             }
         }
         RequestOptions options = new RequestOptions()
-                .error(errorImg)
-                .placeholder(getLoadingDrawable(context));
+                .error(errorImg);
 
         Glide.with(context)
                 .load(url)
@@ -95,8 +94,7 @@ public class GlideUtil {
             }
         }
         RequestOptions options = new RequestOptions()
-                .error(errorImg)
-                .placeholder(getLoadingDrawable(context));
+                .error(errorImg);
 
         Glide.with(context)
                 .load(url)
@@ -167,7 +165,6 @@ public class GlideUtil {
         }
         RequestOptions options = new RequestOptions()
                 .error(errorCircleImg)
-                .placeholder(getLoadingDrawable(context))
                 .transform(new GlideCircleTransform());
 
         Log.i(TAG, url);
@@ -206,7 +203,6 @@ public class GlideUtil {
         int r = (int) context.getResources().getDimension(R.dimen.radius);
         RequestOptions options = new RequestOptions()
                 .error(errorImg)
-                .placeholder(getLoadingDrawable(context))
                 .transform(new GlideRoundTransform(context, r));
 
         Log.i(TAG, url);
@@ -247,7 +243,6 @@ public class GlideUtil {
         }
         RequestOptions options = new RequestOptions()
                 .error(errorImg)
-                .placeholder(getLoadingDrawable(context))
                 .transform(new GlideRoundTransform(context, r));
 
         Log.i(TAG, url);

@@ -85,9 +85,9 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 			case APP_INIT_CODE:
 				appInitInfo = GsonUtil.GsonToBean(resultData,AppInitInfo.class);
 				MApplication.getInstance().setAppInitInfo(appInitInfo);
-				if(StringUtil.isEmpty(HttpManager.getInstance().getToken())){
-					HttpRequest.loginByDeviceId(getDeviceToken(),DEVICE_LOGIN_CODE,new OnHttpResponseListenerImpl(this) );
-				}
+//				if(StringUtil.isEmpty(HttpManager.getInstance().getToken())){
+				HttpRequest.loginByDeviceId(getDeviceToken(),DEVICE_LOGIN_CODE,new OnHttpResponseListenerImpl(this) );
+//				}
 				if(appInitInfo.ads!=null && appInitInfo.ads.size()>0){
 					GlideUtil.load(this,appInitInfo.ads.get(0).imgUrl,splash);
 				}

@@ -23,12 +23,16 @@ import zuo.biao.library.util.StringUtil;
 public class SearchActivity extends BaseActivity implements OnBottomDragListener {
 
 	public static final String INTENT_RANGE = "INTENT_RANGE";
+	public static final String INTENT_RANGE_KEY = "INTENT_RANGE_KEY";
 	private SearchLayout msearchlayout;
 	private int cateGoryId;
 	public static Intent createIntent(Context context, int cateGoryId) {
 		return new Intent(context, SearchActivity.class).putExtra(INTENT_RANGE, cateGoryId);
 	}
 
+	public static Intent createIntent(Context context, String keyword) {
+		return new Intent(context, SearchActivity.class).putExtra(INTENT_RANGE_KEY, keyword);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +40,11 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 		setContentView(R.layout.search_activity, this);
 		intent = getIntent();
 		cateGoryId = intent.getIntExtra(INTENT_RANGE,0);
+		String keyword = intent.getStringExtra(INTENT_RANGE_KEY);
 		initView();
 		initData();
 		initEvent();
-		showSearchResu("");
+		showSearchResu(keyword,"");
 	}
 
 	@Override
@@ -88,6 +93,13 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 
 	private void showSearchResu(String keyword){
 		SearchFragment fragment = SearchFragment.createInstance(keyword,cateGoryId);
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.replace(R.id.search_result_fg, fragment);
+		transaction.commit();
+	}
+
+	private void showSearchResu(String keyword,String defulLike){
+		SearchFragment fragment = SearchFragment.createInstance(keyword,cateGoryId,true);
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.replace(R.id.search_result_fg, fragment);
 		transaction.commit();
