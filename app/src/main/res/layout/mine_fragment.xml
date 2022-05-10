@@ -23,7 +23,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="43dp"
+                    android:layout_marginTop="53dp"
                     android:src="@mipmap/defult_head" />
 
                 <TextView
@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginTop="41dp"
+                    android:layout_marginTop="51dp"
                     android:layout_toRightOf="@id/mine_head"
                     android:textColor="@color/white"
                     android:textSize="14sp"
@@ -69,6 +69,7 @@
                     android:layout_height="34dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"
                     android:padding="10dp"
                     android:src="@mipmap/mine_set" />
 
@@ -76,6 +77,7 @@
                     android:id="@+id/mine_history"
                     android:layout_width="34dp"
                     android:layout_height="34dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="16dp"
                     android:layout_toLeftOf="@id/mine_set"
                     android:padding="10dp"
@@ -85,13 +87,13 @@
                     android:id="@+id/mine_bangding"
                     android:layout_width="100dp"
                     android:layout_height="32dp"
-                    android:text="未绑定账号"
-                    android:textSize="14sp"
-                    android:textColor="#282828"
-                    android:gravity="center"
+                    android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/radius_17_gray_shap"
-                    />
+                    android:gravity="center"
+                    android:text="未绑定账号"
+                    android:textColor="#282828"
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:id="@+id/mine_watch_time"

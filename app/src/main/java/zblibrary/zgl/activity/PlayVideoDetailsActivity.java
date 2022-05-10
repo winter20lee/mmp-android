@@ -158,16 +158,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             ((TextView)findViewById(R.id.product_details_long_jianjie)).setText("时长："+productDes.length);
         }
         ((TextView)findViewById(R.id.product_details_play_jianjie)).setText(productDes.playCnt+"次播放");
-        if(StringUtil.isEmpty(productDes.videoActor.director)){
-            findViewById(R.id.product_details_actor_jianjie).setVisibility(View.GONE);
-        }else{
-            ((TextView)findViewById(R.id.product_details_actor_jianjie)).setText("导演："+productDes.videoActor.director);
-        }
-        if(StringUtil.isEmpty(productDes.videoActor.bango)){
-            findViewById(R.id.product_details_fanhao_jianjie).setVisibility(View.GONE);
-        }else{
-            ((TextView)findViewById(R.id.product_details_fanhao_jianjie)).setText("番号："+productDes.videoActor.bango);
-        }
+
         ((TextView)findViewById(R.id.product_details_tag_jianjie)).setText("标签："+"# "+productDes.tag);
         if(productDes.videoActor!=null){
             findViewById(R.id.product_details_actor).setVisibility(View.VISIBLE);
@@ -194,6 +185,17 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             });
             play_video_recomm.setAdapter(actorRecommendAdapter);
             actorRecommendAdapter.refresh(productDes.actorVideoList);
+
+            if(StringUtil.isEmpty(productDes.videoActor.director)){
+                findViewById(R.id.product_details_actor_jianjie).setVisibility(View.GONE);
+            }else{
+                ((TextView)findViewById(R.id.product_details_actor_jianjie)).setText("导演："+productDes.videoActor.director);
+            }
+            if(StringUtil.isEmpty(productDes.videoActor.bango)){
+                findViewById(R.id.product_details_fanhao_jianjie).setVisibility(View.GONE);
+            }else{
+                ((TextView)findViewById(R.id.product_details_fanhao_jianjie)).setText("番号："+productDes.videoActor.bango);
+            }
         }
         //同分类下
         HttpRequest.getSearch(1,4,productDes.catalogSecondLevelId,"",REQUEST_MALL_REFRESH, new OnHttpResponseListenerImpl(this));
