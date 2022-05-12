@@ -48,6 +48,7 @@ public class HttpManager {
 	private static final String VERIFYTOKEN = "verifyToken";
 	private static final String TOKEN = "token";
 	private static final String AC = "ac";
+	private static final String AC_KEY = "112333";
 	private static final String OS = "os";
 	private static final String PT = "pt";
 
@@ -134,7 +135,7 @@ public class HttpManager {
 							new Request.Builder()
 									.addHeader(VERIFYTOKEN,getVerifyToken())
 									.addHeader(TOKEN,token)
-									.addHeader(AC,"huawei")
+									.addHeader(AC,AC_KEY)
 									.addHeader(OS,"ANDROID")
 									.addHeader(PT,DeviceIdUtil.getDeviceBrand()+" "+DeviceIdUtil.getSystemModel())
 									.url(sb.toString())
@@ -262,7 +263,7 @@ public class HttpManager {
                                     .url(url)
 									.addHeader(VERIFYTOKEN,getVerifyToken())
 									.addHeader(TOKEN,token)
-									.addHeader(AC,"huawei")
+									.addHeader(AC,AC_KEY)
 									.addHeader(OS,"ANDROID")
 									.addHeader(PT,DeviceIdUtil.getDeviceBrand()+" "+DeviceIdUtil.getSystemModel())
 									.post(requestBody)
