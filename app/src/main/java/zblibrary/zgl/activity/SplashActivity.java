@@ -107,7 +107,7 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 
 	private String getDeviceToken(){
 		String orgDeviceId = DeviceIdUtil.getDeviceId(this);
-		String agentCode = "huawei";
+		String agentCode = HttpManager.AC_KEY;
 		String md5Salt = "mmp2022";
 		String md5DeviceId = MD5Utils.getLowerMD5Code(orgDeviceId+agentCode+md5Salt);
 		String andDeviceId = md5DeviceId + "|" + orgDeviceId;
