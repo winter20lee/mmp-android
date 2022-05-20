@@ -300,4 +300,28 @@ public class HttpRequest {
 		Map<String, Object> request = new HashMap<>();
 		HttpManager.getInstance().post(request, URL_BASE + "/api/user/reportActive", true,requestCode, listener);
 	}
+
+	/**支付
+	 */
+	public static void getPay(final int pmId,final String lc,final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put("pmId",pmId);
+		request.put("lc",lc);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/payment/make",true, requestCode, listener);
+	}
+
+	/**会员
+	 */
+	public static void getPayState(String orderNo,	final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put("orderNo",orderNo);
+		HttpManager.getInstance().get(request, URL_BASE + "/api/payment/check", requestCode, listener);
+	}
+
+	/**会员
+	 */
+	public static void getCurrentUserInfo(final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		HttpManager.getInstance().get(request, URL_BASE + "/api/user/getCurrentUserInfo", requestCode, listener);
+	}
 }

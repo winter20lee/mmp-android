@@ -14,7 +14,7 @@ import zuo.biao.library.util.StringUtil;
 
 public class OrderView extends BaseView<Order.MessageData>{
 	public OrderView(Activity context, ViewGroup parent) {
-		super(context, R.layout.order_view, parent);
+		super(context, R.layout.paymethod_view, parent);
 	}
 
 	public TextView order_num;

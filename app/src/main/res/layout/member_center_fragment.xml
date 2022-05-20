@@ -160,6 +160,10 @@
                             />
                     </LinearLayout>
                 </LinearLayout>
+                <View
+                    android:id="@+id/member_center_pop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 <!--        </ScrollView>-->
 </LinearLayout>

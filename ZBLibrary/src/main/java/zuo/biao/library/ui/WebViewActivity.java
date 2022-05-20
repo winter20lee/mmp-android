@@ -3,8 +3,10 @@ package zuo.biao.library.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,8 +27,7 @@ import zuo.biao.library.util.StringUtil;
  */
 public class WebViewActivity extends BaseActivity implements OnBottomDragListener, OnClickListener {
 	public static final String TAG = "WebViewActivity";
-	public static final int PAY_SUCCESS = 1000;
-	public static final int PAY_FAIL = 1001;
+	public static final int PAY_RESUlT = 1000;
 
 	public static final String INTENT_RETURN = "INTENT_RETURN";
 	public static final String INTENT_URL = "INTENT_URL";
@@ -101,10 +102,25 @@ public class WebViewActivity extends BaseActivity implements OnBottomDragListene
 		wvWebView.setWebViewClient(new WebViewClient(){
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url){
-				if(url.contains("https://12shop/order/pay/success")){
-					setResults(PAY_SUCCESS);
-				}else if(url.contains("https://12shop/order/pay/fail")){
-					setResults(PAY_FAIL);
+				if (url.startsWith("weixin://wap/pay?")) {
+					Intent intent = new Intent();
+					intent.setAction(Intent.ACTION_VIEW);
+					intent.setData(Uri.parse(url));
+					startActivity(intent);
+					return true;
+				}
+
+				if(url.startsWith("alipays:") || url.startsWith("alipay")) {
+					try {
+						startActivity(new Intent("android.intent.action.VIEW", Uri.parse(url)));
+					} catch (Exception e) {
+						showShortToast("未检测到支付宝客户端，请安装后重试。");
+					}
+					return true;
+				}
+
+				if(url.contains("http://mmppayback")){
+					setResults(PAY_RESUlT);
 				}
 				wvWebView.loadUrl(url);
 				return true;
