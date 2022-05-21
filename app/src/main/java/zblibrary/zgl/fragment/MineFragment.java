@@ -87,6 +87,8 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 			findView(R.id.mine_kftj_).setVisibility(View.VISIBLE);
 			mine_total_count.setText("");
 			mine_left_count.setText("无限制");
+			((TextView)findView(R.id.mine_type)).setText(MApplication.getInstance().getCurrentUser().userInfo.memberLevelName);
+			((TextView)findView(R.id.mine_exptime)).setText("（到期时间："+MApplication.getInstance().getCurrentUser().userInfo.gmtMemberExpired+")");
 		}else{
 			mine_zskf.setTextColor(Color.parseColor("#CCCCCC"));
 			mine_kftj.setTextColor(Color.parseColor("#CCCCCC"));
@@ -107,6 +109,9 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 				mine_xzcs_.setText("0 / 1");
 			}
 		}
+		((TextView)findView(R.id.mine_type)).setText("游客");
+		((TextView)findView(R.id.mine_exptime)).setText("");
+
 	}
 
 
@@ -121,7 +126,11 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 		findView(R.id.mine_bangding,this);
 	}
 
-
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+		super.onHiddenChanged(hidden);
+		initData();
+	}
 
 	@Override
 	public void onClick(View v) {//直接调用不会显示v被点击效果

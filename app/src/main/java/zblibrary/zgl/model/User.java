@@ -20,6 +20,7 @@ public class User {
 			public int isBindPhone;
 			public String memberLevelCode;
 			public String gmtMemberExpired;
+			public String memberLevelName;
 			public int isPushOpen = 0;
 	}
 }

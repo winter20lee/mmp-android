@@ -119,9 +119,9 @@ public class WebViewActivity extends BaseActivity implements OnBottomDragListene
 					return true;
 				}
 
-				if(url.contains("http://mmppayback")){
-					setResults(PAY_RESUlT);
-				}
+//				if(url.contains("http://mmppayback")){
+//					setResults(PAY_RESUlT);
+//				}
 				wvWebView.loadUrl(url);
 				return true;
 			}
@@ -208,6 +208,7 @@ public class WebViewActivity extends BaseActivity implements OnBottomDragListene
 			wvWebView.destroy();
 			wvWebView = null;
 		}
+		setResults(PAY_RESUlT);
 		super.onDestroy();
 	}
 

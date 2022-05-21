@@ -27,7 +27,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 import zblibrary.zgl.R;
+import zblibrary.zgl.activity.MainTabActivity;
 import zblibrary.zgl.activity.OrderActivity;
+import zblibrary.zgl.activity.PlayVideoDetailsActivity;
 import zblibrary.zgl.adapter.BannerHolderCreator;
 import zblibrary.zgl.adapter.MemberCardAdapter;
 import zblibrary.zgl.adapter.PayMethodAdapter;
@@ -42,7 +44,9 @@ import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.ZoomFadePageTransformer;
 import zuo.biao.library.base.BaseFragment;
+import zuo.biao.library.ui.AlertDialog;
 import zuo.biao.library.ui.WebViewActivity;
+import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
@@ -179,6 +183,17 @@ public class MemberCenterFragment extends BaseFragment implements
 			case REQUEST_PAY:
 				dismissProgressDialog();
 				pay = GsonUtil.GsonToBean(resultData,Pay.class);
+				new AlertDialog(getActivity(),"支付提示","是否已完成支付？","我已支付","支付失败",0,new AlertDialog.OnDialogButtonClickListener(){
+
+					@Override
+					public void onDialogButtonClick(int requestCode, boolean isPositive) {
+						if(isPositive){
+							HttpRequest.getCurrentUserInfo(REQUEST_CODE_REFRESH,new OnHttpResponseListenerImpl(MemberCenterFragment.this));
+						}else{
+
+						}
+					}
+				}).show();
 				toActivity(WebViewActivity.createIntent(context,"支付",pay.redirectUrl),REQUEST_CODE_RESULT);
 				break;
 			case REQUEST_PAY_STATE:
@@ -275,16 +290,16 @@ public class MemberCenterFragment extends BaseFragment implements
 		});
 	}
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode != RESULT_OK) {
-			return;
-		}
-		switch (requestCode) {
-			case REQUEST_CODE_RESULT:
-				HttpRequest.getPayState(pay.orderNo,REQUEST_PAY_STATE,new OnHttpResponseListenerImpl(MemberCenterFragment.this));
-				break;
-		}
-	}
+//	@Override
+//	public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//		super.onActivityResult(requestCode, resultCode, data);
+//		if (resultCode != RESULT_OK) {
+//			return;
+//		}
+//		switch (requestCode) {
+//			case REQUEST_CODE_RESULT:
+//				HttpRequest.getPayState(pay.orderNo,REQUEST_PAY_STATE,new OnHttpResponseListenerImpl(MemberCenterFragment.this));
+//				break;
+//		}
+//	}
 }
