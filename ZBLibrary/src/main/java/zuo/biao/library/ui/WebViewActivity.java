@@ -103,10 +103,14 @@ public class WebViewActivity extends BaseActivity implements OnBottomDragListene
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url){
 				if (url.startsWith("weixin://wap/pay?")) {
-					Intent intent = new Intent();
-					intent.setAction(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse(url));
-					startActivity(intent);
+					try {
+						Intent intent = new Intent();
+						intent.setAction(Intent.ACTION_VIEW);
+						intent.setData(Uri.parse(url));
+						startActivity(intent);
+					} catch (Exception e) {
+						showShortToast("未检测到微信客户端，请安装后重试。");
+					}
 					return true;
 				}
 
