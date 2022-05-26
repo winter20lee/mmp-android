@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Gallery;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -241,7 +242,7 @@ public class MemberCenterFragment extends BaseFragment implements
 		View inflate = LayoutInflater.from(getContext()).inflate(R.layout.pay_pop_list_view, null);
 		ImageView pay_pop_close = inflate.findViewById(R.id.pay_pop_close);
 		TextView pay_pop_num = inflate.findViewById(R.id.pay_pop_num);
-		ListView pay_pop_list = inflate.findViewById(R.id.pay_pop_list);
+		GridView pay_pop_list = inflate.findViewById(R.id.pay_pop_list);
 		Button pay_pop_pay = inflate.findViewById(R.id.pay_pop_pay);
 		int discountPrice = memberCenters.get(pos).discountPrice;
 		pay_pop_num.setText(discountPrice+"");

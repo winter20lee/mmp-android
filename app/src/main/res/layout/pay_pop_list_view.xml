@@ -53,15 +53,22 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <ListView
+        <GridView
             android:id="@+id/pay_pop_list"
             android:layout_width="match_parent"
+            android:numColumns="2"
+            android:columnWidth="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:layout_marginTop="10dp"
             android:divider="@color/alpha_3"
             android:dividerHeight="1px"
             android:listSelector="@drawable/to_alpha" >
-        </ListView>
+        </GridView>
 
         <Button
             android:id="@+id/pay_pop_pay"
