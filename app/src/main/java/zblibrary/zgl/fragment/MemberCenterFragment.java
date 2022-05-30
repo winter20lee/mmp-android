@@ -1,7 +1,10 @@
 package zblibrary.zgl.fragment;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -50,6 +53,7 @@ import zuo.biao.library.ui.WebViewActivity;
 import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
+import zuo.biao.library.util.Log;
 import zuo.biao.library.util.StringUtil;
 
 /**会员中心
@@ -195,7 +199,8 @@ public class MemberCenterFragment extends BaseFragment implements
 						}
 					}
 				}).show();
-				toActivity(WebViewActivity.createIntent(context,"支付",pay.redirectUrl),REQUEST_CODE_RESULT);
+//				toActivity(WebViewActivity.createIntent(context,"支付",pay.redirectUrl),REQUEST_CODE_RESULT);
+				openBrowser(context,pay.redirectUrl);
 				break;
 			case REQUEST_PAY_STATE:
 				dismissProgressDialog();
@@ -304,4 +309,19 @@ public class MemberCenterFragment extends BaseFragment implements
 //				break;
 //		}
 //	}
+
+	public void openBrowser(Context context, String url) {
+		final Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse(url));
+		// 注意此处的判断intent.resolveActivity()可以返回显示该Intent的Activity对应的组件名
+		// 官方解释 : Name of the component implementing an activity that can display the intent
+		if (intent.resolveActivity(context.getPackageManager()) != null) {
+			final ComponentName componentName = intent.resolveActivity(context.getPackageManager());
+			Log.d("","suyan = " + componentName.getClassName());
+			context.startActivity(Intent.createChooser(intent, "请选择浏览器"));
+		} else {
+			showShortToast("链接错误或无浏览器");
+		}
+	}
 }
