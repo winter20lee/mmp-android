@@ -8,21 +8,21 @@
         android:id="@+id/pay_ll"
         android:background="@drawable/radius_2_shap"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="100dp">
         <ImageView
             android:id="@+id/paymethod_icon"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_margin="10dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="20dp"
             />
         <TextView
             android:id="@+id/paymethod_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="17dp"
             android:textColor="@color/white"
             android:layout_toRightOf="@id/paymethod_icon"
-            android:textSize="7dp"
+            android:textSize="14dp"
             />
 
         <TextView
@@ -30,17 +30,17 @@
             android:layout_below="@id/paymethod_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="20dp"
             android:textColor="#999999"
             android:text="推荐使用"
-            android:textSize="6dp"
+            android:textSize="12dp"
             />
 
         <ImageView
             android:id="@+id/paymethod_sel"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:src="@mipmap/pay_sel"
             android:visibility="gone"
             android:layout_alignParentBottom="true"
@@ -49,8 +49,8 @@
             <TextView
                 android:id="@+id/pay_tag"
                 android:textColor="#FFFFFF"
-                android:textSize="4dp"
-                android:padding="3dp"
+                android:textSize="8dp"
+                android:padding="4dp"
                 android:background="@drawable/radius_2_red_shap"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"

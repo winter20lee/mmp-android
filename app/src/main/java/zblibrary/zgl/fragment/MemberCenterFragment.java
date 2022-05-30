@@ -247,6 +247,7 @@ public class MemberCenterFragment extends BaseFragment implements
 		int discountPrice = memberCenters.get(pos).discountPrice;
 		pay_pop_num.setText(discountPrice+"");
 		List<MemberCenter.PaymentMethodMembershipRespListBean> paymentMethodMembershipRespList = memberCenters.get(pos).paymentMethodMembershipRespList;
+		paymentMethodMembershipRespList.get(0).isSel = true;
 		 payMethodAdapter = new PayMethodAdapter(context);
 		pay_pop_list.setAdapter(payMethodAdapter);
 		payMethodAdapter.refresh(paymentMethodMembershipRespList);
