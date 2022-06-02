@@ -40,6 +40,7 @@ public class MainTabActivity extends BaseBottomTabActivity {
 	private View myDownFilesFragment;
 	private String url;
 	private Timer timer = new Timer(true);
+	private FirstFragment firstFragment;
 	public static Intent createIntent(Context context) {
 		return new Intent(context, MainTabActivity.class);
 	}
@@ -103,6 +104,10 @@ public class MainTabActivity extends BaseBottomTabActivity {
 
 			}
 		}
+		if(position==0){
+			if(firstFragment!=null)
+			firstFragment.setOffLim();
+		}
 	}
 
 	@Override
@@ -137,7 +142,8 @@ public class MainTabActivity extends BaseBottomTabActivity {
 		case 2:
 			return MineFragment.createInstance();
 		default:
-			return FirstFragment.createInstance();
+			firstFragment = FirstFragment.createInstance();
+			return firstFragment;
 		}
 	}
 

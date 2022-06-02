@@ -141,6 +141,7 @@ public class HttpManager {
 									.url(sb.toString())
 									.build()
 					);
+					Log.d(TAG, "\n get  result = \n" + result + "\n >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n");
 				} catch (Exception e) {
 					Log.e(TAG, "get  AsyncTask.doInBackground  try {  result = getResponseJson(..." +
 							"} catch (Exception e) {\n" + e.getMessage());
