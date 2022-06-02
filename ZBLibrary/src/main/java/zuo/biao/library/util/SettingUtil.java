@@ -221,7 +221,7 @@ public final class SettingUtil {
 	/**
 	 * TODO 改为你的存图片的服务器地址
 	 */
-	public static final String IMAGE_BASE_URL = "https://upload.jjddz.xyz";
+	public static final String IMAGE_BASE_URL = "http://upload.jjddz.xyz";
 
 	public static final String KEY_SERVER_ADDRESS_NORMAL = "KEY_SERVER_ADDRESS_NORMAL";
 	public static final String KEY_SERVER_ADDRESS_TEST = "KEY_SERVER_ADDRESS_TEST";
@@ -233,7 +233,7 @@ public final class SettingUtil {
 	/**
 	 * TODO 改为你的正式服务器地址
 	 */
-	public static final String URL_SERVER_ADDRESS_NORMAL_HTTPS = "https://api.sexbaby.cc";//正式服务器
+	public static final String URL_SERVER_ADDRESS_NORMAL_HTTPS = "http://api.sexbaby.cc";//正式服务器
 	/**
 	 * TODO 改为你的测试服务器地址,如果有的话
 	 */

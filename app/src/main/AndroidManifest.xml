@@ -60,6 +60,9 @@
                 tools:replace="android:resource"
                 android:resource="@xml/file_paths" />
         </provider>
+        <meta-data
+            android:name="zuo.biao.library.transform.GlideCache"
+            android:value="AppGlideModule" />
 
         <!--适配华为（huawei）刘海屏-->
         <meta-data
