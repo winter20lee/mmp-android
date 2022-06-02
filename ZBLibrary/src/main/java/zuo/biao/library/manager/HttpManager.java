@@ -48,7 +48,7 @@ public class HttpManager {
 	private static final String VERIFYTOKEN = "verifyToken";
 	private static final String TOKEN = "token";
 	private static final String AC = "ac";
-	public static final String AC_KEY = "cat";
+	public static final String AC_KEY = "000000";
 	private static final String OS = "os";
 	private static final String PT = "pt";
 

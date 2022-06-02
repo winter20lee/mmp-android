@@ -45,6 +45,7 @@ import zuo.biao.library.util.DataKeeper;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.PermissionUtils;
+import zuo.biao.library.util.SettingUtil;
 import zuo.biao.library.util.StringUtil;
 
 public class UserInfoActivity extends TakePhotoActivity implements View.OnClickListener ,
@@ -297,7 +298,7 @@ public class UserInfoActivity extends TakePhotoActivity implements View.OnClickL
 		uploadUtil.setOnUploadProcessListener(UserInfoActivity.this); //设置监听器监听上传状态
 
 		Map<String, String> params = new HashMap<String, String>();//上传map对象
-		uploadUtil.uploadFile(picturePath, "file1", "http://upload.talk36.com/upload/UploadServlet", params);
+		uploadUtil.uploadFile(picturePath, "file1", SettingUtil.IMAGE_BASE_URL+"/upload/UploadServlet", params);
 	}
 
 	private void initCalendar(){
