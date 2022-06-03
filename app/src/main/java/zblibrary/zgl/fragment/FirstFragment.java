@@ -243,6 +243,11 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 					image_view.setBackgroundDrawable(image_view.getResource(firstCategoryList.get(position).drawable, firstCategoryList.get(position).drawableSelected));
 				}
 
+				@Override
+				public void onLoadFailed(@Nullable Drawable errorDrawable) {
+					super.onLoadFailed(errorDrawable);
+					image_view.setVisibility(View.GONE);
+				}
 			});
 		}else{
 			image_view.setBackgroundDrawable(image_view.getResource(firstCategoryList.get(position).drawable, firstCategoryList.get(position).drawableSelected));

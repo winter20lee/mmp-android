@@ -316,6 +316,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 secondCategory.videoPageData = videoListBean;
                 SecondCategory.VideoCatalogBean catalogBean = new SecondCategory.VideoCatalogBean();
                 catalogBean.name = "同分类下";
+                catalogBean.id = productDes.catalogSecondLevelId;
                 secondCategory.videoCatalog = catalogBean;
                 FirstCategoryView receivingAddressView = new FirstCategoryView(this,play_video_tflx,false);
                 play_video_tflx.addView(receivingAddressView.createView());
@@ -407,7 +408,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 .setUrl(source)
                 .setCacheWithPlay(true)
                 .setIsTouchWiget(true)
-                //.setAutoFullWithSize(true)
+                .setAutoFullWithSize(true)
                 .setRotateViewAuto(false)
                 .setLockLand(false)
                 .setFullHideStatusBar(true)

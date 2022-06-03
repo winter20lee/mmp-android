@@ -1,9 +1,6 @@
 
 package zblibrary.zgl.model;
-
 import java.util.List;
-
-import zuo.biao.library.base.BaseModel;
 
 /**订单
  */
@@ -14,17 +11,12 @@ public class Order {
 	public int pageSize;
 	public List<MessageData> result; //头像
 
-	public static class MessageData extends BaseModel{
-		public String messageOpUserName;
-		public String title;
-		public String content;
-		public String messageGmtCreate;
-		public boolean readStatus;
-		public boolean isEnd;
-		@Override
-		protected boolean isCorrect() {//根据自己的需求决定，也可以直接 return true
-			return id > 0;// && StringUtil.isNotEmpty(phone, true);
-		}
-
+	public static class MessageData{
+		public int id;
+		public String orderNo;
+		public String buyMemberLevelCode;
+		public String buyMemberLevelName;
+		public int orderAmount;
+		public String gmtUpdate;
 	}
 }

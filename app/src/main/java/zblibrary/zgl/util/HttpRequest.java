@@ -93,7 +93,7 @@ public class HttpRequest {
 		Map<String, Object> request = new HashMap<>();
 		request.put(PAGE_NUM, pageNo);
 		request.put(PAGE_SiZE, 20);
-		HttpManager.getInstance().get(request, URL_BASE + "/promotion/user/message/list", requestCode, listener);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/user/rechargeOrder", true,requestCode, listener);
 	}
 
 

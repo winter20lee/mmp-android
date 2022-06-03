@@ -88,7 +88,6 @@ public class OrderActivity extends BaseHttpListActivity<Order.MessageData, ListV
 			if(message.totalPage > message.pageNo){
 				onStopLoadMore(true);
 			}else{
-				messageDataList.get(messageDataList.size()-1).isEnd = true;
 				onStopLoadMore(false);
 			}
 			return messageDataList;

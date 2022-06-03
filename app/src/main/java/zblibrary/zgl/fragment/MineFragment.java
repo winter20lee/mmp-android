@@ -79,14 +79,14 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 			findView(R.id.mine_bangding).setVisibility(View.VISIBLE);
 		}
 		if(MApplication.getInstance().isVip()){
-			mine_mzgycs_.setText("无限制");
-			mine_xzcs_.setText("无限制");
-			mine_zskf.setTextColor(Color.parseColor("#282828"));
+			mine_mzgycs_.setText("无限观看");
+			mine_xzcs_.setText("无限下载");
+//			mine_zskf.setTextColor(Color.parseColor("#282828"));
 			mine_kftj.setTextColor(Color.parseColor("#282828"));
-			findView(R.id.mine_zskf_).setVisibility(View.VISIBLE);
+//			findView(R.id.mine_zskf_).setVisibility(View.VISIBLE);
 			findView(R.id.mine_kftj_).setVisibility(View.VISIBLE);
 			mine_total_count.setText("");
-			mine_left_count.setText("无限制");
+			mine_left_count.setText("无限观看，无限下载");
 			((TextView)findView(R.id.mine_type)).setText(MApplication.getInstance().getCurrentUser().userInfo.memberLevelName);
 			((TextView)findView(R.id.mine_exptime)).setText("（到期时间："+MApplication.getInstance().getCurrentUser().userInfo.gmtMemberExpired+")");
 		}else{
@@ -108,10 +108,9 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 			}else{
 				mine_xzcs_.setText("0 / 1");
 			}
+			((TextView)findView(R.id.mine_type)).setText("游客");
+			((TextView)findView(R.id.mine_exptime)).setText("");
 		}
-		((TextView)findView(R.id.mine_type)).setText("游客");
-		((TextView)findView(R.id.mine_exptime)).setText("");
-
 	}
 
 
