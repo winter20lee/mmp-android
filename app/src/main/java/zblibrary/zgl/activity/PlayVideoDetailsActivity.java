@@ -2,6 +2,7 @@ package zblibrary.zgl.activity;
 
 import static zuo.biao.library.interfaces.Presenter.INTENT_ID;
 
+import tv.danmaku.ijk.media.exo2.Exo2PlayerManager;
 import zblibrary.zgl.adapter.ActorRecommendAdapter;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.fragment.MyDownFilesFragment;
@@ -36,6 +37,7 @@ import com.liulishuo.filedownloader.util.FileDownloadUtils;
 import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
+import com.shuyu.gsyvideoplayer.player.PlayerFactory;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import org.greenrobot.eventbus.EventBus;
@@ -102,7 +104,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         if(!MApplication.getInstance().isVip()){
             HttpRequest.getDownloadCnt(REQUEST_DOWNLOAD_COUNT,  new OnHttpResponseListenerImpl(this));
         }
-
+        PlayerFactory.setPlayManager(Exo2PlayerManager.class);
     }
 
     public void initView() {//必须调用
