@@ -64,7 +64,7 @@ public final class SettingUtil {
 	public static boolean vibrate = true;//开启震动
 	public static boolean noDisturb = false;//夜间防打扰
 
-	public static boolean isOnTestMode = true;//测试模式
+	public static boolean isOnTestMode = false;//测试模式
 	public static boolean isFirstStart = true;//第一次打开应用
 
 	public static final boolean[] defaultValues;
@@ -229,11 +229,11 @@ public final class SettingUtil {
 	/**
 	 * TODO 改为你的正式服务器地址
 	 */
-	public static final String URL_SERVER_ADDRESS_NORMAL_HTTP = "https://api.12shop.ph";//正式服务器
+	public static final String URL_SERVER_ADDRESS_NORMAL_HTTP = "http://api.sexbaby.cc";//正式服务器
 	/**
 	 * TODO 改为你的正式服务器地址
 	 */
-	public static final String URL_SERVER_ADDRESS_NORMAL_HTTPS = "http://api.sexbaby.cc";//正式服务器
+	public static final String URL_SERVER_ADDRESS_NORMAL_HTTPS = "https://api.sexbaby.cc";//正式服务器
 	/**
 	 * TODO 改为你的测试服务器地址,如果有的话
 	 */
@@ -244,7 +244,7 @@ public final class SettingUtil {
 	 * @return
 	 */
 	public static String getCurrentServerAddress() {
-		return getCurrentServerAddress(true);
+		return getCurrentServerAddress(false);
 	}
 	/**获取当前服务器地址
 	 * @param isHttps
