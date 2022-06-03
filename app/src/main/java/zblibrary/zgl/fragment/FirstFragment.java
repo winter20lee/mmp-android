@@ -104,6 +104,24 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	public void initEvent() {//必须调用
 		findView(R.id.et_searchtext_search).setFocusable(false);
 		findView(R.id.et_searchtext_search).setOnClickListener(this);
+		viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			@Override
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+			}
+
+			@Override
+			public void onPageSelected(int position) {
+				if(position>4){
+					setOffLim();
+				}
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int state) {
+
+			}
+		});
 	}
 
 	@Override
