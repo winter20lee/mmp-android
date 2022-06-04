@@ -64,8 +64,12 @@ public class OrderView extends BaseView<Order.MessageData>{
 			order_card.setImageResource(R.mipmap.zhongshenka);
 		}else if(data.buyMemberLevelCode.equals("annualy")){
 			order_card.setImageResource(R.mipmap.nianka);
-		}else {
+		} else if(data.buyMemberLevelCode.equals("quarterly")){
 			order_card.setImageResource(R.mipmap.jika);
+		} else if(data.buyMemberLevelCode.equals("monthly")){
+			order_card.setImageResource(R.mipmap.yueka);
+		} else{
+			order_card.setImageResource(R.mipmap.tiyanka);
 		}
 		order_price.setText("￥"+data.orderAmount);
 		order_time.setText(data.gmtUpdate);
