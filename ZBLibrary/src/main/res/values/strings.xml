@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">mmp</string>
+    <string name="app_name">色宝宝</string>
     <string name="app_version">1.0</string>
     <string name="get_failed">Network anomaly, please try again later</string>
     <string name="pulling">Pull to refresh...</string>
