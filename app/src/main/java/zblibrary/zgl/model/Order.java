@@ -18,5 +18,8 @@ public class Order {
 		public String buyMemberLevelName;
 		public int orderAmount;
 		public String gmtUpdate;
+		public int payStatus;
+		public String payStatusName;
+		public String payUrl;
 	}
 }

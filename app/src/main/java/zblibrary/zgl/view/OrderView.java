@@ -73,7 +73,7 @@ public class OrderView extends BaseView<Order.MessageData>{
 		}
 		order_price.setText("￥"+data.orderAmount);
 		order_time.setText(data.gmtUpdate);
-
+		order_state.setText(data.payStatusName);
 		order_kefu.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
