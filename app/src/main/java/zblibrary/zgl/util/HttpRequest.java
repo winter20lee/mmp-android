@@ -30,6 +30,7 @@ public class HttpRequest {
 	public static final String LOOT_PLAN_ID = "lootPlanId";
 	public static final String MOBILE = "mobileNo";
 	public static final String CODE = "verifyCode";
+	public static final String PASSWORD = "password";
 	public static final String DEVICETYPE = "deviceType";
 	public static final String DEVICEINFO = "deviceInfo";
 
@@ -169,17 +170,30 @@ public class HttpRequest {
 		HttpManager.getInstance().post(request, URL_BASE + "/api/loginByMobile",true, requestCode, listener);
 	}
 
-
-	/**绑定
+	/**登陆新的
 	 * @param mobile
-	 * @param code
+	 * @param password
 	 * @param listener
 	 */
-	public static void bindMobile(final String mobile, final String code,
+	public static void loginByPassword(final String mobile, final String password,
 										 final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put(MOBILE, mobile);
-		request.put(CODE, code);
+		request.put(PASSWORD, password);
+		HttpManager.getInstance().post(request, URL_BASE + "/api/loginByMobile",true, requestCode, listener);
+	}
+
+
+	/**绑定
+	 * @param mobile
+	 * @param password
+	 * @param listener
+	 */
+	public static void bindMobile(final String mobile, final String password,
+										 final int requestCode, final OnHttpResponseListener listener) {
+		Map<String, Object> request = new HashMap<>();
+		request.put(MOBILE, mobile);
+		request.put(PASSWORD, password);
 		HttpManager.getInstance().post(request, URL_BASE + "/api/bindMobile",true, requestCode, listener);
 	}
 

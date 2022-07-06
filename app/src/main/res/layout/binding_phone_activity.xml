@@ -56,9 +56,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/radius_46_gray_f6f6f6_shap"
-                    android:hint="请输入验证码"
-                    android:inputType="number"
-                    android:maxLength="6"
+                    android:hint="请输入密码"
+                    android:maxLength="20"
                     android:maxLines="1"
                     android:textColor="#282828"
                     android:textColorHint="#CCCCCC"
@@ -71,6 +70,7 @@
                     android:layout_alignParentRight="true"
                     android:gravity="center"
                     android:padding="15dp"
+                    android:visibility="gone"
                     android:text="获取验证码"
                     android:textColor="#8376E5"
                     android:textSize="13dp" />
@@ -85,7 +85,7 @@
                 android:textSize="13sp"
                 android:background="@drawable/radius_20_yellow_shap"
                 android:textColor="#282828"
-                android:text="绑定"
+                android:text="注册"
                 />
 
             <View

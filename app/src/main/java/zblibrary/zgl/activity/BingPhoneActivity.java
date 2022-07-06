@@ -57,7 +57,7 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 
 	@Override
 	public void initView() {//必须调用
-		login_message = findView(R.id.login_message);
+		//login_message = findView(R.id.login_message);
 		login_phone = findView(R.id.login_phone);
 		login_code = findView(R.id.login_code);
 		login_login = findView(R.id.login_login);
@@ -70,7 +70,7 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 	}
 	@Override
 	public void initEvent() {//必须调用
-		login_message.setOnClickListener(this);
+		//login_message.setOnClickListener(this);
 		login_phone.addTextChangedListener(this);
 		login_code.addTextChangedListener(this);
 		login_login.setOnClickListener(this);
@@ -94,15 +94,18 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()){
-			case R.id.login_message:
-				sendVerifyCode();
-				break;
+//			case R.id.login_message:
+//				sendVerifyCode();
+//				break;
 			case R.id.login_login:
-				if(EditTextUtil.isInputedCorrect(this,login_phone,EditTextUtil.TYPE_PHONE,"") && checkCode()){
-					showProgressDialog("");
-					HttpRequest.bindMobile(login_phone.getText().toString(),login_code.getText().toString(),
+//				if(EditTextUtil.isInputedCorrect(this,login_phone,EditTextUtil.TYPE_PHONE,"") && checkCode()){
+//					showProgressDialog("");
+//					HttpRequest.bindMobile(login_phone.getText().toString(),login_code.getText().toString(),
+//							REQUEST_CODE_LOGIN,new OnHttpResponseListenerImpl(this));
+//				}
+				//注册
+				HttpRequest.bindMobile(login_phone.getText().toString(),login_code.getText().toString(),
 							REQUEST_CODE_LOGIN,new OnHttpResponseListenerImpl(this));
-				}
 				break;
 			case R.id.login_tologin:
 				toActivity(LoginActivity.createIntent(this));
@@ -134,20 +137,20 @@ public class BingPhoneActivity extends BaseActivity implements View.OnClickListe
 		dismissProgressDialog();
 		Log.d(TAG,resultData);
 		if(requestCode == REQUEST_CODE_CODE){
-			showShortToast("Obtaining the verification code succeeded");
+			showShortToast("验证码已发送");
 		}else if(requestCode == REQUEST_CODE_LOGIN){
-
 			if(StringUtil.isEmpty(resultData)){
-				showShortToast("绑定失败");
+				showShortToast("注册失败");
 				return;
 			}
 			User user = GsonUtil.GsonToBean(resultData,User.class);
 			if(user==null){
-				showShortToast("绑定失败");
+				showShortToast("注册失败");
 				return;
 			}
 			MApplication.getInstance().saveCurrentUser(user);
-			showShortToast("绑定成功");
+			showShortToast("注册成功");
+			EventBus.getDefault().post(new LoginEvent());
 			finish();
 		}
 	}

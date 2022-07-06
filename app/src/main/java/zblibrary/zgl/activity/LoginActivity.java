@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 	private static final int REQUEST_CODE_LOGIN = REQUEST_CODE_CODE+1;
 	private TextView login_message,login_message_time;
 	private CodeCount count;
-	private EditText login_phone;
+	private EditText login_phone,login_password;
 	private VerificationCodeInputView login_code;
 	private LinearLayout login_phone_num,login_ver_code;
 	public static Intent createIntent(Context context) {
@@ -61,7 +61,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 	public void initView() {//必须调用
 		login_message = findView(R.id.login_message);
 		login_phone = findView(R.id.login_phone);
-		login_code = findView(R.id.login_code);
+		login_password = findView(R.id.login_password);
 		login_message_time = findView(R.id.login_message_time);
 		login_phone_num = findView(R.id.login_phone_num);
 		login_ver_code = findView(R.id.login_ver_code);
@@ -76,14 +76,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 	public void initEvent() {//必须调用
 		login_message.setOnClickListener(this);
 		login_phone.addTextChangedListener(this);
-		login_code.setOnCompleteListener(new VerificationCodeInputView.Listener() {
-			@Override
-			public void onComplete(String content) {
-					showProgressDialog("");
-					HttpRequest.loginByVerifyCode(login_phone.getText().toString(),login_code.getText().toString(),
-							REQUEST_CODE_LOGIN,new OnHttpResponseListenerImpl(LoginActivity.this));
-			}
-		});
+		login_password.addTextChangedListener(this);
+//		login_code.setOnCompleteListener(new VerificationCodeInputView.Listener() {
+//			@Override
+//			public void onComplete(String content) {
+//					showProgressDialog("");
+//					HttpRequest.loginByVerifyCode(login_phone.getText().toString(),login_code.getText().toString(),
+//							REQUEST_CODE_LOGIN,new OnHttpResponseListenerImpl(LoginActivity.this));
+//			}
+//		});
 	}
 
 	@Override
@@ -98,11 +99,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 	public void onClick(View v) {
 		switch (v.getId()){
 			case R.id.login_message:
-				if(sendVerifyCode()){
-					login_phone_num.setVisibility(View.GONE);
-					login_ver_code.setVisibility(View.VISIBLE);
-					login_ver_code.requestFocus();
-				}
+//				if(sendVerifyCode()){
+//					login_phone_num.setVisibility(View.GONE);
+//					login_ver_code.setVisibility(View.VISIBLE);
+//					login_ver_code.requestFocus();
+//				}
+				//登录
+				HttpRequest.loginByPassword(login_phone.getText().toString(),login_password.getText().toString(),
+						REQUEST_CODE_LOGIN,new OnHttpResponseListenerImpl(this));
 				break;
 		}
 	}
@@ -172,7 +176,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
 	@Override
 	public void afterTextChanged(Editable s) {
-		if(StringUtil.isNotEmpty(login_phone.getText().toString(),true) ){
+		if(StringUtil.isNotEmpty(login_phone.getText().toString(),true) &&
+				StringUtil.isNotEmpty(login_password.getText().toString(),true)){
 			login_message.setEnabled(true);
 		}else{
 			login_message.setEnabled(false);
