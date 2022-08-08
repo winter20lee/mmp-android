@@ -1,5 +1,10 @@
 package zblibrary.zgl.fragment;
 
+import static android.content.Context.CLIPBOARD_SERVICE;
+
+import android.content.ActivityNotFoundException;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +35,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import im.crisp.client.ChatActivity;
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.MainTabActivity;
 import zblibrary.zgl.activity.OrderActivity;
@@ -75,6 +82,7 @@ public class MemberCenterFragment extends BaseFragment implements
 	private XBanner member_center_ad ;
 	private int pos;
 	PayMethodAdapter payMethodAdapter;
+	ClipboardManager mClipboardManager;
 	Pay pay;
 	public static MemberCenterFragment createInstance() {
 		return new MemberCenterFragment();
@@ -116,6 +124,20 @@ public class MemberCenterFragment extends BaseFragment implements
 		center_pay = findView(R.id.center_pay);
 		member_canter_name = findView(R.id.member_canter_name);
 		member_canter_head = findView(R.id.member_canter_head);
+		// 1. 注册mClipboardManager
+		mClipboardManager = (ClipboardManager) context.getSystemService(CLIPBOARD_SERVICE);
+		member_canter_name.setOnLongClickListener(new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				String mData = member_canter_name.getText().toString();
+				//创建一个新的文本clip对象
+				ClipData mClipData = ClipData.newPlainText("Simple text",mData);
+				//把clip对象放在剪贴板中
+				mClipboardManager.setPrimaryClip(mClipData);
+				showShortToast("复制成功");
+				return false;
+			}
+		});
 	}
 
 	@Override
@@ -159,9 +181,11 @@ public class MemberCenterFragment extends BaseFragment implements
 		findView(R.id.center_kefu).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				if(MApplication.getInstance().getAppInitInfo()!=null && StringUtil.isNotEmpty(MApplication.getInstance().getAppInitInfo().csLink,true)){
-					toActivity(WebViewActivity.createIntent(context,"客服",MApplication.getInstance().getAppInitInfo().csLink));
-				}
+				Intent crispIntent = new Intent(context, ChatActivity.class);
+				startActivity(crispIntent);
+//				if(MApplication.getInstance().getAppInitInfo()!=null && StringUtil.isNotEmpty(MApplication.getInstance().getAppInitInfo().csLink,true)){
+//					toActivity(WebViewActivity.createIntent(context,"客服",MApplication.getInstance().getAppInitInfo().csLink));
+//				}
 			}
 		});
 	}
@@ -251,9 +275,11 @@ public class MemberCenterFragment extends BaseFragment implements
 		Button pay_pop_pay = inflate.findViewById(R.id.pay_pop_pay);
 		int discountPrice = memberCenters.get(pos).discountPrice;
 		pay_pop_num.setText(discountPrice+"");
+
+
 		List<MemberCenter.PaymentMethodMembershipRespListBean> paymentMethodMembershipRespList = memberCenters.get(pos).paymentMethodMembershipRespList;
-		paymentMethodMembershipRespList.get(0).isSel = true;
-		 payMethodAdapter = new PayMethodAdapter(context);
+//		paymentMethodMembershipRespList.get(0).isSel = true;
+		payMethodAdapter = new PayMethodAdapter(context);
 		pay_pop_list.setAdapter(payMethodAdapter);
 		payMethodAdapter.refresh(paymentMethodMembershipRespList);
 		final PopupWindow popupWindow = new PopupWindow(inflate, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -321,7 +347,12 @@ public class MemberCenterFragment extends BaseFragment implements
 			Log.d("","suyan = " + componentName.getClassName());
 			context.startActivity(Intent.createChooser(intent, "请选择浏览器"));
 		} else {
-			showShortToast("链接错误或无浏览器");
+			//showShortToast("链接错误或无浏览器");
+			try {
+				context.startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				showShortToast("链接错误或无浏览器");
+			}
 		}
 	}
 }

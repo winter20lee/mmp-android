@@ -12,8 +12,10 @@ import java.util.List;
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.PlayVideoDetailsActivity;
 import zblibrary.zgl.adapter.FirstLastAdapter;
+import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.FirstLast;
 import zblibrary.zgl.util.HttpRequest;
+import zblibrary.zgl.view.FirstCategoryView;
 import zblibrary.zgl.view.FirstLastView;
 import zuo.biao.library.base.BaseHttpRecyclerFragment;
 import zuo.biao.library.interfaces.AdapterCallBack;
@@ -83,7 +85,9 @@ public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.Result
 
 	@Override
 	public void getListAsync(final int page) {
-		HttpRequest.getNewest(page,-page,this);
+		//最新
+		//HttpRequest.getNewest(page,4,REQUEST_NEW_REFRESH,new OnHttpResponseListenerImpl(this));
+		HttpRequest.getNewest(page,4,this);
 		if(page==1){
 			onStopLoadMore(true);
 		}
@@ -91,6 +95,15 @@ public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.Result
 
 	@Override
 	public List<FirstLast.ResultBean> parseArray(String json) {
+//		if(pageNew == 1){
+//			first_categoty_content.removeAllViews();
+//			firstCategoryViewLast = new FirstCategoryView(context,first_categoty_content,true,isCommend,true);
+//			firstCategoryViewLast.setOnClickChangeListener(this);
+//			first_categoty_content.addView(firstCategoryViewLast.createView(),0);
+//			firstCategoryViewLast.bindView(firstLast.transData());
+//		}else{
+//			firstCategoryViewLast.bindView(firstLast.transData());
+//		}
 		if(StringUtil.isEmpty(json)){
 			return new ArrayList<>();
 		}

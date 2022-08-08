@@ -7,12 +7,20 @@
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/432c95224cda942a0065d0f9ac9d6c38/jetified-SmartRefreshLayout-1.1.0/res" />
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/432c95224cda942a0065d0f9ac9d6c38/jetified-SmartRefreshLayout-1.1.0/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/432c95224cda942a0065d0f9ac9d6c38/jetified-SmartRefreshLayout-1.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/16737e7c82283a6c9c1b3e6391e3e687/jetified-SmartRefreshLayout-1.1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/16737e7c82283a6c9c1b3e6391e3e687/jetified-SmartRefreshLayout-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/16737e7c82283a6c9c1b3e6391e3e687/jetified-SmartRefreshLayout-1.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/64d9b7f13f98d81a9f00ca13df7107ca/jetified-SmartRefreshLayout-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/64d9b7f13f98d81a9f00ca13df7107ca/jetified-SmartRefreshLayout-1.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/64d9b7f13f98d81a9f00ca13df7107ca/jetified-SmartRefreshLayout-1.1.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.scwang.smartrefresh/SmartRefreshLayout/1.1.0/f366c2855043ee6a7e15b7b1e600d53820dff615/SmartRefreshLayout-1.1.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.scwang.smartrefresh/SmartRefreshLayout/1.1.0/f366c2855043ee6a7e15b7b1e600d53820dff615/SmartRefreshLayout-1.1.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.scwang.smartrefresh/SmartRefreshLayout/1.1.0/8290e56beb63bf9968e984f5cada78b02205c74f/SmartRefreshLayout-1.1.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.scwang.smartrefresh/SmartRefreshLayout/1.1.0/8290e56beb63bf9968e984f5cada78b02205c74f/SmartRefreshLayout-1.1.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

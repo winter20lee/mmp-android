@@ -7,11 +7,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import im.crisp.client.ChatActivity;
 import zblibrary.zgl.R;
 import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.model.Order;
@@ -77,9 +79,11 @@ public class OrderView extends BaseView<Order.MessageData>{
 		order_kefu.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				if(MApplication.getInstance().getAppInitInfo()!=null && StringUtil.isNotEmpty(MApplication.getInstance().getAppInitInfo().csLink,true)){
-					toActivity(WebViewActivity.createIntent(context,"客服",MApplication.getInstance().getAppInitInfo().csLink));
-				}
+				Intent crispIntent = new Intent(context, ChatActivity.class);
+				context.startActivity(crispIntent);
+//				if(MApplication.getInstance().getAppInitInfo()!=null && StringUtil.isNotEmpty(MApplication.getInstance().getAppInitInfo().csLink,true)){
+//					toActivity(WebViewActivity.createIntent(context,"客服",MApplication.getInstance().getAppInitInfo().csLink));
+//				}
 			}
 		});
 	}

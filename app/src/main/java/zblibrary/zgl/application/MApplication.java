@@ -1,5 +1,6 @@
 package zblibrary.zgl.application;
 
+import im.crisp.client.Crisp;
 import zblibrary.zgl.manager.DataManager;
 import zblibrary.zgl.model.AppInitInfo;
 import zblibrary.zgl.model.User;
@@ -26,7 +27,7 @@ public class MApplication extends BaseApplication {
 	public void onCreate() {
 		super.onCreate();
 		context = this;
-
+		Crisp.configure(getApplicationContext(), "77a88c56-94bc-4f29-abee-f2724df4b0ac");
 	}
 
 	

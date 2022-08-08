@@ -112,9 +112,10 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 
 			@Override
 			public void onPageSelected(int position) {
-				if(position>4){
-					setOffLim();
-				}
+				viewPager.setOffscreenPageLimit(firstCategoryList.size());
+//				if(position>4){
+//					setOffLim();
+//				}
 			}
 
 			@Override
@@ -122,6 +123,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 
 			}
 		});
+
 	}
 
 	@Override

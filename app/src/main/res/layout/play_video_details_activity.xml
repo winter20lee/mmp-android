@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         app:relativeRatio="1.5"
         android:layout_height="wrap_content">
+
         <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
             android:id="@+id/video_player"
             android:layout_width="match_parent"

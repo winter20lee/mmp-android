@@ -2,15 +2,21 @@
   <library name="Gradle: com.google.android.exoplayer:exoplayer-decoder:2.16.1@aar">
     <ANNOTATIONS>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/343e850b839666fdc004a94845b9e215/jetified-exoplayer-decoder-2.16.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/343e850b839666fdc004a94845b9e215/jetified-exoplayer-decoder-2.16.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/343e850b839666fdc004a94845b9e215/jetified-exoplayer-decoder-2.16.1/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/343e850b839666fdc004a94845b9e215/jetified-exoplayer-decoder-2.16.1/res" />
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/343e850b839666fdc004a94845b9e215/jetified-exoplayer-decoder-2.16.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/343e850b839666fdc004a94845b9e215/jetified-exoplayer-decoder-2.16.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ac0dbe1f3967abf1ce1c2ec50e5b498/exoplayer-decoder-2.16.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/343e850b839666fdc004a94845b9e215/jetified-exoplayer-decoder-2.16.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/343e850b839666fdc004a94845b9e215/jetified-exoplayer-decoder-2.16.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.google.android.exoplayer/exoplayer-decoder/2.16.1/6cca9492b12b13ae55d0ed73ff2abc774cb662c/exoplayer-decoder-2.16.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.exoplayer/exoplayer-decoder/2.16.1/6cca9492b12b13ae55d0ed73ff2abc774cb662c/exoplayer-decoder-2.16.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

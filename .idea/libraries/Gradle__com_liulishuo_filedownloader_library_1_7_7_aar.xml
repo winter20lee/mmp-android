@@ -4,12 +4,17 @@
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/8df61875f8b36e0328d391eed2997b30/jetified-library-1.7.7/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/8df61875f8b36e0328d391eed2997b30/jetified-library-1.7.7/res" />
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/8df61875f8b36e0328d391eed2997b30/jetified-library-1.7.7/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8df61875f8b36e0328d391eed2997b30/jetified-library-1.7.7/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8df61875f8b36e0328d391eed2997b30/jetified-library-1.7.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8df61875f8b36e0328d391eed2997b30/jetified-library-1.7.7/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.7.7/2bcfdb89382f2bd027b835c7903840040bca738a/library-1.7.7-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.7.7/2bcfdb89382f2bd027b835c7903840040bca738a/library-1.7.7-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.7.7/45033a5addbf5f10cbf1959811db894d6f6775ca/library-1.7.7-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.liulishuo.filedownloader/library/1.7.7/45033a5addbf5f10cbf1959811db894d6f6775ca/library-1.7.7-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

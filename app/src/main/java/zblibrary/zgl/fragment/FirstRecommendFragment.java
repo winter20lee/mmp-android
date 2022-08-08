@@ -1,5 +1,6 @@
 package zblibrary.zgl.fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,7 +106,9 @@ public class FirstRecommendFragment extends BaseFragment implements
 			//banner
 			HttpRequest.getListByPos(1,0,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 			//最新
-			HttpRequest.getNewest(pageNew,4,REQUEST_NEW_REFRESH,new OnHttpResponseListenerImpl(this));
+			if(catalogId == -1) {
+				HttpRequest.getNewest(pageNew, 4, REQUEST_NEW_REFRESH, new OnHttpResponseListenerImpl(this));
+			}
 			//推荐
 			HttpRequest.getIndex(pageComm,catalogId,0,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}else{
@@ -216,8 +219,10 @@ public class FirstRecommendFragment extends BaseFragment implements
 	public void onClickChangeRecom(int catalogId,int pos,int pageNum) {
 		posFirstCategoryView = pos;
 		if(isCommend){
+			Log.d("isCommend1", "onClickChangeRecom: catalogId" + catalogId +"pos" + pos+"pageNum"+pageNum);
 			HttpRequest.getIndex(pageNum,catalogId,0,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}else{
+			Log.d("isCommend2", "onClickChangeRecom: catalogId" + catalogId +"pos" + pos+"pageNum"+pageNum);
 			HttpRequest.getIndex(pageNum,catalogId,2,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}
 	}

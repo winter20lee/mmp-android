@@ -126,6 +126,21 @@
         <entry key="..\:/Yygsc/app/src/main/res/layout/winning_goods_activity.xml" value="0.2361111111111111" />
         <entry key="..\:/Yygsc/app/src/main/res/layout/winning_goods_details_activity.xml" value="0.2361111111111111" />
         <entry key="..\:/Yygsc/app/src/main/res/layout/winning_goods_view.xml" value="0.25364583333333335" />
+        <entry key="..\:/domain/solo/mmp-android/ZBLibrary/src/main/res/drawable/btn_blue_normal_shape.xml" value="0.168" />
+        <entry key="..\:/domain/solo/mmp-android/ZBLibrary/src/main/res/layout/alert_dialog.xml" value="0.24947916666666667" />
+        <entry key="..\:/domain/solo/mmp-android/ZBLibrary/src/main/res/layout/base_http_recycler_fragment.xml" value="0.1671875" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/drawable/radius_20_yellow_shap.xml" value="0.1975" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/drawable/splash.xml" value="0.1125" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/binding_phone_activity.xml" value="0.2421875" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/first_category_view.xml" value="0.2421875" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/first_fragment.xml" value="0.2421875" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/first_last_fragment.xml" value="0.1671875" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/first_recomm_fragment.xml" value="0.2421875" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/login_activity.xml" value="0.2421875" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/member_center_fragment.xml" value="0.2421875" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/pay_pop_list_view.xml" value="0.24947916666666667" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/play_video_details_activity.xml" value="0.16302083333333334" />
+        <entry key="..\:/domain/solo/mmp-android/app/src/main/res/layout/splash_activity.xml" value="0.15520833333333334" />
       </map>
     </option>
   </component>

@@ -1,5 +1,7 @@
 package zblibrary.zgl.util;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,6 +63,7 @@ public class HttpRequest {
 	/**最新
 	 */
 	public static void getNewest(int pageNo,final int requestCode, final OnHttpResponseListener listener) {
+		Log.d("isCommend1", "1");
 		Map<String, Object> request = new HashMap<>();
 		request.put(PAGE_NUM, pageNo);
 		request.put(PAGE_SiZE, 20);

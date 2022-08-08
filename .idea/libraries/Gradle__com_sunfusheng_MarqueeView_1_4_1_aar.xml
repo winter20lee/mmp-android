@@ -7,12 +7,20 @@
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/65d5ab5bef4f8faa9ef04a8185b46625/jetified-MarqueeView-1.4.1/AndroidManifest.xml" />
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/65d5ab5bef4f8faa9ef04a8185b46625/jetified-MarqueeView-1.4.1/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/65d5ab5bef4f8faa9ef04a8185b46625/jetified-MarqueeView-1.4.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2d2c4e7af19efd5cf09038353e62bac/jetified-MarqueeView-1.4.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2d2c4e7af19efd5cf09038353e62bac/jetified-MarqueeView-1.4.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2d2c4e7af19efd5cf09038353e62bac/jetified-MarqueeView-1.4.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c59109fdbe174131dad86c185759bef/jetified-MarqueeView-1.4.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c59109fdbe174131dad86c185759bef/jetified-MarqueeView-1.4.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c59109fdbe174131dad86c185759bef/jetified-MarqueeView-1.4.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.sunfusheng/MarqueeView/1.4.1/3287068b5981120810bcb695716897c8eed38829/MarqueeView-1.4.1-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sunfusheng/MarqueeView/1.4.1/3287068b5981120810bcb695716897c8eed38829/MarqueeView-1.4.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.sunfusheng/MarqueeView/1.4.1/3dd3043c0c0111b30e90226c394af6e00ecf5ec0/MarqueeView-1.4.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sunfusheng/MarqueeView/1.4.1/3dd3043c0c0111b30e90226c394af6e00ecf5ec0/MarqueeView-1.4.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

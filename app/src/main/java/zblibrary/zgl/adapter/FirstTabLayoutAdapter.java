@@ -38,6 +38,7 @@ public class FirstTabLayoutAdapter extends FragmentPagerAdapter {
             return FirstRecommendFragment.createInstance(true,0);
         } else if(position==1){
             return FirstLastFragment.createInstance("");
+            //return FirstRecommendFragment.createInstance(true,-1);
         }
         else{
             return FirstRecommendFragment.createInstance(false,firstCategoryList.get(position).id);

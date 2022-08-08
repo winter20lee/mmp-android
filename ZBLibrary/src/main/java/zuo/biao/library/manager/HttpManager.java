@@ -48,7 +48,7 @@ public class HttpManager {
 	private static final String VERIFYTOKEN = "verifyToken";
 	private static final String TOKEN = "token";
 	private static final String AC = "ac";
-	public static final String AC_KEY = "000000";
+	public static final String AC_KEY = "qd003";
 	private static final String OS = "os";
 	private static final String PT = "pt";
 
@@ -77,6 +77,7 @@ public class HttpManager {
 					instance = new HttpManager(BaseApplication.getInstance());
 					idCode = instance.getIdCode();
 					resetHeaderToken();
+					Log.d(TAG, "<<<<<<<<<<<<<<<<<<<<<<<head = "+"idCode<<<<<<"+idCode + "token<<<<<<"+token);
 				}
 			}
 		}

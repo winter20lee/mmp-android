@@ -44,6 +44,8 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimerTask;
+
 import zblibrary.zgl.R;
 import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.manager.SystemBarTintManager;
@@ -53,6 +55,7 @@ import zuo.biao.library.ui.FlowLayout;
 import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
+import zuo.biao.library.util.Log;
 import zuo.biao.library.util.StringUtil;
 
 /**视频详情
@@ -80,6 +83,9 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
     public static Intent createIntent(Context context, long productId) {
         return new Intent(context, PlayVideoDetailsActivity.class).putExtra(INTENT_ID, productId);
     }
+    final java.util.Timer timer = new java.util.Timer(true);
+    //TimerTask task;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,8 +147,25 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             }else{
                 videoPlayer.startPlayLogic();
             }
-
         }
+//        task = new TimerTask() {
+//            public void run() {
+//                if(videoPlayer.getStartButton().getVisibility() == View.VISIBLE ){
+//                    Log.d(TAG, "\n\n<<<<<<<<<<<<<<<<8秒一次<<<<<<<<<<<<<<<<<<<<\n post  url = " );
+//                    if(!MApplication.getInstance().isVip() && MApplication.getInstance().playCount>0){
+//                        videoPlayer.getStartButton().setOnClickListener(new OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                showDialog();
+//                            }
+//                        });
+//                    }else{
+//                        videoPlayer.startPlayLogic();
+//                    }
+//                }
+//            }
+//        };
+//        timer.schedule(task, 8000,8000);
         if(productDes.isfav == 1){
             play_video_like.setImageResource(R.mipmap.collection_s);
             play_video_like.setTag(true);
@@ -379,6 +402,9 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         GSYVideoManager.releaseAllVideos();
         if (orientationUtils != null)
             orientationUtils.releaseListener();
+//        if(task!=null){
+//            task.cancel();
+//        }
     }
 
     @Override
@@ -432,6 +458,9 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         if (GSYVideoManager.backFromWindowFull(this)) {
             return;
         }
+//        if(task!=null){
+//            task.cancel();
+//        }
         //释放所有
         videoPlayer.setVideoAllCallBack(null);
         super.onBackPressed();
