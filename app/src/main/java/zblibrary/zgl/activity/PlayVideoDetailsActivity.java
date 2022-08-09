@@ -17,6 +17,7 @@ import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryView;
 import zuo.biao.library.base.BaseActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -52,6 +53,7 @@ import zuo.biao.library.manager.SystemBarTintManager;
 import zuo.biao.library.ui.AlertDialog;
 import zuo.biao.library.ui.EmptyRecyclerView;
 import zuo.biao.library.ui.FlowLayout;
+import zuo.biao.library.util.AppManger;
 import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
@@ -82,6 +84,9 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
     private ActorRecommendAdapter actorRecommendAdapter;
     public static Intent createIntent(Context context, long productId) {
         return new Intent(context, PlayVideoDetailsActivity.class).putExtra(INTENT_ID, productId);
+    }
+    public Activity createIntent2() {
+        return PlayVideoDetailsActivity.this;
     }
     final java.util.Timer timer = new java.util.Timer(true);
     //TimerTask task;
@@ -463,6 +468,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
 //        }
         //释放所有
         videoPlayer.setVideoAllCallBack(null);
+        AppManger.getInstance().finishActivity(PlayVideoDetailsActivity.class);
         super.onBackPressed();
     }
 }

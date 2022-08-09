@@ -21,6 +21,7 @@ import zblibrary.zgl.model.FirstTabIdEvent;
 import zblibrary.zgl.model.SecondCategory;
 import zuo.biao.library.base.BaseView;
 import zuo.biao.library.ui.ExpandableGridView;
+import zuo.biao.library.util.AppManger;
 import zuo.biao.library.util.StringUtil;
 
 public class FirstCategoryView extends BaseView<SecondCategory> implements View.OnClickListener {
@@ -69,7 +70,7 @@ public class FirstCategoryView extends BaseView<SecondCategory> implements View.
 		firstCategoryAdapter = new FirstCategoryAdapter(context);
 		expandableGridView.setAdapter(firstCategoryAdapter);
 		firstCategoryAdapter.setOnItemClickListener((parent, view, position, id) -> {
-			toActivity(PlayVideoDetailsActivity.createIntent(context, id));
+			toActivity2(PlayVideoDetailsActivity.createIntent(context, id));
 		});
 		if(isShowChangeButton){
 			findView(R.id.first_category_bottom).setVisibility(View.VISIBLE);

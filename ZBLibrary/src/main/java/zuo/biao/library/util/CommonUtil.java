@@ -43,6 +43,7 @@ import android.graphics.PorterDuff.Mode;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -278,7 +279,7 @@ public class CommonUtil {
 		});
 	}
 
-	private static Activity getActivity(Context context) {
+	public static Activity getActivity(Context context) {
 		while (!(context instanceof Activity) && context instanceof ContextWrapper) {
 			context = ((ContextWrapper) context).getBaseContext();
 		}

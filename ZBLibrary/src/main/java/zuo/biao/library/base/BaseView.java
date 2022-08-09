@@ -14,6 +14,7 @@ limitations under the License.*/
 
 package zuo.biao.library.base;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -295,6 +296,11 @@ public abstract class BaseView<T> extends RecyclerView.ViewHolder {
 	 * @param intent
 	 */
 	public void toActivity(final Intent intent) {
+		CommonUtil.toActivity(context, intent);
+	}
+
+
+	public void toActivity2(final Intent intent) {
 		CommonUtil.toActivity(context, intent);
 	}
 	/**打开新的Activity
