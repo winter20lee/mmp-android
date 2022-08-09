@@ -62,16 +62,17 @@ public class AppManger {
                 int j = 0;
                 for (int i = 0; i < activityStack.size() - 1; i++) {
                     if (activityStack.get(i).getClass().equals(cls)) {
-                        j = i;
-                        break;
+                        activityStack.get((i)).finish();
+//                        j = i;
+//                        break;
                     }
 
                 }
-                while (j < activityStack.size() - 1) {
-                    activityStack.get((j += 1)).finish();
-                }
+//                while (j < activityStack.size() - 1) {
+//                    activityStack.get((j += 1)).finish();
+//                }
             }
-            activityStack.clear();
+           // activityStack.clear();
         }
     }
 

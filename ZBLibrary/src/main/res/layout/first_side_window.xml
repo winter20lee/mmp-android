@@ -38,7 +38,7 @@
             android:numColumns="3"
             android:layout_marginTop="15dp"
             android:horizontalSpacing="15dp"
-            android:verticalSpacing="15dp"
+            android:verticalSpacing="10dp"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>

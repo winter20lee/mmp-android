@@ -43,6 +43,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 	private int pageComm = 1;
 	private LinearLayout first_categoty_content;
 	private boolean isCommend;
+	private boolean isTow;
 	private int pageNew=1;
 	private int catalogId=0;
 	private FirstCategoryView firstCategoryViewLast;
@@ -103,6 +104,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 		isRefresh = true;
 		if(isCommend){
 			pageNew = 1;
+			isTow = true;
 			//banner
 			HttpRequest.getListByPos(1,0,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 			//最新
@@ -112,6 +114,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 			//推荐
 			HttpRequest.getIndex(pageComm,catalogId,0,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}else{
+			isTow = false;
 			//banner
 			HttpRequest.getListByPos(1,catalogId,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 			//一级分类
@@ -142,9 +145,14 @@ public class FirstRecommendFragment extends BaseFragment implements
 				onStopRefresh();
 				break;
 			case REQUEST_COMM_REFRESH:
+				dismissProgressDialog();
 				ArrayList<SecondCategory> secondCategory = (ArrayList<SecondCategory>) GsonUtil.jsonToList(resultData, SecondCategory.class);
 				if(isRefresh){
+					//first_categoty_content.removeAllViews();
 					if(!isCommend){
+						first_categoty_content.removeAllViews();
+					}
+					if(isTow){
 						first_categoty_content.removeAllViews();
 					}
 					firstCategoryViewArrayList.clear();
@@ -166,6 +174,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 
 				break;
 			case REQUEST_NEW_REFRESH:
+				dismissProgressDialog();
 				FirstLast firstLast = GsonUtil.GsonToBean(resultData, FirstLast.class);
 				if(pageNew == 1){
 					first_categoty_content.removeAllViews();
@@ -186,6 +195,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 		onStopLoadMore(true);
 		onStopRefresh();
 		showShortToast(message);
+		dismissProgressDialog();
 	}
 
 
@@ -217,6 +227,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 
 	@Override
 	public void onClickChangeRecom(int catalogId,int pos,int pageNum) {
+		showProgressDialog("正在加载。。。。");
 		posFirstCategoryView = pos;
 		if(isCommend){
 			Log.d("isCommend1", "onClickChangeRecom: catalogId" + catalogId +"pos" + pos+"pageNum"+pageNum);

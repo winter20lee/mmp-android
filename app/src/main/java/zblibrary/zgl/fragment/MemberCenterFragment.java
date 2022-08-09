@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -212,19 +213,25 @@ public class MemberCenterFragment extends BaseFragment implements
 			case REQUEST_PAY:
 				dismissProgressDialog();
 				pay = GsonUtil.GsonToBean(resultData,Pay.class);
-				new AlertDialog(getActivity(),"支付提示","是否已完成支付？","我已支付","支付失败",0,new AlertDialog.OnDialogButtonClickListener(){
-
-					@Override
-					public void onDialogButtonClick(int requestCode, boolean isPositive) {
-						if(isPositive){
-							HttpRequest.getCurrentUserInfo(REQUEST_CODE_REFRESH,new OnHttpResponseListenerImpl(MemberCenterFragment.this));
-						}else{
-
-						}
-					}
-				}).show();
-//				toActivity(WebViewActivity.createIntent(context,"支付",pay.redirectUrl),REQUEST_CODE_RESULT);
 				openBrowser(context,pay.redirectUrl);
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						new AlertDialog(getActivity(),"支付提示","是否已完成支付？","我已支付","支付失败",0,new AlertDialog.OnDialogButtonClickListener(){
+
+							@Override
+							public void onDialogButtonClick(int requestCode, boolean isPositive) {
+								if(isPositive){
+									HttpRequest.getCurrentUserInfo(REQUEST_CODE_REFRESH,new OnHttpResponseListenerImpl(MemberCenterFragment.this));
+								}else{
+
+								}
+							}
+						}).show();
+					}
+				},2000);
+//				toActivity(WebViewActivity.createIntent(context,"支付",pay.redirectUrl),REQUEST_CODE_RESULT);
+
 				break;
 			case REQUEST_PAY_STATE:
 				dismissProgressDialog();
@@ -278,7 +285,10 @@ public class MemberCenterFragment extends BaseFragment implements
 
 
 		List<MemberCenter.PaymentMethodMembershipRespListBean> paymentMethodMembershipRespList = memberCenters.get(pos).paymentMethodMembershipRespList;
-//		paymentMethodMembershipRespList.get(0).isSel = true;
+		for(MemberCenter.PaymentMethodMembershipRespListBean pay:paymentMethodMembershipRespList){
+			pay.isSel = false;
+		}
+		paymentMethodMembershipRespList.get(0).isSel = true;
 		payMethodAdapter = new PayMethodAdapter(context);
 		pay_pop_list.setAdapter(payMethodAdapter);
 		payMethodAdapter.refresh(paymentMethodMembershipRespList);

@@ -6,15 +6,15 @@
     android:layout_height="wrap_content"
     >
     <FrameLayout
-        android:layout_width="124dp"
-        android:layout_height="80dp">
+        android:layout_width="128dp"
+        android:layout_height="70dp">
 
+       <!-- android:foreground="@drawable/video_gradient_shap"-->
         <ImageView
             android:id="@+id/latest_anno_iv"
-            style="@style/img_fitXY"
-            android:layout_width="124dp"
-            android:layout_height="80dp"
-            android:foreground="@drawable/video_gradient_shap"
+            android:scaleType ="centerCrop"
+            android:layout_width="128dp"
+            android:layout_height="70dp"
              />
 
         <TextView
