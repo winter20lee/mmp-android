@@ -13,7 +13,7 @@
         <zuo.biao.library.ui.RoundImageView
             android:id="@+id/first_category_item_iv"
             android:layout_width="match_parent"
-            android:layout_height="102dp"
+            android:layout_height="@dimen/dp_102"
             android:scaleType="centerCrop"
             android:layout_centerInParent="true"
             />

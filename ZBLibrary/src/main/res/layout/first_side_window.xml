@@ -37,7 +37,7 @@
             android:id="@+id/first_side_gridview"
             android:numColumns="3"
             android:layout_marginTop="15dp"
-            android:horizontalSpacing="15dp"
+            android:horizontalSpacing="@dimen/dp_10"
             android:verticalSpacing="10dp"
             android:layout_width="match_parent"
             android:layout_weight="1"

@@ -26,6 +26,7 @@ import zblibrary.zgl.view.ZoomFadePageTransformer;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.interfaces.OnStopLoadListener;
 import zuo.biao.library.ui.WebViewActivity;
+import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
@@ -108,7 +109,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 			//banner
 			HttpRequest.getListByPos(1,0,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 			//最新
-			if(catalogId == -1) {
+			if(catalogId == 0) {
 				HttpRequest.getNewest(pageNew, 4, REQUEST_NEW_REFRESH, new OnHttpResponseListenerImpl(this));
 			}
 			//推荐
@@ -118,6 +119,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 			//banner
 			HttpRequest.getListByPos(1,catalogId,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 			//一级分类
+			CommonUtil.showProgressDialog(context,"加载中。。。");
 			HttpRequest.getIndex(pageComm,catalogId,1,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}
 	}
@@ -145,14 +147,14 @@ public class FirstRecommendFragment extends BaseFragment implements
 				onStopRefresh();
 				break;
 			case REQUEST_COMM_REFRESH:
-				dismissProgressDialog();
+				CommonUtil.dismissProgressDialog(context);
 				ArrayList<SecondCategory> secondCategory = (ArrayList<SecondCategory>) GsonUtil.jsonToList(resultData, SecondCategory.class);
 				if(isRefresh){
 					//first_categoty_content.removeAllViews();
 					if(!isCommend){
 						first_categoty_content.removeAllViews();
 					}
-					if(isTow){
+					if(isTow && catalogId!=0){
 						first_categoty_content.removeAllViews();
 					}
 					firstCategoryViewArrayList.clear();

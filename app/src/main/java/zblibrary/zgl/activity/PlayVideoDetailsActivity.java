@@ -15,6 +15,7 @@ import zblibrary.zgl.model.PlayVideoDes;
 import zblibrary.zgl.model.RefreshDownEvent;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryView;
+import zblibrary.zgl.view.SpaceItemDecoration;
 import zuo.biao.library.base.BaseActivity;
 
 import android.app.Activity;
@@ -204,6 +205,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             GlideUtil.load(this,productDes.videoActor.img,play_video_head,R.mipmap.defult_head_round);
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+            //play_video_recomm.addItemDecoration(new SpaceItemDecoration(0,10));
             play_video_recomm.setLayoutManager(layoutManager);
             actorRecommendAdapter = new ActorRecommendAdapter(this);
             actorRecommendAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {

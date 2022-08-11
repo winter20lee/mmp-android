@@ -62,7 +62,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:horizontalSpacing="15dp"
+            android:horizontalSpacing="@dimen/dp_10"
             android:verticalSpacing="10dp"
             android:layout_marginTop="10dp"
             android:divider="@color/alpha_3"

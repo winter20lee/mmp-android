@@ -57,7 +57,7 @@
         android:id="@+id/first_gridview"
         android:numColumns="2"
         android:layout_marginTop="10dp"
-        android:horizontalSpacing="15dp"
+        android:horizontalSpacing="@dimen/dp_10"
         android:verticalSpacing="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

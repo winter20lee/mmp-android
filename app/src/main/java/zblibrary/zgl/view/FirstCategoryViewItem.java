@@ -1,6 +1,7 @@
 package zblibrary.zgl.view;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -41,6 +42,9 @@ public class FirstCategoryViewItem extends BaseView<SecondCategory.VideoListBean
 		super.bindView(data_ != null ? data_ : new SecondCategory.VideoListBean.ResultBean());
 
 		if(data!=null && StringUtil.isNotEmpty(data.coverUrl,true)){
+			float pxValue2 = getResources().getDimension(R.dimen.dp_102);//获取对应资源文件下的dp值
+			int dpValue = StringUtil.px2dip(context, pxValue2);//将px值转换成dp值
+			Log.d("h_dp102", "转化屏幕高度--：" + dpValue);
 			first_category_item_iv.setRadius(StringUtil.dp2px(context,2));
 			GlideUtil.load(context,data.coverUrl,first_category_item_iv,R.mipmap.banner_deful);
 		}

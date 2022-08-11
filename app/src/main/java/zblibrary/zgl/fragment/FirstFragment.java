@@ -248,7 +248,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 				@Override
 				public void onLoadFailed(@Nullable Drawable errorDrawable) {
 					super.onLoadFailed(errorDrawable);
-					image_view.setVisibility(View.GONE);
+					image_view.setVisibility(View.INVISIBLE);
 				}
 			});
 		}else{

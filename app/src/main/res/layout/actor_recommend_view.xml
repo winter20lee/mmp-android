@@ -3,18 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="130dp"
+    android:layout_marginLeft="@dimen/dp_10"
     android:layout_height="wrap_content"
     >
     <FrameLayout
-        android:layout_width="128dp"
-        android:layout_height="70dp">
+        android:layout_width="@dimen/dp_128"
+        android:layout_height="@dimen/dp_70">
 
        <!-- android:foreground="@drawable/video_gradient_shap"-->
         <ImageView
             android:id="@+id/latest_anno_iv"
             android:scaleType ="centerCrop"
-            android:layout_width="128dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/dp_128"
+            android:layout_height="@dimen/dp_70"
              />
 
         <TextView
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/dp_5"
             android:maxLength="5"
             android:ellipsize="end"
             android:textColor="#FFFFFF"
