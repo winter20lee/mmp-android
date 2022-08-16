@@ -103,18 +103,20 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 	@Override
 	public void getListAsync(final int page) {
 		if(page == 1){
-			CommonUtil.showProgressDialog(context,"");
+			//initLoadingPopup();
 		}
 		if(isLike){
 			HttpRequest.getSearchLike(page,cateGoryId,keyWord,-page, this);
 		}else{
-			HttpRequest.getSearch(page,cateGoryId,keyWord,-page, this);
+			//同分类下查看更多
+			HttpRequest.getSearch10(page,cateGoryId,keyWord,-page, this);
 		}
 	}
 
 	@Override
 	public List<SecondCategory.VideoListBean.ResultBean> parseArray(String json) {
-		CommonUtil.dismissProgressDialog(context);
+		//hideLoadingPopup();
+		//CommonUtil.dismissProgressDialog(context);
 		onStopRefresh();
 		if(json==null){
 			return new ArrayList<>();

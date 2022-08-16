@@ -1,13 +1,18 @@
 package zuo.biao.library.base;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.PopupWindow;
 
 import zuo.biao.library.R;
 import zuo.biao.library.interfaces.FragmentPresenter;
@@ -52,6 +57,8 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 
 	private boolean isAlive = false;
 	private boolean isRunning = false;
+	private static PopupWindow loadingPopup;
+	public static View loadingView;
 	/**
 	 * @must 在非abstract子类的onCreateView中super.onCreateView且return view;
 	 */
@@ -63,8 +70,28 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 
 		this.inflater = inflater;
 		this.container = container;
+		View loadingView = context.getLayoutInflater().inflate(R.layout.pop_loading, null);
 
 		return view;
+	}
+
+	public  void initLoadingPopup() {
+		loadingPopup = new PopupWindow(loadingView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		loadingPopup.setFocusable(true);
+		loadingPopup.setClippingEnabled(false);
+		loadingPopup.setBackgroundDrawable(new ColorDrawable());
+		if (!context.isFinishing()){
+			loadingPopup.showAtLocation(context.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+		}
+	}
+
+	/**
+	 * 隐藏加载框
+	 */
+	public static void hideLoadingPopup() {
+		if (loadingPopup != null) {
+			loadingPopup.dismiss();
+		}
 	}
 
 	/**设置界面布局
