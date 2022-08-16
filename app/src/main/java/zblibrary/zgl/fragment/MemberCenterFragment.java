@@ -98,6 +98,7 @@ public class MemberCenterFragment extends BaseFragment implements
 		initData();
 		initEvent();
 		//banner
+		showProgressDialog("");
 		HttpRequest.getListByPos(2,0,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 		HttpRequest.getMemberShip(REQUEST_MEMBER, new OnHttpResponseListenerImpl(this));
 		return view;
@@ -197,6 +198,7 @@ public class MemberCenterFragment extends BaseFragment implements
 	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
 		switch (requestCode){
 			case REQUEST_BANNER:
+				dismissProgressDialog();
 				listByPos.clear();
 				listByPos.addAll(GsonUtil.jsonToList(resultData,ListByPos.class));
 				member_center_ad.setAutoPlayAble(listByPos.size()>1);
@@ -222,6 +224,7 @@ public class MemberCenterFragment extends BaseFragment implements
 							@Override
 							public void onDialogButtonClick(int requestCode, boolean isPositive) {
 								if(isPositive){
+									showProgressDialog("");
 									HttpRequest.getCurrentUserInfo(REQUEST_CODE_REFRESH,new OnHttpResponseListenerImpl(MemberCenterFragment.this));
 								}else{
 
@@ -244,6 +247,7 @@ public class MemberCenterFragment extends BaseFragment implements
 				}
 				break;
 			case REQUEST_CODE_REFRESH:
+				dismissProgressDialog();
 				User.UserInfoBean userInfoBean = GsonUtil.GsonToBean(resultData, User.UserInfoBean.class);
 				User user = MApplication.getInstance().getCurrentUser();
 				user.userInfo = userInfoBean;
@@ -327,7 +331,7 @@ public class MemberCenterFragment extends BaseFragment implements
 					return;
 				}
 				popupWindow.dismiss();
-				showProgressDialog("支付中...");
+				showProgressDialog("");
 				HttpRequest.getPay(paymentMethodId,memberCenters.get(pos).levelCode,REQUEST_PAY,new OnHttpResponseListenerImpl(MemberCenterFragment.this));
 			}
 		});

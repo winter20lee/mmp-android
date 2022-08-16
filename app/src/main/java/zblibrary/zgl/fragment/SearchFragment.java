@@ -103,7 +103,7 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 	@Override
 	public void getListAsync(final int page) {
 		if(page == 1){
-			CommonUtil.showProgressDialog(context,"搜索中");
+			CommonUtil.showProgressDialog(context,"");
 		}
 		if(isLike){
 			HttpRequest.getSearchLike(page,cateGoryId,keyWord,-page, this);

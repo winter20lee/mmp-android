@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "866062970522",
+    "project_id": "bbsex-dc4b5",
+    "storage_bucket": "bbsex-dc4b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866062970522:android:b390576b6aff7d0786b923",
+        "android_client_info": {
+          "package_name": "zblibrary.zgl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866062970522-9uhabh9smv24jr1khn8gjaicg6i0oprk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAXE401TXTKFZWfEP8ULKnU-lfE-382bo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866062970522-9uhabh9smv24jr1khn8gjaicg6i0oprk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "866062970522-sbbnhggums20q5t3ovld5h98j6tn3h7c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mmp.mmp-ios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

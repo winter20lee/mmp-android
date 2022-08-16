@@ -202,6 +202,7 @@
                     android:background="@drawable/radius_4_shap"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
+                    android:paddingBottom="@dimen/dp_10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -212,6 +213,7 @@
                     android:layout_marginTop="10dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
+                    android:paddingBottom="@dimen/dp_10"
                     android:background="@drawable/radius_4_shap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>

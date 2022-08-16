@@ -102,6 +102,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 
 	@Override
 	public void onRefresh(RefreshLayout refreshLayout) {
+		showProgressDialog("");
 		isRefresh = true;
 		if(isCommend){
 			pageNew = 1;
@@ -119,7 +120,7 @@ public class FirstRecommendFragment extends BaseFragment implements
 			//banner
 			HttpRequest.getListByPos(1,catalogId,REQUEST_BANNER, new OnHttpResponseListenerImpl(this));
 			//一级分类
-			CommonUtil.showProgressDialog(context,"加载中。。。");
+			//CommonUtil.showProgressDialog(context,"");
 			HttpRequest.getIndex(pageComm,catalogId,1,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}
 	}
@@ -147,7 +148,8 @@ public class FirstRecommendFragment extends BaseFragment implements
 				onStopRefresh();
 				break;
 			case REQUEST_COMM_REFRESH:
-				CommonUtil.dismissProgressDialog(context);
+				dismissProgressDialog();
+				CommonUtil.hideLoadingPopup();
 				ArrayList<SecondCategory> secondCategory = (ArrayList<SecondCategory>) GsonUtil.jsonToList(resultData, SecondCategory.class);
 				if(isRefresh){
 					//first_categoty_content.removeAllViews();
@@ -177,8 +179,10 @@ public class FirstRecommendFragment extends BaseFragment implements
 				break;
 			case REQUEST_NEW_REFRESH:
 				dismissProgressDialog();
+				CommonUtil.hideLoadingPopup();
 				FirstLast firstLast = GsonUtil.GsonToBean(resultData, FirstLast.class);
 				if(pageNew == 1){
+
 					first_categoty_content.removeAllViews();
 					firstCategoryViewLast = new FirstCategoryView(context,first_categoty_content,true,isCommend,true);
 					firstCategoryViewLast.setOnClickChangeListener(this);
@@ -229,14 +233,14 @@ public class FirstRecommendFragment extends BaseFragment implements
 
 	@Override
 	public void onClickChangeRecom(int catalogId,int pos,int pageNum) {
-		showProgressDialog("正在加载。。。。");
+		showProgressDialog("");
 		posFirstCategoryView = pos;
 		if(isCommend){
 			Log.d("isCommend1", "onClickChangeRecom: catalogId" + catalogId +"pos" + pos+"pageNum"+pageNum);
 			HttpRequest.getIndex(pageNum,catalogId,0,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}else{
 			Log.d("isCommend2", "onClickChangeRecom: catalogId" + catalogId +"pos" + pos+"pageNum"+pageNum);
-			HttpRequest.getIndex(pageNum,catalogId,2,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
+			HttpRequest.getIndex(1,catalogId,2,REQUEST_COMM_REFRESH, new OnHttpResponseListenerImpl(this));
 		}
 	}
 }

@@ -36,6 +36,7 @@ public class FirstLast {
 				resultBean.coverUrl = resultBean1.coverUrl;
 				resultBean.name =resultBean1.name;
 				resultBean.id = resultBean1.id;
+				resultBean.length = resultBean1.length;
 				resultBean.tag = resultBean1.tag;
 				resultBean.playCnt = resultBean1.playCnt;
 				resultBeans.add(resultBean);

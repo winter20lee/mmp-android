@@ -7,14 +7,18 @@ import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+
+import android.text.TextUtils;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,6 +26,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +56,7 @@ import zuo.biao.library.util.StringUtil;
  */
 public abstract class BaseActivity extends FragmentActivity implements ActivityPresenter, OnGestureListener {
 	private static final String TAG = "BaseActivity";
+	private PopupWindow loadingPopup;
 
 
 	@Override
@@ -87,6 +93,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		SystemBarTintManager.setStatusBarMode(this);
 		context = (BaseActivity) getActivity();
+		initLoadingPopup();
 		isAlive = true;
 		fragmentManager = getSupportFragmentManager();
 
@@ -229,6 +236,34 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
 	public void showProgressDialog(String message){
 		showProgressDialog(null, message);
 	}
+
+	//  初始化加载dialog
+
+	private void initLoadingPopup() {
+		View loadingView = getLayoutInflater().inflate(R.layout.pop_loading, null);
+		loadingPopup = new PopupWindow(loadingView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		loadingPopup.setFocusable(true);
+		loadingPopup.setClippingEnabled(false);
+		loadingPopup.setBackgroundDrawable(new ColorDrawable());
+	}
+
+    /*
+			* 显示加载框
+     */
+	public void displayLoadingPopup() {
+		if (!this.isFinishing()){
+			loadingPopup.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+		}
+	}
+
+	/**
+	 * 隐藏加载框
+	 */
+	public void hideLoadingPopup() {
+		if (loadingPopup != null) {
+			loadingPopup.dismiss();
+		}
+	}
 	/**展示加载进度条
 	 * @param title 标题
 	 * @param message 信息
@@ -238,7 +273,12 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
 			@Override
 			public void run() {
 				if (progressDialog == null) {
-					progressDialog = new ProgressDialog(context);
+					if(message != null && TextUtils.isEmpty(message)){
+						displayLoadingPopup();
+						return;
+					}else{
+						progressDialog = new ProgressDialog(context,ProgressDialog.STYLE_HORIZONTAL);
+					}
 				}
 				if(progressDialog.isShowing()) {
 					progressDialog.dismiss();
@@ -262,6 +302,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
 		runUiThread(new Runnable() {
 			@Override
 			public void run() {
+				hideLoadingPopup();
 				//把判断写在runOnUiThread外面导致有时dismiss无效，可能不同线程判断progressDialog.isShowing()结果不一致
 				if(progressDialog == null || progressDialog.isShowing() == false){
 					Log.w(TAG, "dismissProgressDialog  progressDialog == null" +
@@ -269,6 +310,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
 					return;
 				}
 				progressDialog.dismiss();
+
 			}
 		});
 	}

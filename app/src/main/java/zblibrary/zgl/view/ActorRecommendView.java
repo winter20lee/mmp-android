@@ -10,6 +10,7 @@ import android.widget.TextView;
 import zblibrary.zgl.R;
 import zblibrary.zgl.model.PlayVideoDes;
 import zuo.biao.library.base.BaseView;
+import zuo.biao.library.ui.RoundImageView;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.StringUtil;
 
@@ -21,7 +22,7 @@ public class ActorRecommendView extends BaseView<PlayVideoDes.ActorVideoListBean
 		super(context, R.layout.actor_recommend_view, parent);
 	}
 
-	public ImageView latest_anno_iv;
+	public RoundImageView latest_anno_iv;
 	public TextView latest_anno_title;
 	public TextView latest_anno_qihao;
 	@SuppressLint("InflateParams")
@@ -36,7 +37,9 @@ public class ActorRecommendView extends BaseView<PlayVideoDes.ActorVideoListBean
 	@Override
 	public void bindView(PlayVideoDes.ActorVideoListBean data_){
 		super.bindView(data_ != null ? data_ : new PlayVideoDes.ActorVideoListBean());
-		GlideUtil.loadRound(context,data.coverUrl,latest_anno_iv);
+		//GlideUtil.loadRound(context,data.goodsImg.get(0),latest_anno_iv);
+		latest_anno_iv.setRadius(StringUtil.dp2px(context,2));
+		GlideUtil.load(context,data.coverUrl,latest_anno_iv);
 		latest_anno_title.setText(data.name);
 		if(StringUtil.isEmpty(data.length)){
 			latest_anno_qihao.setText("");

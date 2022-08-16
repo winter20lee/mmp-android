@@ -22,13 +22,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,12 +89,14 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
     private EmptyRecyclerView play_video_recomm;
     private ActorRecommendAdapter actorRecommendAdapter;
     public static Intent createIntent(Context context, long productId) {
+        //AppManger.getInstance().finishActivity(PlayVideoDetailsActivity.class);
         return new Intent(context, PlayVideoDetailsActivity.class).putExtra(INTENT_ID, productId);
     }
     public Activity createIntent2() {
         return PlayVideoDetailsActivity.this;
     }
     final java.util.Timer timer = new java.util.Timer(true);
+    private PopupWindow loadingPopup;
     //TimerTask task;
 
 
@@ -98,6 +105,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_video_details_activity);
         SystemBarTintManager.setStatusBarFull(this);
+        initLoadingPopup();
         Intent intent = getIntent();
         videoId = intent.getLongExtra(INTENT_ID, videoId);
         if (videoId == 0) {
@@ -211,6 +219,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             actorRecommendAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                     Intent it  = PlayVideoDetailsActivity.createIntent(PlayVideoDetailsActivity.this,productDes.actorVideoList.get(i).id);
                     startActivity(it);
                 }
@@ -230,9 +239,37 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
             }
         }
         //同分类下
+        //CommonUtil.showProgressDialog(this,"");
+        displayLoadingPopup();
         HttpRequest.getSearch(1,4,productDes.catalogSecondLevelId,"",REQUEST_MALL_REFRESH, new OnHttpResponseListenerImpl(this));
         //播放记录
         HttpRequest.getPlay(videoId,REQUEST_PLAY_RECORD, new OnHttpResponseListenerImpl(this));
+    }
+
+    private void initLoadingPopup() {
+        View loadingView = getLayoutInflater().inflate(zuo.biao.library.R.layout.pop_loading, null);
+        loadingPopup = new PopupWindow(loadingView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        loadingPopup.setFocusable(true);
+        loadingPopup.setClippingEnabled(false);
+        loadingPopup.setBackgroundDrawable(new ColorDrawable());
+    }
+
+    /*
+     * 显示加载框
+     */
+    public void displayLoadingPopup() {
+        if (!this.isFinishing()){
+            loadingPopup.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        }
+    }
+
+    /**
+     * 隐藏加载框
+     */
+    public void hideLoadingPopup() {
+        if (loadingPopup != null) {
+            loadingPopup.dismiss();
+        }
     }
 
     public void initEvent() {//必须调用
@@ -268,11 +305,19 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         finish();
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.play_video_back:
-                finish();
+                //finish();
+                if (GSYVideoManager.backFromWindowFull(this)) {
+                    return;
+                }
+                //释放所有
+                videoPlayer.setVideoAllCallBack(null);
+                AppManger.getInstance().finishActivity(PlayVideoDetailsActivity.class);
+                super.onBackPressed();
                 break;
             case R.id.play_video_share:
                 if(productDes==null)
@@ -335,12 +380,14 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
 
     @Override
     public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
+        hideLoadingPopup();
         switch (requestCode){
             case REQUEST_CODE_DES:
                 productDes =GsonUtil.GsonToBean(resultData, PlayVideoDes.class);
                 initData();
                 break;
             case REQUEST_MALL_REFRESH:
+                CommonUtil.dismissProgressDialog(this);
                 SecondCategory.VideoListBean videoListBean = GsonUtil.GsonToBean(resultData, SecondCategory.VideoListBean.class);
                 SecondCategory secondCategory = new SecondCategory();
                 secondCategory.videoPageData = videoListBean;

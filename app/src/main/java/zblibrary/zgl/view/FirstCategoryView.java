@@ -22,6 +22,7 @@ import zblibrary.zgl.model.SecondCategory;
 import zuo.biao.library.base.BaseView;
 import zuo.biao.library.ui.ExpandableGridView;
 import zuo.biao.library.util.AppManger;
+import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.StringUtil;
 
 public class FirstCategoryView extends BaseView<SecondCategory> implements View.OnClickListener {
@@ -82,10 +83,10 @@ public class FirstCategoryView extends BaseView<SecondCategory> implements View.
 	}
 
 	@Override
-	public void bindView(SecondCategory data_){
+	public void bindView(SecondCategory data_) {
 		super.bindView(data_ != null ? data_ : new SecondCategory());
 		firstHotProductList.clear();
-		if(data.videoPageData!=null && data.videoPageData.result!=null){
+		if (data.videoPageData != null && data.videoPageData.result != null) {
 			firstHotProductList.addAll(data.videoPageData.result);
 		}
 		firstCategoryAdapter.refresh(firstHotProductList);
@@ -112,6 +113,7 @@ public class FirstCategoryView extends BaseView<SecondCategory> implements View.
 				}
 				break;
 			case R.id.first_bottom_change:
+				CommonUtil.initLoadingPopup(context);
 				if(onClickChangeListener!=null){
 					if(isLast){
 						onClickChangeListener.onClickChangeLast();

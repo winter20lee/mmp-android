@@ -97,6 +97,7 @@ public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.Result
 
     @Override
     public List<FirstLast.ResultBean> parseArray(String json) {
+        dismissProgressDialog();
         if (StringUtil.isEmpty(json)) {
             return new ArrayList<>();
         }
@@ -121,7 +122,7 @@ public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.Result
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        toActivity(PlayVideoDetailsActivity.createIntent(context, firstLast.result.get(position).id));
+        toActivity(PlayVideoDetailsActivity.createIntent(context, resultModelList.get(position).id));
     }
 
 }

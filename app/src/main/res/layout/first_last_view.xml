@@ -19,7 +19,7 @@
         <zuo.biao.library.ui.RoundImageView
             android:id="@+id/last_pic"
             android:layout_width="match_parent"
-            android:layout_height="211.2dp"
+            android:layout_height="@dimen/dp_211_5"
             android:scaleType="centerCrop"
             android:layout_centerInParent="true"
             />

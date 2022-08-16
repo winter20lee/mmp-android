@@ -63,6 +63,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 
 	@Override
 	public void initData() {//必须调用
+		showProgressDialog("");
 		mine_name.setText(MApplication.getInstance().getCurrentUserNickName());
 		if(StringUtil.isEmpty(MApplication.getInstance().getCurrentUserAvatar())){
 			mine_head.setImageResource(R.mipmap.defult_head);
@@ -111,6 +112,7 @@ public class MineFragment extends BaseFragment implements OnClickListener {
 			((TextView)findView(R.id.mine_type)).setText("游客");
 			((TextView)findView(R.id.mine_exptime)).setText("");
 		}
+		dismissProgressDialog();
 	}
 
 

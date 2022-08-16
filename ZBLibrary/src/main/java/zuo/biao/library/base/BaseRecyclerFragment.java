@@ -457,6 +457,7 @@ public abstract class BaseRecyclerFragment<T, VH extends ViewHolder, A extends A
      * @must 在子类onCreate中调用，建议放在最后
      */
     public void onRefresh() {
+        //showProgressDialog("");
         loadData(PAGE_NUM_0);
     }
     /**加载更多

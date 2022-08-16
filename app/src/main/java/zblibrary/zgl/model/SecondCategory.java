@@ -1,6 +1,7 @@
 
 package zblibrary.zgl.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**商城
@@ -31,4 +32,6 @@ public class SecondCategory {
 				public int  catalogSecondLevelId;
 			}
 		}
+
+
 }

@@ -2,7 +2,7 @@
   <library name="Gradle: com.google.android.exoplayer:exoplayer-rtsp:2.16.1@aar">
     <ANNOTATIONS>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/aa1917010e793ead6090bcd772bca04a/jetified-exoplayer-rtsp-2.16.1/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aa1917010e793ead6090bcd772bca04a/jetified-exoplayer-rtsp-2.16.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c743c6e417af26b3c03f5c7da686241d/jetified-exoplayer-rtsp-2.16.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/aa1917010e793ead6090bcd772bca04a/jetified-exoplayer-rtsp-2.16.1/jars/classes.jar!/" />
@@ -10,8 +10,9 @@
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/aa1917010e793ead6090bcd772bca04a/jetified-exoplayer-rtsp-2.16.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aa1917010e793ead6090bcd772bca04a/jetified-exoplayer-rtsp-2.16.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/86b98810d661fbc1bab972f4bdae6f48/exoplayer-rtsp-2.16.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aa1917010e793ead6090bcd772bca04a/jetified-exoplayer-rtsp-2.16.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/aa1917010e793ead6090bcd772bca04a/jetified-exoplayer-rtsp-2.16.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c743c6e417af26b3c03f5c7da686241d/jetified-exoplayer-rtsp-2.16.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c743c6e417af26b3c03f5c7da686241d/jetified-exoplayer-rtsp-2.16.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c743c6e417af26b3c03f5c7da686241d/jetified-exoplayer-rtsp-2.16.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

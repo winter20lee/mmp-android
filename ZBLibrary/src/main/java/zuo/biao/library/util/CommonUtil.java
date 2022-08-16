@@ -40,11 +40,16 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 /**通用操作类
@@ -53,6 +58,7 @@ import android.widget.Toast;
  */
 public class CommonUtil {
 	private static final String TAG = "CommonUtil";
+	private static PopupWindow loadingPopup;
 
 	public CommonUtil() {/* 不能实例化**/}
 
@@ -246,6 +252,7 @@ public class CommonUtil {
 	public static void showProgressDialog(Activity context, String dialogMessage){
 		showProgressDialog(context, null, dialogMessage);
 	}
+
 	/**展示加载进度条
 	 * @param dialogTitle 标题
 	 * @param dialogMessage 信息
@@ -258,9 +265,12 @@ public class CommonUtil {
 		context.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-
 				if (progressDialog == null) {
-					progressDialog = new ProgressDialog(context);
+					if(dialogMessage != null && TextUtils.isEmpty(dialogMessage)){
+						progressDialog = new ProgressDialog(context,ProgressDialog.STYLE_SPINNER);
+					}else{
+						progressDialog = new ProgressDialog(context,ProgressDialog.STYLE_HORIZONTAL);
+					}
 				}
 				if(progressDialog.isShowing() == true) {
 					progressDialog.dismiss();
@@ -287,6 +297,26 @@ public class CommonUtil {
 			return (Activity) context;
 		}else
 			return null;
+	}
+
+	public static void initLoadingPopup(Activity context) {
+		View loadingView = context.getLayoutInflater().inflate(R.layout.pop_loading, null);
+		loadingPopup = new PopupWindow(loadingView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		loadingPopup.setFocusable(true);
+		loadingPopup.setClippingEnabled(false);
+		loadingPopup.setBackgroundDrawable(new ColorDrawable());
+		if (!context.isFinishing()){
+			loadingPopup.showAtLocation(context.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+		}
+	}
+
+	/**
+	 * 隐藏加载框
+	 */
+	public static void hideLoadingPopup() {
+		if (loadingPopup != null) {
+			loadingPopup.dismiss();
+		}
 	}
 
 
