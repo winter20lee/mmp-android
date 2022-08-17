@@ -2,7 +2,7 @@
   <library name="Gradle: com.google.android.exoplayer:exoplayer-common:2.16.1@aar">
     <ANNOTATIONS>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/81923caf1dc273317396634db8625b35/jetified-exoplayer-common-2.16.1/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0780f314e57f3f6e6dc4e75b55008863/jetified-exoplayer-common-2.16.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d7fc178af99612d47454e3e1eb6a2a2b/jetified-exoplayer-common-2.16.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/81923caf1dc273317396634db8625b35/jetified-exoplayer-common-2.16.1/jars/classes.jar!/" />
@@ -11,8 +11,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/81923caf1dc273317396634db8625b35/jetified-exoplayer-common-2.16.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ab367247691de5b3ff8ff7fbc807e38a/jetified-exoplayer-common-2.16.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0780f314e57f3f6e6dc4e75b55008863/jetified-exoplayer-common-2.16.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0780f314e57f3f6e6dc4e75b55008863/jetified-exoplayer-common-2.16.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0780f314e57f3f6e6dc4e75b55008863/jetified-exoplayer-common-2.16.1/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d7fc178af99612d47454e3e1eb6a2a2b/jetified-exoplayer-common-2.16.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d7fc178af99612d47454e3e1eb6a2a2b/jetified-exoplayer-common-2.16.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d7fc178af99612d47454e3e1eb6a2a2b/jetified-exoplayer-common-2.16.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

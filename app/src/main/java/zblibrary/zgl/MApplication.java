@@ -38,7 +38,7 @@ public class MApplication extends BaseApplication {
         super.onCreate();
         context = this;
         Crisp.configure(getApplicationContext(), "77a88c56-94bc-4f29-abee-f2724df4b0ac");
-        Bugly.init(getApplicationContext(), "第2步获取的AppID", false);
+        //Bugly.init(getApplicationContext(), "第2步获取的AppID", false);
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {

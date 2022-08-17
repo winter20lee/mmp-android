@@ -2,7 +2,7 @@
   <library name="Gradle: com.google.android.exoplayer:exoplayer-datasource:2.16.1@aar">
     <ANNOTATIONS>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/40fd3a3a958a4b597f0d7525bddbf5dc/jetified-exoplayer-datasource-2.16.1/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a6948d336a614cb034ee344c0dbc06ab/jetified-exoplayer-datasource-2.16.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1c07405432bee19bdb09a6984d4d83b6/jetified-exoplayer-datasource-2.16.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/40fd3a3a958a4b597f0d7525bddbf5dc/jetified-exoplayer-datasource-2.16.1/jars/classes.jar!/" />
@@ -11,8 +11,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/40fd3a3a958a4b597f0d7525bddbf5dc/jetified-exoplayer-datasource-2.16.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3046e12f1167a98b1c9d51f702edf494/exoplayer-datasource-2.16.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a6948d336a614cb034ee344c0dbc06ab/jetified-exoplayer-datasource-2.16.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a6948d336a614cb034ee344c0dbc06ab/jetified-exoplayer-datasource-2.16.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a6948d336a614cb034ee344c0dbc06ab/jetified-exoplayer-datasource-2.16.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1c07405432bee19bdb09a6984d4d83b6/jetified-exoplayer-datasource-2.16.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1c07405432bee19bdb09a6984d4d83b6/jetified-exoplayer-datasource-2.16.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1c07405432bee19bdb09a6984d4d83b6/jetified-exoplayer-datasource-2.16.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

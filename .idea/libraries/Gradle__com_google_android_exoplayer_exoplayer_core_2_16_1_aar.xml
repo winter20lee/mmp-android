@@ -2,15 +2,15 @@
   <library name="Gradle: com.google.android.exoplayer:exoplayer-core:2.16.1@aar">
     <ANNOTATIONS>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/093ef2cc2ebe277a2d795a073edd519c/jetified-exoplayer-core-2.16.1/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/554f5dde1d154389f57ca51106f9a3ac/jetified-exoplayer-core-2.16.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b62108bbd60f06f898a4c5ecd642fb65/jetified-exoplayer-core-2.16.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/093ef2cc2ebe277a2d795a073edd519c/jetified-exoplayer-core-2.16.1/jars/classes.jar!/" />
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/093ef2cc2ebe277a2d795a073edd519c/jetified-exoplayer-core-2.16.1/res" />
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/093ef2cc2ebe277a2d795a073edd519c/jetified-exoplayer-core-2.16.1/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/554f5dde1d154389f57ca51106f9a3ac/jetified-exoplayer-core-2.16.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/554f5dde1d154389f57ca51106f9a3ac/jetified-exoplayer-core-2.16.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/554f5dde1d154389f57ca51106f9a3ac/jetified-exoplayer-core-2.16.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b62108bbd60f06f898a4c5ecd642fb65/jetified-exoplayer-core-2.16.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b62108bbd60f06f898a4c5ecd642fb65/jetified-exoplayer-core-2.16.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b62108bbd60f06f898a4c5ecd642fb65/jetified-exoplayer-core-2.16.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

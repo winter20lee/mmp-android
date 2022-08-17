@@ -6,9 +6,10 @@
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/b030578a4a3754a8db6a68ad68090298/jetified-gsyVideoPlayer-x86-v8.1.9-release-jitpack/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b030578a4a3754a8db6a68ad68090298/jetified-gsyVideoPlayer-x86-v8.1.9-release-jitpack/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a8adbb58ee75f0db03903891b1d628a0/gsyVideoPlayer-x86-v8.1.9-release-jitpack/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5c0c7dadbb6f50cba21f1c6d25ae759/jetified-gsyVideoPlayer-x86-v8.1.9-release-jitpack/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5c0c7dadbb6f50cba21f1c6d25ae759/jetified-gsyVideoPlayer-x86-v8.1.9-release-jitpack/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5c0c7dadbb6f50cba21f1c6d25ae759/jetified-gsyVideoPlayer-x86-v8.1.9-release-jitpack/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a4533d554a9db60e510ebd0d4a48c7d3/jetified-gsyVideoPlayer-x86-v8.1.9-release-jitpack/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a4533d554a9db60e510ebd0d4a48c7d3/jetified-gsyVideoPlayer-x86-v8.1.9-release-jitpack/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a4533d554a9db60e510ebd0d4a48c7d3/jetified-gsyVideoPlayer-x86-v8.1.9-release-jitpack/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

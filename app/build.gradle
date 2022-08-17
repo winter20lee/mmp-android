@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+// Add this line
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 31
@@ -56,7 +58,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'im.crisp:crisp-sdk:1.0.12'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    compile 'com.google.android.gms:play-services-analytics:10.2.4'
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
     //bugly Java Crash捕获和应用升级功能
     implementation 'com.tencent.bugly:crashreport_upgrade:1.4.2'
     //bugly Native Crash捕获

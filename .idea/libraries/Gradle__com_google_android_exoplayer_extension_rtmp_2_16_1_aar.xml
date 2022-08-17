@@ -6,9 +6,10 @@
       <root url="file://$PROJECT_DIR$/../gradle/caches/transforms-2/files-2.1/1e990a7d09de0471f25efbe85825f0a9/jetified-extension-rtmp-2.16.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1e990a7d09de0471f25efbe85825f0a9/jetified-extension-rtmp-2.16.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a21af3071b511f0cd4fc71f192ec88c9/extension-rtmp-2.16.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ce668db0543758a1bfbe83270dca51c/jetified-extension-rtmp-2.16.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ce668db0543758a1bfbe83270dca51c/jetified-extension-rtmp-2.16.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ce668db0543758a1bfbe83270dca51c/jetified-extension-rtmp-2.16.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f200a2ff44a2c7f012694346c35469e7/jetified-extension-rtmp-2.16.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f200a2ff44a2c7f012694346c35469e7/jetified-extension-rtmp-2.16.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f200a2ff44a2c7f012694346c35469e7/jetified-extension-rtmp-2.16.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
