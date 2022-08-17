@@ -9,28 +9,18 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.liulishuo.filedownloader.FileDownloader;
-import com.liulishuo.filedownloader.util.FileDownloadUtils;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import zblibrary.zgl.R;
 import zblibrary.zgl.adapter.WatchHistoryAdapter;
-import zblibrary.zgl.application.MApplication;
-import zblibrary.zgl.fragment.MyDownFilesFragment;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
-import zblibrary.zgl.model.Customize;
 import zblibrary.zgl.model.MyLike;
-import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.WatchHistoryView;
 import zuo.biao.library.base.BaseHttpListActivity;
-import zuo.biao.library.base.BaseView;
 import zuo.biao.library.interfaces.AdapterCallBack;
 import zuo.biao.library.interfaces.OnBottomDragListener;
 import zuo.biao.library.util.GsonUtil;

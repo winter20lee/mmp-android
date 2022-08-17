@@ -44,6 +44,10 @@
 -keep public class * extends android.view.View
 -keep public class zblibrary.zgl.model.**{*;}
 
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+-keep class android.support.**{*;}
+
 -keep class android.support.** {*;}
 -dontwarn android.support.**
 -keep interface android.support.** { *; }

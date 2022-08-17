@@ -16,7 +16,7 @@ import zblibrary.zgl.activity.MyLikeActivity;
 import zblibrary.zgl.activity.SetActivity;
 import zblibrary.zgl.activity.UserInfoActivity;
 import zblibrary.zgl.activity.WatchHistoryActivity;
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.StringUtil;

@@ -20,7 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.fragment.FirstFragment;
 import zblibrary.zgl.fragment.MemberCenterFragment;
 import zblibrary.zgl.fragment.MineFragment;

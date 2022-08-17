@@ -22,17 +22,15 @@ import org.devio.takephoto.model.TResult;
 import org.devio.takephoto.uitl.TConstant;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
-import zblibrary.zgl.model.Customize;
 import zblibrary.zgl.model.UploadAvatar;
 import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseApplication;

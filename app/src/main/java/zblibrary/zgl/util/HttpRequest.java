@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import zblibrary.zgl.application.MApplication;
-import zblibrary.zgl.model.RequestOrderInfo;
+import zblibrary.zgl.MApplication;
 import zuo.biao.library.interfaces.OnHttpResponseListener;
 import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.util.SettingUtil;

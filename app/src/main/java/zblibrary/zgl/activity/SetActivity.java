@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +14,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Objects;
 import zblibrary.zgl.R;
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.manager.DataManager;
 import zblibrary.zgl.model.LoginEvent;
 import zuo.biao.library.base.BaseActivity;

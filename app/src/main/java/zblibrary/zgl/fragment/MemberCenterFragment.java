@@ -22,11 +22,8 @@ import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
 
 import com.stx.xhb.androidx.XBanner;
 
@@ -39,26 +36,22 @@ import java.util.List;
 
 import im.crisp.client.ChatActivity;
 import zblibrary.zgl.R;
-import zblibrary.zgl.activity.MainTabActivity;
 import zblibrary.zgl.activity.OrderActivity;
-import zblibrary.zgl.activity.PlayVideoDetailsActivity;
 import zblibrary.zgl.adapter.BannerHolderCreator;
 import zblibrary.zgl.adapter.MemberCardAdapter;
 import zblibrary.zgl.adapter.PayMethodAdapter;
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.MemberCenter;
 import zblibrary.zgl.model.Pay;
-import zblibrary.zgl.model.RefreshDownEvent;
 import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.ZoomFadePageTransformer;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.ui.AlertDialog;
 import zuo.biao.library.ui.WebViewActivity;
-import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.Log;

@@ -15,10 +15,8 @@ import android.widget.TextView;
 
 import im.crisp.client.ChatActivity;
 import zblibrary.zgl.R;
-import zblibrary.zgl.application.MApplication;
 import zblibrary.zgl.model.Order;
 import zuo.biao.library.base.BaseView;
-import zuo.biao.library.ui.WebViewActivity;
 import zuo.biao.library.util.StringUtil;
 
 public class OrderView extends BaseView<Order.MessageData>{

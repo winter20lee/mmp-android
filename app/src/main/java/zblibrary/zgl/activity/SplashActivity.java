@@ -2,7 +2,7 @@
 package zblibrary.zgl.activity;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.AppInitInfo;
@@ -10,31 +10,25 @@ import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.SplashCount;
 import zuo.biao.library.manager.HttpManager;
-import zuo.biao.library.ui.WebViewActivity;
 import zuo.biao.library.util.AESUtil;
 import zuo.biao.library.util.DeviceIdUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.MD5Utils;
-import zuo.biao.library.util.StringUtil;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-
-import java.util.ArrayList;
 
 /**闪屏activity，保证点击桌面应用图标后无延时响应
  */

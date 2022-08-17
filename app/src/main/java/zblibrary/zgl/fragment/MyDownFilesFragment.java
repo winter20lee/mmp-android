@@ -44,7 +44,7 @@ import java.util.List;
 import zblibrary.zgl.R;
 import zblibrary.zgl.activity.MainTabActivity;
 import zblibrary.zgl.activity.PlayVideoDetailsActivity;
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.model.RefreshDownEvent;
 import zuo.biao.library.base.BaseFragment;
 import zuo.biao.library.ui.EmptyRecyclerView;

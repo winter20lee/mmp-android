@@ -4,28 +4,23 @@ import static zuo.biao.library.interfaces.Presenter.INTENT_ID;
 
 import tv.danmaku.ijk.media.exo2.Exo2PlayerManager;
 import zblibrary.zgl.adapter.ActorRecommendAdapter;
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.fragment.MyDownFilesFragment;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.DataManager;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
-import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.SecondCategory;
 import zblibrary.zgl.model.PlayVideoDes;
 import zblibrary.zgl.model.RefreshDownEvent;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.FirstCategoryView;
-import zblibrary.zgl.view.SpaceItemDecoration;
-import zuo.biao.library.base.BaseActivity;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,8 +44,6 @@ import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.TimerTask;
 
 import zblibrary.zgl.R;
 import zuo.biao.library.interfaces.OnBottomDragListener;
@@ -63,7 +55,6 @@ import zuo.biao.library.util.AppManger;
 import zuo.biao.library.util.CommonUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
-import zuo.biao.library.util.Log;
 import zuo.biao.library.util.StringUtil;
 
 /**视频详情

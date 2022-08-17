@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import zblibrary.zgl.R;
-import zblibrary.zgl.application.MApplication;
-import zblibrary.zgl.model.Customize;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.model.MyLike;
 import zuo.biao.library.base.BaseView;
 import zuo.biao.library.ui.RoundImageView;

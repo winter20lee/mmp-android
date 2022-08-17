@@ -28,7 +28,7 @@ import zblibrary.zgl.activity.FirstSideWindow;
 import zblibrary.zgl.activity.SearchActivity;
 import zblibrary.zgl.activity.WatchHistoryActivity;
 import zblibrary.zgl.adapter.FirstTabLayoutAdapter;
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.interfaces.OnHttpResponseListener;
 import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
 import zblibrary.zgl.model.AppInitInfo;

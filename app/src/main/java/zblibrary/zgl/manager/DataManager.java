@@ -1,16 +1,13 @@
 
 package zblibrary.zgl.manager;
 
-import zblibrary.zgl.application.MApplication;
+import zblibrary.zgl.MApplication;
 import zblibrary.zgl.model.User;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.Log;
-import zuo.biao.library.util.StringUtil;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**数据工具类
  */
