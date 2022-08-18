@@ -123,7 +123,7 @@ public class HttpRequest {
 	public static void getSearch10(int pageNo,int secondLevelCatalogId,String keywords,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put(PAGE_NUM, pageNo);
-		request.put(PAGE_SiZE, 20);
+		request.put(PAGE_SiZE, 14);
 		request.put("secondLevelCatalogId", secondLevelCatalogId);
 		request.put("keywords", keywords);
 		HttpManager.getInstance().post(request, URL_BASE + "/api/video/moreVideo", true,requestCode, listener);
@@ -145,7 +145,7 @@ public class HttpRequest {
 	public static void getSearchLike(int pageNo,int secondLevelCatalogId,String keywords,final int requestCode, final OnHttpResponseListener listener) {
 		Map<String, Object> request = new HashMap<>();
 		request.put(PAGE_NUM, pageNo);
-		request.put(PAGE_SiZE, 10);
+		request.put(PAGE_SiZE, 14);
 		request.put("secondLevelCatalogId", secondLevelCatalogId);
 		request.put("keywords", keywords);
 		HttpManager.getInstance().post(request, URL_BASE + "/api/video/guess", true,requestCode, listener);

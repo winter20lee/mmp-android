@@ -20,12 +20,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -111,6 +113,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         initEvent();
         HttpRequest.getVideoDes(videoId,REQUEST_CODE_DES, new OnHttpResponseListenerImpl(this));
         //猜你喜欢
+        //displayLoadingPopup();
         HttpRequest.getRecommend(videoId,REQUEST_MALL_LIKE, new OnHttpResponseListenerImpl(this));
         if(!MApplication.getInstance().isVip()){
             HttpRequest.getDownloadCnt(REQUEST_DOWNLOAD_COUNT,  new OnHttpResponseListenerImpl(this));
@@ -231,8 +234,9 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
         }
         //同分类下
         //CommonUtil.showProgressDialog(this,"");
+
         displayLoadingPopup();
-        HttpRequest.getSearch(1,4,productDes.catalogSecondLevelId,"",REQUEST_MALL_REFRESH, new OnHttpResponseListenerImpl(this));
+        HttpRequest.getSearch(1,6,productDes.catalogSecondLevelId,"",REQUEST_MALL_REFRESH, new OnHttpResponseListenerImpl(this));
         //播放记录
         HttpRequest.getPlay(videoId,REQUEST_PLAY_RECORD, new OnHttpResponseListenerImpl(this));
     }
@@ -249,8 +253,12 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
      * 显示加载框
      */
     public void displayLoadingPopup() {
-        if (!this.isFinishing()){
-            loadingPopup.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        if (!this.isFinishing()) {
+            if (!loadingPopup.isShowing()) {
+                loadingPopup.showAtLocation((FrameLayout) findViewById(R.id.main_id), Gravity.CENTER, 0, 0);
+            } else {
+                hideLoadingPopup();
+            }
         }
     }
 
@@ -371,14 +379,12 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
 
     @Override
     public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
-        hideLoadingPopup();
         switch (requestCode){
             case REQUEST_CODE_DES:
                 productDes =GsonUtil.GsonToBean(resultData, PlayVideoDes.class);
                 initData();
                 break;
             case REQUEST_MALL_REFRESH:
-                CommonUtil.dismissProgressDialog(this);
                 SecondCategory.VideoListBean videoListBean = GsonUtil.GsonToBean(resultData, SecondCategory.VideoListBean.class);
                 SecondCategory secondCategory = new SecondCategory();
                 secondCategory.videoPageData = videoListBean;
@@ -389,8 +395,10 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 FirstCategoryView receivingAddressView = new FirstCategoryView(this,play_video_tflx,false);
                 play_video_tflx.addView(receivingAddressView.createView());
                 receivingAddressView.bindView(secondCategory);
+                hideLoadingPopup();
                 break;
             case REQUEST_MALL_LIKE:
+                hideLoadingPopup();
                 if(StringUtil.isEmpty(resultData)){
                     return;
                 }
@@ -399,7 +407,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 secondCategory = new SecondCategory();
                 videoListBean = new SecondCategory.VideoListBean();
                 secondCategory.videoPageData = videoListBean;
-                videoListBean.result = resultBeanArrayList;
+                videoListBean.result = resultBeanArrayList.subList(0,6);
                 catalogBean = new SecondCategory.VideoCatalogBean();
                 catalogBean.name = "猜你喜欢";
                 secondCategory.videoCatalog = catalogBean;
