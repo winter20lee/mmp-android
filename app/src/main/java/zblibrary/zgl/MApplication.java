@@ -1,6 +1,8 @@
 package zblibrary.zgl;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -19,6 +21,7 @@ import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseApplication;
 import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.util.AppManger;
+import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
 
 /**
@@ -38,7 +41,7 @@ public class MApplication extends BaseApplication {
         super.onCreate();
         context = this;
         Crisp.configure(getApplicationContext(), "77a88c56-94bc-4f29-abee-f2724df4b0ac");
-        //Bugly.init(getApplicationContext(), "第2步获取的AppID", false);
+        Bugly.init(getApplicationContext(), "9f6918b378", false);
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
@@ -295,6 +298,11 @@ public class MApplication extends BaseApplication {
         currentUser = user;
         DataManager.getInstance().saveUser(currentUser);
         HttpManager.resetHeaderToken();
+    }
+
+    public void saveNewToken(String token) {
+        SharedPreferences sdf = context.getSharedPreferences("PATH_USER_TOKEN", Context.MODE_PRIVATE);
+        sdf.edit().putString("KEY_USER_TOKEN", token).commit();
     }
 
     public void logout() {

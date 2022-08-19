@@ -11,14 +11,17 @@ import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.SplashCount;
 import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.util.AESUtil;
+import zuo.biao.library.util.DataKeeper;
 import zuo.biao.library.util.DeviceIdUtil;
 import zuo.biao.library.util.GlideUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.MD5Utils;
+import zuo.biao.library.util.StringUtil;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -121,6 +124,7 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 	public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
 		switch (requestCode){
 			case APP_INIT_CODE:
+				Log.d("h_bl", "requestCode开始：" + resultData);
 				appInitInfo = GsonUtil.GsonToBean(resultData,AppInitInfo.class);
 				MApplication.getInstance().setAppInitInfo(appInitInfo);
 //				if(StringUtil.isEmpty(HttpManager.getInstance().getToken())){
@@ -131,8 +135,11 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 				}
 				break;
 			case DEVICE_LOGIN_CODE:
+				Log.d("h_bl", "requestCode设备登录：" + resultData);
 				User user = GsonUtil.GsonToBean(resultData,User.class);
+				MApplication.getInstance().saveNewToken(user.token);
 				MApplication.getInstance().saveCurrentUser(user);
+
 				break;
 		}
 
@@ -140,7 +147,7 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 
 	@Override
 	public void onHttpError(int requestCode, Exception e, String message) {
-
+		Log.d("h_bl", "requestCode：" + requestCode);
 	}
 
 	private String getDeviceToken(){

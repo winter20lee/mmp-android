@@ -48,13 +48,13 @@ public class HttpManager {
 	private static final String VERIFYTOKEN = "verifyToken";
 	private static final String TOKEN = "token";
 	private static final String AC = "ac";
-	public static final String AC_KEY = "qd003";
+	public static final String AC_KEY = "qd001";
 	private static final String OS = "os";
 	private static final String PT = "pt";
 
 	private Context context;
 	private SSLSocketFactory socketFactory;// 单例
-	private static  String token;
+	private static  String token="";
 	private static  String idCode;
 	private HttpManager(Context context) {
 		this.context = context;
@@ -84,8 +84,14 @@ public class HttpManager {
 		return instance;
 	}
 
-	public  static void resetHeaderToken(){
+	public static void resetHeaderToken(){
 		token = instance.getToken();
+		android.util.Log.d("h_bl--->", "token" +token);
+		//备用token
+		if(StringUtil.isEmpty(token)){
+			token = instance.getToken2();
+			android.util.Log.d("h_bl2--->", "token" +token);
+		}
 	}
 
 
@@ -443,6 +449,20 @@ public class HttpManager {
 		String userJosn = (sdf.getString("KEY_USER", null));
 		try {
 			return GsonUtil.GsonToken(userJosn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	public String getToken2() {
+		SharedPreferences sdf = context.getSharedPreferences("PATH_USER_TOKEN", Context.MODE_PRIVATE);
+		if (sdf == null) {
+			Log.e(TAG, "get sdf == null >>  return;");
+			return "";
+		}
+		try {
+			String userJosn = (sdf.getString("KEY_USER_TOKEN", null));
+			return userJosn;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
