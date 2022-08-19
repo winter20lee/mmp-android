@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import zblibrary.zgl.R;
+import zblibrary.zgl.fragment.FirstLastFragment;
 import zblibrary.zgl.fragment.SearchFragment;
 import zblibrary.zgl.view.SearchLayout;
 import zuo.biao.library.base.BaseActivity;
@@ -47,6 +48,10 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 		if(StringUtil.isNotEmpty(keyword,true)){
 			showSearchResu(keyword,"");
 		}else{
+			if(cateGoryId == -88){
+				showSearchZuiXin();
+				return;
+			}
 			showSearchResu(keyword);
 		}
 	}
@@ -97,6 +102,13 @@ public class SearchActivity extends BaseActivity implements OnBottomDragListener
 
 	private void showSearchResu(String keyword){
 		SearchFragment fragment = SearchFragment.createInstance(keyword,cateGoryId);
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.replace(R.id.search_result_fg, fragment);
+		transaction.commit();
+	}
+
+	private void showSearchZuiXin(){
+		SearchFragment fragment = SearchFragment.createInstance(null,124);
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.replace(R.id.search_result_fg, fragment);
 		transaction.commit();

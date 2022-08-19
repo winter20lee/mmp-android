@@ -185,7 +185,7 @@ public class FirstFragment extends BaseFragment implements OnClickListener,
 	public void onClick(View v) {//直接调用不会显示v被点击效果
 		switch (v.getId()) {
 			case R.id.et_searchtext_search:
-				toActivity(SearchActivity.createIntent(getActivity(),0));
+				toActivity(SearchActivity.createIntent(getActivity(),-88));
 				break;
 			case R.id.button_history:
 				toActivity(WatchHistoryActivity.createIntent(getActivity()));
