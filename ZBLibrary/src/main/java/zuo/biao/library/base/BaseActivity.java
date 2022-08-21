@@ -87,6 +87,8 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
 
 	private boolean isAlive = false;
 	private boolean isRunning = false;
+	private boolean isShowPop = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -247,11 +249,24 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
 		loadingPopup.setBackgroundDrawable(new ColorDrawable());
 	}
 
-    /*
+	@Override
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		isShowPop = true;
+	}
+
+	@Override
+	public void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		isShowPop = false;
+		hideLoadingPopup();
+	}
+
+	/*
 			* 显示加载框
      */
 	public void displayLoadingPopup() {
-		if (!this.isFinishing()){
+		if (null!=this && isShowPop){
 			loadingPopup.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
 		}
 	}

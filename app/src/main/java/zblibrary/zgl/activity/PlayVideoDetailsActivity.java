@@ -407,7 +407,7 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 secondCategory = new SecondCategory();
                 videoListBean = new SecondCategory.VideoListBean();
                 secondCategory.videoPageData = videoListBean;
-                videoListBean.result = resultBeanArrayList.subList(0,6);
+                videoListBean.result = resultBeanArrayList;
                 catalogBean = new SecondCategory.VideoCatalogBean();
                 catalogBean.name = "猜你喜欢";
                 secondCategory.videoCatalog = catalogBean;

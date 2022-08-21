@@ -9,6 +9,7 @@ import zblibrary.zgl.model.AppInitInfo;
 import zblibrary.zgl.model.User;
 import zblibrary.zgl.util.HttpRequest;
 import zblibrary.zgl.view.SplashCount;
+import zuo.biao.library.base.BaseEvent;
 import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.util.AESUtil;
 import zuo.biao.library.util.DataKeeper;
@@ -32,6 +33,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**闪屏activity，保证点击桌面应用图标后无延时响应
  */

@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +50,7 @@ public class HttpManager {
 	private static final String VERIFYTOKEN = "verifyToken";
 	private static final String TOKEN = "token";
 	private static final String AC = "ac";
-	public static final String AC_KEY = "qd001";
+	public static final String AC_KEY = "qd003";
 	private static final String OS = "os";
 	private static final String PT = "pt";
 
@@ -85,14 +87,17 @@ public class HttpManager {
 	}
 
 	public static void resetHeaderToken(){
+		//原来逻辑，整个JSON返回读写,取
 		token = instance.getToken();
-		android.util.Log.d("h_bl--->", "token" +token);
-		//备用token
+		android.util.Log.d("h_bl22222-头部-->", "token" +token);
+		//备用token,读写少一点
 		if(StringUtil.isEmpty(token)){
 			token = instance.getToken2();
-			android.util.Log.d("h_bl2--->", "token" +token);
+			android.util.Log.d("h_bl33333-头部-->", "token" +token);
 		}
 	}
+
+
 
 
 
@@ -264,7 +269,8 @@ public class HttpManager {
 
 						requestBody = builder.build();
 					}
-
+					android.util.Log.d("h_bl22222-头部-->", "token--->" +token);
+					android.util.Log.d("h_bl22222-头部-->", "VerifyToken---->" +getVerifyToken());
 					result = getResponseJson(
 							client,
 							new Request.Builder()
@@ -461,7 +467,7 @@ public class HttpManager {
 			return "";
 		}
 		try {
-			String userJosn = (sdf.getString("KEY_USER_TOKEN", null));
+			String userJosn = (sdf.getString("KEY_USER_TOKEN", ""));
 			return userJosn;
 		} catch (Exception e) {
 			e.printStackTrace();

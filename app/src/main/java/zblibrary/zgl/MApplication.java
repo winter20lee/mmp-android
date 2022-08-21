@@ -302,7 +302,10 @@ public class MApplication extends BaseApplication {
 
     public void saveNewToken(String token) {
         SharedPreferences sdf = context.getSharedPreferences("PATH_USER_TOKEN", Context.MODE_PRIVATE);
-        sdf.edit().putString("KEY_USER_TOKEN", token).commit();
+        SharedPreferences.Editor editor = sdf.edit();
+        Log.d("h_bl1111--保存token->", "token" +token);
+        sdf.edit().putString("KEY_USER_TOKEN", token);
+        editor.commit();
     }
 
     public void logout() {

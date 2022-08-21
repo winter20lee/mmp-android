@@ -5,4 +5,8 @@ public class BaseEvent {
         this.Message = Message;
     }
     public String Message;
+    public BaseEvent(String token,String tag){
+        this.token = token;
+    }
+    public String token;
 }
