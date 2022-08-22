@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.tencent.bugly.Bugly;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.Random;
 
@@ -41,7 +42,10 @@ public class MApplication extends BaseApplication {
         super.onCreate();
         context = this;
         Crisp.configure(getApplicationContext(), "77a88c56-94bc-4f29-abee-f2724df4b0ac");
-        Bugly.init(getApplicationContext(), "9f6918b378", false);
+
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
+        CrashReport.initCrashReport(getApplicationContext(), "9f6918b378", false, strategy);
+       //Bugly.init(getApplicationContext(), "9f6918b378", false);
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
