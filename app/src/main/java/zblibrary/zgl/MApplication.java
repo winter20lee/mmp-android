@@ -51,9 +51,9 @@ public class MApplication extends BaseApplication {
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-                if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                }
+//                if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+//                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//                }
                 AppManger.getInstance().addActivity(activity);
             }
 

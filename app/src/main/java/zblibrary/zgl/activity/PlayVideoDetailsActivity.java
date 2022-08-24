@@ -411,6 +411,8 @@ public class PlayVideoDetailsActivity extends GSYBaseActivityDetail<StandardGSYV
                 catalogBean = new SecondCategory.VideoCatalogBean();
                 catalogBean.name = "猜你喜欢";
                 secondCategory.videoCatalog = catalogBean;
+                if(productDes==null)
+                    return;
                 FirstCategoryView receivingAddressView1 = new FirstCategoryView(this,play_video_cnxh,productDes.tag);
                 play_video_cnxh.addView(receivingAddressView1.createView());
                 receivingAddressView1.bindView(secondCategory);
