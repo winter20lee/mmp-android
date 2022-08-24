@@ -81,7 +81,9 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 
 			@Override
 			public FirstCategoryAdapter createAdapter() {
-
+				if (context == null) {
+					throw new RuntimeException("please pass an activity first to use this call");
+				}
 				return new FirstCategoryAdapter(context);
 			}
 
