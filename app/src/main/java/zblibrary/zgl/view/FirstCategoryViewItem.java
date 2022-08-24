@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.executor.GlideExecutor;
+
 import zblibrary.zgl.R;
 import zblibrary.zgl.model.ListByPos;
 import zblibrary.zgl.model.SecondCategory;
@@ -46,7 +48,7 @@ public class FirstCategoryViewItem extends BaseView<SecondCategory.VideoListBean
 			int dpValue = StringUtil.px2dip(context, pxValue2);//将px值转换成dp值
 			Log.d("h_dp102", "转化屏幕高度--：" + dpValue);
 			first_category_item_iv.setRadius(StringUtil.dp2px(context,2));
-			GlideUtil.load(context,data.coverUrl,first_category_item_iv,R.mipmap.banner_deful);
+			GlideUtil.load(context.getApplicationContext(),data.coverUrl,first_category_item_iv,R.mipmap.banner_deful);
 		}
 
 		first_category_item_title.setText(data.name);

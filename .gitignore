@@ -1,8 +1,13 @@
 *.iml
 .gradle
-/local.properties
-/.idea
 .DS_Store
-/build
+*/build/
 /captures
 .externalNativeBuild
+.cxx
+local.properties
+#remote.gradle
+/.idea/
+/apk
+*.apk
+*/output.json

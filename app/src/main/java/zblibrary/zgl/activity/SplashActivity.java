@@ -63,7 +63,8 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 		splash.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				if(appInitInfo.ads!=null && appInitInfo.ads.size()>0){
+
+				if(null!=appInitInfo && appInitInfo.ads!=null && appInitInfo.ads.size()>0){
 					Intent it =  MainTabActivity.createIntent(SplashActivity.this,appInitInfo.ads.get(0).link);
 					startActivity(it);
 					finish();

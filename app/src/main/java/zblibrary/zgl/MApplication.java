@@ -3,6 +3,8 @@ package zblibrary.zgl;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -49,6 +51,9 @@ public class MApplication extends BaseApplication {
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+                if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
                 AppManger.getInstance().addActivity(activity);
             }
 

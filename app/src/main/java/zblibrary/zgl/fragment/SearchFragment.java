@@ -81,6 +81,7 @@ public class SearchFragment extends BaseHttpRecyclerFragment
 
 			@Override
 			public FirstCategoryAdapter createAdapter() {
+
 				return new FirstCategoryAdapter(context);
 			}
 
