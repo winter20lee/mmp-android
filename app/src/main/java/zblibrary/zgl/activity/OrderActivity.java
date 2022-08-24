@@ -53,6 +53,9 @@ public class OrderActivity extends BaseHttpListActivity<Order.MessageData, ListV
 
 			@Override
 			public OrderAdapter createAdapter() {
+				if (context == null) {
+					throw new RuntimeException("please pass an activity first to use this call");
+				}
 				return new OrderAdapter(context);
 			}
 

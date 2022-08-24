@@ -55,6 +55,9 @@ public class WatchHistoryActivity extends BaseHttpListActivity<MyLike.ResultBean
 
 			@Override
 			public WatchHistoryAdapter createAdapter() {
+				if (context == null) {
+					throw new RuntimeException("please pass an activity first to use this call");
+				}
 				return new WatchHistoryAdapter(context);
 			}
 

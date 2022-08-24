@@ -65,6 +65,9 @@ public class FirstLastFragment extends BaseHttpRecyclerFragment<FirstLast.Result
 
             @Override
             public FirstLastAdapter createAdapter() {
+                if (context == null) {
+                    throw new RuntimeException("please pass an activity first to use this call");
+                }
                 return new FirstLastAdapter(context);
             }
 
