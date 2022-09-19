@@ -24,6 +24,7 @@ import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.base.BaseApplication;
 import zuo.biao.library.manager.HttpManager;
 import zuo.biao.library.util.AppManger;
+import zuo.biao.library.util.DeviceIdUtil;
 import zuo.biao.library.util.GsonUtil;
 import zuo.biao.library.util.StringUtil;
 
@@ -46,6 +47,9 @@ public class MApplication extends BaseApplication {
         Crisp.configure(getApplicationContext(), "77a88c56-94bc-4f29-abee-f2724df4b0ac");
 
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
+        String orgDeviceId = DeviceIdUtil.getDeviceId(context);
+        // 通过UserStrategy设置
+        strategy.setDeviceID(orgDeviceId);
         CrashReport.initCrashReport(getApplicationContext(), "9f6918b378", false, strategy);
        //Bugly.init(getApplicationContext(), "9f6918b378", false);
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {

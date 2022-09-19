@@ -13,6 +13,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f881a83752a6e76206f30fc6258c276/jetified-MarqueeView-1.4.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f881a83752a6e76206f30fc6258c276/jetified-MarqueeView-1.4.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f881a83752a6e76206f30fc6258c276/jetified-MarqueeView-1.4.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4f8576ec632c80c537dcd1445187669b/jetified-MarqueeView-1.4.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4f8576ec632c80c537dcd1445187669b/jetified-MarqueeView-1.4.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4f8576ec632c80c537dcd1445187669b/jetified-MarqueeView-1.4.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../gradle/caches/modules-2/files-2.1/com.sunfusheng/MarqueeView/1.4.1/3287068b5981120810bcb695716897c8eed38829/MarqueeView-1.4.1-javadoc.jar!/" />

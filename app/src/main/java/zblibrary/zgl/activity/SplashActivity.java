@@ -38,6 +38,7 @@ import org.greenrobot.eventbus.EventBus;
 
 /**闪屏activity，保证点击桌面应用图标后无延时响应
  */
+@RequiresApi(api = Build.VERSION_CODES.M)
 public class SplashActivity extends Activity implements OnHttpResponseListener {
 
 	private final int APP_INIT_CODE = 1110;
@@ -47,7 +48,7 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 	private TextView splash_tv;
 	private SplashCount splashCount;
 	private AppInitInfo appInitInfo;
-	@RequiresApi(api = Build.VERSION_CODES.M)
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,7 +84,38 @@ public class SplashActivity extends Activity implements OnHttpResponseListener {
 
 	}
 
-	@RequiresApi(api = Build.VERSION_CODES.M)
+	@Override
+	protected void onResume() {
+		super.onResume();
+		HttpRequest.getAppInitInfo(APP_INIT_CODE,new OnHttpResponseListenerImpl(new OnHttpResponseListener() {
+			@Override
+			public void onHttpSuccess(int requestCode, int resultCode, String resultData, String message) {
+				switch (requestCode){
+					case APP_INIT_CODE:
+						Log.d("h_bl", "requestCode开始：" + resultData);
+						appInitInfo = GsonUtil.GsonToBean(resultData,AppInitInfo.class);
+						MApplication.getInstance().setAppInitInfo(appInitInfo);
+						HttpRequest.loginByDeviceId(getDeviceToken(),DEVICE_LOGIN_CODE,new OnHttpResponseListenerImpl(this) );
+						if(appInitInfo.ads!=null && appInitInfo.ads.size()>0){
+							GlideUtil.load(SplashActivity.this,appInitInfo.ads.get(0).imgUrl,splash);
+						}
+						break;
+					case DEVICE_LOGIN_CODE:
+						Log.d("h_bl", "requestCode设备登录：" + resultData);
+						User user = GsonUtil.GsonToBean(resultData,User.class);
+						MApplication.getInstance().saveNewToken(user.token);
+						MApplication.getInstance().saveCurrentUser(user);
+						break;
+				}
+			}
+
+			@Override
+			public void onHttpError(int requestCode, Exception e, String message) {
+
+			}
+		}) );
+	}
+
 	public void getAndroiodScreenProperty() {
 		WindowManager wm = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
 		DisplayMetrics dm = new DisplayMetrics();

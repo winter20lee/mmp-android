@@ -68,6 +68,9 @@ public class FirstCategoryView extends BaseView<SecondCategory> implements View.
 		expandableGridView = findView(R.id.first_gridview);
 		first_bottom_more = findView(R.id.first_bottom_more);
 		first_bottom_change = findView(R.id.first_bottom_change);
+		if (context == null) {
+			throw new RuntimeException("please pass an activity first to use this call");
+		}
 		firstCategoryAdapter = new FirstCategoryAdapter(context);
 		expandableGridView.setAdapter(firstCategoryAdapter);
 		firstCategoryAdapter.setOnItemClickListener((parent, view, position, id) -> {

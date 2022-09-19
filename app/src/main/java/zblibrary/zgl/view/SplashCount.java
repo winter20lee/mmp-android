@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import zblibrary.zgl.activity.MainTabActivity;
 import zblibrary.zgl.activity.SplashActivity;
+import zblibrary.zgl.manager.OnHttpResponseListenerImpl;
+import zblibrary.zgl.util.HttpRequest;
 import zuo.biao.library.util.GlideUtil;
 
 public class SplashCount extends CountDownTimer {
